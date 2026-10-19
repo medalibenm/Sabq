@@ -53,8 +53,8 @@ extractor.
 
 | # | Wilaya | Source | URL | Robots | Method | Status |
 |---|---|---|---|---|---|---|
-| 1 | 05 باتنة | Awras News | https://elauresnews.dz/ | | | todo |
-| 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | | | todo |
+| 1 | 05 باتنة | Awras News | https://elauresnews.dz/ | allowed | WP API | verified 2026-10-19 |
+| 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | allowed (empty) | WP API | verified 2026-10-19 |
 | 3 | 06 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | | | todo |
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | | | todo |
 | 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | | | todo |
@@ -229,8 +229,8 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | todo (0 / 17) | 2026-10-19 |
-| M1 · Foundation | done locally; CI to confirm on GitHub (branch `m1-foundation`) | 2026-10-19 |
+| Track A · Investigation | in progress (2 / 17) | 2026-10-19 |
+| M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | todo | |
 | M3 · Fetching | todo | |
 | M4 · Extraction | todo | |

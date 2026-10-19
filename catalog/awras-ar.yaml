@@ -1,0 +1,32 @@
+# Awras News (الأوراس نيوز), Batna daily. Investigated 2026-10-19 (docs/adding-sources.md).
+# Draft: validated by hand; checked by the real extractor in M4.
+slug: awras-ar
+name: الأوراس نيوز
+home_url: https://elauresnews.dz/
+language: ar
+kind: local
+wilayas: ["05"]
+tier: secondary
+# Uploads the whole edition at once: 60-73 posts between 23:00 and 23:12 UTC on edition days.
+poll_interval_s: 1800
+access_method: wp_json
+robots:
+  checked_at: 2026-10-19
+  result: allowed            # "Disallow: /wp-admin/" only; same on cdn.elauresnews.dz
+listings:
+  # per_page=100 because one edition is up to ~73 posts; /feed/ only holds 25 and would miss most.
+  # The server is slow (~8.5 s for this call).
+  - https://elauresnews.dz/wp-json/wp/v2/posts?per_page=100&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered               # HTML entities, unescape
+  published: $.date_gmt                 # true UTC (site timezone Africa/Algiers)
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered              # strip HTML, truncate ~300 chars
+  image: $._embedded['wp:featuredmedia'][0].source_url   # 302 to cdn.elauresnews.dz, loads fine
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link                          # percent-encoded Arabic slug
+dates:
+  published_tz: UTC
+  confidence: source_meta

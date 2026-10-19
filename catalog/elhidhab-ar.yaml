@@ -1,0 +1,34 @@
+# El Hidhab (جريدة الهضاب). Investigated 2026-10-19 (docs/adding-sources.md).
+# Draft: validated by hand; checked by the real extractor in M4.
+slug: elhidhab-ar
+name: الهضاب
+home_url: https://elhidhab.dz/
+language: ar                 # feed declares en-US by mistake; content is Arabic
+kind: local
+wilayas: ["05"]              # as listed by us; content seen is mostly national news and weather
+tier: secondary
+# Low activity: ~0.6 posts/day, irregular (last posts 2026-10-15, 2026-10-05).
+poll_interval_s: 3600
+access_method: wp_json
+robots:
+  checked_at: 2026-10-19
+  result: allowed            # robots.txt is an empty text/plain file (RFC 9309: no restrictions)
+listings:
+  - https://elhidhab.dz/wp-json/wp/v2/posts?per_page=20&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+dates:
+  # WordPress timezone is unset (gmt_offset 0), so date_gmt is most likely Algiers wall-clock
+  # time labelled as UTC. Read it as naive Africa/Algiers (CLAUDE.md rule); confirm with the
+  # first new post (compare first_seen_at).
+  published_tz: Africa/Algiers
+  confidence: source_meta
+  tz_verified: false

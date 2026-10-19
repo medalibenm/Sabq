@@ -9,6 +9,8 @@ One row per source **per language**. "Verified" = probed and working in the PoC 
 | `aps-ar` | APS (العربية) | 00 National | embedded data (Next.js `self.__next_f`) | `/`, `/algerie/actualite-nationale`, `/presidence-news` | 60 s | allows all | UTC `publish_date`; 8-char ID in URL; images under `/api/image/`; skip dossier/infographie/video |
 | `mouradia-ar` | رئاسة الجمهورية (Presidency) | 00 National | internal JSON API (Strapi) | `backend.el-mouradia.dz/article-ars/published` | 5 min | allows all | links `/ar/{president\|presidency}/{_id}`; SPA returns 200 for any URL; `mouradia-fr` is **empty** |
 | `elhayat-ar` | El Hayat | 00 National | WordPress REST API | `/wp-json/wp/v2/posts` | 2 min | allows all | `/feed/` times out; images from Yoast `og_image` |
+| `awras-ar` | الأوراس نيوز (Awras News) | 05 باتنة | WordPress REST API (`_embed` for image and section) | `/wp-json/wp/v2/posts?per_page=100` | 30 min | allows all (except `/wp-admin/`), checked 2026-10-19 | Daily: uploads the edition at once, 60–73 posts at 23:00–23:12 UTC; `/feed/` holds only 25 so would miss most; API slow (~8.5 s); site tz Africa/Algiers, `date_gmt` correct; images 302 → `cdn.elauresnews.dz`. Config `catalog/awras-ar.yaml` |
+| `elhidhab-ar` | الهضاب (El Hidhab) | 05 باتنة | WordPress REST API | `/wp-json/wp/v2/posts?per_page=20` | 60 min | empty robots.txt (no restrictions), checked 2026-10-19 | ~0.6 posts/day, irregular; content mostly national news and weather, not Batna; feed says `en-US` but content is Arabic; WP timezone unset, dates read as Africa/Algiers (to confirm). Config `catalog/elhidhab-ar.yaml` |
 | `aa-ar` | Anadolu Agency (Arabic) | 00 National | official RSS | `/ar/rss/default?cat=guncel` | 2 min | allows all except `/api/` | dates +03:00 → UTC; no images in feed; items not in date order |
 
 ## Removed
@@ -45,8 +47,6 @@ Each must still go through [adding-sources.md](adding-sources.md) (live robots.t
 
 | Wilaya | Name | URL |
 |---|---|---|
-| 05 باتنة | Awras News | https://elauresnews.dz/ |
-| 05 باتنة | El Hidhab News | https://elhidhab.dz/ |
 | 06 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com |
 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ |
 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ |

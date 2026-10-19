@@ -88,7 +88,7 @@ assignments.
   (59–69 active from 2027-01-01), plus one special row **`00` National** (`وطني` / `National`) for sources without a local wilaya.
 - `organisation_wilayas(organisation_id, wilaya_id, enabled)`; an organisation must have at least
   one enabled wilaya before it can receive articles.
-- `sources(id, slug, name, home_url, language, kind[official|agency|national|international], tier[priority|normal|secondary], poll_interval_s, access_method[rss|wp_json|sitemap|embedded|json_api|html|headless], config jsonb, config_version, egress[default|dz_proxy], enabled, status, robots_checked_at, created_at)`. One row per source per language.
+- `sources(id, slug, name, home_url, language, kind[official|agency|national|local|international], tier[priority|normal|secondary], poll_interval_s, access_method[rss|wp_json|sitemap|embedded|json_api|html|headless], config jsonb, config_version, egress[default|dz_proxy], enabled, status, robots_checked_at, created_at)`. One row per source per language.
 - `source_config_versions(source_id, version, config, changed_by, reason, created_at)`
 - `source_wilayas(source_id, wilaya_id, assignment_method[manual|source_section|article_rule], enabled)`.
   Every source has at least one row: a local source gets its wilaya(s), any other source gets
