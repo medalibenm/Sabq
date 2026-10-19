@@ -1,0 +1,5 @@
+# SITE_ADDRESS is ":80" locally (plain HTTP) and the domain in production (automatic HTTPS).
+{$SITE_ADDRESS}
+
+encode gzip
+reverse_proxy app:8000

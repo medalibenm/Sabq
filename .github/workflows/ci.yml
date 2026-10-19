@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      db:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: sabq
+          POSTGRES_PASSWORD: sabq
+          POSTGRES_DB: sabq
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U sabq" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://sabq:sabq@localhost:5432/sabq
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.10.10"
+      - run: uv sync --locked
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest -v
+
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp .env.example .env
+      - name: Start the production stack and wait until healthy
+        run: docker compose -f compose.yaml up -d --build --wait --wait-timeout 180
+      - run: curl -fsS http://localhost/health.json
+      - if: failure()
+        run: docker compose -f compose.yaml logs
+      - run: docker compose -f compose.yaml down -v

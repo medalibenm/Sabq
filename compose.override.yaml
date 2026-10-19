@@ -1,0 +1,25 @@
+# Development only: loaded automatically by `docker compose up` next to compose.yaml.
+# Production runs with `docker compose -f compose.yaml ...` (see docs/architecture.md#deployment).
+
+services:
+  db:
+    ports:
+      - "${SABQ_DB_PORT:-5440}:5432"   # not 5432: avoids a PostgreSQL installed on the host
+
+  app:
+    command: ["uvicorn", "sabq.app:app", "--host", "0.0.0.0", "--port", "8000", "--reload",
+              "--reload-dir", "/srv/backend/src"]
+    volumes:
+      - ./backend/src:/srv/backend/src:ro
+    ports:
+      - "${SABQ_APP_PORT:-8010}:8000"
+
+  worker:
+    volumes:
+      - ./backend/src:/srv/backend/src:ro
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports:
+      - "${SABQ_MAILPIT_PORT:-8025}:8025"   # web UI: http://localhost:8025
+    restart: unless-stopped
