@@ -3,6 +3,14 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-19 · Repository layout: one backend package, split by domain
+The repository is split at the top (`backend/`, later `frontend/`, `catalog/`, `deploy/`,
+`docs/`), but the backend is **one** Python package with two entry points (`app`, `worker`) in one
+Docker image, organised by domain (`fetch`, `extract`, `ingest`, `matching`, `auth`, `api`), not
+`/services/api` + `/services/worker`. The two services share models, settings, extraction and
+matching, so separate packages would mean duplicated or extra shared code for no benefit at this
+size. A domain folder can still be moved out into its own service later.
+
 ### 2026-10-19 · Production starts on DigitalOcean
 The first production server is a DigitalOcean droplet in Frankfurt or Amsterdam (2–4 GB), paid by
 the GitHub Student Pack credits. Hetzner stays the planned move when credits run out; the setup is

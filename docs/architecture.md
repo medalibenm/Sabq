@@ -255,15 +255,16 @@ production.
 - **Embeddings via API** (OpenRouter: `OPENROUTER_API_KEY`, `EMBEDDING_MODEL=voyageai/voyage-4`,
   `EMBEDDING_BASE_URL`): no model in the image. Calls are batched, have a
   timeout and retries, and an outage only delays matching (`embedding_status = pending`).
-- **Migrations** with Alembic, run as a one-off step before a new version starts
-  (`docker compose run --rm app alembic upgrade head`). Migrations stay backward compatible for one
+- **Migrations** with Alembic, run by the one-off `migrate` service before `app` and `worker`
+  start (`docker compose up` waits for it to finish successfully). Migrations stay backward compatible for one
   release so a rollback does not break the database.
 - **Health checks** on every service in `compose.yaml`; `restart: unless-stopped`.
 - **Logs** as JSON to stdout, Docker log rotation (`max-size`, `max-file`).
 - **Containers run in UTC**; local time only through `Africa/Algiers` conversion in code.
 - **Graceful shutdown:** the worker finishes or abandons in-flight fetches cleanly on `SIGTERM`.
-- Local development uses `compose.override.yaml` (published `db` port, code reload); production
-  uses `compose.yaml` only.
+- Local development uses `compose.override.yaml` (code reload, Mailpit, `db` on host port 5440 and
+  `app` on 8010, both configurable to avoid clashes with other local projects); production uses
+  `compose.yaml` only (`docker compose -f compose.yaml ...`).
 
 ### Release and operations
 - Images built by GitHub Actions, tagged with the git commit SHA, pushed to GitHub Container

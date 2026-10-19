@@ -20,10 +20,10 @@
    repo or the chat.
 
 ## Step 0 · Repository setup (before both tracks)
-- [ ] `git init` in `Sabq/` (it currently sits inside the home-folder repo), `main` branch,
+- [x] `git init` in `Sabq/` (it currently sits inside the home-folder repo), `main` branch,
       `.gitignore` (`.env`, `.venv/`, `__pycache__/`, `data/`).
-- [ ] First commit: README, CLAUDE.md, docs.
-- [ ] Private GitHub repository, push.
+- [x] First commit: README, CLAUDE.md, docs.
+- [x] GitHub repository (`medalibenm/Sabq`), pushed.
 - [x] Bot contact URL: none for now. User-Agent is `SabqBot/<version>`, plus
       ` (+<SABQBOT_CONTACT_URL>)` when that setting is filled; it must be filled before production (M9).
 
@@ -82,25 +82,39 @@ Order follows [product.md](product.md) (access boundaries first). Each milestone
 delivers and when it is done.
 
 ### M1 · Foundation
-- [ ] `uv` project, Python 3.12, `ruff`, `pytest`; package layout:
+- [x] `uv` project (Python 3.12, `ruff`, `pytest`) in `backend/`; repository layout (one backend
+      package with two entry points, split by domain; decision 2026-10-19):
       ```
-      sabq/
-        settings.py        # pydantic settings from env
-        db/                # SQLAlchemy models, session, Alembic migrations
-        fetch/             # polite HTTP client, robots, rate limits, egress
-        extract/           # config schema + feed / json / html extractors
-        ingest/            # scheduler, new/known detection, versions, wilaya assignment
-        matching/          # normalization, embeddings client, scoring, clusters
-        outputs/           # RSS feeds, JSON API, health
-        app.py             # FastAPI app (service `app`)
-        worker.py          # scheduler entry point (service `worker`)
-      catalog/             # one YAML config per source (reviewed in git, loaded into DB)
-      tests/fixtures/<slug>/
+      compose.yaml / compose.override.yaml / .env.example
+      backend/
+        Dockerfile, pyproject.toml, uv.lock, alembic.ini, alembic/
+        src/sabq/
+          settings.py, logs.py, healthcheck.py
+          db/          # models, session                     (M1, tables in M2)
+          api/         # FastAPI routes, thin                (M1 health)
+          fetch/       # polite HTTP, robots, limits, egress (M3)
+          extract/     # config schema, extractors           (M4)
+          ingest/      # scheduler, new/known, wilayas       (M5)
+          auth/        # users, invites, sessions, email     (M6)
+          matching/    # normalize, embeddings, clusters     (M8)
+          app.py       # service `app`
+          worker.py    # service `worker`
+        tests/fixtures/<slug>/
+      catalog/         # one YAML per source (M4)
+      deploy/          # Caddyfile, backup script, server notes
+      frontend/        # later
+      docs/
       ```
-- [ ] One Dockerfile, `compose.yaml` (`db` = `pgvector/pgvector:pg16`, `app`, `worker`, `proxy`
-      = Caddy), `compose.override.yaml` for development, health checks, log rotation.
-- [ ] `.env.example` with every setting; `GET /health.json` returns ok.
-- [ ] GitHub Actions: ruff + pytest on every push.
+      Domain folders are created by the milestone that needs them.
+- [x] One Dockerfile (non-root user, UTC), `compose.yaml` (`db` = `pgvector/pgvector:pg16`,
+      one-off `migrate`, `app`, `worker`, `proxy` = Caddy), `compose.override.yaml` for
+      development (code reload, Mailpit, host ports `SABQ_DB_PORT` 5440 / `SABQ_APP_PORT` 8010),
+      health checks, log rotation, graceful worker stop.
+- [x] `.env.example` with every setting; `GET /health.json` returns ok (checks the database).
+- [x] First migration enables pgvector; tests for settings, JSON logs, worker stop, health and
+      migrations up/down.
+- [x] GitHub Actions: ruff, format check, pytest with a pgvector service, and a job that starts
+      the production stack and waits until healthy.
 
 **Done when** `docker compose up` on a clean machine starts all four services healthy and CI is
 green.
@@ -119,7 +133,11 @@ green.
 **Done when** migrations run up and down, seeds load, and the access tests pass.
 
 ### M3 · Polite fetching
-- [ ] `httpx` async client: our User-Agent, 15 s timeout, HTTP/2, `ETag` / `If-Modified-Since`.
+Note: Starlette 1.9 deprecates `httpx` in favour of `httpx2` (Pydantic's successor, already used
+for tests). Choose `httpx2` for the fetch client unless it lacks something we need (HTTP/2,
+proxies); record the choice in `decisions.md`.
+
+- [ ] Async HTTP client: our User-Agent, 15 s timeout, HTTP/2, `ETag` / `If-Modified-Since`.
 - [ ] Live robots.txt check, cached 24 h, per host (including API hosts); disallowed → source
       `blocked_by_robots`, no request sent.
 - [ ] One request at a time per host, minimum gap per host, `Crawl-delay` honoured, ±20 % jitter.
@@ -210,9 +228,9 @@ backup has been tested.
 ## Status
 | Track / milestone | Status | Updated |
 |---|---|---|
-| Step 0 · Repository | todo | 2026-10-19 |
+| Step 0 · Repository | done | 2026-10-19 |
 | Track A · Investigation | todo (0 / 17) | 2026-10-19 |
-| M1 · Foundation | todo | 2026-10-19 |
+| M1 · Foundation | done locally; CI to confirm on GitHub (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | todo | |
 | M3 · Fetching | todo | |
 | M4 · Extraction | todo | |

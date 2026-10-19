@@ -21,6 +21,20 @@ wilaya-based access separation.
 | [docs/decisions.md](docs/decisions.md) | Decision log and open questions |
 | [docs/poc-lessons.md](docs/poc-lessons.md) | What the proof of concept proved, site by site |
 
+## Run it locally
+Requires Docker. From the repository root:
+
+```sh
+cp .env.example .env          # then edit secrets
+docker compose up -d --build  # db, migrate, app, worker, proxy, mailpit
+curl http://localhost/health.json
+```
+
+- API (with code reload): http://localhost:8010 · Mailpit (dev emails): http://localhost:8025
+- Tests: `cd backend && uv run pytest` (database tests need
+  `DATABASE_URL=postgresql+psycopg://sabq:<password>@localhost:5440/sabq`)
+- Production uses `compose.yaml` only: `docker compose -f compose.yaml up -d`
+
 ## Non-negotiable rules
 
 1. Respect `robots.txt`, checked live. A disallowed site is refused, never worked around.
