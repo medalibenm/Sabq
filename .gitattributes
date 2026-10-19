@@ -2,3 +2,5 @@
 * text=auto eol=lf
 *.png binary
 *.jpg binary
+# Fixtures are raw responses from sources: keep their exact bytes.
+backend/tests/fixtures/** -text
