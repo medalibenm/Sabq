@@ -15,6 +15,7 @@ ENV PATH="/srv/backend/.venv/bin:$PATH" PYTHONUNBUFFERED=1 TZ=UTC
 RUN useradd --system --uid 10001 sabq
 WORKDIR /srv/backend
 COPY --from=build --chown=sabq:sabq /srv/backend /srv/backend
+COPY --chown=sabq:sabq catalog/ /srv/catalog/
 USER sabq
 EXPOSE 8000
 CMD ["uvicorn", "sabq.app:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
