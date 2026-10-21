@@ -141,11 +141,21 @@ Note: Starlette 1.9 deprecates `httpx` in favour of `httpx2` (Pydantic's success
 for tests). Choose `httpx2` for the fetch client unless it lacks something we need (HTTP/2,
 proxies); record the choice in `decisions.md`.
 
-- [ ] Async HTTP client: our User-Agent, 15 s timeout, HTTP/2, `ETag` / `If-Modified-Since`.
-- [ ] Live robots.txt check, cached 24 h, per host (including API hosts); disallowed → source
-      `blocked_by_robots`, no request sent.
-- [ ] One request at a time per host, minimum gap per host, `Crawl-delay` honoured, ±20 % jitter.
-- [ ] Backoff on 429/5xx and `Retry-After`; per-source `egress: dz_proxy`.
+Chosen: `httpx2[http2]`, robots.txt parsed with `protego` (decision 2026-10-21).
+
+- [x] Async HTTP client (`sabq.fetch.Fetcher`): our User-Agent, 15 s timeout, HTTP/2, `ETag` /
+      `If-Modified-Since` (`304` → `not_modified`), 20 MB response limit, redirects hop by hop.
+- [x] Live robots.txt check, cached 24 h, per origin (including API hosts and redirect targets);
+      disallowed → `RobotsDisallowed`, no request sent. Setting the source status to
+      `blocked_by_robots` from that error is the scheduler's job (M5).
+- [x] One request at a time per host, minimum gap 5 s, `Crawl-delay` honoured, gaps 0–20 % longer
+      (jitter on poll intervals comes with the scheduler, M5).
+- [x] Backoff on 429/5xx/network errors (60 s doubling to 1 h, `Retry-After` honoured up to a day);
+      per-source `egress: dz_proxy` through `DZ_PROXY_URL`.
+
+Verified: 23 tests on a fake site (`tests/test_fetch.py`); switching off the robots check, the
+spacing or the backoff makes them fail; a live request to Awras News goes robots.txt → listing
+over HTTP/2.
 
 **Done when** tests with a mock server prove each rule (robots block, per-host spacing,
 conditional requests, backoff).
@@ -236,7 +246,7 @@ backup has been tested.
 | Track A · Investigation | in progress (3 / 17) | 2026-10-21 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
-| M3 · Fetching | todo | |
+| M3 · Fetching | done, CI green, merged | 2026-10-21 |
 | M4 · Extraction | todo | |
 | M5 · Ingestion | todo | |
 | M6 · Login + web app API | todo | |

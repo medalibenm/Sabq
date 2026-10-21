@@ -64,6 +64,14 @@ Find the data source for a new site, or repair a broken config. Done **manually 
 
 ### Layer 4: Shared foundations
 - **Polite fetching:** our User-Agent (`SabqBot/<version> (+contact URL)`; a browser UA only if a site rejects ours and robots.txt doesn't forbid us), robots.txt checked live and cached 24 h, one request at a time per host, ±20% jitter on intervals, `ETag`/`If-Modified-Since`, exponential backoff on 429/5xx, 15 s timeouts.
+  Built in `sabq.fetch` (M3): every request goes through `Fetcher.get`, which checks robots.txt for
+  each origin it touches (redirects are followed hop by hop, so a redirect to another host checks
+  that host's robots.txt too), keeps requests to one host at least 5 s apart or the site's
+  `Crawl-delay` if longer (each gap 0–20 % longer), backs off 60 s → 120 s → … → 1 h after 429,
+  5xx or network errors (or the site's `Retry-After`, honoured up to a day) without sending
+  anything meanwhile, and refuses responses over 20 MB. robots.txt answers: 2xx = rules; 401/403 =
+  everything disallowed; other 4xx = no robots.txt, allowed; 429/5xx/unreachable = nothing fetched,
+  retried after 15 min. All values are settings (`FETCH_*`, `ROBOTS_*`).
 - **Egress:** per-source `egress: default | dz_proxy`; sources marked `dz_proxy` go through `DZ_PROXY_URL` (for geo-blocked `.dz` sites; the server will be in the EU).
 - **Article pages:** `og:` tags and JSON-LD first, then body extraction with trafilatura.
 - **New vs known:** new `external_id` → fetch the article once. Known → re-fetch only if the listing shows a changed title/date, or every N hours during the first 24 h; bump `version` when `content_hash` changes.
@@ -215,7 +223,7 @@ Before treating it as broken: rule out outages (status, response size, blocking 
 Repair today: the source shows as broken on `/health` (no push alerts, decision 2026-10-19); we check it, fix the config with Claude Code and save a new config version. Later: automated repair ([ai-investigation.md](ai-investigation.md)).
 
 ## Planned stack
-- Python 3.12, FastAPI, `httpx` (async, HTTP/2), `selectolax` or `lxml`, `trafilatura`, `feedgen`, `dateparser`, `pydantic`.
+- Python 3.12, FastAPI, `httpx2` (async, HTTP/2), `protego` (robots.txt, RFC 9309), `selectolax` or `lxml`, `trafilatura`, `feedgen`, `dateparser`, `pydantic`.
 - PostgreSQL 16 via Docker Compose; SQLAlchemy 2 + Alembic; `pgvector` for story-matching embeddings.
 - Embedding API for story matching: Voyage AI `voyage-4` via OpenRouter (~$0.30/month at the
   expected volume), behind a provider-neutral, OpenAI-compatible interface.
