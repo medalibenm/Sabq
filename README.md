@@ -34,6 +34,15 @@ curl http://localhost/health.json
 - Tests: `cd backend && uv run pytest` (database tests need
   `DATABASE_URL=postgresql+psycopg://sabq:<password>@localhost:5440/sabq`)
 - Production uses `compose.yaml` only: `docker compose -f compose.yaml up -d`
+- Admin commands (no admin UI yet), e.g.:
+  ```sh
+  docker compose run --rm -T app python -m sabq.cli catalog load
+  docker compose run --rm -T app python -m sabq.cli org create tariq "Tariq News"
+  docker compose run --rm -T app python -m sabq.cli org wilaya tariq 05
+  docker compose run --rm -T app python -m sabq.cli org source tariq awras-ar
+  docker compose run --rm -T app python -m sabq.cli user create tariq editor@example.dz editor
+  docker compose run --rm -T app python -m sabq.cli org show tariq
+  ```
 
 ## Non-negotiable rules
 

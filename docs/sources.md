@@ -47,7 +47,7 @@ Each must still go through [adding-sources.md](adding-sources.md) (live robots.t
 
 | Wilaya | Name | URL |
 |---|---|---|
-| 06 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com |
+| **06 or 15?** تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com |
 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ |
 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ |
 | 19 سطيف | Setif One | https://setifone.dz/ |
