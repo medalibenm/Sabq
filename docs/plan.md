@@ -55,7 +55,7 @@ extractor.
 |---|---|---|---|---|---|---|
 | 1 | 05 باتنة | Awras News | https://elauresnews.dz/ | allowed | WP API | verified 2026-10-19 |
 | 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | allowed (empty) | WP API | verified 2026-10-19 |
-| 3 | 06 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | | | todo |
+| 3 | 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | | | todo |
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | | | todo |
 | 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | | | todo |
 | 6 | 19 سطيف | Setif One | https://setifone.dz/ | | | todo |
@@ -120,15 +120,19 @@ delivers and when it is done.
 green.
 
 ### M2 · Data model and access boundaries
-- [ ] Alembic migrations for every table in [architecture.md](architecture.md#data-model-multi-tenant-and-wilaya-aware)
-      (organisations, users, wilayas, sources, config versions, source/organisation links,
-      requests, fetch runs, articles, versions, article wilayas, embeddings, clusters,
-      candidates, matching config, audit events), `CREATE EXTENSION vector`.
-- [ ] Seed: the 69 wilayas (59–69 with `active_from = 2027-01-01`, names from the Journal officiel) + `00` National.
-- [ ] `catalog/` loader: YAML → `sources` + `source_config_versions` + `source_wilayas`.
-- [ ] Access filter as one shared query function (organisation sources ∩ organisation wilayas),
-      used by every read; tests that one organisation never sees another's data.
-- [ ] Admin CLI commands (no UI yet): create organisation, grant wilayas/sources, create user.
+- [x] Alembic migrations for every table in [architecture.md](architecture.md#data-model-multi-tenant-and-wilaya-aware)
+      (`0002`: 21 tables; choices stored as text + one CHECK each; pgvector HNSW index;
+      `detection_delay_s` computed column). `alembic check` shows no drift.
+- [x] Seed (`0003`): 69 wilayas + `00` National; 59–69 with `active_from = 2027-01-01`, codes and
+      Arabic/French names from Journal officiel n° 50 of 15 July 2026 (checked in the PDF).
+- [x] `catalog/` loader (`sabq.catalog`, `python -m sabq.cli catalog load`): YAML → `sources` +
+      `source_config_versions` (new version only when the config changes) + `source_wilayas`
+      (default `00`). Catalog copied into the image (`/srv/catalog`).
+- [x] Access filter `sabq.access.visible_articles(organisation_id)`: active organisation ∩ enabled
+      source ∩ enabled wilaya. Isolation tests; a mutation check (wilaya rule removed) makes them
+      fail as expected.
+- [x] Admin CLI `python -m sabq.cli`: `org create|show|wilaya|source`, `user create`,
+      `catalog load`; every change audited (`audit_events.actor = cli:<os user>`).
 
 **Done when** migrations run up and down, seeds load, and the access tests pass.
 
@@ -231,7 +235,7 @@ backup has been tested.
 | Step 0 · Repository | done | 2026-10-19 |
 | Track A · Investigation | in progress (2 / 17) | 2026-10-19 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
-| M2 · Data model | todo | |
+| M2 · Data model | done locally (branch `m2-data-model`) | 2026-10-21 |
 | M3 · Fetching | todo | |
 | M4 · Extraction | todo | |
 | M5 · Ingestion | todo | |

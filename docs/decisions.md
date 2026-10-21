@@ -49,8 +49,10 @@ later.
 The `wilayas` table holds all **69** official wilayas (codes 01–69; the 11 created by the 2025
 amendment of the territorial organisation law, codes 59–69, become operational on 2027-01-01) plus
 `00` National. The new ones carry `active_from = 2027-01-01` so they exist from day one without a
-migration later. Names in Arabic and French are taken from the Journal officiel (codes published
-2026-06-17) when the seed is written in M2.
+migration later. Codes 59–69 and their Arabic/French names come from the arrêté in Journal
+officiel n° 50 of 15 July 2026 (59 Aflou, 60 Barika, 61 El Kantara, 62 Bir El Ater, 63 El Aricha,
+64 Ksar Chellala, 65 Aïn Ouessara, 66 Messaad, 67 Ksar El Boukhari, 68 Bou Saâda, 69 El Abiodh
+Sidi Cheikh). A press list from November 2025 gave different numbers; the JO is authoritative.
 
 ### 2026-10-19 · Bot contact URL optional until production
 The User-Agent is `SabqBot/<version>` during investigation and development, with

@@ -10,6 +10,8 @@ dependencies = [
     "sqlalchemy[asyncio]>=2.0.36",
     "alembic>=1.14",
     "psycopg[binary]>=3.2",
+    "pgvector>=0.3",
+    "pyyaml>=6.0",
 ]
 
 [dependency-groups]
@@ -32,6 +34,9 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"alembic/versions/*" = ["E501"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["alembic"]

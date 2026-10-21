@@ -54,11 +54,10 @@ def test_health_ok_with_database():
 
 
 @pytest.mark.db
-def test_migrations_up_and_down():
+def test_migrations_up_and_down(migrated, alembic_cfg):
     from alembic import command
-    from alembic.config import Config
 
-    cfg = Config(str(Path(__file__).parents[1] / "alembic.ini"))
+    cfg = alembic_cfg
     engine = create_engine(get_settings().database_url)
 
     command.upgrade(cfg, "head")
