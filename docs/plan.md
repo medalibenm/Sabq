@@ -57,8 +57,8 @@ extractor.
 | 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | allowed (empty) | WP API | verified 2026-10-19 |
 | 3 | 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | allowed (`Crawl-delay: 10`) | WP API (no feed) | inactive 2026-10-21 |
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | allowed | RSS | verified 2026-10-21 |
-| 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | | | todo |
-| 6 | 19 سطيف | Setif One | https://setifone.dz/ | | | todo |
+| 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | allowed (none) | HTML selectors | investigating: needs the HTML extractor |
+| 6 | 19 سطيف | Setif One | https://setifone.dz/ | allowed | WP API | verified 2026-10-21 |
 | 7 | 23 عنابة | Le Provincial | https://leprovincial.dz/ | | | todo |
 | 8 | 23 عنابة | Seybouse Times | https://seybousetimes.dz/ | | | todo |
 | 9 | 25 قسنطينة | An-Nasr | https://www.annasronline.com/ | | | todo |
@@ -260,7 +260,7 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | in progress (4 / 17) | 2026-10-21 |
+| Track A · Investigation | in progress (5 / 17 final, 1 investigating) | 2026-10-21 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |

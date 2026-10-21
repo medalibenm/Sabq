@@ -1,0 +1,30 @@
+# Setif One (سطيف وان), Sétif news site. Investigated 2026-10-21 (docs/adding-sources.md).
+slug: setifone-ar
+name: سطيف وان
+home_url: https://setifone.dz/
+language: ar
+kind: local
+wilayas: ["19"]
+tier: secondary
+# Low activity: 1-2 posts a day (October 2026); 20 posts per call is plenty at hourly polls.
+poll_interval_s: 3600
+access_method: wp_json
+robots:
+  checked_at: 2026-10-21
+  result: allowed            # "Disallow: /wp-admin/" only
+listings:
+  # WordPress 5.8; /feed/ exists too, but the API gives the image and section in one call.
+  - https://setifone.dz/wp-json/wp/v2/posts?per_page=20&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt        # true UTC (WordPress gmt_offset is 1)
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name   # mostly أخبار الوطن (national); قضايا محلية = local
+  link: $.link
+dates:
+  published_tz: UTC
+  confidence: source_meta
