@@ -1,0 +1,34 @@
+# Djelfa Info (الجلفة إنفو), Djelfa news site. Investigated 2026-10-21 (docs/adding-sources.md).
+# Draft: validated by hand; checked by the real extractor in M4.
+slug: djelfainfo-ar
+name: الجلفة إنفو
+home_url: https://www.djelfainfo.dz/ar/
+language: ar
+kind: local
+wilayas: ["17"]
+tier: normal
+# 2-21 posts a day (October 2026); the feed holds the latest 10, so 15 min never misses any.
+poll_interval_s: 900
+access_method: rss
+robots:
+  checked_at: 2026-10-21
+  result: allowed            # disallows /ar/inc/, /ar/admin/, /ar/uploads/ only; same on www.
+listings:
+  # Custom CMS, no WordPress. /ar/sitemap.xml (4.7 MB) also lists unpublished articles (302 to
+  # 404.php), so the feed is the source of truth. Feed says <language>en-us</language>: ignore.
+  - https://www.djelfainfo.dz/ar/rss.php
+items: rss/channel/item
+fields:
+  id: link                     # numeric ID: /(\d+)\.html$
+  title: title
+  published: pubDate           # ISO 8601 with +00:00, true UTC (page shows Algiers time, +01:00)
+  lead: null                   # feed description repeats the title; lead from the article page
+  image: enclosure/@url        # cdn.djelfainfo.dz/ar/files/... (not under the disallowed /ar/uploads/)
+  section: link                # path segment(s) before the ID: news/algerie, news/djelfa, breaking...
+  link: link
+article_page:
+  # JSON-LD NewsArticle: headline, datePublished (+01:00), image, author, description (the lead).
+  lead: og:description
+dates:
+  published_tz: UTC
+  confidence: source_meta

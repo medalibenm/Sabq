@@ -1,0 +1,13 @@
+User-Agent: *
+Disallow: /ar/inc/
+Disallow: /ar/admin/
+Disallow: /ar/uploads/
+Allow: /ar/assets/css/bootstrap-select.css
+Allow: /ar/assets/css/bootstrap.rtl.min.css
+Allow: /ar/assets/css/style.css
+
+
+
+
+
+
