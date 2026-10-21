@@ -161,13 +161,18 @@ over HTTP/2.
 conditional requests, backoff).
 
 ### M4 · Config-driven extraction
-- [ ] Pydantic config schema (feed / json / html), URL templates, value maps, ID and date rules,
-      multiple listings merged by ID; canonical URL normalizer (`canonical_url_key`).
-- [ ] Port the 4 verified sources (`aps-ar`, `mouradia-ar`, `elhayat-ar`, `aa-ar`) from the PoC
-      (`C:\Users\alilo\OneDrive\Documents\PoC RSS\rss_poc\sources`, fixtures in its `tests/`)
-      into `catalog/` configs, removing site-specific code where config can express it.
-- [ ] Validation command implementing [Validating a config](architecture.md#validating-a-config).
-- [ ] Track A configs validated here as they arrive.
+- [x] Pydantic config schema (`sabq.extract.config`: feed / JSON / embedded; HTML selectors when a
+      source needs them), URL templates, value maps, exclusions, ID regex and date rules, multiple
+      listings merged by ID then canonical URL; `canonical_url_key` normalizer.
+- [x] Ported `aps-ar`, `mouradia-ar`, `elhayat-ar`, `aa-ar` from the PoC into `catalog/`, with
+      no site-specific code. Fixtures: the PoC response (2026-10-17) + a fresh one (2026-10-21).
+- [x] `python -m sabq.cli catalog validate [SLUG] [--live]`: items, required fields, IDs unique
+      and stable, dates (UTC, not future, recent), links on the site, clean text, images; live
+      also opens three links (title on the page) and loads two images.
+- [x] Track A configs (`awras-ar`, `elhidhab-ar`, `djelfainfo-ar`) validated.
+
+Verified: 43 extraction tests (every catalog source passes validation on its fixtures);
+`catalog validate --live` passes for all seven sources (also from inside the Docker image).
 
 **Done when** each catalog source extracts correctly from its fixtures (titles, dates in UTC,
 links, images, IDs stable across two fixtures).
@@ -247,7 +252,7 @@ backup has been tested.
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |
-| M4 · Extraction | todo | |
+| M4 · Extraction | done, CI green, merged | 2026-10-21 |
 | M5 · Ingestion | todo | |
 | M6 · Login + web app API | todo | |
 | M7 · Health | todo | |

@@ -37,6 +37,7 @@ curl http://localhost/health.json
 - Admin commands (no admin UI yet), e.g.:
   ```sh
   docker compose run --rm -T app python -m sabq.cli catalog load
+  docker compose run --rm -T app python -m sabq.cli catalog validate --live aps-ar
   docker compose run --rm -T app python -m sabq.cli org create tariq "Tariq News"
   docker compose run --rm -T app python -m sabq.cli org wilaya tariq 05
   docker compose run --rm -T app python -m sabq.cli org source tariq awras-ar

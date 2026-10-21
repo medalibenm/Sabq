@@ -1,0 +1,24 @@
+# Anadolu Agency (الأناضول), Arabic service. Probed in the PoC 2026-10-17; ported 2026-10-21.
+slug: aa-ar
+name: الأناضول
+home_url: https://www.aa.com.tr/ar
+language: ar
+kind: international
+tier: normal
+poll_interval_s: 120
+access_method: rss
+robots:
+  checked_at: 2026-10-21
+  result: allowed            # disallows /api/ only
+# Official RSS. Dates in +0300 (converted to UTC); no images; items not in date order.
+listings:
+  - https://www.aa.com.tr/ar/rss/default?cat=guncel
+fields:
+  id: $.id                     # guid: the numeric article ID
+  title: $.title
+  link: $.link
+  published: $.published       # RFC 822, e.g. Sat, 17 Oct 2026 17:51:47 +0300
+  lead: $.summary
+dates:
+  published_tz: UTC
+  confidence: source_meta

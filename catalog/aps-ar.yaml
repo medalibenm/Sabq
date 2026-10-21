@@ -1,0 +1,41 @@
+# APS, Algérie Presse Service (العربية). Probed in the PoC 2026-10-17; ported 2026-10-21 (plan M4).
+slug: aps-ar
+name: وكالة الأنباء الجزائرية
+home_url: https://www.aps.dz/
+language: ar
+kind: agency
+tier: priority
+poll_interval_s: 60
+access_method: embedded
+robots:
+  checked_at: 2026-10-21
+  result: allowed            # allows all
+# Next.js app, no RSS. Each listing page streams its article list in the React Server Components
+# payload (self.__next_f.push); every article is a JSON object starting with {"id_article":.
+listings:
+  - https://www.aps.dz/
+  - https://www.aps.dz/algerie/actualite-nationale
+  - https://www.aps.dz/presidence-news
+embedded:
+  kind: next_f
+  object_start: '{"id_article":'
+fields:
+  alias: $.alias               # e.g. algerie/societe/mvcgdbs2-<arabic slug>
+  id:                          # the 8-char code before the slug: APS's stable article ID
+    path: $.alias
+    regex: '(?:^|/)([a-z0-9]{8})-[^/]+$'
+  title: $.title
+  published: $.publish_date    # UTC, e.g. 2026-10-17T14:07:54.254Z (page shows Algiers time)
+  lead: $.introtext            # HTML, cleaned and shortened
+  image: [$.url, $.image.url]  # path under /api/image/ (APS's own og:image URL is 404)
+  section:
+    path: $.alias
+    regex: '^(.+)/[a-z0-9]{8}-'
+templates:
+  link: https://www.aps.dz/{alias:path}
+  image: https://www.aps.dz/api/image/{image}
+exclude:
+  alias: '^(dossier|infographie|video)/'   # not news articles
+dates:
+  published_tz: UTC
+  confidence: source_meta

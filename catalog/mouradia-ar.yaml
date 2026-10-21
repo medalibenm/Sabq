@@ -1,0 +1,33 @@
+# Présidence de la République (رئاسة الجمهورية). Probed in the PoC 2026-10-17; ported 2026-10-21.
+slug: mouradia-ar
+name: رئاسة الجمهورية
+home_url: https://www.el-mouradia.dz/ar/presidency
+language: ar
+kind: official
+tier: priority
+poll_interval_s: 300
+access_method: json_api
+robots:
+  checked_at: 2026-10-21
+  result: allowed            # allows all, on www and backend
+# Angular app backed by a public Strapi API. The French collection (article-frs) is empty.
+# The site answers 200 for any URL, so a link check must compare titles, not status codes.
+listings:
+  - https://backend.el-mouradia.dz/article-ars/published?_start=0&_limit=30&_sort=date:DESC,createdAt:DESC
+items: $[*]
+fields:
+  id: $._id
+  title: $.title
+  published: $.date            # UTC ISO 8601
+  lead: [$.subTitle, $.content]   # content is the full HTML body: cleaned and shortened to a lead
+  image: $.cover.url           # /uploads/... on the backend host
+  section: $.category
+value_maps:
+  section: {"1": president, "2": presidency, _default: presidency}
+templates:
+  link: https://www.el-mouradia.dz/ar/{section}/{id}
+  image: https://backend.el-mouradia.dz{image}
+dates:
+  published_tz: UTC
+  confidence: source_meta
+link_check: skip               # same HTML for every URL (SPA); links checked in a browser (PoC)

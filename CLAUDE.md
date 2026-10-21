@@ -24,4 +24,4 @@ Build (started 2026-10-19): source investigation and backend, following `docs/pl
 Follow `docs/adding-sources.md` step by step. Record the result in `docs/sources.md` (method, interval, robots status, date verified) and save sample responses as test fixtures.
 
 ## Planned stack (not yet built)
-Python 3.12, FastAPI, httpx2 + protego (robots.txt), PostgreSQL 16 + pgvector (SQLAlchemy 2 + Alembic), feedgen, trafilatura, dateparser, pydantic; Voyage AI `voyage-4` embeddings via OpenRouter for story matching; `uv`, `ruff`, `pytest`; Docker Compose on one EU server (DigitalOcean or Hetzner). Playwright only for investigation. Details in `docs/architecture.md`.
+Python 3.12, FastAPI, httpx2 + protego (robots.txt), PostgreSQL 16 + pgvector (SQLAlchemy 2 + Alembic), feedparser, feedgen, trafilatura, dateparser, pydantic; Voyage AI `voyage-4` embeddings via OpenRouter for story matching; `uv`, `ruff`, `pytest`; Docker Compose on one EU server (DigitalOcean or Hetzner). Playwright only for investigation. Details in `docs/architecture.md`.
