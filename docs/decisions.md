@@ -3,6 +3,22 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-21 · Fetching: httpx2 + protego; how robots.txt answers are read
+The fetch client is `httpx2` (the maintained successor of `httpx`; Starlette 1.9 already prefers
+it): async, HTTP/2 via its `http2` extra, proxies for `dz_proxy`, and a mock transport for tests.
+robots.txt is parsed with `protego` (Scrapy's RFC 9309 parser) instead of Python's
+`urllib.robotparser`, which applies the first matching rule instead of the most specific one and
+ignores `*` / `$` wildcards, so it can allow a path a site disallows. Reading the answer to
+`/robots.txt`: 2xx = its rules; **401/403 = everything disallowed** (RFC 9309 would allow, but a
+site refusing us its robots.txt is refusing us; we never work around it); other 4xx = no
+robots.txt, allowed; 429/5xx/network error = unreachable, nothing is fetched and it is retried
+after 15 minutes. Requests to one host are at least 5 s apart (or the site's `Crawl-delay`).
+
+### 2026-10-21 · Track A status `inactive` for sites that stopped publishing
+La Dépêche de Kabylie (15 Tizi Ouzou) is reachable and allowed, but its newest article is from
+2021-06-28. Such sources get the status `inactive`: recorded in [sources.md](sources.md), not
+added to the catalog, rechecked now and then.
+
 ### 2026-10-19 · Repository layout: one backend package, split by domain
 The repository is split at the top (`backend/`, later `frontend/`, `catalog/`, `deploy/`,
 `docs/`), but the backend is **one** Python package with two entry points (`app`, `worker`) in one

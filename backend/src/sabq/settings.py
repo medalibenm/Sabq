@@ -27,6 +27,17 @@ class Settings(BaseSettings):
     # Egress for geo-blocked .dz sources
     dz_proxy_url: str = ""
 
+    # Polite fetching (docs/architecture.md, layer 1)
+    fetch_timeout_s: float = 15.0
+    fetch_min_host_gap_s: float = 5.0  # raised to the site's Crawl-delay when it asks for more
+    fetch_gap_jitter: float = 0.2  # each gap is 0-20 % longer, never shorter
+    fetch_backoff_base_s: float = 60.0  # 60 s, 120 s, 240 s ... after 429 / 5xx / network errors
+    fetch_backoff_max_s: float = 3600.0
+    fetch_retry_after_max_s: float = 86400.0  # a site's Retry-After is honoured up to a day
+    fetch_max_bytes: int = 20_000_000
+    robots_ttl_s: float = 86400.0
+    robots_retry_s: float = 900.0  # robots.txt unreachable: no requests to it, retry in 15 min
+
     # Story-matching embeddings (OpenRouter, OpenAI-compatible)
     openrouter_api_key: SecretStr | None = None
     embedding_model: str = "voyageai/voyage-4"
