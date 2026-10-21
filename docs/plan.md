@@ -12,7 +12,7 @@
 3. **Docs follow decisions:** a changed decision updates its doc and `decisions.md` (dated) in
    the same commit.
 4. **Commits:** small, one item or sub-step per commit, message says what and why. Work on a
-   branch per milestone, merge to `main` when its "done when" holds.
+   branch per milestone, merge to `master` when its "done when" holds and CI is green.
 5. **Rules from [CLAUDE.md](../CLAUDE.md) always apply:** live robots.txt check, no third-party
    scraping services, lead-only public outputs, UTC dates, Arabic stored as-is, our User-Agent,
    build for the Docker Compose deployment.
@@ -55,7 +55,7 @@ extractor.
 |---|---|---|---|---|---|---|
 | 1 | 05 باتنة | Awras News | https://elauresnews.dz/ | allowed | WP API | verified 2026-10-19 |
 | 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | allowed (empty) | WP API | verified 2026-10-19 |
-| 3 | 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | | | todo |
+| 3 | 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | allowed (`Crawl-delay: 10`) | WP API (no feed) | inactive 2026-10-21 |
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | | | todo |
 | 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | | | todo |
 | 6 | 19 سطيف | Setif One | https://setifone.dz/ | | | todo |
@@ -72,7 +72,7 @@ extractor.
 | 17 | 00 National | El Chark El Youm | https://elcharkelyoum.dz/ | | | todo |
 
 Statuses: `todo` · `investigating` · `verified` · `blocked_by_robots` · `refused` ·
-`unreachable` · `empty`.
+`unreachable` · `empty` · `inactive` (reachable but no new articles for months; recheck later).
 
 **Track A is done when** every row has a final status, each verified source has a config,
 fixtures and a row in *Verified* in `sources.md`.
@@ -233,9 +233,9 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | in progress (2 / 17) | 2026-10-19 |
+| Track A · Investigation | in progress (3 / 17) | 2026-10-21 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
-| M2 · Data model | done locally (branch `m2-data-model`) | 2026-10-21 |
+| M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | todo | |
 | M4 · Extraction | todo | |
 | M5 · Ingestion | todo | |

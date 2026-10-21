@@ -26,6 +26,13 @@ One row per source **per language**. "Verified" = probed and working in the PoC 
 |---|---|---|
 | Reuters (reuters.com) | robots.txt `User-agent: *` / `Disallow: /`; notice forbids automated collection without written consent; 401 to any client | Licence (Reuters Connect) |
 
+## Inactive
+Reachable and allowed, but no longer publishing. Not in the catalog; recheck now and then.
+
+| Site | Wilaya | Checked | Finding |
+|---|---|---|---|
+| La Dépêche de Kabylie (depechedekabylie.com) | 15 تيزي وزو | 2026-10-21 | robots.txt allows all with `Crawl-delay: 10`. WordPress; `/feed/` returns the homepage (feed disabled), but `/wp-json/wp/v2/posts` works (201,977 posts). Newest post is **2021-06-28**; the homepage still shows 2020 articles. The only recent activity is old posts edited on 2026-03-07 (maintenance). If it restarts: WP API, ≥ 10 s between requests. |
+
 ## Candidates to probe (unverified)
 From general knowledge; URLs and availability to confirm.
 
@@ -47,7 +54,7 @@ Each must still go through [adding-sources.md](adding-sources.md) (live robots.t
 
 | Wilaya | Name | URL |
 |---|---|---|
-| 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com |
+| 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com (inactive since 2021, see above) |
 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ |
 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ |
 | 19 سطيف | Setif One | https://setifone.dz/ |
@@ -62,7 +69,7 @@ Each must still go through [adding-sources.md](adding-sources.md) (live robots.t
 | 31 وهران | L'Echo d'Oran | https://www.echodoran.com/ |
 | 42 تيبازة | Cherchell News | https://www.cherchellnews.dz/ |
 | 00 National | El Chark El Youm | https://elcharkelyoum.dz/ |
-
+do  
 `El Chark El Youm` covers the East region rather than one wilaya, so it is `00 National` for now.
 Several of these sources publish in French; language is confirmed during investigation.
 
