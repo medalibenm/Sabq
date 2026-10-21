@@ -8,7 +8,8 @@ How we add a source to the catalog **today**: a person investigates with Claude 
 3. **Robots and terms:** see step 1 below. Disallowed → refuse, record why, tell the client (e.g. "Reuters doesn't allow automated access; it needs a licence").
 4. **Investigate:** steps 2–9 below.
 5. **Implement:** write the config (or a small extractor if config can't express it), save fixtures, add a test.
-6. **Validate:** all checks in [architecture.md § Validating a config](architecture.md#validating-a-config).
+6. **Validate:** all checks in [architecture.md § Validating a config](architecture.md#validating-a-config):
+   `python -m sabq.cli catalog validate <slug>` (fixtures) and `--live` (the site), both must pass.
 7. **Publish:** add to the catalog, assign its wilaya(s) (or `00` National if it has none), update [sources.md](sources.md), notify the organisation.
 
 ## Investigation steps

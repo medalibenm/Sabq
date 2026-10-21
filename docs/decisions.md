@@ -3,6 +3,17 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-21 · Extraction: one strict config format, no per-site code
+All seven catalog sources (the four from the PoC and the three from Track A) are YAML configs read
+by one extractor (`sabq.extract`); the PoC's per-site Python is gone. Field paths use a small
+JSONPath subset written for us (`$.a.b`, `$['k'][0]`, `$[*]`) rather than a library: it covers
+every source and fails on anything else. Feeds are read with `feedparser` (tolerant of broken
+feeds). The catalog schema is strict: an unknown key is an error at load, so a typo can't
+silently disable a field. Items missing ID, title or link are rejected, never guessed (precision);
+an unreadable date keeps the article with `first_seen` confidence. `canonical_url_key` treats
+http/https and a leading `www.` as the same (it is per source, so this is safe). A config goes
+live only after `catalog validate` passes on fixtures and `--live`.
+
 ### 2026-10-21 · Fetching: httpx2 + protego; how robots.txt answers are read
 The fetch client is `httpx2` (the maintained successor of `httpx`; Starlette 1.9 already prefers
 it): async, HTTP/2 via its `http2` extra, proxies for `dz_proxy`, and a mock transport for tests.

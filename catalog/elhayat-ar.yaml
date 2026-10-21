@@ -1,0 +1,27 @@
+# El Hayat (الحياة), national daily. Probed in the PoC 2026-10-17; ported 2026-10-21.
+slug: elhayat-ar
+name: الحياة
+home_url: https://elhayat.dz/
+language: ar
+kind: national
+tier: normal
+poll_interval_s: 120
+access_method: wp_json
+robots:
+  checked_at: 2026-10-21
+  result: allowed            # allows all
+# WordPress. /feed/ timed out in the PoC; the REST API works. Image from Yoast's og_image.
+listings:
+  - https://elhayat.dz/wp-json/wp/v2/posts?per_page=30&_fields=id,date_gmt,modified_gmt,link,title,excerpt,yoast_head_json.og_image
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt        # true UTC
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $.yoast_head_json.og_image[0].url
+  link: $.link
+dates:
+  published_tz: UTC
+  confidence: source_meta

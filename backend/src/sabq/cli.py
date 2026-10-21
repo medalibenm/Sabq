@@ -1,6 +1,7 @@
 """Admin commands (no admin UI yet). Run: python -m sabq.cli <command> ...
 
   catalog load [--dir PATH]
+  catalog validate [SLUG ...] [--live] [--dir PATH] [--fixtures PATH]
   org create SLUG NAME
   org show SLUG
   org wilaya SLUG CODE [--revoke]
@@ -11,8 +12,10 @@ Every access change is written to audit_events with actor "cli:<os user>".
 """
 
 import argparse
+import asyncio
 import getpass
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 from sqlalchemy import func, select
@@ -32,6 +35,8 @@ from sabq.db.session import get_sync_sessionmaker
 
 # backend/src/sabq/cli.py -> repository root /catalog (in the image: /srv/catalog)
 DEFAULT_CATALOG = Path(__file__).resolve().parents[3] / "catalog"
+# backend/tests/fixtures (development checkouts only; not in the image)
+DEFAULT_FIXTURES = Path(__file__).resolve().parents[2] / "tests" / "fixtures"
 
 
 class CliError(Exception):
@@ -66,6 +71,33 @@ def catalog_load(session: Session, actor: str, directory: Path) -> str:
         f"created {len(result.created)} {result.created}, updated {len(result.updated)} "
         f"{result.updated}, unchanged {len(result.unchanged)}"
     )
+
+
+def catalog_validate(directory: Path, slugs: list[str], live: bool, fixtures: Path) -> str:
+    """Offline against fixtures, or --live through the polite fetcher. Fails if any check fails."""
+    from sabq.extract.validate import validate_fixtures, validate_live
+    from sabq.fetch import Fetcher
+    from sabq.settings import get_settings
+
+    entries = read_catalog(directory)
+    unknown = set(slugs) - {e.slug for e in entries}
+    if unknown:
+        raise CliError(f"no source(s) {sorted(unknown)} in {directory}")
+    entries = [e for e in entries if not slugs or e.slug in slugs]
+    now = datetime.now(UTC)
+
+    async def live_reports():
+        async with Fetcher(get_settings()) as fetcher:
+            return [await validate_live(entry, fetcher, now=now) for entry in entries]
+
+    if live:
+        reports = asyncio.run(live_reports())
+    else:
+        reports = [validate_fixtures(e, fixtures / e.slug, now=now) for e in entries]
+    text = "\n".join(report.text() for report in reports)
+    if not all(report.ok for report in reports):
+        raise CliError("validation failed\n" + text)
+    return text
 
 
 def org_create(session: Session, actor: str, slug: str, name: str) -> str:
@@ -172,6 +204,11 @@ def build_parser() -> argparse.ArgumentParser:
     catalog = sub.add_parser("catalog").add_subparsers(dest="command", required=True)
     load = catalog.add_parser("load", help="load catalog/*.yaml into the database")
     load.add_argument("--dir", type=Path, default=DEFAULT_CATALOG)
+    validate = catalog.add_parser("validate", help="check source configs (fixtures or --live)")
+    validate.add_argument("slugs", nargs="*")
+    validate.add_argument("--live", action="store_true", help="fetch the sites (polite fetcher)")
+    validate.add_argument("--dir", type=Path, default=DEFAULT_CATALOG)
+    validate.add_argument("--fixtures", type=Path, default=DEFAULT_FIXTURES)
 
     org = sub.add_parser("org").add_subparsers(dest="command", required=True)
     create = org.add_parser("create")
@@ -202,6 +239,8 @@ def run(argv: list[str], session: Session, actor: str) -> str:
     match (args.group, args.command):
         case ("catalog", "load"):
             return catalog_load(session, actor, args.dir)
+        case ("catalog", "validate"):
+            return catalog_validate(args.dir, args.slugs, args.live, args.fixtures)
         case ("org", "create"):
             return org_create(session, actor, args.slug, args.name)
         case ("org", "show"):

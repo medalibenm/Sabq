@@ -17,15 +17,18 @@ listings:
   # Custom CMS, no WordPress. /ar/sitemap.xml (4.7 MB) also lists unpublished articles (302 to
   # 404.php), so the feed is the source of truth. Feed says <language>en-us</language>: ignore.
   - https://www.djelfainfo.dz/ar/rss.php
-items: rss/channel/item
 fields:
-  id: link                     # numeric ID: /(\d+)\.html$
-  title: title
-  published: pubDate           # ISO 8601 with +00:00, true UTC (page shows Algiers time, +01:00)
-  lead: null                   # feed description repeats the title; lead from the article page
-  image: enclosure/@url        # cdn.djelfainfo.dz/ar/files/... (not under the disallowed /ar/uploads/)
-  section: link                # path segment(s) before the ID: news/algerie, news/djelfa, breaking...
-  link: link
+  id:                          # numeric ID at the end of the link
+    path: $.link
+    regex: '/(\d+)\.html$'
+  title: $.title
+  published: $.published       # ISO 8601 with +00:00, true UTC (page shows Algiers time, +01:00)
+  # no lead: the feed description repeats the title; the lead comes from the article page
+  image: $.enclosures[0].href  # cdn.djelfainfo.dz/ar/files/... (not under the disallowed /ar/uploads/)
+  section:                     # path before the ID: news/algerie, news/djelfa, breaking...
+    path: $.link
+    regex: '/ar/(.+)/\d+\.html$'
+  link: $.link
 article_page:
   # JSON-LD NewsArticle: headline, datePublished (+01:00), image, author, description (the lead).
   lead: og:description

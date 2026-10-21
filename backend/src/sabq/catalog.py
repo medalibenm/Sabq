@@ -1,7 +1,7 @@
 """Load the source catalog (`catalog/*.yaml`, reviewed in git) into the database.
 
-Only the fields the database needs are validated here; the extraction part of the config
-(listings, fields, templates...) is stored as-is and validated by the extractor in M4.
+Each file is validated in full: the source columns here, the extraction part (listings, fields,
+templates...) by `sabq.extract.SourceConfig`. Unknown keys are errors, so typos fail at load.
 """
 
 from dataclasses import dataclass
@@ -16,6 +16,7 @@ from sqlalchemy.orm import Session
 
 from sabq.audit import record
 from sabq.db.models import Source, SourceConfigVersion, SourceWilaya, Wilaya
+from sabq.extract.config import SourceConfig
 
 NATIONAL = "00"
 
@@ -25,8 +26,8 @@ class RobotsCheck(BaseModel):
     result: str
 
 
-class CatalogEntry(BaseModel):
-    model_config = ConfigDict(extra="allow")  # extraction config, validated in M4
+class CatalogEntry(SourceConfig):
+    model_config = ConfigDict(extra="forbid")
 
     slug: str = Field(pattern=r"^[a-z0-9]+(-[a-z0-9]+)*$")
     name: str
@@ -36,7 +37,6 @@ class CatalogEntry(BaseModel):
     wilayas: list[str] = []
     tier: Literal["priority", "normal", "secondary"]
     poll_interval_s: int = Field(ge=60)
-    access_method: Literal["rss", "wp_json", "sitemap", "embedded", "json_api", "html", "headless"]
     egress: Literal["default", "dz_proxy"] = "default"
     enabled: bool = True
     robots: RobotsCheck

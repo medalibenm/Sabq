@@ -31,33 +31,46 @@ Shared by all three:
 - **Date rule:** which field or text, its format, its timezone (e.g. `Africa/Algiers`).
 - **Multiple listings per source** (homepage + sections), merged and de-duplicated by ID.
 
-Example config (YAML, stored in `sources.config`):
+Built in `sabq.extract` (M4). Each source is one YAML file in `catalog/`, validated in full when
+the catalog is read (unknown keys are errors). The format is documented at the top of
+`backend/src/sabq/extract/config.py`; example (`catalog/mouradia-ar.yaml`, shortened):
 
 ```yaml
-- slug: mouradia-ar
-  name: رئاسة الجمهورية
-  home_url: https://www.el-mouradia.dz/ar/presidency
-  language: ar
-  kind: official
-  tier: priority
-  poll_interval_s: 300
-  access_method: json_api
-  listings:
-    - https://backend.el-mouradia.dz/article-ars/published?_start=0&_limit=30&_sort=date:DESC,createdAt:DESC
-  items: $[*]
-  fields:
-    id: $._id
-    title: $.title
-    published: $.date          # UTC ISO-8601
-    lead: $.content            # truncated to ~300 chars
-    image: $.cover.url
-    section: $.category
-  value_maps:
-    section: {"1": president, "2": presidency}
-  templates:
-    link: https://www.el-mouradia.dz/ar/{section}/{id}
-    image: https://backend.el-mouradia.dz{image}
+slug: mouradia-ar
+name: رئاسة الجمهورية
+home_url: https://www.el-mouradia.dz/ar/presidency
+language: ar
+kind: official
+tier: priority
+poll_interval_s: 300
+access_method: json_api           # rss | wp_json | json_api | embedded (html: later)
+robots: {checked_at: 2026-10-21, result: allowed}
+listings:
+  - https://backend.el-mouradia.dz/article-ars/published?_start=0&_limit=30&_sort=date:DESC,createdAt:DESC
+items: $[*]
+fields:                           # small JSONPath subset: $.a.b, $['wp:x'][0], $[*]
+  id: $._id                       # or {path: $.alias, regex: '([a-z0-9]{8})-'} (first group)
+  title: $.title
+  published: $.date
+  lead: [$.subTitle, $.content]   # first non-empty; cleaned, shortened to lead_max_chars
+  image: $.cover.url
+  section: $.category
+value_maps:
+  section: {"1": president, "2": presidency, _default: presidency}
+templates:                        # {name:path} percent-encodes the value (APS links)
+  link: https://www.el-mouradia.dz/ar/{section}/{id}
+  image: https://backend.el-mouradia.dz{image}
+exclude: {}                       # e.g. APS: {alias: '^(dossier|infographie|video)/'}
+dates: {published_tz: UTC, confidence: source_meta}   # zone for naive dates
+link_check: skip                  # same page for every URL; validation can't check titles
 ```
+
+Feeds are read with `feedparser`, so feed fields are paths into its entries (`$.title`, `$.link`,
+`$.id`, `$.published`, `$.summary`, `$.enclosures[0].href`). Embedded data: `embedded: {kind:
+next_f, object_start: '{"id_article":'}` (APS). Items without ID, title or link are rejected and
+counted, never guessed; an unreadable date leaves the article at `first_seen` confidence and is
+reported. Validation: `python -m sabq.cli catalog validate [SLUG] [--live]` (see
+[Validating a config](#validating-a-config)).
 
 ### Layer 3: AI investigation and repair (rare)
 Find the data source for a new site, or repair a broken config. Done **manually with Claude Code** today ([adding-sources.md](adding-sources.md)); automated design in [ai-investigation.md](ai-investigation.md).
@@ -191,7 +204,10 @@ Organisations read through the **web app behind login**; there are no organisati
   deduplication review with confirm, reject, merge and split actions. All mutations are audited.
 
 ## Validating a config
-A config (new or repaired) goes live only if all pass:
+A config (new or repaired) goes live only if all pass. `python -m sabq.cli catalog validate`
+runs the automatic ones against the saved fixtures (two listing snapshots, article pages) and,
+with `--live`, against the site through the polite fetcher (each listing, the first again, three
+article links, two images); the test suite runs it for every catalog source:
 - **Item count** is sensible (similar to the page, or to before for a repair).
 - **Known items** are included (for a repair).
 - **Links open the article:** fetch a few; the **article title appears on the page** (compare after HTML-unescaping, against `og:title` or `<h1>`). A 200 alone is not enough: JavaScript-built sites return the same page for every URL (El Mouradia). For such sites, render one link in a headless browser.
@@ -223,7 +239,7 @@ Before treating it as broken: rule out outages (status, response size, blocking 
 Repair today: the source shows as broken on `/health` (no push alerts, decision 2026-10-19); we check it, fix the config with Claude Code and save a new config version. Later: automated repair ([ai-investigation.md](ai-investigation.md)).
 
 ## Planned stack
-- Python 3.12, FastAPI, `httpx2` (async, HTTP/2), `protego` (robots.txt, RFC 9309), `selectolax` or `lxml`, `trafilatura`, `feedgen`, `dateparser`, `pydantic`.
+- Python 3.12, FastAPI, `httpx2` (async, HTTP/2), `protego` (robots.txt, RFC 9309), `feedparser` (reading feeds), `selectolax` or `lxml`, `trafilatura`, `feedgen`, `dateparser`, `pydantic`.
 - PostgreSQL 16 via Docker Compose; SQLAlchemy 2 + Alembic; `pgvector` for story-matching embeddings.
 - Embedding API for story matching: Voyage AI `voyage-4` via OpenRouter (~$0.30/month at the
   expected volume), behind a provider-neutral, OpenAI-compatible interface.
