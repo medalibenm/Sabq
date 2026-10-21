@@ -55,7 +55,7 @@ extractor.
 |---|---|---|---|---|---|---|
 | 1 | 05 باتنة | Awras News | https://elauresnews.dz/ | allowed | WP API | verified 2026-10-19 |
 | 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | allowed (empty) | WP API | verified 2026-10-19 |
-| 3 | **06 or 15?** تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | | | todo |
+| 3 | 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | | | todo |
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | | | todo |
 | 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | | | todo |
 | 6 | 19 سطيف | Setif One | https://setifone.dz/ | | | todo |
