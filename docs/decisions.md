@@ -3,6 +3,31 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-21 · No journalist alerts in the first release
+The live web app (with server push) is the alert for now. Alert channels (browser notifications,
+email, Telegram) and rules (keywords, wilayas) are designed after the first organisations use
+Sabq. Nothing in ingestion depends on this.
+
+### 2026-10-21 · Live updates by server push (SSE)
+The web app receives new articles by Server-Sent Events, not by polling. The worker announces
+each new (non-baseline) article with PostgreSQL `NOTIFY` in the same transaction that stores it,
+so there is no extra service (no Redis); the app `LISTEN`s and pushes to each connected user only
+the articles that user may see (the same access filter as every other read). The proxy must not
+buffer the stream (Caddy `flush_interval -1`), and clients reconnect with `Last-Event-ID`.
+
+### 2026-10-21 · First poll is a baseline
+When a source is polled for the first time, or after more than 24 h without a successful poll,
+the articles already in its listings are stored as **baseline**: visible in the web app by their
+publication date, but never counted as new, never pushed or alerted, and without a detection
+delay. Only articles that appear after that are new. Adding a source never causes a burst of
+old "news".
+
+### 2026-10-21 · Article pages fetched only when the config asks
+The worker fetches a new article's own page only for sources whose config has an
+`article_page` section (today: Djelfa Info, whose feed has no lead), and only to fill what the
+listing lacks (lead, image, date, author). Listing data always wins. At most 20 pages per poll,
+never for baseline articles. Full text for internal use is not fetched in v1.
+
 ### 2026-10-21 · Extraction: one strict config format, no per-site code
 All seven catalog sources (the four from the PoC and the three from Track A) are YAML configs read
 by one extractor (`sabq.extract`); the PoC's per-site Python is gone. Field paths use a small
@@ -191,8 +216,9 @@ Everything runs in our own code (from the original brief). Exceptions must be re
   from the EU server; where and at what cost to host the proxy.
 - **DigitalOcean credits:** amount and expiry date of the GitHub Student Pack credits; plan the
   move to Hetzner before they run out if cost matters.
-- **Article body fetching:** for which sources do we fetch full article pages (internal AI use), and how often?
-- **Alerts:** channels (email, Telegram, in-app, Slack) and rules, for the next phase.
+- **Article body fetching:** full text for internal use (AI, matching) is not fetched in v1;
+  revisit with story matching or AI features.
+- **Alerts:** channels (browser, email, Telegram, Slack) and rules, after the first release.
 - **Automated AI later:** which model, prompt and config format; human approval rules for repairs.
 - **Pricing and organisation limits.**
 - **Wilaya taxonomy:** regional sources (e.g. East): keep as National, or link to each wilaya of the region?
