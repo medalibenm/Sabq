@@ -18,4 +18,7 @@ COPY --from=build --chown=sabq:sabq /srv/backend /srv/backend
 COPY --chown=sabq:sabq catalog/ /srv/catalog/
 USER sabq
 EXPOSE 8000
-CMD ["uvicorn", "sabq.app:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
+# Only the proxy can reach the app (no published port in production), so its
+# X-Forwarded-For is trusted: login rate limits see the real client address.
+CMD ["uvicorn", "sabq.app:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers", \
+     "--forwarded-allow-ips", "*"]

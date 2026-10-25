@@ -4,6 +4,7 @@ Every setting is listed in `.env.example` at the repository root. Secrets have n
 """
 
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -48,7 +49,17 @@ class Settings(BaseSettings):
     smtp_port: int = 1025
     smtp_user: str = ""
     smtp_password: SecretStr | None = None
+    smtp_tls: Literal["none", "starttls", "ssl"] = "none"  # MailerSend: starttls on port 587
     email_from: str = "Sabq <no-reply@localhost>"
+
+    # Login (docs/architecture.md#outputs)
+    session_cookie_name: str = "sabq_session"
+    session_cookie_secure: bool = True  # browsers accept Secure cookies on http://localhost too
+    session_ttl_days: float = 14.0  # sliding: each request within it extends the session
+    invite_ttl_hours: float = 72.0
+    reset_ttl_hours: float = 1.0
+    login_max_failures: int = 5  # per email and per client address, within the window
+    login_failure_window_s: float = 900.0
 
     # Worker
     worker_heartbeat_file: str = "/tmp/sabq-worker-heartbeat"
