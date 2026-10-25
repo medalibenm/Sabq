@@ -84,6 +84,9 @@ class User(Base):
     status: Mapped[str] = mapped_column(
         choice("user_status", "invited", "active", "disabled"), server_default="invited"
     )
+    # Sabq team (decision 2026-10-25): may invite into any organisation and use /admin and /api.
+    # Set only from the CLI. Article access still follows the user's own organisation.
+    platform_admin: Mapped[bool] = mapped_column(Boolean, server_default="false")
     created_at: Mapped[datetime] = created_at()
     last_login_at: Mapped[datetime | None]
 

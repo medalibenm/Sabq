@@ -6,7 +6,9 @@
   org show SLUG
   org wilaya SLUG CODE [--revoke]
   org source SLUG SOURCE_SLUG [--revoke]
-  user create ORG_SLUG EMAIL ROLE [--name NAME]
+  user create ORG_SLUG EMAIL ROLE [--name NAME]     (no email; use `user invite` to send one)
+  user invite ORG_SLUG EMAIL ROLE [--name NAME]     (creates or re-invites, sends the email)
+  user admin EMAIL [--revoke]                       (Sabq team: platform admin)
 
 Every access change is written to audit_events with actor "cli:<os user>".
 """
@@ -197,6 +199,41 @@ def user_create(
     return f"created user {email} ({role}) in {org_slug}, status invited (invite email: M6)"
 
 
+def user_invite(
+    session: Session, actor: str, org_slug: str, email: str, role: str, name: str
+) -> str:
+    from sabq.auth import mail, service
+    from sabq.settings import get_settings
+
+    settings = get_settings()
+    org = _org(session, org_slug)
+    try:
+        user, token = service.invite(
+            session,
+            settings,
+            organisation=org,
+            email=email,
+            role=role,
+            display_name=name,
+            actor=actor,
+        )
+    except service.AuthError as error:
+        raise CliError(str(error)) from None
+    session.commit()  # the invite stands even if the email fails; re-run to send a new link
+    mail.send(settings, mail.invite_mail(settings, user.email, org.name, token))
+    return f"invited {user.email} ({role}) to {org_slug}; email sent"
+
+
+def user_admin(session: Session, actor: str, email: str, revoke: bool) -> str:
+    user = session.scalar(select(User).where(func.lower(User.email) == email.strip().lower()))
+    if user is None:
+        raise CliError(f"no user {email!r}")
+    user.platform_admin = not revoke
+    action = "user.platform_admin_revoked" if revoke else "user.platform_admin_granted"
+    record(session, actor, action, "user", user.id, organisation_id=user.organisation_id)
+    return f"{'revoked' if revoke else 'granted'} platform admin for {user.email}"
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="sabq")
     sub = parser.add_subparsers(dest="group", required=True)
@@ -231,6 +268,14 @@ def build_parser() -> argparse.ArgumentParser:
     ucreate.add_argument("email")
     ucreate.add_argument("role", choices=["owner", "admin", "editor", "viewer"])
     ucreate.add_argument("--name", default="")
+    uinvite = user.add_parser("invite", help="create or re-invite a user and send the email")
+    uinvite.add_argument("org_slug")
+    uinvite.add_argument("email")
+    uinvite.add_argument("role", choices=["owner", "admin", "editor", "viewer"])
+    uinvite.add_argument("--name", default="")
+    uadmin = user.add_parser("admin", help="grant (or --revoke) Sabq platform admin")
+    uadmin.add_argument("email")
+    uadmin.add_argument("--revoke", action="store_true")
     return parser
 
 
@@ -251,6 +296,10 @@ def run(argv: list[str], session: Session, actor: str) -> str:
             return org_source(session, actor, args.slug, args.source_slug, args.revoke)
         case ("user", "create"):
             return user_create(session, actor, args.org_slug, args.email, args.role, args.name)
+        case ("user", "invite"):
+            return user_invite(session, actor, args.org_slug, args.email, args.role, args.name)
+        case ("user", "admin"):
+            return user_admin(session, actor, args.email, args.revoke)
     raise CliError("unknown command")
 
 

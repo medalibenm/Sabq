@@ -16,6 +16,8 @@ dependencies = [
     "protego>=0.4",
     "feedparser>=6.0",
     "tzdata>=2024.1",
+    "argon2-cffi>=23.1",
+    "feedgen>=1.0",
 ]
 
 [dependency-groups]

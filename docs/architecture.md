@@ -218,10 +218,18 @@ Organisations read through the **web app behind login**; there are no organisati
   search), article detail, the user's sources and wilayas, source requests. Returns title, lead,
   image, original link, source, wilayas, dates, and story-cluster info; **never** `body_text`.
   Organisation and wilaya filtering is enforced on the server for every query.
-- `GET /admin/feeds/{source_slug}.xml`: RSS 2.0 per source, **admin only**, for checking a source
-  (lead only, valid RSS, `feedparser` bozo check in tests).
-- `GET /api/articles?organisation=&wilaya=&source=&since=&lang=`: internal JSON, may include
-  `body_text`; organisation and wilaya authorization is mandatory.
+- **Live updates** (`GET /app/stream`, Server-Sent Events): `event: article` (same shape as the
+  list items, `id` = article id), `: ping` every 15 s, `event: reload` when the browser fell
+  behind, `event: logout` when the session ended. Reconnects send `Last-Event-ID` and get newer
+  articles first. Built on the worker's `NOTIFY sabq_new_articles`, one `LISTEN` per app process,
+  filtered per organisation by the access rule.
+- `GET /admin/feeds/{source_slug}.xml`: RSS 2.0 per source, **Sabq team only**
+  (`users.platform_admin`), for checking a source (lead only, valid RSS, `feedparser` bozo check
+  in tests).
+- `GET /api/articles?organisation=&wilaya=&source=&since=&lang=`: internal JSON, **Sabq team
+  only**, may include `body_text`; the organisation is mandatory and its access rule applies.
+- The API is described in `docs/openapi.json` (regenerate with `uv run python -m sabq.openapi`;
+  a test fails when it is stale) and served live at `/docs`.
 - `GET /health` (HTML) and `GET /health.json`: per source: last successful fetch, last error, items in last 24 h, median detection delay, `access_method`, status, and a **silence warning** when a source returns zero links or no new item for longer than 3× its usual gap.
 - Planned admin UI: organisation and user/role management; wilaya and source assignments;
   source-request workflow; source health and fetch runs; article/story-cluster inspection; and

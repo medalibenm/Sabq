@@ -3,6 +3,22 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-25 · Sabq team users are platform admins
+"Sabq admin" (architecture: may invite into any organisation, may use the check feeds) is a
+`users.platform_admin` flag, set only from the CLI (`user admin EMAIL`), audited. The team's
+users still belong to an organisation (e.g. `sabq`) and their article access follows it like
+anyone else's; the flag adds `/admin/...`, `/api/...` and inviting into other organisations.
+
+### 2026-10-25 · Login details: sliding 14-day sessions, JSON-only writes, in-memory limits
+Sessions last 14 days from the last use (server-side rows, cookie holds a random token, the
+database only its hash). CSRF: the cookie is `SameSite=Lax` and every state-changing request
+must be `Content-Type: application/json`, which a cross-site form cannot send without a CORS
+preflight (no CORS is enabled; the frontend is served from the same origin). Failed logins are
+limited to 5 per 15 min per email and per client address, and reset emails to 5 per 15 min per
+address, in memory (one app process; a restart forgets). Behind Caddy the app trusts
+`X-Forwarded-For` (only the proxy can reach it). Wrong password, unknown email and inactive
+account get the same answer; `forgot` always answers the same.
+
 ### 2026-10-21 · No journalist alerts in the first release
 The live web app (with server push) is the alert for now. Alert channels (browser notifications,
 email, Telegram) and rules (keywords, wilayas) are designed after the first organisations use
