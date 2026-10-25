@@ -30,7 +30,8 @@ docker compose up -d --build  # db, migrate, app, worker, proxy, mailpit
 curl http://localhost/health.json
 ```
 
-- API (with code reload): http://localhost:8010 · Mailpit (dev emails): http://localhost:8025
+- API (with code reload): http://localhost:8010 (interactive docs at `/docs`; the frontend
+  contract is `docs/openapi.json`) · Mailpit (dev emails, e.g. invite links): http://localhost:8025
 - Tests: `cd backend && uv run pytest` (database tests need
   `DATABASE_URL=postgresql+psycopg://sabq:<password>@localhost:5440/sabq`)
 - Production uses `compose.yaml` only: `docker compose -f compose.yaml up -d`
@@ -41,7 +42,8 @@ curl http://localhost/health.json
   docker compose run --rm -T app python -m sabq.cli org create tariq "Tariq News"
   docker compose run --rm -T app python -m sabq.cli org wilaya tariq 05
   docker compose run --rm -T app python -m sabq.cli org source tariq awras-ar
-  docker compose run --rm -T app python -m sabq.cli user create tariq editor@example.dz editor
+  docker compose run --rm -T app python -m sabq.cli user invite tariq owner@example.dz owner
+  docker compose run --rm -T app python -m sabq.cli user admin team@example.dz   # Sabq team
   docker compose run --rm -T app python -m sabq.cli org show tariq
   ```
 

@@ -205,18 +205,24 @@ wilaya at all (fixed: they get `00`, with a test). Note: the scheduler uses a mo
 which stops while a laptop sleeps, so polls resume late after sleep; servers don't sleep.
 
 ### M6 · Login and web app API
-- [ ] Login: email + password, invites (Sabq admin or organisation owner/admin), password
+- [x] Login: email + password, invites (Sabq admin or organisation owner/admin), password
       reset by email, Argon2id, session cookie, rate limiting, audit events.
-- [ ] Email sending via MailerSend SMTP (settings in `.env`); Mailpit in development.
-- [ ] Web app API (`/app/...`): article stream with filters, article detail, my sources and
+- [x] Email sending via MailerSend SMTP (settings in `.env`); Mailpit in development.
+- [x] Web app API (`/app/...`): article stream with filters, article detail, my sources and
       wilayas, source requests; lead only, never `body_text`.
-- [ ] Live updates by Server-Sent Events (`/app/stream`): `LISTEN sabq_new_articles`, filtered per
+- [x] Live updates by Server-Sent Events (`/app/stream`): `LISTEN sabq_new_articles`, filtered per
       user by the access rule, `Last-Event-ID` resume; Caddy passes the stream unbuffered.
-- [ ] Internal `GET /api/articles` and admin-only per-source RSS (`/admin/feeds/...`) for checks.
+- [x] Internal `GET /api/articles` and admin-only per-source RSS (`/admin/feeds/...`) for checks.
 
 **Done when** the access tests from M2 also pass through the HTTP layer (a user never sees
 another organisation's or a non-granted wilaya's articles) and the API is documented (OpenAPI)
 for the frontend.
+
+Verified: 36 tests through the HTTP app (login, invites, resets, sessions, limits, the M2 access
+rules again through `/app`, the stream, team endpoints, OpenAPI up to date); removing the access
+rule from the list or the detail endpoint, single-use tokens or the login limit makes them fail.
+End to end through Caddy: invite by the CLI, link from Mailpit, accept, `/app/articles`, and an
+article pushed on `/app/stream` 0.02 s after its NOTIFY.
 
 ### M7 · Health and breakage
 - [ ] `/health` and `/health.json` per source; silence warning; breakage rules from
@@ -277,7 +283,7 @@ backup has been tested.
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |
 | M4 · Extraction | done, CI green, merged | 2026-10-21 |
 | M5 · Ingestion | done, CI green, merged | 2026-10-25 |
-| M6 · Login + web app API | todo | |
+| M6 · Login + web app API | done, CI green, merged | 2026-10-25 |
 | M7 · Health | todo | |
 | M8 · Story matching | todo | |
 | M9 · Deployment | todo | |
