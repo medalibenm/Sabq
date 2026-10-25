@@ -175,6 +175,7 @@ class Source(Base):
         ),
         server_default="ok",
     )
+    status_changed_at: Mapped[datetime | None]  # since when it has had this status (health)
     robots_checked_at: Mapped[datetime | None]
     created_at: Mapped[datetime] = created_at()
 

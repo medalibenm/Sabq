@@ -7,6 +7,9 @@
   "paths": {
     "/health.json": {
       "get": {
+        "tags": [
+          "health"
+        ],
         "summary": "Health",
         "operationId": "health_health_json_get",
         "responses": {
@@ -18,6 +21,52 @@
                   "additionalProperties": true,
                   "type": "object",
                   "title": "Response Health Health Json Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/sources.json": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Sources Health",
+        "operationId": "sources_health_health_sources_json_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SourceHealthOut"
+                  },
+                  "type": "array",
+                  "title": "Response Sources Health Health Sources Json Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health Page",
+        "operationId": "health_page_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -1461,6 +1510,179 @@
           "password"
         ],
         "title": "ResetIn"
+      },
+      "SourceHealthOut": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "status_since": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status Since"
+          },
+          "needs_attention": {
+            "type": "boolean",
+            "title": "Needs Attention"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "access_method": {
+            "type": "string",
+            "title": "Access Method"
+          },
+          "poll_interval_s": {
+            "type": "integer",
+            "title": "Poll Interval S"
+          },
+          "last_success_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Success At"
+          },
+          "last_failure_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Failure At"
+          },
+          "last_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Error"
+          },
+          "failures_in_a_row": {
+            "type": "integer",
+            "title": "Failures In A Row"
+          },
+          "new_last_24h": {
+            "type": "integer",
+            "title": "New Last 24H"
+          },
+          "median_delay_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Delay S"
+          },
+          "last_new_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last New At"
+          },
+          "usual_quiet_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usual Quiet S"
+          },
+          "last_items_seen": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Items Seen"
+          },
+          "usual_items_seen": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usual Items Seen"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "enabled",
+          "status",
+          "status_since",
+          "needs_attention",
+          "warnings",
+          "access_method",
+          "poll_interval_s",
+          "last_success_at",
+          "last_failure_at",
+          "last_error",
+          "failures_in_a_row",
+          "new_last_24h",
+          "median_delay_s",
+          "last_new_at",
+          "usual_quiet_s",
+          "last_items_seen",
+          "usual_items_seen"
+        ],
+        "title": "SourceHealthOut"
       },
       "SourceOut": {
         "properties": {

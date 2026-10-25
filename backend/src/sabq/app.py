@@ -13,6 +13,7 @@ from fastapi.responses import JSONResponse
 from sabq import __version__
 from sabq.api import admin, auth, health, stream, webapp
 from sabq.auth.service import AuthError
+from sabq.db.session import get_engine
 from sabq.logs import configure_logging
 from sabq.settings import get_settings
 
@@ -25,6 +26,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     app.state.broadcaster.start()
     yield
     await app.state.broadcaster.stop()
+    await get_engine().dispose()  # close pooled connections cleanly on shutdown
 
 
 app = FastAPI(title="Sabq", version=__version__, lifespan=lifespan)

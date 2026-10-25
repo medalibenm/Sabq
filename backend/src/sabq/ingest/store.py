@@ -121,7 +121,10 @@ def record_run(
             duration_ms=int((finished_at - started_at).total_seconds() * 1000),
         )
     )
-    session.get(Source, source_id).status = status
+    source = session.get(Source, source_id)
+    if source.status != status or source.status_changed_at is None:
+        source.status_changed_at = finished_at
+    source.status = status
 
 
 # --- helpers -------------------------------------------------------------------------------

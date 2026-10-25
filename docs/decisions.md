@@ -3,6 +3,17 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-25 · Source health: public counts, team-only detail, "silent" by usual quiet period
+`/health.json` stays public (Docker and the uptime monitor): service status and source counts
+by status only, 503 only when the database is down (a broken source never restarts the app).
+The per-source page `/health` and `/health/sources.json` are for the Sabq team (they show error
+details); log in through `/docs` until the admin UI exists. A source is **silent** when it has had
+no new article for more than 3x its usual quiet period, i.e. the median of its N longest gaps
+between new articles over 14 days, N = days of history (max 14): about one normal daily quiet
+period, which a plain median would get wrong for bursty sources like Awras (one daily upload).
+Less than 3 gaps of history: "learning", no warning. Other warnings: 3 failed polls in a row,
+last listing under 30 % of its usual size, no successful poll for 6 intervals (min 3 h).
+
 ### 2026-10-25 · Sabq team users are platform admins
 "Sabq admin" (architecture: may invite into any organisation, may use the check feeds) is a
 `users.platform_admin` flag, set only from the CLI (`user admin EMAIL`), audited. The team's
