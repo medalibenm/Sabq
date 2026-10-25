@@ -57,8 +57,8 @@ extractor.
 | 2 | 05 باتنة | El Hidhab News | https://elhidhab.dz/ | allowed (empty) | WP API | verified 2026-10-19 |
 | 3 | 15 تيزي وزو | La Dépêche de Kabylie | https://www.depechedekabylie.com | allowed (`Crawl-delay: 10`) | WP API (no feed) | inactive 2026-10-21 |
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | allowed | RSS | verified 2026-10-21 |
-| 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | | | todo |
-| 6 | 19 سطيف | Setif One | https://setifone.dz/ | | | todo |
+| 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | allowed (none) | HTML selectors | investigating: needs the HTML extractor |
+| 6 | 19 سطيف | Setif One | https://setifone.dz/ | allowed | WP API | verified 2026-10-21 |
 | 7 | 23 عنابة | Le Provincial | https://leprovincial.dz/ | | | todo |
 | 8 | 23 عنابة | Seybouse Times | https://seybousetimes.dz/ | | | todo |
 | 9 | 25 قسنطينة | An-Nasr | https://www.annasronline.com/ | | | todo |
@@ -178,14 +178,31 @@ Verified: 43 extraction tests (every catalog source passes validation on its fix
 links, images, IDs stable across two fixtures).
 
 ### M5 · Ingestion and scheduling
-- [ ] Worker scheduler: per-source interval and tier, jitter, single worker.
-- [ ] New vs known articles, article page fetch (`og:`, JSON-LD, trafilatura), versions on
-      `content_hash` change, dates with confidence, NFC Arabic.
-- [ ] Wilaya assignment by source (`article_wilayas`, method `source`).
-- [ ] `fetch_runs` recorded; detection delay stored.
+Decisions 2026-10-21: article pages only when the config asks; first poll is a baseline; new
+articles announced with PostgreSQL `NOTIFY` (for the SSE stream in M6); no alerts in v1.
+
+- [x] Worker scheduler: per-source interval with ±20 % jitter, a few sources at a time (one
+      request per host still), catalog changes picked up without restart, backoff respected.
+- [x] New vs known articles (by ID, then canonical URL), versions on `content_hash` change,
+      `last_seen_at`, dates with confidence, NFC Arabic. Baseline on a source's first poll (or
+      after 24 h without a successful one): stored, not new, no detection delay.
+- [x] Article page reading for sources with `article_page` (lead, image, date, author from
+      `og:`/meta/JSON-LD), new articles only, max 20 per poll.
+- [x] Wilaya assignment by source (`article_wilayas`, method `source`).
+- [x] `fetch_runs` recorded; source status from the outcome (`ok`, `degraded`, `broken`,
+      `empty`, `blocked_by_robots`, `unreachable`); detection delay stored; `NOTIFY
+      sabq_new_articles` for new articles.
 
 **Done when** the worker runs against fixtures (and then live, locally) for an hour with no
 duplicates and correct wilayas.
+
+Verified: 16 ingestion tests on a fake web (baseline, new, versions, statuses, backoff,
+scheduler). Live, 8 sources, 2026-10-25 09:03-10:16 UTC (plus 28 min of earlier runs): no
+duplicate articles, every article with its source's wilaya, new articles found 1-11 min after
+publication, one real edit stored as version 2, a network drop handled (backoff, recovered on
+the next poll). The run found a bug the tests had missed: sources without a `wilayas` key got no
+wilaya at all (fixed: they get `00`, with a test). Note: the scheduler uses a monotonic clock,
+which stops while a laptop sleeps, so polls resume late after sleep; servers don't sleep.
 
 ### M6 · Login and web app API
 - [ ] Login: email + password, invites (Sabq admin or organisation owner/admin), password
@@ -193,6 +210,8 @@ duplicates and correct wilayas.
 - [ ] Email sending via MailerSend SMTP (settings in `.env`); Mailpit in development.
 - [ ] Web app API (`/app/...`): article stream with filters, article detail, my sources and
       wilayas, source requests; lead only, never `body_text`.
+- [ ] Live updates by Server-Sent Events (`/app/stream`): `LISTEN sabq_new_articles`, filtered per
+      user by the access rule, `Last-Event-ID` resume; Caddy passes the stream unbuffered.
 - [ ] Internal `GET /api/articles` and admin-only per-source RSS (`/admin/feeds/...`) for checks.
 
 **Done when** the access tests from M2 also pass through the HTTP layer (a user never sees
@@ -232,6 +251,10 @@ backup has been tested.
 ## Decisions needed (and when)
 | Decision | Needed before |
 |---|---|
+| ~~Article pages~~ → only when the config asks (2026-10-21) | M5 |
+| ~~First poll~~ → baseline (2026-10-21) | M5 |
+| ~~Live updates~~ → server push, SSE (2026-10-21) | M6 |
+| ~~Journalist alerts~~ → not in the first release (2026-10-21) | M6 |
 | Bot contact URL filled in (`SABQBOT_CONTACT_URL`) | M9 |
 | ~~Wilaya dataset~~ → 69 + `00` National (2026-10-19) | M2 |
 | ~~Organisation access~~ → web app with login only, no organisation RSS feeds (2026-10-19) | M6 |
@@ -248,12 +271,12 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | in progress (4 / 17) | 2026-10-21 |
+| Track A · Investigation | in progress (5 / 17 final, 1 investigating) | 2026-10-21 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |
 | M4 · Extraction | done, CI green, merged | 2026-10-21 |
-| M5 · Ingestion | todo | |
+| M5 · Ingestion | done, CI green, merged | 2026-10-25 |
 | M6 · Login + web app API | todo | |
 | M7 · Health | todo | |
 | M8 · Story matching | todo | |

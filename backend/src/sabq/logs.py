@@ -25,3 +25,6 @@ def configure_logging(level: str) -> None:
     root = logging.getLogger()
     root.handlers = [handler]
     root.setLevel(level.upper())
+    # one line per request already comes from sabq.fetch (debug) and the poll summaries (info)
+    for noisy in ("httpx2", "httpcore2", "hpack", "h2"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)

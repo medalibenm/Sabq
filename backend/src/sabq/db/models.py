@@ -266,8 +266,15 @@ class Article(Base):
     modified_at: Mapped[datetime | None]
     first_seen_at: Mapped[datetime] = mapped_column(server_default=func.now())
     last_seen_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    # Stored on a source's first poll (decision 2026-10-21): visible, never "new", no delay.
+    baseline: Mapped[bool] = mapped_column(Boolean, server_default="false")
     detection_delay_s: Mapped[float | None] = mapped_column(
-        Float, Computed("EXTRACT(EPOCH FROM (first_seen_at - published_at))", persisted=True)
+        Float,
+        Computed(
+            "CASE WHEN baseline OR published_at_confidence = 'first_seen' THEN NULL "
+            "ELSE EXTRACT(EPOCH FROM (first_seen_at - published_at)) END",
+            persisted=True,
+        ),
     )
     content_hash: Mapped[str] = mapped_column(String(64))
     version: Mapped[int] = mapped_column(Integer, server_default="1")

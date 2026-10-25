@@ -1,7 +1,8 @@
 """Worker (service `worker`): the only process that polls sources.
 
-Exactly one worker runs. In M1 it only keeps a heartbeat for the Docker health check; the
-scheduler, polling and story matching are added in later milestones (docs/plan.md).
+Exactly one worker runs. It keeps a heartbeat file for the Docker health check and runs the
+ingestion scheduler (plan M5; `INGEST_ENABLED=false` keeps only the heartbeat). Story matching is
+added in M8.
 Run: python -m sabq.worker
 """
 
@@ -18,13 +19,34 @@ from sabq.settings import Settings, get_settings
 log = logging.getLogger("sabq.worker")
 
 
-async def run(settings: Settings, stop: asyncio.Event) -> None:
-    heartbeat = Path(settings.worker_heartbeat_file)
-    log.info("worker started (version %s)", __version__)
+async def heartbeat(settings: Settings, stop: asyncio.Event) -> None:
+    path = Path(settings.worker_heartbeat_file)
     while not stop.is_set():
-        heartbeat.touch()
+        path.touch()
         with contextlib.suppress(TimeoutError):
             await asyncio.wait_for(stop.wait(), timeout=settings.worker_tick_seconds)
+
+
+async def ingest(settings: Settings, stop: asyncio.Event) -> None:
+    from sabq.db.session import get_sync_sessionmaker
+    from sabq.fetch import Fetcher
+    from sabq.ingest.poller import Database
+    from sabq.ingest.scheduler import Scheduler
+
+    async with Fetcher(settings) as fetcher:
+        await Scheduler(settings, fetcher, Database(get_sync_sessionmaker())).run(stop)
+
+
+async def run(settings: Settings, stop: asyncio.Event) -> None:
+    log.info(
+        "worker started (version %s, ingestion %s)",
+        __version__,
+        "on" if settings.ingest_enabled else "off",
+    )
+    tasks = [heartbeat(settings, stop)]
+    if settings.ingest_enabled:
+        tasks.append(ingest(settings, stop))
+    await asyncio.gather(*tasks)
     log.info("worker stopped")
 
 

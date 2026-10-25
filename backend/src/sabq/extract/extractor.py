@@ -103,8 +103,10 @@ def raw_items(config: SourceConfig, body: bytes) -> list[Any]:
     kind = config.payload_kind
     if kind == "feed":
         parsed = feedparser.parse(body)
-        if parsed.bozo and not parsed.entries:
-            raise ExtractError(f"not a readable feed: {parsed.get('bozo_exception')}")
+        if not parsed.entries and (parsed.bozo or not parsed.version):
+            # an HTML error or maintenance page served with 200 is not "an empty feed"
+            reason = parsed.get("bozo_exception") or "no RSS or Atom document"
+            raise ExtractError(f"not a readable feed: {reason}")
         data: Any = parsed.entries
     elif kind == "json":
         try:
@@ -217,7 +219,6 @@ def _build(
 
     lead = clean_text(values.get("lead"), config.lead_max_chars) or None
     image = _absolute(listing_url, values.get("image"))
-    digest = hashlib.sha256("\n".join((title, lead or "", image or "")).encode()).hexdigest()
     return ExtractedItem(
         external_id=external_id,
         url=url,
@@ -230,8 +231,13 @@ def _build(
         published_at=published,
         published_at_confidence=confidence,
         modified_at=modified,
-        content_hash=digest,
+        content_hash=content_hash(title, lead, image),
     )
+
+
+def content_hash(title: str, lead: str | None, image_url: str | None) -> str:
+    """What a reader sees: a change means a new article version."""
+    return hashlib.sha256("\n".join((title, lead or "", image_url or "")).encode()).hexdigest()
 
 
 def _absolute(base: str, value: str | None) -> str | None:
