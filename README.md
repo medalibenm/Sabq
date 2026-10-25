@@ -27,7 +27,7 @@ Requires Docker. From the repository root:
 ```sh
 cp .env.example .env          # then edit secrets
 docker compose up -d --build  # db, migrate, app, worker, proxy, mailpit
-curl http://localhost/health.json
+curl http://localhost/health.json   # per-source page: http://localhost/health (Sabq team login)
 ```
 
 - API (with code reload): http://localhost:8010 (interactive docs at `/docs`; the frontend

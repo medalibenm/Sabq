@@ -230,7 +230,12 @@ Organisations read through the **web app behind login**; there are no organisati
   only**, may include `body_text`; the organisation is mandatory and its access rule applies.
 - The API is described in `docs/openapi.json` (regenerate with `uv run python -m sabq.openapi`;
   a test fails when it is stale) and served live at `/docs`.
-- `GET /health` (HTML) and `GET /health.json`: per source: last successful fetch, last error, items in last 24 h, median detection delay, `access_method`, status, and a **silence warning** when a source returns zero links or no new item for longer than 3× its usual gap.
+- `GET /health.json` (public: service status, source counts by status, last poll) and, for the
+  Sabq team, `GET /health` (HTML) and `GET /health/sources.json`: per source, problems first:
+  status and since when, warnings, last successful poll, last error, new articles in 24 h,
+  median detection delay (7 days), usual quiet period, `access_method`. Warnings: **silent**
+  (no new article for more than 3x the usual quiet period, see `sabq.health`), failing (3 polls
+  in a row), fewer items than usual, stale. Built in M7.
 - Planned admin UI: organisation and user/role management; wilaya and source assignments;
   source-request workflow; source health and fetch runs; article/story-cluster inspection; and
   deduplication review with confirm, reject, merge and split actions. All mutations are audited.

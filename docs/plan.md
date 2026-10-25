@@ -225,12 +225,19 @@ End to end through Caddy: invite by the CLI, link from Mailpit, accept, `/app/ar
 article pushed on `/app/stream` 0.02 s after its NOTIFY.
 
 ### M7 · Health and breakage
-- [ ] `/health` and `/health.json` per source; silence warning; breakage rules from
+- [x] `/health` and `/health.json` per source; silence warning; breakage rules from
       [architecture.md](architecture.md#breakage-detection); `empty` vs `broken`.
-- [ ] No push alerts (decision 2026-10-19): broken, silent and blocked sources are listed first
+- [x] No push alerts (decision 2026-10-19): broken, silent and blocked sources are listed first
       on `/health`, with how long they have been in that state.
 
 **Done when** fixtures of a broken site and an empty site trigger the right status.
+
+Verified: 11 health tests: the silence rule on bursty (Awras-like) and regular sources, warnings,
+ordering, `status_since`, the endpoints (public counts, team-only detail, escaped errors) and,
+from the Awras fixture, ok / empty (`[]`) / broken (fields renamed, HTML instead of JSON) /
+unreachable (API route gone). Writing them found a wrong first rule (14 longest gaps: wrong
+with only a week of daily bursts; now one gap per day of history). Live: all 8 sources `ok` on
+the team page through Caddy.
 
 ### M8 · Story matching
 - [ ] Normalization (ar, fr), signals (numbers, places, entities), embedding client
@@ -284,6 +291,6 @@ backup has been tested.
 | M4 · Extraction | done, CI green, merged | 2026-10-21 |
 | M5 · Ingestion | done, CI green, merged | 2026-10-25 |
 | M6 · Login + web app API | done, CI green, merged | 2026-10-25 |
-| M7 · Health | todo | |
+| M7 · Health | done, CI green, merged | 2026-10-25 |
 | M8 · Story matching | todo | |
 | M9 · Deployment | todo | |

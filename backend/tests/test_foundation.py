@@ -50,9 +50,11 @@ def test_worker_heartbeat_and_clean_stop(tmp_path: Path):
 def test_health_ok_with_database():
     from sabq.app import app
 
-    response = TestClient(app).get("/health.json")
+    with TestClient(app) as client:  # runs the lifespan, which closes the pool at the end
+        response = client.get("/health.json")
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "version": __version__, "database": "ok"}
+    body = response.json()
+    assert (body["status"], body["version"], body["database"]) == ("ok", __version__, "ok")
 
 
 @pytest.mark.db
