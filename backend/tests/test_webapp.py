@@ -95,8 +95,13 @@ def test_full_text_never_leaves(client, world):
 
 
 def test_everything_needs_login(client, world):
-    for path in ("/app/articles", "/app/articles/1", "/app/wilayas", "/app/sources",
-                 "/app/source-requests"):
+    for path in (
+        "/app/articles",
+        "/app/articles/1",
+        "/app/wilayas",
+        "/app/sources",
+        "/app/source-requests",
+    ):
         assert client.get(path).status_code == 401
     assert client.post("/app/source-requests", json={"url": "https://x.dz"}).status_code == 401
 
@@ -138,7 +143,9 @@ def test_cursor_pages_cover_everything_once(client, committed):
 
 def test_search_and_since(client, world):
     db, ids = world
-    db.execute(update(Article).where(Article.id == ids["batna-local"]).values(title="زلزال في باتنة"))
+    db.execute(
+        update(Article).where(Article.id == ids["batna-local"]).values(title="زلزال في باتنة")
+    )
     db.commit()
     login(client, "a@org-a.dz")
     assert visible(client, q="زلزال") == {"batna-local"}
