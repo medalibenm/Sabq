@@ -1,0 +1,251 @@
+<!doctype html>
+<!-- Sabq test UI (plan: "Test UI"): a simple page to try the system, not the final frontend.
+     Uses only the public API: /auth/*, /app/articles, /app/wilayas, /app/sources, /app/stream. -->
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sabq · test UI</title>
+<style>
+  :root { --bg: #f6f6f4; --card: #fff; --text: #1d1d1b; --muted: #6b6b66; --line: #e2e2dc;
+          --accent: #0b6e4f; --new: #fff6d6; --bad: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 system-ui, "Segoe UI", Tahoma, sans-serif; background: var(--bg);
+         color: var(--text); }
+  header { position: sticky; top: 0; z-index: 2; background: var(--card); border-bottom: 1px solid var(--line);
+           padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  header h1 { font-size: 18px; margin: 0 8px 0 0; }
+  header .grow { flex: 1; }
+  header a, header button.link { color: var(--accent); text-decoration: none; background: none; border: 0;
+           font: inherit; cursor: pointer; padding: 0; }
+  main { max-width: 900px; margin: 0 auto; padding: 16px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  select, input, button { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;
+           background: var(--card); color: var(--text); }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); cursor: pointer; }
+  .live { font-size: 13px; color: var(--muted); }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #aaa; margin-inline-end: 4px; }
+  .dot.on { background: #2e9d5b; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+          margin-bottom: 10px; display: flex; gap: 12px; }
+  .card.new { background: var(--new); }
+  .card img { width: 96px; height: 72px; object-fit: cover; border-radius: 4px; flex: none; }
+  .card .body { flex: 1; min-width: 0; }
+  .card h2 { font-size: 17px; margin: 0 0 4px; }
+  .card h2 a { color: inherit; text-decoration: none; }
+  .card h2 a:hover { text-decoration: underline; }
+  .meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .lead { margin: 6px 0 0; color: #3a3a37; }
+  .story { margin-top: 8px; padding: 6px 10px; border-inline-start: 3px solid var(--accent); background: #f0f7f4;
+           font-size: 14px; }
+  .story div { margin: 2px 0; }
+  .badge { font-size: 12px; padding: 1px 6px; border-radius: 10px; background: #e7efe9; color: var(--accent); }
+  .login { max-width: 360px; margin: 60px auto; background: var(--card); padding: 20px; border-radius: 8px;
+           border: 1px solid var(--line); display: grid; gap: 10px; }
+  .error { color: var(--bad); font-size: 14px; min-height: 1em; }
+  .sources { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .sources span { margin-inline-end: 10px; }
+  .hidden { display: none !important; }
+  #more { width: 100%; margin: 8px 0 30px; }
+</style>
+</head>
+<body>
+<header id="bar" class="hidden">
+  <h1>سبق · Sabq <span class="badge">test UI</span></h1>
+  <span class="live"><span id="dot" class="dot"></span><span id="liveText">connecting…</span></span>
+  <span class="grow"></span>
+  <span id="who"></span>
+  <a href="/health" target="_blank" id="healthLink" class="hidden">health</a>
+  <a href="/docs" target="_blank">API docs</a>
+  <button class="link" id="logout">log out</button>
+</header>
+
+<form id="login" class="login hidden">
+  <h2 style="margin:0">Sabq · log in</h2>
+  <input id="email" type="email" placeholder="email" autocomplete="username" required>
+  <input id="password" type="password" placeholder="password" autocomplete="current-password" required>
+  <button class="primary" type="submit">Log in</button>
+  <div class="error" id="loginError"></div>
+</form>
+
+<form id="setPassword" class="login hidden">
+  <h2 style="margin:0" id="setTitle">Choose your password</h2>
+  <input id="newName" placeholder="your name (optional)" autocomplete="name">
+  <input id="newPassword" type="password" placeholder="password (10+ characters)"
+         autocomplete="new-password" required minlength="10">
+  <button class="primary" type="submit">Save and log in</button>
+  <div class="error" id="setError"></div>
+</form>
+
+<main id="app" class="hidden">
+  <div class="filters">
+    <select id="wilaya"><option value="">all my wilayas</option></select>
+    <select id="source"><option value="">all my sources</option></select>
+    <input id="q" placeholder="search title or lead" dir="auto">
+    <button class="primary" id="apply">Apply</button>
+  </div>
+  <div class="sources" id="sourceList"></div>
+  <div id="list"></div>
+  <button id="more" class="hidden">Load more</button>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let me = null, cursor = null, stream = null;
+const groups = new Map();  // story_cluster_id -> the card showing that story
+
+async function api(path, options = {}) {
+  const response = await fetch(path, { credentials: "same-origin", ...options });
+  if (response.status === 401) { showLogin(); throw new Error("not logged in"); }
+  if (!response.ok) throw new Error((await response.json().catch(() => ({}))).detail || response.status);
+  return response.status === 204 ? null : response.json();
+}
+const post = (path, body) => api(path, { method: "POST", headers: { "Content-Type": "application/json" },
+                                         body: JSON.stringify(body || {}) });
+
+function showLogin() {
+  if (stream) { stream.close(); stream = null; }
+  $("bar").classList.add("hidden"); $("app").classList.add("hidden"); $("login").classList.remove("hidden");
+}
+
+$("login").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  $("loginError").textContent = "";
+  try { me = await post("/auth/login", { email: $("email").value, password: $("password").value }); start(); }
+  catch (error) { $("loginError").textContent = String(error.message); }
+});
+$("logout").addEventListener("click", async () => { await post("/auth/logout").catch(() => {}); showLogin(); });
+$("apply").addEventListener("click", () => load(true));
+$("q").addEventListener("keydown", (event) => { if (event.key === "Enter") load(true); });
+$("more").addEventListener("click", () => load(false));
+
+function ago(iso) {
+  const minutes = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (minutes < 60) return `${Math.max(minutes, 0)} min ago`;
+  if (minutes < 48 * 60) return `${Math.round(minutes / 60)} h ago`;
+  return new Date(iso).toLocaleString();
+}
+
+function el(tag, attrs = {}, text = "") {
+  const node = document.createElement(tag);
+  Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+  if (text) node.textContent = text;
+  return node;
+}
+
+function card(item, isNew = false) {
+  const node = el("article", { class: "card" + (isNew ? " new" : ""), "data-id": item.id });
+  if (item.image_url) node.append(el("img", { src: item.image_url, alt: "", loading: "lazy",
+                                              referrerpolicy: "no-referrer" }));
+  const body = el("div", { class: "body" });
+  const title = el("h2", { dir: "auto" });
+  title.append(el("a", { href: item.url, target: "_blank", rel: "noopener" }, item.title));
+  const meta = el("div", { class: "meta" });
+  meta.append(el("span", {}, item.source.name), el("span", {}, "wilaya " + item.wilayas.join(", ")),
+              el("span", { title: item.sort_at }, ago(item.sort_at)));
+  if (item.section) meta.append(el("span", { dir: "auto" }, item.section));
+  if (item.published_at_confidence === "first_seen") meta.append(el("span", {}, "(time first seen)"));
+  body.append(title, meta);
+  if (item.lead) body.append(el("p", { class: "lead", dir: "auto" }, item.lead));
+  node.append(body);
+  return node;
+}
+
+function alsoReported(groupCard, item) {
+  let box = groupCard.querySelector(".story");
+  if (!box) { box = el("div", { class: "story" }); box.append(el("strong", {}, "Same story, also reported by:"));
+              groupCard.querySelector(".body").append(box); }
+  const line = el("div", { dir: "auto" });
+  line.append(el("a", { href: item.url, target: "_blank", rel: "noopener" }, `${item.source.name}: ${item.title}`));
+  box.append(line);
+}
+
+function show(item, { prepend = false, isNew = false } = {}) {
+  const cluster = item.story_cluster_id;
+  if (cluster && groups.has(cluster)) {   // same event already on screen: attach under it
+    const groupCard = groups.get(cluster);
+    alsoReported(groupCard, item);
+    if (isNew) { groupCard.classList.add("new"); $("list").prepend(groupCard); }
+    return;
+  }
+  const node = card(item, isNew);
+  if (cluster) groups.set(cluster, node);
+  prepend ? $("list").prepend(node) : $("list").append(node);
+}
+
+async function load(fresh) {
+  const params = new URLSearchParams({ limit: "50" });
+  for (const name of ["wilaya", "source", "q"]) if ($(name).value.trim()) params.set(name, $(name).value.trim());
+  if (!fresh && cursor) params.set("cursor", cursor);
+  if (fresh) { $("list").innerHTML = ""; groups.clear(); }
+  const page = await api("/app/articles?" + params);
+  page.items.forEach((item) => show(item));
+  cursor = page.next_cursor;
+  $("more").classList.toggle("hidden", !cursor);
+  if (fresh && !page.items.length) $("list").append(el("p", {}, "No articles (yet) for these filters."));
+}
+
+function matchesFilters(item) {
+  const wilaya = $("wilaya").value, source = $("source").value, q = $("q").value.trim().toLowerCase();
+  return (!wilaya || item.wilayas.includes(wilaya)) && (!source || item.source.slug === source) &&
+         (!q || (item.title + " " + (item.lead || "")).toLowerCase().includes(q));
+}
+
+function connect() {
+  if (stream) stream.close();
+  stream = new EventSource("/app/stream");
+  stream.onopen = () => { $("dot").classList.add("on"); $("liveText").textContent = "live"; };
+  stream.onerror = () => { $("dot").classList.remove("on"); $("liveText").textContent = "reconnecting…"; };
+  stream.addEventListener("article", (event) => {
+    const item = JSON.parse(event.data);
+    if (!document.querySelector(`[data-id="${item.id}"]`) && matchesFilters(item))
+      show(item, { prepend: true, isNew: true });
+  });
+  stream.addEventListener("reload", () => load(true));
+  stream.addEventListener("logout", showLogin);
+}
+
+async function start() {
+  $("login").classList.add("hidden"); $("bar").classList.remove("hidden"); $("app").classList.remove("hidden");
+  $("who").textContent = `${me.email} · ${me.organisation.name} (${me.role})`;
+  $("healthLink").classList.toggle("hidden", !me.platform_admin);
+  const [wilayas, sources] = await Promise.all([api("/app/wilayas"), api("/app/sources")]);
+  $("wilaya").length = 1; $("source").length = 1;
+  wilayas.forEach((w) => $("wilaya").append(el("option", { value: w.code }, `${w.code} ${w.name_ar} · ${w.name_fr}`)));
+  sources.forEach((s) => $("source").append(el("option", { value: s.slug }, s.name)));
+  const list = $("sourceList"); list.innerHTML = "";
+  list.append(el("span", {}, `${sources.length} sources:`));
+  sources.forEach((s) => {
+    const label = `${s.name} (${s.status})`;
+    list.append(me.platform_admin
+      ? Object.assign(el("a", { href: `/admin/feeds/${s.slug}.xml`, target: "_blank" }, label), { style: "margin-inline-end:10px" })
+      : el("span", {}, label));
+  });
+  await load(true);
+  connect();
+}
+
+// Links from invite and reset emails: /accept-invite?token=... and /reset-password?token=...
+const linkToken = new URLSearchParams(location.search).get("token");
+const isReset = location.pathname.startsWith("/reset-password");
+if (linkToken && (isReset || location.pathname.startsWith("/accept-invite"))) {
+  $("setPassword").classList.remove("hidden");
+  if (isReset) { $("setTitle").textContent = "Choose a new password"; $("newName").classList.add("hidden"); }
+  $("setPassword").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    $("setError").textContent = "";
+    const body = { token: linkToken, password: $("newPassword").value };
+    if (!isReset && $("newName").value.trim()) body.display_name = $("newName").value.trim();
+    try {
+      me = await post(isReset ? "/auth/reset" : "/auth/accept-invite", body);
+      history.replaceState(null, "", "/ui");
+      $("setPassword").classList.add("hidden");
+      start();
+    } catch (error) { $("setError").textContent = String(error.message); }
+  });
+} else {
+  api("/auth/me").then((user) => { me = user; start(); }).catch(() => {});
+}
+</script>
+</body>
+</html>
