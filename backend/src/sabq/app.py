@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from sabq import __version__
-from sabq.api import auth, health
+from sabq.api import auth, health, webapp
 from sabq.auth.service import AuthError
 from sabq.logs import configure_logging
 from sabq.settings import get_settings
@@ -18,6 +18,7 @@ configure_logging(get_settings().log_level)
 app = FastAPI(title="Sabq", version=__version__)
 app.include_router(health.router)
 app.include_router(auth.router)
+app.include_router(webapp.router)
 
 
 @app.exception_handler(AuthError)
