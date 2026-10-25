@@ -9,12 +9,13 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from feedgen.feed import FeedGenerator
+from pydantic import BaseModel
 from sqlalchemy import select
 
 from sabq import __version__
 from sabq.api.articles import SORT_AT, ArticleDetail, filtered, page, to_out
 from sabq.api.deps import DB, Viewer, platform_admin
-from sabq.db.models import Article, Organisation, Source
+from sabq.db.models import Article, DedupCandidate, Organisation, Source
 
 router = APIRouter(tags=["Sabq team"])
 TeamMember = Annotated[Viewer, Depends(platform_admin)]
@@ -82,4 +83,71 @@ async def internal_articles(
     return [
         InternalArticle(**item.model_dump(), body_text=bodies[item.id])
         for item in await to_out(db, rows, detail=True)
+    ]
+
+
+class ReviewSide(BaseModel):
+    id: int
+    source: str
+    title: str
+    url: str
+    published_at: datetime | None
+
+
+class ReviewOut(BaseModel):
+    id: int
+    kind: str
+    score: float
+    conflicts: list[str]
+    hours_apart: float | None
+    a: ReviewSide
+    b: ReviewSide
+
+
+@router.get("/admin/review")
+async def review(
+    viewer: TeamMember, db: DB, limit: Annotated[int, Query(ge=1, le=200)] = 100
+) -> list[ReviewOut]:
+    """Pairs that look like the same event but were not grouped (0.85-0.90, or a conflict),
+    highest score first. Read-only for now; confirming or rejecting comes with the admin UI."""
+    candidates = (
+        await db.scalars(
+            select(DedupCandidate)
+            .where(DedupCandidate.status == "pending")
+            .order_by(DedupCandidate.score.desc())
+            .limit(limit)
+        )
+    ).all()
+    ids = {c.article_id for c in candidates} | {c.candidate_article_id for c in candidates}
+    rows = (
+        await db.execute(
+            select(Article, Source.name)
+            .join(Source, Source.id == Article.source_id)
+            .where(Article.id.in_(ids))
+        )
+    ).all()
+    articles = {a.id: (a, name) for a, name in rows}
+
+    def side(article_id: int) -> ReviewSide:
+        article, name = articles[article_id]
+        return ReviewSide(
+            id=article.id,
+            source=name,
+            title=article.title,
+            url=article.url,
+            published_at=article.published_at,
+        )
+
+    return [
+        ReviewOut(
+            id=c.id,
+            kind=c.kind,
+            score=round(c.score, 4),
+            conflicts=c.signals.get("conflicts", []),
+            hours_apart=c.signals.get("hours_apart"),
+            a=side(c.article_id),
+            b=side(c.candidate_article_id),
+        )
+        for c in candidates
+        if c.article_id in articles and c.candidate_article_id in articles
     ]

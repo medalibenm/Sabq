@@ -178,3 +178,36 @@ def test_source_requests(client, world):
     from sabq.db.models import SourceRequest
 
     assert db.scalar(select(SourceRequest.note)) == "جريدة محلية"
+
+
+def test_stories_show_only_visible_members(client, world):
+    from sabq.db.models import StoryCluster, StoryClusterMember
+
+    db, ids = world
+    both_visible = StoryCluster(status="automatic", last_member_at=T0)
+    half_visible = StoryCluster(status="automatic", last_member_at=T0)
+    db.add_all([both_visible, half_visible])
+    db.flush()
+    for cluster, keys in (
+        (both_visible, ("batna-local", "batna-national")),
+        (half_visible, ("batna-local", "oran-local")),
+    ):
+        for key in keys:
+            db.add(
+                StoryClusterMember(
+                    cluster_id=cluster.id,
+                    article_id=ids[key],
+                    membership="duplicate",
+                    confidence=1.0,
+                )
+            )
+    db.commit()
+    login(client, "a@org-a.dz")
+    stories = client.get("/app/stories").json()
+    assert [s["id"] for s in stories] == [both_visible.id]  # the other has 1 visible article
+    assert {a["url"].rsplit("/", 1)[1] for a in stories[0]["articles"]} == {
+        "batna-local",
+        "batna-national",
+    }
+    login(client, "b@org-b.dz")
+    assert client.get("/app/stories").json() == []  # org-b sees only one of oran-local's story

@@ -65,3 +65,27 @@ def test_test_ui_is_served_and_not_in_the_api_contract():
     assert client.get("/", follow_redirects=False).headers["location"] == "/ui"
     assert client.get("/accept-invite?token=x").status_code == 200  # email links
     assert "/ui" not in app.openapi()["paths"]
+
+
+@pytest.mark.db
+def test_review_list_is_team_only(client, world):  # noqa: F811
+    from sabq.db.models import DedupCandidate
+
+    db, ids = world
+    db.add(
+        DedupCandidate(
+            article_id=ids["batna-local"],
+            candidate_article_id=ids["oran-local"],
+            score=0.87,
+            scorer_version=1,
+            signals={"conflicts": ["numbers: [15] vs [7] قتيل"], "hours_apart": 2},
+        )
+    )
+    db.commit()
+    login(client, "a@org-a.dz")
+    assert client.get("/admin/review").status_code == 403
+    make_user(db, "sabq", "team@sabq.dz", role="owner", admin=True)
+    login(client, "team@sabq.dz")
+    (pair,) = client.get("/admin/review").json()
+    assert pair["score"] == 0.87 and pair["conflicts"] == ["numbers: [15] vs [7] قتيل"]
+    assert pair["a"]["source"] == "batna-src" and pair["b"]["source"] == "oran-src"

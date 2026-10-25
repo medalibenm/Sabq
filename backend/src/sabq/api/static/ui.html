@@ -47,6 +47,15 @@
   .sources span { margin-inline-end: 10px; }
   .hidden { display: none !important; }
   #more { width: 100%; margin: 8px 0 30px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tabs button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .group { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+           margin-bottom: 12px; }
+  .group h3 { margin: 0 0 6px; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .group .row { padding: 6px 0; border-top: 1px solid var(--line); }
+  .group .row:first-of-type { border-top: 0; }
+  .group .row a { color: inherit; }
+  .conflict { color: var(--bad); font-size: 13px; }
 </style>
 </head>
 <body>
@@ -78,6 +87,14 @@
 </form>
 
 <main id="app" class="hidden">
+  <div class="tabs">
+    <button id="tabArticles" class="on">Articles</button>
+    <button id="tabStories">Stories</button>
+    <button id="tabReview" class="hidden">For review</button>
+  </div>
+  <section id="viewStories" class="hidden"></section>
+  <section id="viewReview" class="hidden"></section>
+  <section id="viewArticles">
   <div class="filters">
     <select id="wilaya"><option value="">all my wilayas</option></select>
     <select id="source"><option value="">all my sources</option></select>
@@ -87,6 +104,7 @@
   <div class="sources" id="sourceList"></div>
   <div id="list"></div>
   <button id="more" class="hidden">Load more</button>
+  </section>
 </main>
 
 <script>
@@ -209,6 +227,7 @@ async function start() {
   $("login").classList.add("hidden"); $("bar").classList.remove("hidden"); $("app").classList.remove("hidden");
   $("who").textContent = `${me.email} · ${me.organisation.name} (${me.role})`;
   $("healthLink").classList.toggle("hidden", !me.platform_admin);
+  $("tabReview").classList.toggle("hidden", !me.platform_admin);
   const [wilayas, sources] = await Promise.all([api("/app/wilayas"), api("/app/sources")]);
   $("wilaya").length = 1; $("source").length = 1;
   wilayas.forEach((w) => $("wilaya").append(el("option", { value: w.code }, `${w.code} ${w.name_ar} · ${w.name_fr}`)));
@@ -223,6 +242,62 @@ async function start() {
   });
   await load(true);
   connect();
+}
+
+// --- tabs: Articles | Stories | For review (Sabq team) ---------------------------------------
+const views = { Articles: "viewArticles", Stories: "viewStories", Review: "viewReview" };
+function tab(name) {
+  for (const [key, id] of Object.entries(views)) {
+    $(id).classList.toggle("hidden", key !== name);
+    $("tab" + key).classList.toggle("on", key === name);
+  }
+  if (name === "Stories") loadStories();
+  if (name === "Review") loadReview();
+}
+Object.keys(views).forEach((key) => $("tab" + key).addEventListener("click", () => tab(key)));
+
+function row(source, title, url, when) {
+  const line = el("div", { class: "row", dir: "auto" });
+  const link = el("a", { href: url, target: "_blank", rel: "noopener" }, title);
+  line.append(el("strong", {}, source + ": "), link,
+              el("span", { class: "meta" }, when ? "  · " + ago(when) : ""));
+  return line;
+}
+
+async function loadStories() {
+  const box = $("viewStories");
+  box.innerHTML = "loading…";
+  const stories = await api("/app/stories");
+  box.innerHTML = "";
+  box.append(el("p", { class: "meta" },
+    `${stories.length} stories: articles from different sources about the same event, grouped automatically (similarity ≥ 0.90, no conflict).`));
+  stories.forEach((story) => {
+    const group = el("div", { class: "group" });
+    const sources = new Set(story.articles.map((a) => a.source.name)).size;
+    group.append(el("h3", {}, `Story #${story.id} · ${story.articles.length} articles · ${sources} sources · last joined ${ago(story.last_member_at)}`));
+    story.articles.forEach((a) => group.append(row(a.source.name, a.title, a.url, a.sort_at)));
+    box.append(group);
+  });
+  if (!stories.length) box.append(el("p", {}, "No stories yet."));
+}
+
+async function loadReview() {
+  const box = $("viewReview");
+  box.innerHTML = "loading…";
+  const pairs = await api("/admin/review");
+  box.innerHTML = "";
+  box.append(el("p", { class: "meta" },
+    `${pairs.length} pairs that look alike but were NOT grouped (similarity 0.85–0.90, or a conflict). Kept apart on purpose: precision over recall.`));
+  pairs.forEach((pair) => {
+    const group = el("div", { class: "group" });
+    const hours = pair.hours_apart != null ? ` · ${pair.hours_apart} h apart` : "";
+    group.append(el("h3", {}, `similarity ${pair.score.toFixed(3)}${hours}${pair.kind === "cluster_merge" ? " · possible merge of two stories" : ""}`));
+    group.append(row(pair.a.source, pair.a.title, pair.a.url, pair.a.published_at));
+    group.append(row(pair.b.source, pair.b.title, pair.b.url, pair.b.published_at));
+    pair.conflicts.forEach((c) => group.append(el("div", { class: "conflict", dir: "auto" }, "conflict: " + c)));
+    box.append(group);
+  });
+  if (!pairs.length) box.append(el("p", {}, "Nothing to review."));
 }
 
 // Links from invite and reset emails: /accept-invite?token=... and /reset-password?token=...

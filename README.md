@@ -32,8 +32,10 @@ curl http://localhost/health.json   # per-source page: http://localhost/health (
 
 - Test UI (not the final frontend): http://localhost/ui · API (with code reload): http://localhost:8010 (interactive docs at `/docs`; the frontend
   contract is `docs/openapi.json`) · Mailpit (dev emails, e.g. invite links): http://localhost:8025
-- Tests: `cd backend && uv run pytest` (database tests need
-  `DATABASE_URL=postgresql+psycopg://sabq:<password>@localhost:5440/sabq`)
+- Tests: `cd backend && uv run pytest`. Database tests need a **separate** database, because
+  they empty tables: `DATABASE_URL=postgresql+psycopg://sabq:<password>@localhost:5440/sabq_test`
+  (create it once: `docker compose exec db psql -U sabq -c "CREATE DATABASE sabq_test"`).
+  Never point them at `sabq`, the dev database the test UI uses.
 - Production uses `compose.yaml` only: `docker compose -f compose.yaml up -d`
 - Admin commands (no admin UI yet), e.g.:
   ```sh
