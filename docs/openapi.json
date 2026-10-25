@@ -624,6 +624,56 @@
         }
       }
     },
+    "/app/stories": {
+      "get": {
+        "tags": [
+          "web app"
+        ],
+        "summary": "Stories",
+        "description": "Stories (same event, several sources), newest first. Only the articles this organisation\nmay see; a story with fewer than two visible articles is left out.",
+        "operationId": "stories_app_stories_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StoryOut"
+                  },
+                  "title": "Response Stories App Stories Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/app/stream": {
       "get": {
         "tags": [
@@ -814,6 +864,56 @@
                     "$ref": "#/components/schemas/InternalArticle"
                   },
                   "title": "Response Internal Articles Api Articles Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/review": {
+      "get": {
+        "tags": [
+          "Sabq team"
+        ],
+        "summary": "Review",
+        "description": "Pairs that look like the same event but were not grouped (0.85-0.90, or a conflict),\nhighest score first. Read-only for now; confirming or rejecting comes with the admin UI.",
+        "operationId": "review_admin_review_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewOut"
+                  },
+                  "title": "Response Review Admin Review Get"
                 }
               }
             }
@@ -1511,6 +1611,98 @@
         ],
         "title": "ResetIn"
       },
+      "ReviewOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "conflicts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conflicts"
+          },
+          "hours_apart": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours Apart"
+          },
+          "a": {
+            "$ref": "#/components/schemas/ReviewSide"
+          },
+          "b": {
+            "$ref": "#/components/schemas/ReviewSide"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "score",
+          "conflicts",
+          "hours_apart",
+          "a",
+          "b"
+        ],
+        "title": "ReviewOut"
+      },
+      "ReviewSide": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "title",
+          "url",
+          "published_at"
+        ],
+        "title": "ReviewSide"
+      },
       "SourceHealthOut": {
         "properties": {
           "slug": {
@@ -1811,6 +2003,46 @@
           "created_at"
         ],
         "title": "SourceRequestOut"
+      },
+      "StoryOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "last_member_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Member At"
+          },
+          "articles": {
+            "items": {
+              "$ref": "#/components/schemas/ArticleOut"
+            },
+            "type": "array",
+            "title": "Articles",
+            "description": "Visible members, earliest first"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "last_member_at",
+          "articles"
+        ],
+        "title": "StoryOut"
       },
       "ValidationError": {
         "properties": {

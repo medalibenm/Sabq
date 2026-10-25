@@ -25,6 +25,8 @@ from sabq.db.models import (
     Source,
     SourceRequest,
     SourceWilaya,
+    StoryCluster,
+    StoryClusterMember,
     Wilaya,
 )
 
@@ -198,3 +200,50 @@ async def request_source(body: SourceRequestIn, viewer: Requester, db: DB) -> So
     await db.commit()
     await db.refresh(row)
     return SourceRequestOut.model_validate(row, from_attributes=True)
+
+
+class StoryOut(BaseModel):
+    id: int
+    status: str
+    last_member_at: datetime | None
+    articles: list[ArticleOut] = Field(description="Visible members, earliest first")
+
+
+@router.get("/stories")
+async def stories(
+    viewer: LoggedIn, db: DB, limit: Annotated[int, Query(ge=1, le=100)] = 50
+) -> list[StoryOut]:
+    """Stories (same event, several sources), newest first. Only the articles this organisation
+    may see; a story with fewer than two visible articles is left out."""
+    visible = filtered(viewer.organisation.id).with_only_columns(Article.id).scalar_subquery()
+    rows = (
+        await db.execute(
+            select(StoryClusterMember.cluster_id, Article)
+            .join(Article, Article.id == StoryClusterMember.article_id)
+            .where(Article.id.in_(visible))
+        )
+    ).all()
+    members: dict[int, list[Article]] = {}
+    for cluster_id, article in rows:
+        members.setdefault(cluster_id, []).append(article)
+    members = {c: a for c, a in members.items() if len(a) >= 2}
+    clusters = (
+        await db.scalars(
+            select(StoryCluster)
+            .where(StoryCluster.id.in_(members))
+            .order_by(StoryCluster.last_member_at.desc())
+            .limit(limit)
+        )
+    ).all()
+    out = []
+    for cluster in clusters:
+        articles = sorted(members[cluster.id], key=lambda a: a.published_at or a.first_seen_at)
+        out.append(
+            StoryOut(
+                id=cluster.id,
+                status=cluster.status,
+                last_member_at=cluster.last_member_at,
+                articles=await to_out(db, articles),
+            )
+        )
+    return out
