@@ -319,3 +319,32 @@ def test_live_validation_through_the_fetcher():
     assert checks["listings fetched"].ok and checks["images load"].ok
     assert not checks["links open the article"].ok  # only 152481's page carries its title
     assert "152478" in checks["links open the article"].detail
+
+
+# --- article pages (M5) ------------------------------------------------------------------------
+
+
+def test_article_page_fills_only_what_the_listing_lacks():
+    from dataclasses import replace
+
+    from sabq.extract.config import ArticlePage
+    from sabq.extract.page import enrich, read_page
+
+    page = fixture("djelfainfo-ar", "article_152481.html")
+    data = read_page(page)
+    assert data.json_ld and data.json_ld[0]["@type"] == "NewsArticle"  # BreadcrumbList ignored
+
+    item = replace(items("djelfainfo-ar").items[0], published_at=None)
+    rules = ArticlePage(
+        lead="og:description",
+        published="json_ld:datePublished",
+        author="json_ld:author",
+        image="og:image",
+    )
+    filled = enrich(item, rules, page, naive_tz="UTC", lead_max=300)
+    assert filled.lead.startswith("الرئيس تبون يجري حركة جزئية في سلك الولاة")
+    assert filled.published_at == datetime(2026, 10, 20, 18, 8, 52, tzinfo=UTC)  # +01:00 on page
+    assert filled.author == "محمد شبيري"
+    assert filled.image_url == item.image_url  # the listing had one: kept
+    assert filled.content_hash != item.content_hash  # the lead is part of what readers see
+    assert enrich(item, ArticlePage(), page, naive_tz="UTC", lead_max=300) is item

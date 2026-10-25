@@ -37,18 +37,26 @@ def migrated(alembic_cfg):
 
 
 @pytest.fixture
-def session(migrated):
-    """A session inside a transaction that is rolled back after the test."""
-    from sqlalchemy.orm import Session
-
+def connection(migrated):
+    """A connection inside a transaction that is rolled back after the test."""
     from sabq.db.session import get_sync_engine
 
     connection = get_sync_engine().connect()
     transaction = connection.begin()
+    try:
+        yield connection
+    finally:
+        transaction.rollback()
+        connection.close()
+
+
+@pytest.fixture
+def session(connection):
+    """A session in the test transaction (its commits become savepoints)."""
+    from sqlalchemy.orm import Session
+
     db = Session(bind=connection, join_transaction_mode="create_savepoint")
     try:
         yield db
     finally:
         db.close()
-        transaction.rollback()
-        connection.close()

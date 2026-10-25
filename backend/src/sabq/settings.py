@@ -54,6 +54,13 @@ class Settings(BaseSettings):
     worker_heartbeat_file: str = "/tmp/sabq-worker-heartbeat"
     worker_tick_seconds: float = 5.0
 
+    # Ingestion (plan M5)
+    ingest_enabled: bool = True  # false: the worker only keeps its heartbeat
+    ingest_concurrency: int = 4  # sources polled at the same time (one request per host still)
+    ingest_jitter: float = 0.2  # each interval is 80-120 % of poll_interval_s
+    ingest_max_article_pages: int = 20  # per poll, new articles only (decision 2026-10-21)
+    ingest_baseline_gap_s: float = 86400.0  # no successful poll for this long: next is a baseline
+
     @property
     def user_agent(self) -> str:
         agent = f"SabqBot/{__version__}"

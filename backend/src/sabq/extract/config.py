@@ -16,7 +16,7 @@
     exclude: {alias: '^(dossier|video)/'}   # drop the item when the value matches
     dates: {published_tz: UTC, confidence: source_meta}   # tz for naive dates
     lead_max_chars: 300
-    article_page: {...}            # what to read from article pages (ingestion, M5)
+    article_page: {lead: og:description}   # read from the article page when missing (M5)
     link_check: title | skip       # validation: does the link show the article title?
 
 Feed items are feedparser entries: `$.title`, `$.link`, `$.id` (guid), `$.published`,
@@ -25,7 +25,7 @@ Feed items are feedparser entries: `$.title`, `$.link`, `$.id` (guid), `$.publis
 
 import re
 import string
-from typing import Literal
+from typing import Annotated, Literal
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -122,6 +122,22 @@ class Embedded(BaseModel):
     object_start: str = Field(pattern=r"^\{")  # each item is the JSON object starting with this
 
 
+PageSource = Annotated[str, Field(pattern=r"^(og|article|twitter|meta|json_ld):[A-Za-z_:.]+$")]
+
+
+class ArticlePage(BaseModel):
+    """What to read from an article's own page when the listing lacks it (ingestion, M5).
+    Values: `og:description`, `meta:description`, `article:published_time`,
+    `json_ld:description`, `json_ld:datePublished`, `json_ld:image`, `json_ld:author`..."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    lead: PageSource | None = None
+    image: PageSource | None = None
+    published: PageSource | None = None
+    author: PageSource | None = None
+
+
 class DateRule(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -152,7 +168,7 @@ class SourceConfig(BaseModel):
     exclude: dict[str, str] = {}
     dates: DateRule = DateRule()
     lead_max_chars: int = Field(default=300, ge=50)
-    article_page: dict[str, str] | None = None
+    article_page: ArticlePage | None = None
     # Validation opens a few links and looks for the article title. `skip` only for sites that
     # answer every URL with the same JavaScript page (El Mouradia); check those in a browser.
     link_check: Literal["title", "skip"] = "title"

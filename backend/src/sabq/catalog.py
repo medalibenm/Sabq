@@ -34,7 +34,7 @@ class CatalogEntry(SourceConfig):
     home_url: str
     language: str
     kind: Literal["official", "agency", "national", "local", "international"]
-    wilayas: list[str] = []
+    wilayas: list[str] = Field(default_factory=lambda: [NATIONAL])  # none listed: National
     tier: Literal["priority", "normal", "secondary"]
     poll_interval_s: int = Field(ge=60)
     egress: Literal["default", "dz_proxy"] = "default"

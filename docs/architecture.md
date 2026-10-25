@@ -96,6 +96,28 @@ Find the data source for a new site, or repair a broken config. Done **manually 
   state. If a browser is required, keep it isolated, rate-limited and covered by saved fixtures;
   do not use it to bypass robots.txt, bot protection, logins or paywalls.
 
+## Ingestion (worker)
+Built in `sabq.ingest` (M5). The worker's scheduler re-reads enabled sources every few seconds
+(so `catalog load` applies without a restart) and polls each one every `poll_interval_s` ±20 %,
+a few sources at a time; the fetcher still sends one request per host at a time. One poll:
+
+1. Fetch every listing (`304` = unchanged), extract and merge (`sabq.extract`).
+2. **Baseline** if the source never had a successful poll, or none for 24 h: its articles are
+   stored but never new (decision 2026-10-21).
+3. For sources with `article_page` only: read the pages of up to 20 *new* articles to fill what
+   the listing lacks (lead, image, date, author from `og:`/meta/JSON-LD).
+4. Store in one transaction: new articles (with their source's wilayas and version 1), known
+   ones (`last_seen_at`; a changed title/lead/image is a new version; values only the page gave
+   are kept), the `fetch_runs` row, the source status, and `NOTIFY sabq_new_articles`
+   `{"source_id", "article_ids"}` for new, non-baseline articles (delivered on commit; the app
+   relays them to browsers by SSE, M6).
+
+Source status after a poll: `ok`, `degraded` (some items rejected or dates unreadable), `empty`
+(valid listing, no articles), `broken` (not the expected format, or every item rejected),
+`blocked_by_robots`, `unreachable` (network/HTTP error, robots.txt unreadable). A host in backoff
+skips the poll without recording anything; a blocked source is retried after the robots.txt cache
+expires (24 h).
+
 ## Data model (multi-tenant and wilaya-aware)
 Sources are a **shared catalog** fetched once. Organisations subscribe to sources and are granted
 access to wilayas; ingestion is shared, while every organisation-facing read is filtered by that
@@ -118,8 +140,10 @@ assignments.
   intersection of organisation sources and organisation wilayas.
 - `source_requests(id, organisation_id, requested_by, url, note, status[new|investigating|added|refused], reason, created_at)`.
 - `fetch_runs(id, source_id, started_at, finished_at, http_status, items_seen, items_new, items_updated, error, duration_ms)`
-- `articles(id, source_id, external_id, url, canonical_url, canonical_url_key, title, lead, body_text, image_url, author, section, language, published_at, published_at_confidence[source_meta|page_text|first_seen], modified_at, first_seen_at, last_seen_at, content_hash, version)`, unique on `(source_id, external_id)` and on `(source_id, canonical_url_key)`.
-  Plus `match_text` and `match_signals jsonb` for story matching.
+- `articles(id, source_id, external_id, url, canonical_url, canonical_url_key, title, lead, body_text, image_url, author, section, language, published_at, published_at_confidence[source_meta|page_text|first_seen], modified_at, first_seen_at, last_seen_at, content_hash, version, baseline, detection_delay_s)`, unique on `(source_id, external_id)` and on `(source_id, canonical_url_key)`.
+  Plus `match_text` and `match_signals jsonb` for story matching. `baseline` marks articles
+  stored by a source's first poll (never new); `detection_delay_s` is computed
+  (`first_seen_at - published_at`), empty for baseline and `first_seen`-dated articles.
 - `article_wilayas(article_id, wilaya_id, assignment_method[source|section|entity|manual], confidence)`.
 - `article_embeddings(article_id, model, embedding vector(1024), created_at)`, primary key `(article_id, model)`, HNSW index (pgvector). `articles.embedding_status[pending|done|failed]`.
 - `story_clusters(id, representative_article_id, status[candidate|automatic|confirmed|split|rejected], first_published_at, last_member_at, closed_at, created_at, updated_at)`

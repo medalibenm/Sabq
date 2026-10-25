@@ -31,7 +31,9 @@ def test_json_log_keeps_arabic():
 
 def test_worker_heartbeat_and_clean_stop(tmp_path: Path):
     heartbeat = tmp_path / "heartbeat"
-    settings = Settings(worker_heartbeat_file=str(heartbeat), worker_tick_seconds=0.01)
+    settings = Settings(
+        worker_heartbeat_file=str(heartbeat), worker_tick_seconds=0.01, ingest_enabled=False
+    )
 
     async def scenario():
         stop = asyncio.Event()

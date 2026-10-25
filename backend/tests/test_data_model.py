@@ -207,8 +207,23 @@ def test_config_change_creates_a_new_version(session, tmp_path):
     assert sorted(versions) == [1, 2]
 
 
-def test_source_without_wilaya_is_national(session, tmp_path):
-    edit(copy_catalog(tmp_path), wilayas=[])
+def test_every_catalog_source_has_a_wilaya(session):
+    load_catalog(session, read_catalog(DEFAULT_CATALOG), ACTOR)
+    without = session.scalars(
+        select(Source.slug).where(~Source.id.in_(select(SourceWilaya.source_id)))
+    ).all()
+    assert without == []  # national sources (no `wilayas` key) get 00, never nothing
+
+
+@pytest.mark.parametrize("missing", ["empty list", "no key"])
+def test_source_without_wilaya_is_national(session, tmp_path, missing):
+    path = copy_catalog(tmp_path)
+    if missing == "empty list":
+        edit(path, wilayas=[])
+    else:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        del data["wilayas"]
+        path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
     load_catalog(session, read_catalog(tmp_path), ACTOR)
     source_id = session.scalar(select(Source.id).where(Source.slug == "awras-ar"))
     codes = session.scalars(
