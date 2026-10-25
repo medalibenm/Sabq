@@ -166,11 +166,17 @@ def judge(article: Article, pair: Pair, cfg: MatchingConfig) -> Pair:
         "hours_apart": round(abs((when(article) - when(pair.other)).total_seconds()) / 3600, 1),
         "scorer_version": cfg.version,
     }
-    if pair.exact or (pair.cosine >= cfg.automatic and not pair.conflicts):
-        pair.decision = "automatic"
-    elif pair.cosine >= cfg.review:
-        pair.decision = "review"
+    pair.decision = decision(pair.cosine, pair.exact, pair.conflicts, cfg)
     return pair
+
+
+def decision(cosine: float, exact: bool, found_conflicts: list[str], cfg) -> str | None:
+    """automatic | review | None, for a pair already within the time window."""
+    if exact or (cosine >= cfg.automatic and not found_conflicts):
+        return "automatic"
+    if cosine >= cfg.review:
+        return "review"
+    return None
 
 
 def match_article(

@@ -112,3 +112,38 @@ def test_conflicts_are_found_only_when_both_sides_say_something_different():
 def test_signals_round_trip_json():
     signals = extract("15 قتيلا في سطيف يوم 12 أكتوبر", None, GAZETTEER)
     assert Signals.from_json(signals.to_json()) == signals
+
+
+# --- calibration pairs (tests/fixtures/story_matching/pairs.jsonl) -------------------------------
+
+
+def calibration_pairs():
+    import json
+
+    path = DEFAULT_CATALOG.parent / "backend/tests/fixtures/story_matching/pairs.jsonl"
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+
+
+@pytest.mark.parametrize("pair", calibration_pairs(), ids=lambda p: p["note"][:40])
+def test_calibration_pairs_keep_their_decision(pair):
+    """With the cosine measured at calibration, the rules (36 h window, conflicts, thresholds)
+    never group a different-event pair automatically."""
+    from sabq.matching.match import DEFAULT_CONFIG, decision
+
+    class Cfg:
+        automatic = DEFAULT_CONFIG["thresholds"]["automatic"]
+        review = DEFAULT_CONFIG["thresholds"]["review"]
+
+    a, b = pair["a"], pair["b"]
+    in_window = pair["hours_apart"] <= DEFAULT_CONFIG["windows"]["candidate_hours"]
+    exact = match_text(a["title"], a["lead"]) == match_text(b["title"], b["lead"])
+    found = conflicts(
+        extract(a["title"], a["lead"], GAZETTEER), extract(b["title"], b["lead"], GAZETTEER)
+    )
+    outcome = decision(pair["cosine"], exact, found, Cfg) if in_window else None
+    if pair["label"] == "different_event":
+        assert outcome != "automatic", pair["note"]
+    elif pair["cosine"] >= Cfg.automatic:
+        assert outcome == "automatic", pair["note"]
+    else:
+        assert outcome is None, pair["note"]  # known recall miss, kept visible on purpose
