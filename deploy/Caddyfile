@@ -1,5 +1,16 @@
 # SITE_ADDRESS is ":80" locally (plain HTTP) and the domain in production (automatic HTTPS).
 {$SITE_ADDRESS}
 
-encode gzip
-reverse_proxy app:8000
+# Live updates (Server-Sent Events): no compression, flushed at once, or events would wait in
+# buffers (decision 2026-10-21).
+@stream path /app/stream
+handle @stream {
+	reverse_proxy app:8000 {
+		flush_interval -1
+	}
+}
+
+handle {
+	encode gzip
+	reverse_proxy app:8000
+}
