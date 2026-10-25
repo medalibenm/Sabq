@@ -3,6 +3,31 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-25 · Story matching calibrated: 0.90 / 0.85 kept; the ±36 h window is essential
+Calibration of `voyage-4` on 624 real articles from the 8 catalog sources (17-25 October),
+31,000 cross-source pairs within 36 h, every pair at cosine >= 0.75 read and judged:
+
+| Pairs | p50 | p90 | p99 | max |
+|---|---|---|---|---|
+| noise (> 48 h apart, nothing shared) | 0.27 | 0.38 | 0.50 | 0.87 |
+| lookalikes (> 48 h apart, same entity or wilaya) | 0.42 | 0.56 | 0.70 | **0.96** |
+| within 36 h | 0.26 | 0.38 | 0.54 | 1.00 |
+
+- **>= 0.90: 32 pairs, all the same event.** No different event within 36 h scored above 0.90.
+  The automatic threshold stays at **0.90**.
+- **0.85-0.90: 18 pairs, 15 same event, 3 different** (the same Niger minister received by
+  Chanegriha and by the President; two daily Gaza tolls; Nemour's two finals, caught by the
+  numbers conflict). Review, not automatic, is right: the review threshold stays at **0.85**.
+- **Different events far apart score very high** (the same minister's two visits 8 days apart:
+  0.957; a follow-up 3.6 days later: 0.931). The ±36 h window is what keeps them apart; it must
+  not be widened without a new calibration.
+- **Recall is the weak side:** about half of the same-event pairs score 0.75-0.90; identical
+  titles with a long APS lead score only ~0.81. They go to review (>= 0.85) or stay apart.
+Live, the first 267 articles gave 7 stories, all correct, and 11 review candidates. Labelled
+pairs (12, judged by Claude, to be confirmed by a journalist) are regression fixtures in
+`backend/tests/fixtures/story_matching/pairs.jsonl`; re-run with
+`uv run --with numpy python scripts/calibrate_matching.py --live`.
+
 ### 2026-10-25 · Source health: public counts, team-only detail, "silent" by usual quiet period
 `/health.json` stays public (Docker and the uptime monitor): service status and source counts
 by status only, 503 only when the database is down (a broken source never restarts the app).
@@ -249,10 +274,11 @@ Everything runs in our own code (from the original brief). Exceptions must be re
 - **Automated AI later:** which model, prompt and config format; human approval rules for repairs.
 - **Pricing and organisation limits.**
 - **Wilaya taxonomy:** regional sources (e.g. East): keep as National, or link to each wilaya of the region?
-- **Similarity thresholds:** confirm the initial 0.90 (automatic) / 0.85 (review) values, and
-  whether same-language and ar ↔ fr pairs need different thresholds, by calibration now and a
-  journalist-labelled set later ([story-matching.md](story-matching.md#calibration-and-evaluation)).
-- **Story matching model:** confirm `voyage-4` during calibration (and ar ↔ fr once French sources exist) (compare with
-  `voyage-4-large` if precision is short); check OpenRouter's and Voyage's data-use terms (training opt-out in OpenRouter privacy settings); who
-  labels the pairs (a journalist's judgement of "same event" is the reference).
+- **Similarity thresholds:** 0.90 / 0.85 confirmed for Arabic by calibration (2026-10-25);
+  ar ↔ fr pairs need their own calibration once French sources exist; a journalist-labelled set
+  later ([story-matching.md](story-matching.md#calibration-and-evaluation)).
+- **Story matching recall:** half of same-event pairs score 0.75-0.90 (see 2026-10-25). Options:
+  a rule for identical normalised titles, or title-only embeddings; decide with real usage.
+- **Story matching model:** `voyage-4` confirmed for Arabic (2026-10-25); check OpenRouter's and
+  Voyage's data-use terms (training opt-out in OpenRouter privacy settings).
 - **Story display:** how clusters appear in the web app and alerts; decided with the UI.

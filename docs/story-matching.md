@@ -1,7 +1,8 @@
 # Story matching (cross-source deduplication)
 
-> Status: **specification** (2026-10-18). Backend only; how clusters are shown is decided later
-> with the UI. Data model and general rules: [architecture.md](architecture.md#data-model-multi-tenant-and-wilaya-aware).
+> Status: **built** (M8, 2026-10-25), calibrated on 624 real articles (results in
+> [decisions.md](decisions.md)). Backend only; how clusters are shown is decided later with the
+> UI. Code: `backend/src/sabq/matching/` (normalize, signals, embed, match, pipeline). Data model and general rules: [architecture.md](architecture.md#data-model-multi-tenant-and-wilaya-aware).
 
 ## Goal
 Know, in the backend, which articles from **different sources** report **the same event**: e.g.
@@ -69,8 +70,9 @@ Computed from title and lead and stored in `articles.match_text`:
 Compare only with articles that could plausibly match:
 - other sources only (same-source repeats are handled before matching);
 - published within **±36 h** (configurable; ±72 h for sources with low date confidence);
-- top **20** nearest by embedding (pgvector HNSW index), plus same-language articles sharing at
-  least two rare key tokens (catches near-identical agency wires the embedding might rank lower).
+- top **20** nearest by embedding (pgvector HNSW index). *Not built in v1:* same-language
+  articles sharing two rare key tokens as extra candidates; calibration showed copied wires at
+  cosine 0.99+, so the embedding already ranks them first. Revisit if a missed copy shows up.
 
 ### 4. Score each pair
 Signals, all stored in `dedup_candidates.signals` so every decision is explainable:
@@ -122,8 +124,10 @@ A cluster is the event; an article is compared with the cluster, not only with o
   candidate is recorded; clusters are never merged automatically.
 - The representative article is recomputed (rule in [architecture.md](architecture.md)).
 
-When an article's title changes, its matches are re-scored; if it no longer matches its cluster,
-it leaves only through a recorded split (never silently).
+When an article's title changes, it is re-embedded; v1 keeps an already grouped article where it
+is (leaving a cluster is a recorded split, never automatic). A story can hold two articles of the
+same source when both match its members (e.g. two El Hayat pieces on the same budget hearing):
+pairs are only ever compared across sources, but the story is the event.
 
 ## Calibration and evaluation
 **v1 (2026-10-19): no hand-labelled set.** Thresholds are set by judgement: automatic at cosine

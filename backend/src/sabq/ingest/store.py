@@ -203,6 +203,7 @@ def _update(session: Session, article: Article, item: ExtractedItem, now: dateti
     if digest == article.content_hash:
         return False
     article.version += 1
+    article.embedding_status = "pending"  # re-embedded and re-matched (story matching, M8)
     article.title, article.lead, article.image_url, article.content_hash = (
         item.title,
         lead,

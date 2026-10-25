@@ -12,7 +12,7 @@ from sqlalchemy import Select, and_, exists, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from sabq.access import visible_articles
-from sabq.db.models import Article, ArticleWilaya, Source, Wilaya
+from sabq.db.models import Article, ArticleWilaya, Source, StoryClusterMember, Wilaya
 
 # Newest first by publication time; articles without one by when Sabq first saw them.
 SORT_AT = func.coalesce(Article.published_at, Article.first_seen_at)
@@ -38,7 +38,7 @@ class ArticleOut(BaseModel):
     published_at_confidence: str
     first_seen_at: datetime
     sort_at: datetime
-    story_cluster_id: int | None = None  # story matching, M8
+    story_cluster_id: int | None = None  # same event as other articles (M8)
 
 
 class ArticleDetail(ArticleOut):
@@ -122,6 +122,15 @@ async def to_out(db: AsyncSession, articles: list[Article], detail: bool = False
     )
     for article_id, code in rows:
         wilayas.setdefault(article_id, []).append(code)
+    clusters = dict(
+        (
+            await db.execute(
+                select(StoryClusterMember.article_id, StoryClusterMember.cluster_id).where(
+                    StoryClusterMember.article_id.in_(ids)
+                )
+            )
+        ).all()
+    )
     shape = ArticleDetail if detail else ArticleOut
     out = []
     for a in articles:
@@ -140,6 +149,7 @@ async def to_out(db: AsyncSession, articles: list[Article], detail: bool = False
             "published_at_confidence": a.published_at_confidence,
             "first_seen_at": a.first_seen_at,
             "sort_at": a.published_at or a.first_seen_at,
+            "story_cluster_id": clusters.get(a.id),
         }
         if detail:
             fields |= {"author": a.author, "modified_at": a.modified_at, "version": a.version}

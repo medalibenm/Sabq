@@ -240,15 +240,21 @@ with only a week of daily bursts; now one gap per day of history). Live: all 8 s
 the team page through Caddy.
 
 ### M8 · Story matching
-- [ ] Normalization (ar, fr), signals (numbers, places, entities), embedding client
+- [x] Normalization (ar, fr), signals (numbers, places, entities), embedding client
       (OpenRouter `voyageai/voyage-4`, batched, retries, `embedding_status`).
-- [ ] Candidate search (pgvector HNSW, ±36 h, other sources), scoring, conflict checks, clusters
+- [x] Candidate search (pgvector HNSW, ±36 h, other sources), scoring, conflict checks, clusters
       (average of best two, open window, no automatic cluster merges), `dedup_candidates`.
-- [ ] Calibration check on real articles (noise floor, lookalikes, copies); confirm or raise the 0.90
+- [x] Calibration check on real articles (noise floor, lookalikes, copies); confirm or raise the 0.90
       threshold.
 
 **Done when** matching runs on live articles, the calibration is recorded in `decisions.md`, and
 the lookalike pairs found stay apart (kept as regression fixtures).
+
+Verified: 40 matching tests (normalisation, signals for every wilaya name, conflicts, thresholds,
+time windows, no chaining, merge candidates never merged, closed stories, API failure, the
+client's retries, 12 labelled calibration pairs); removing the conflict check, the best-two
+average or the other-source rule makes them fail. Calibration on 624 real articles kept 0.90 /
+0.85 (decisions 2026-10-25). Live: 267 articles embedded, 7 stories (all correct), 11 for review.
 
 ### M9 · Deployment
 - [ ] Fill `SABQBOT_CONTACT_URL` (page explaining the bot, contact address).
@@ -292,5 +298,5 @@ backup has been tested.
 | M5 · Ingestion | done, CI green, merged | 2026-10-25 |
 | M6 · Login + web app API | done, CI green, merged | 2026-10-25 |
 | M7 · Health | done, CI green, merged | 2026-10-25 |
-| M8 · Story matching | todo | |
+| M8 · Story matching | done, CI green, merged | 2026-10-25 |
 | M9 · Deployment | todo | |
