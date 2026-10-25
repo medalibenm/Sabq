@@ -51,3 +51,17 @@ def test_openapi_document_is_up_to_date():
     assert committed == json.loads(json.dumps(app.openapi())), (
         "docs/openapi.json is stale: run `uv run python -m sabq.openapi`"
     )
+
+
+def test_test_ui_is_served_and_not_in_the_api_contract():
+    from fastapi.testclient import TestClient
+
+    from sabq.app import app
+
+    client = TestClient(app)
+    page = client.get("/ui")
+    assert page.status_code == 200 and page.headers["content-type"].startswith("text/html")
+    assert "/app/stream" in page.text and "/auth/login" in page.text
+    assert client.get("/", follow_redirects=False).headers["location"] == "/ui"
+    assert client.get("/accept-invite?token=x").status_code == 200  # email links
+    assert "/ui" not in app.openapi()["paths"]

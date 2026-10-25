@@ -261,7 +261,8 @@ A simple page for the owner to try the system, **not** the final frontend: keep 
 Served by the app itself (no separate build), using the existing API only: log in, article list
 with the filters (wilaya, source, search), live updates from `/app/stream`, story groups shown
 together, and links to `/health`, `/docs` and the source check feeds.
-- [ ] Build it (when asked).
+- [x] Built 2026-10-25: `http://localhost/ui` (`backend/src/sabq/api/static/ui.html`); invite
+      and reset links open it too (`/accept-invite`, `/reset-password`).
 
 ### M9 · Deployment
 - [ ] Fill `SABQBOT_CONTACT_URL` (page explaining the bot, contact address).

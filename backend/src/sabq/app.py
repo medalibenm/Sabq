@@ -11,7 +11,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from sabq import __version__
-from sabq.api import admin, auth, health, stream, webapp
+from sabq.api import admin, auth, health, stream, ui, webapp
 from sabq.auth.service import AuthError
 from sabq.db.session import get_engine
 from sabq.logs import configure_logging
@@ -35,6 +35,7 @@ app.include_router(auth.router)
 app.include_router(webapp.router)
 app.include_router(stream.router)
 app.include_router(admin.router)
+app.include_router(ui.router)
 
 
 @app.exception_handler(AuthError)
