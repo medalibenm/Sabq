@@ -256,6 +256,13 @@ client's retries, 12 labelled calibration pairs); removing the conflict check, t
 average or the other-source rule makes them fail. Calibration on 624 real articles kept 0.90 /
 0.85 (decisions 2026-10-25). Live: 267 articles embedded, 7 stories (all correct), 11 for review.
 
+### Test UI (requested 2026-10-25, build when asked)
+A simple page for the owner to try the system, **not** the final frontend: keep it minimal.
+Served by the app itself (no separate build), using the existing API only: log in, article list
+with the filters (wilaya, source, search), live updates from `/app/stream`, story groups shown
+together, and links to `/health`, `/docs` and the source check feeds.
+- [ ] Build it (when asked).
+
 ### M9 · Deployment
 - [ ] Fill `SABQBOT_CONTACT_URL` (page explaining the bot, contact address).
 - [ ] Provision a DigitalOcean droplet (Frankfurt or Amsterdam, 2–4 GB, paid by Student Pack
