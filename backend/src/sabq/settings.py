@@ -43,6 +43,12 @@ class Settings(BaseSettings):
     openrouter_api_key: SecretStr | None = None
     embedding_model: str = "voyageai/voyage-4"
     embedding_base_url: str = "https://openrouter.ai/api/v1"
+    embedding_timeout_s: float = 60.0
+    embedding_batch_size: int = 64  # texts per request (the API takes up to 128)
+
+    # Story matching (plan M8, docs/story-matching.md); needs OPENROUTER_API_KEY
+    matching_enabled: bool = True
+    matching_tick_s: float = 30.0  # how often the worker embeds and matches new articles
 
     # Transactional email (MailerSend over SMTP; Mailpit in development)
     smtp_host: str = "localhost"

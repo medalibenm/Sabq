@@ -13,7 +13,7 @@ _DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890
 _ARABIC_LETTERS = str.maketrans(
     {"أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا", "ى": "ي", "ة": "ه", "ؤ": "و", "ئ": "ي", "ـ": ""}
 )
-_TASHKEEL = re.compile("[ً-ٰٟۖ-ۭ]")
+_TASHKEEL = re.compile("[\u064b-\u065f\u0670\u06d6-\u06ed]")  # harakat, Quranic marks
 _APOSTROPHES = str.maketrans({"’": "'", "‘": "'", "ʼ": "'", "`": "'"})
 _PUNCTUATION = re.compile(r"[^\w\s']|_", re.UNICODE)
 _SPACES = re.compile(r"\s+")

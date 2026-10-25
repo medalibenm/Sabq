@@ -37,6 +37,19 @@ async def ingest(settings: Settings, stop: asyncio.Event) -> None:
         await Scheduler(settings, fetcher, Database(get_sync_sessionmaker())).run(stop)
 
 
+async def matching(settings: Settings, stop: asyncio.Event) -> None:
+    from sabq.db.session import get_sync_sessionmaker
+    from sabq.ingest.poller import Database
+    from sabq.matching import pipeline
+    from sabq.matching.embed import OpenRouterEmbedder
+
+    embedder = OpenRouterEmbedder(settings)
+    try:
+        await pipeline.run(settings, Database(get_sync_sessionmaker()), embedder, stop)
+    finally:
+        await embedder.aclose()
+
+
 async def run(settings: Settings, stop: asyncio.Event) -> None:
     log.info(
         "worker started (version %s, ingestion %s)",
@@ -46,6 +59,11 @@ async def run(settings: Settings, stop: asyncio.Event) -> None:
     tasks = [heartbeat(settings, stop)]
     if settings.ingest_enabled:
         tasks.append(ingest(settings, stop))
+    if settings.ingest_enabled and settings.matching_enabled:
+        if settings.openrouter_api_key is None:
+            log.warning("story matching off: OPENROUTER_API_KEY is not set")
+        else:
+            tasks.append(matching(settings, stop))
     await asyncio.gather(*tasks)
     log.info("worker stopped")
 
