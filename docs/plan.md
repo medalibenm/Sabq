@@ -266,8 +266,11 @@ together, and links to `/health`, `/docs` and the source check feeds.
 
 ### M9 · Deployment
 - [ ] Fill `SABQBOT_CONTACT_URL` (page explaining the bot, contact address).
-- [ ] Provision a DigitalOcean droplet (Frankfurt or Amsterdam, 2–4 GB, paid by Student Pack
-      credits), SSH keys, cloud firewall, Docker.
+- [ ] Test server first: an Azure VM (Azure for Students credit, plain VM only) to rehearse
+      the whole deployment below (decision 2026-10-28).
+- [ ] Provision a DigitalOcean droplet (Frankfurt or Amsterdam, 2 GB, paid by Student Pack
+      credits; decision 2026-10-28), SSH keys, cloud firewall, Docker, 2 GB swap, Postgres and
+      pool settings for 2 GB.
 - [ ] Domain + Caddy HTTPS; images built by GitHub Actions to GHCR; deploy and rollback by tag.
 - [ ] Nightly `pg_dump` off-server, restore tested; uptime monitor on `/health.json`.
 - [ ] Reachability test of every source from the server; set `dz_proxy` where needed.

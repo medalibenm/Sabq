@@ -306,7 +306,9 @@ production.
 - **One image, two commands** (`app`, `worker`). Polling runs only in `worker`, so restarting the
   API never stops polling, and exactly **one** `worker` runs (no duplicate schedulers).
 - The total is ~2 GB, so a 2 GB server (DigitalOcean ~$12/month) can work with 2 GB of swap;
-  4 GB is the comfortable size. Scale up by resizing the server; move
+  4 GB is the comfortable size. These budgets are upper bounds: measured on 2026-10-27 (8
+  sources, 21 MB of data) the stack used ~350 MB, projected ~1.2 GB at most; production starts
+  on 2 GB (decision 2026-10-28). Scale up by resizing the server; move
   `db` to its own server only when needed.
 
 ### Build rules

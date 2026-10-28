@@ -3,6 +3,22 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-28 · Test server on Azure; production on a 2 GB DigitalOcean droplet
+- **Testing:** an Azure VM (B1s/B1ms, Ubuntu, Docker), paid by the Azure for Students credit
+  ($100), runs the same `docker compose -f compose.yaml` stack to rehearse the deployment and
+  try changes. Only a plain VM: no App Service or managed Azure database, nothing
+  Azure-specific in code or config, so `CLAUDE.md`'s DigitalOcean/Hetzner rule still holds for
+  production. On a 1 GB B1s: swap on the temporary disk (never data), `shared_buffers` ~128 MB.
+  It is not a server newsrooms rely on (burstable CPU, 1–2 GB).
+- **Production:** DigitalOcean (see 2026-10-19), the **2 GB droplet (~$12/month)** rather than
+  4 GB, paid by the Student Pack credit: measured on 2026-10-27, the whole stack used ~350 MB
+  (app ~110–130 MB, worker ~80–106 MB, db ~95 MB with 21 MB of data, Caddy ~17 MB); projected
+  ~1.2 GB at most with the current settings. With 2 GB: 2 GB swap, `shared_buffers` 256 MB,
+  smaller connection pools.
+- Compared (owner's research, 2026-10-28): DigitalOcean $12, Hetzner $14, Azure $18 per month;
+  Contabo ~$6 (more RAM, but oversold CPU, weaker support and IP reputation; outside the rule).
+  Hetzner stays the move when the credit ends.
+
 ### 2026-10-25 · Story matching calibrated: 0.90 / 0.85 kept; the ±36 h window is essential
 Calibration of `voyage-4` on 624 real articles from the 8 catalog sources (17-25 October),
 31,000 cross-source pairs within 36 h, every pair at cosine >= 0.75 read and judged:
