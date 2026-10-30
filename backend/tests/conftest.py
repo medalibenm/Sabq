@@ -81,8 +81,10 @@ def client(committed, monkeypatch):
     from sabq.api import auth as auth_api
     from sabq.auth import mail
     from sabq.db import session as db_session
+    from sabq.health import forget_recent_source_health
     from sabq.settings import get_settings
 
+    forget_recent_source_health()
     outbox = []
     monkeypatch.setattr(mail, "send", lambda settings, message: outbox.append(message))
     for cached in (db_session.get_engine, db_session.get_sessionmaker, auth_api.limiter):

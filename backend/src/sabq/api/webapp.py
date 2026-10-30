@@ -34,7 +34,7 @@ from sabq.db.models import (
     User,
     Wilaya,
 )
-from sabq.health import source_health
+from sabq.health import recent_source_health
 from sabq.matching.match import current_config
 
 router = APIRouter(prefix="/app", tags=["web app"])
@@ -220,7 +220,7 @@ async def sources(viewer: LoggedIn, db: DB) -> list[SourceOut]:
         .order_by(Wilaya.code)
     ):
         codes.setdefault(source_id, []).append(code)
-    health = {h.slug: h for h in await source_health(db, service.now())}
+    health = {h.slug: h for h in await recent_source_health(db, service.now())}
     return [
         SourceOut(
             slug=s.slug,

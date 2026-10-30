@@ -301,7 +301,7 @@ production.
 | `db` | `pgvector/pgvector:pg16` | PostgreSQL 16 + pgvector; volume `pgdata`; port never published | ~1 GB (`shared_buffers` 512 MB) |
 | `app` | Sabq image, `uvicorn` | FastAPI: auth, web app API, internal API, health pages | ~300 MB |
 | `worker` | same Sabq image, worker command | scheduler, polling, article fetching, story matching (calls the embedding API) | ~300–500 MB |
-| `proxy` | `caddy:2` | reverse proxy, automatic HTTPS; only service exposing ports 80/443 | ~50 MB |
+| `proxy` | `frontend/Dockerfile` (Caddy + built web app) | reverse proxy, automatic HTTPS, serves the web app's static files; only service exposing ports 80/443 | ~50 MB |
 
 - **One image, two commands** (`app`, `worker`). Polling runs only in `worker`, so restarting the
   API never stops polling, and exactly **one** `worker` runs (no duplicate schedulers).

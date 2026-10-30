@@ -3,7 +3,7 @@
 ## What Sabq is
 A news radar for journalists. It watches a catalog of sources (news agencies, official institutions, national press), detects new articles quickly, and delivers them as:
 - a **web app** where journalists log in and read the news of their organisation's sources and
-  wilayas (Sabq is their reader; the frontend is built later);
+  wilayas (Sabq is their reader);
 - **alerts** to journalists (later: AI classification and advanced clustering);
 - an **internal JSON API** with full text, for the radar's AI steps.
 
@@ -57,14 +57,14 @@ separately for every organisation, while each organisation sees only its enabled
 - Wilaya-aware source subscriptions, article filtering, the web app API (behind login), internal API queries and alerts.
 - Deduplication within a source and across sources: exact matching first, then semantic story
   matching (automatic at high confidence with no conflicting facts, reviewable candidates below).
-  Backend only; display comes later.
-- Authenticated API for the web app, internal JSON API, health page. (Frontend later.)
+  Shown in the web app as story groups and the Stories tab.
+- The web app (Arabic and French), its authenticated API, internal JSON API, health page.
 - Per-source egress setting for an Algerian proxy (the proxy itself is separate).
 
 ### Later
 - Protected admin UI for organisation/user access, wilayas, sources, requests, ingestion health and
   duplicate review/merge/split decisions.
-- The web app frontend; displaying story clusters in it and in alerts.
+- Displaying story clusters in alerts.
 - AI classification, topic clustering and `related` (follow-up) stories, LLM review of uncertain
   pairs, and advanced alert rules.
 - Automated AI investigation and repair.

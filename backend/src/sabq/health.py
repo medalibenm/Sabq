@@ -40,6 +40,7 @@ RHYTHM_MIN_DAYS = 3
 EDITION_MIN_ARTICLES = 10
 EDITION_SHARE = 0.8  # of a source's articles inside two neighbouring hours: a daily edition
 ALGIERS = ZoneInfo("Africa/Algiers")
+HEALTH_CACHE = timedelta(seconds=30)
 
 # problems first; then warnings; empty and ok last
 STATUS_RANK = {
@@ -103,6 +104,23 @@ class SourceHealth:
     def last_checked_at(self) -> datetime | None:
         checks = [t for t in (self.last_success_at, self.last_failure_at) if t]
         return max(checks) if checks else None
+
+
+_cached: tuple[datetime, list[SourceHealth]] | None = None
+
+
+async def recent_source_health(db: AsyncSession, now: datetime) -> list[SourceHealth]:
+    """`source_health` at most every `HEALTH_CACHE`: every open web app polls the source list,
+    and these queries read the whole `fetch_runs` table."""
+    global _cached
+    if _cached is None or now - _cached[0] >= HEALTH_CACHE:
+        _cached = (now, await source_health(db, now))
+    return _cached[1]
+
+
+def forget_recent_source_health() -> None:
+    global _cached
+    _cached = None
 
 
 def usual_quiet_period(times: list[datetime]) -> float | None:

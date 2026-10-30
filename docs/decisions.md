@@ -3,6 +3,39 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-30 · Web app: React + Vite, served as static files by Caddy
+The frontend in `frontend/` follows the Claude Design handoff (`sabq-design/`, the visual
+reference). React 19, TypeScript, Vite, React Router and TanStack Query; plain CSS with the
+handoff's tokens and logical properties, no component library; IBM Plex self-hosted through
+`@fontsource`, so no request goes to Google. API types are generated from `docs/openapi.json`
+(`npm run api`). TypeScript stays on 5.9 because `openapi-typescript` does not run on 7.
+
+It builds to static files inside the `proxy` image (`frontend/Dockerfile`, Caddy + `dist`): no
+Node at runtime, which respects the 2 GB budget, and same origin, which the login's CSRF rule
+needs (2026-10-25). The backend no longer serves `/`, `/accept-invite` or `/reset-password`; the
+test UI stays at `/ui` for the Sabq team, because the review tab has no other home yet.
+
+- **Language and theme are per device** (browser storage), not on the account.
+- **Filters, search and the open article live in the URL**, so they survive a reload and follow
+  Stream ↔ Stories, and the back button closes the drawer on mobile.
+- **Article images load directly from the source's site**, with no referrer, and nothing is
+  shown if one fails, so a card stays complete. We do not proxy or copy them.
+
+### 2026-10-30 · What the frontend added to the API
+- `wilaya` and `source` filters take several values (any of them; the two combine with AND).
+- `GET /app/facets`: today's counts in Algiers time for the filter rail.
+- Articles carry `same_story` (the story's other articles the organisation may see), `version`
+  and `modified_at`, because a stream card needs them without a second request.
+- `/app/stories` takes the same filters plus `state`. "Closed" is decided from the story's
+  window, because `closed_at` is only written when a later article looks at the cluster.
+- `/app/sources` adds `state` (`ok` / `delayed` / `stopped`), `last_checked_at`,
+  `articles_per_day` and `edition_hour`. Technical errors stay team-only. It reads the health
+  queries through a 30-second cache, because every open web app polls this list.
+- `GET /app/team` and `DELETE /app/team/{id}` (owner/admin): a cancelled invitation deletes the
+  never-activated user, so the address can be invited again; the audit log keeps the event.
+- `PATCH /auth/me` (display name), `GET /auth/link` (what an email link is for, without using
+  it up), and `Retry-After` on a blocked login.
+
 ### 2026-10-28 · Test server on Azure; production on a 2 GB DigitalOcean droplet
 - **Testing:** an Azure VM (B1s/B1ms, Ubuntu, Docker), paid by the Azure for Students credit
   ($100), runs the same `docker compose -f compose.yaml` stack to rehearse the deployment and

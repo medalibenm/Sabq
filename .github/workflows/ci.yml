@@ -32,6 +32,22 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest -v
 
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
   compose:
     runs-on: ubuntu-latest
     steps:
@@ -40,6 +56,8 @@ jobs:
       - name: Start the production stack and wait until healthy
         run: docker compose -f compose.yaml up -d --build --wait --wait-timeout 180
       - run: curl -fsS http://localhost/health.json
+      - run: curl -fsS http://localhost/ | grep -q 'id="root"'
+      - run: curl -fsS http://localhost/accept-invite?token=x | grep -q 'id="root"'
       - if: failure()
         run: docker compose -f compose.yaml logs
       - run: docker compose -f compose.yaml down -v
