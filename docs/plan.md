@@ -59,17 +59,17 @@ extractor.
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | allowed | RSS | verified 2026-10-21 |
 | 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | allowed (none) | HTML selectors | investigating: needs the HTML extractor |
 | 6 | 19 سطيف | Setif One | https://setifone.dz/ | allowed | WP API | verified 2026-10-21 |
-| 7 | 23 عنابة | Le Provincial | https://leprovincial.dz/ | | | todo |
-| 8 | 23 عنابة | Seybouse Times | https://seybousetimes.dz/ | | | todo |
-| 9 | 25 قسنطينة | An-Nasr | https://www.annasronline.com/ | | | todo |
-| 10 | 25 قسنطينة | Le Quotidien de Constantine | https://lequotidien-deconstantine.dz/ | | | todo |
-| 11 | 27 مستغانم | La Réflexion | https://www.reflexion.dz/ | | | todo |
-| 12 | 31 وهران | El Djoumhouria | https://eldjoumhouria.dz/ | | | todo |
-| 13 | 31 وهران | Le Quotidien d'Oran | https://lequotidien-oran.dz/ | | | todo |
-| 14 | 31 وهران | Asdaa Algharb | https://asdaalgharb.dz/ | | | todo |
-| 15 | 31 وهران | L'Echo d'Oran | https://www.echodoran.com/ | | | todo |
-| 16 | 42 تيبازة | Cherchell News | https://www.cherchellnews.dz/ | | | todo |
-| 17 | 00 National | El Chark El Youm | https://elcharkelyoum.dz/ | | | todo |
+| 7 | 23 عنابة | Le Provincial | https://leprovincial.dz/ | not readable | | unreachable 2026-10-30: 508 on every URL, retry |
+| 8 | 23 عنابة | Seybouse Times | https://seybousetimes.dz/ | allowed | WP API | verified 2026-10-30 |
+| 9 | 25 قسنطينة | An-Nasr | https://www.annasronline.com/ | allowed | HTML selectors | investigating: feeds answer 520, needs the HTML extractor |
+| 10 | 25 قسنطينة | Le Quotidien de Constantine | https://lequotidien-deconstantine.dz/ | allowed (none) | WP API | verified 2026-10-30 |
+| 11 | 27 مستغانم | La Réflexion | https://www.reflexion.dz/ | allowed | WP API | verified 2026-10-30 |
+| 12 | 31 وهران | El Djoumhouria | https://eldjoumhouria.dz/ | allowed (none) | RSS | verified 2026-10-30 |
+| 13 | 31 وهران | Le Quotidien d'Oran | https://lequotidien-oran.dz/ | allowed | RSS | verified 2026-10-30 |
+| 14 | 31 وهران | Asdaa Algharb | https://asdaalgharb.dz/ | allowed (none) | WP API | verified 2026-10-30 |
+| 15 | 31 وهران | L'Echo d'Oran | https://www.echodoran.com/ | allowed (`Crawl-delay: 60`) | | inactive 2026-10-30: last edition June 2025 |
+| 16 | 42 تيبازة | Cherchell News | https://www.cherchellnews.dz/ | allowed (`Crawl-delay: 10`) | WP API | verified 2026-10-30 |
+| 17 | 00 National | El Chark El Youm | https://elcharkelyoum.dz/ | allowed | WP API | verified 2026-10-30 |
 
 Statuses: `todo` · `investigating` · `verified` · `blocked_by_robots` · `refused` ·
 `unreachable` · `empty` · `inactive` (reachable but no new articles for months; recheck later).
@@ -292,7 +292,8 @@ burst naming its source, the connection dropping and coming back, and no horizon
 - [ ] Domain + Caddy HTTPS; both images (backend, proxy) built by GitHub Actions to GHCR
       (`SABQ_IMAGE`, `SABQ_PROXY_IMAGE`); deploy and rollback by tag.
 - [ ] Nightly `pg_dump` off-server, restore tested; uptime monitor on `/health.json`.
-- [ ] Reachability test of every source from the server; set `dz_proxy` where needed.
+- [ ] Reachability test of every source from the server; set `dz_proxy` where needed. Run this
+      before paying: on 2026-10-30 most sources refused two datacenter VPNs and worked from Algeria.
 
 **Done when** production runs all verified sources for 48 h with healthy status and a restored
 backup has been tested.
@@ -320,7 +321,7 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | in progress (5 / 17 final, 1 investigating) | 2026-10-21 |
+| Track A · Investigation | in progress (15 / 17 final, 2 need the HTML extractor; Le Provincial to retry) | 2026-10-30 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |

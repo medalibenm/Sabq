@@ -1,0 +1,31 @@
+# Seybouse Times, Annaba news site, in French. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: seybouse-fr
+name: Seybouse Times
+home_url: https://seybousetimes.dz/
+language: fr
+kind: local
+wilayas: ["23"]
+tier: secondary
+# About 10 posts a day (October 2026).
+poll_interval_s: 1800
+access_method: wp_json
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # User-agent: * Allow: /
+listings:
+  - https://seybousetimes.dz/wp-json/wp/v2/posts?per_page=30&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt        # true UTC (gmt_offset 1)
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+exclude:
+  section: '^PDF$'   # the day's edition as a PDF, not an article
+dates:
+  published_tz: UTC
+  confidence: source_meta

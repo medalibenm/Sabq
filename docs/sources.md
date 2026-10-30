@@ -14,6 +14,14 @@ One row per source **per language**. "Verified" = probed and working in the PoC 
 | `djelfainfo-ar` | الجلفة إنفو (Djelfa Info) | 17 الجلفة | official RSS (custom CMS) | `/ar/rss.php` | 15 min | allows all except `/ar/inc/`, `/ar/admin/`, `/ar/uploads/`, checked 2026-10-21 | 2–21 posts/day; feed holds the latest 10, title = description, so the lead comes from the article page (`og:description`, JSON-LD `NewsArticle`); `pubDate` ISO 8601 in true UTC (page shows +01:00); ID from URL `/(\d+).html`; image = `enclosure` on `cdn.djelfainfo.dz`; feed says `en-us` but is Arabic. Mostly national news (`news/algerie`); Djelfa stories are in `news/djelfa` (useful for section-based wilayas later). An article can enter the feed after its `pubDate` (152487, dated 14:18 UTC, was still 404 at 15:37 UTC), so detection delays can look long. `/ar/sitemap.xml` lists unpublished articles too (302 → 404.php): not used. Config `catalog/djelfainfo-ar.yaml` |
 | `setifone-ar` | سطيف وان (Setif One) | 19 سطيف | WordPress REST API (`_embed`) | `/wp-json/wp/v2/posts?per_page=20` | 60 min | allows all except `/wp-admin/`, checked 2026-10-21 | 1–2 posts/day; WordPress `gmt_offset` 1, so `date_gmt` is true UTC; images and sections via `_embed`; mostly national news (أخبار الوطن), local stories under قضايا محلية. Config `catalog/setifone-ar.yaml` |
 | `aa-ar` | Anadolu Agency (Arabic) | 00 National | official RSS | `/ar/rss/default?cat=guncel` | 2 min | allows all except `/api/` | dates +03:00 → UTC; no images in feed; items not in date order; config `catalog/aa-ar.yaml` (re-checked 2026-10-21) |
+| `seybouse-fr` | Seybouse Times | 23 عنابة | WordPress REST API (`_embed`) | `/wp-json/wp/v2/posts?per_page=30` | 30 min | allows all, checked 2026-10-30 | ~10 posts/day; true UTC; `PDF` section excluded (daily edition, not articles). Config `catalog/seybouse-fr.yaml` |
+| `reflexion-fr` | La Réflexion | 27 مستغانم | WordPress REST API (`_embed`) | `/wp-json/wp/v2/posts?per_page=20` | 60 min | allows all except `/wp-admin/`, checked 2026-10-30 | ~4 posts/day; page says `lang=en`, content is French; WP timezone unset, dates read as Africa/Algiers (to confirm). One dropped connection in validation, then 3 clean runs. Config `catalog/reflexion-fr.yaml` |
+| `cherchellnews-ar` | شرشال نيوز (Cherchell News) | 42 تيبازة | WordPress REST API (`_embed`) | `/wp-json/wp/v2/posts?per_page=20` | 60 min | allows all except `/wp-admin/`, `Crawl-delay: 10`, checked 2026-10-30 | ~3 posts/day; true UTC. Config `catalog/cherchellnews-ar.yaml` |
+| `elchark-ar` | الشرق اليوم (El Chark El Youm) | 00 National | WordPress REST API (`_embed`) | `/wp-json/wp/v2/posts?per_page=20` | 30 min | allows all, checked 2026-10-30 | ~5 posts/day; `/feed/` drops the connection; WP timezone unset, dates read as Africa/Algiers (to confirm). Config `catalog/elchark-ar.yaml` |
+| `quotidienconstantine-fr` | Le Quotidien de Constantine | 25 قسنطينة | WordPress REST API by `rest_route` (`_embed`) | `/?rest_route=/wp/v2/posts&per_page=20` | 60 min | no robots.txt (404), checked 2026-10-30 | 1–4 posts/day; true UTC; no pretty permalinks, links are `?p=ID`; RSS at `?feed=rss2` has no images. Config `catalog/quotidienconstantine-fr.yaml` |
+| `asdaa-ar` | أصداء الغرب (Asdaa Algharb) | 31 وهران | WordPress REST API by `rest_route` (`_embed`) | `/?rest_route=/wp/v2/posts&per_page=20` | 60 min | no robots.txt (404), checked 2026-10-30 | ~2 posts/day; true UTC; `/feed/` drops the connection, links are `?p=ID`. Config `catalog/asdaa-ar.yaml` |
+| `eldjoumhouria-ar` | الجمهورية (El Djoumhouria) | 31 وهران | official RSS | `www.eldjoumhouria.dz/feed/` | 15 min | no robots.txt (404), checked 2026-10-30 | ~13 posts/day, feed of 40; dates +0100; no images in the feed, so `og:image` from article pages; summary starts with the section. Config `catalog/eldjoumhouria-ar.yaml` |
+| `quotidienoran-fr` | Le Quotidien d'Oran | 31 وهران | official RSS | `/rss.xml` | 30 min | allows all except `/admin/`, `/manage-portal/`, most of `/api/`, checked 2026-10-30 | Daily edition, ~30 posts/day, feed of 100, ~10 s; dates are the edition's (08:00 or 09:00 UTC), not each article's; feed has full text, kept out of fixtures. Config `catalog/quotidienoran-fr.yaml` |
 
 ## Removed
 
@@ -33,6 +41,8 @@ One row per source **per language**. "Verified" = probed and working in the PoC 
 | Site | Wilaya | Checked | Finding |
 |---|---|---|---|
 | Sawt Setif (sawtsetif.dz, canonical sawtsetif.com) | 19 سطيف | 2026-10-21 | No robots.txt on either host (404 = allowed). Custom CMS ("DWM V4", Djidel Solutions): no feed, no sitemap, no JSON-LD, no API for articles. Articles at `/v/<id>/` (ids increase, ~4/day); the homepage and each article's "latest" block list `<a href="/v/<id>/"><span>DD-MM-YYYY</span><span>title</span></a>`; article pages carry schema.org microdata (`itemprop="headline"`, `datePublished` **date only**, `og:image` = `/api/file/<n>`). Needs the HTML (CSS selector) extractor, not built yet, and date-only handling (first-seen time, day checked). |
+| An-Nasr (annasronline.com) | 25 قسنطينة | 2026-10-30 | robots.txt allows articles (disallows Joomla system paths). Joomla behind Cloudflare: the feeds (`?format=feed&type=rss`, also per category) answer 520 to our bot, no sitemap, no JSON-LD. Pages are public: `/section/sub/<id>-<slug>` with `og:title`, `og:description`, `og:image`. Needs the HTML extractor. |
+| Le Provincial (leprovincial.dz) | 23 عنابة | 2026-10-30 | Every URL answers 508 Resource Limit Is Reached, robots.txt included, so nothing could be investigated. The site's hosting is over its limit; retry. |
 
 ## Inactive
 Reachable and allowed, but no longer publishing. Not in the catalog; recheck now and then.
@@ -40,6 +50,7 @@ Reachable and allowed, but no longer publishing. Not in the catalog; recheck now
 | Site | Wilaya | Checked | Finding |
 |---|---|---|---|
 | La Dépêche de Kabylie (depechedekabylie.com) | 15 تيزي وزو | 2026-10-21 | robots.txt allows all with `Crawl-delay: 10`. WordPress; `/feed/` returns the homepage (feed disabled), but `/wp-json/wp/v2/posts` works (201,977 posts). Newest post is **2021-06-28**; the homepage still shows 2020 articles. The only recent activity is old posts edited on 2026-03-07 (maintenance). If it restarts: WP API, ≥ 10 s between requests. |
+| L'Echo d'Oran (echodoran.com) | 31 وهران | 2026-10-30 | robots.txt allows all with `Crawl-delay: 60`. Static HTML pages, no feed or API. The homepage still shows the edition of 22 June 2025. If it restarts: needs the HTML extractor. |
 
 ## Candidates to probe (unverified)
 From general knowledge; URLs and availability to confirm.
@@ -66,17 +77,17 @@ Each must still go through [adding-sources.md](adding-sources.md) (live robots.t
 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ (verified, `djelfainfo-ar`) |
 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ (investigating: needs HTML extractor) |
 | 19 سطيف | Setif One | https://setifone.dz/ (verified, `setifone-ar`) |
-| 23 عنابة | Le Provincial | https://leprovincial.dz/ |
-| 23 عنابة | Seybouse Times | https://seybousetimes.dz/ |
-| 25 قسنطينة | An-Nasr | https://www.annasronline.com/ |
-| 25 قسنطينة | Le Quotidien de Constantine | https://lequotidien-deconstantine.dz/ |
-| 27 مستغانم | La Réflexion | https://www.reflexion.dz/ |
-| 31 وهران | El Djoumhouria | https://eldjoumhouria.dz/ |
-| 31 وهران | Le Quotidien d'Oran | https://lequotidien-oran.dz/ |
-| 31 وهران | Asdaa Algharb | https://asdaalgharb.dz/ |
-| 31 وهران | L'Echo d'Oran | https://www.echodoran.com/ |
-| 42 تيبازة | Cherchell News | https://www.cherchellnews.dz/ |
-| 00 National | El Chark El Youm | https://elcharkelyoum.dz/ |
+| 23 عنابة | Le Provincial | https://leprovincial.dz/ (down: 508, see Investigating) |
+| 23 عنابة | Seybouse Times | https://seybousetimes.dz/ (verified, `seybouse-fr`) |
+| 25 قسنطينة | An-Nasr | https://www.annasronline.com/ (investigating: needs HTML extractor) |
+| 25 قسنطينة | Le Quotidien de Constantine | https://lequotidien-deconstantine.dz/ (verified, `quotidienconstantine-fr`) |
+| 27 مستغانم | La Réflexion | https://www.reflexion.dz/ (verified, `reflexion-fr`) |
+| 31 وهران | El Djoumhouria | https://eldjoumhouria.dz/ (verified, `eldjoumhouria-ar`) |
+| 31 وهران | Le Quotidien d'Oran | https://lequotidien-oran.dz/ (verified, `quotidienoran-fr`) |
+| 31 وهران | Asdaa Algharb | https://asdaalgharb.dz/ (verified, `asdaa-ar`) |
+| 31 وهران | L'Echo d'Oran | https://www.echodoran.com/ (inactive since 2025, see above) |
+| 42 تيبازة | Cherchell News | https://www.cherchellnews.dz/ (verified, `cherchellnews-ar`) |
+| 00 National | El Chark El Youm | https://elcharkelyoum.dz/ (verified, `elchark-ar`) |
 do  
 `El Chark El Youm` covers the East region rather than one wilaya, so it is `00 National` for now.
 Several of these sources publish in French; language is confirmed during investigation.

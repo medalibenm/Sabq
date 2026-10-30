@@ -1,0 +1,29 @@
+# Cherchell News (شرشال نيوز), Tipaza news site. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: cherchellnews-ar
+name: شرشال نيوز
+home_url: https://www.cherchellnews.dz/
+language: ar
+kind: local
+wilayas: ["42"]
+tier: secondary
+# About 3 posts a day (October 2026).
+poll_interval_s: 3600
+access_method: wp_json
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # disallows /wp-admin/; Crawl-delay: 10 (the fetcher honours it)
+listings:
+  - https://www.cherchellnews.dz/wp-json/wp/v2/posts?per_page=20&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt        # true UTC (gmt_offset 1)
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+dates:
+  published_tz: UTC
+  confidence: source_meta

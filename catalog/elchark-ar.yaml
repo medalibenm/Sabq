@@ -1,0 +1,32 @@
+# El Chark El Youm (الشرق اليوم), covers the East, so 00 National for now. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: elchark-ar
+name: الشرق اليوم
+home_url: https://elcharkelyoum.dz/
+language: ar
+kind: local
+wilayas: ["00"]
+tier: secondary
+# About 5 posts a day (October 2026). /feed/ drops the connection; the API works.
+poll_interval_s: 1800
+access_method: wp_json
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # empty Disallow, Yoast default
+listings:
+  - https://elcharkelyoum.dz/wp-json/wp/v2/posts?per_page=20&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+dates:
+  # WordPress timezone is unset (gmt_offset 0), read as Algiers time like El Hidhab; confirm with
+  # the first new posts (compare first_seen_at).
+  published_tz: Africa/Algiers
+  confidence: source_meta
+  tz_verified: false

@@ -1,0 +1,29 @@
+# Le Quotidien d'Oran, in French. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: quotidienoran-fr
+name: Le Quotidien d'Oran
+home_url: https://lequotidien-oran.dz/
+language: fr
+kind: local
+wilayas: ["31"]
+tier: secondary
+# A daily edition, about 30 posts a day (October 2026), feed of 100. Slow, ~10 s, 550 KB.
+poll_interval_s: 1800
+access_method: rss
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # allows all except /admin/, /manage-portal/ and most of /api/
+listings:
+  - https://lequotidien-oran.dz/rss.xml
+fields:
+  id:                          # no numeric ID: the slug at the end of the link
+    path: $.link
+    regex: '/([^/]+)$'
+  title: $.title
+  link: $.link
+  published: $.published       # edition time, not each article's (08:00 or 09:00 UTC)
+  lead: $.summary
+  image: $.enclosures[0].href
+  section: $.tags[0].term
+dates:
+  published_tz: UTC
+  confidence: source_meta
