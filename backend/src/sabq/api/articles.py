@@ -5,9 +5,10 @@ Never `body_text`: title, lead, image, original link (CLAUDE.md, public outputs)
 """
 
 import base64
+from collections.abc import Sequence
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy import Select, and_, exists, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -22,6 +23,16 @@ class SourceRef(BaseModel):
     slug: str
     name: str
     language: str
+
+
+class StoryPeer(BaseModel):
+    id: int
+    title: str
+    url: str
+    source: SourceRef
+    language: str
+    published_at_confidence: str
+    sort_at: datetime
 
 
 class ArticleOut(BaseModel):
@@ -39,35 +50,38 @@ class ArticleOut(BaseModel):
     first_seen_at: datetime
     sort_at: datetime
     story_cluster_id: int | None = None  # same event as other articles (M8)
+    modified_at: datetime | None
+    version: int = Field(description="1 = as first seen; more = the source edited it")
+    same_story: list[StoryPeer] = Field(
+        default=[], description="The story's other articles this organisation may see, oldest first"
+    )
 
 
 class ArticleDetail(ArticleOut):
     author: str | None
-    modified_at: datetime | None
-    version: int
 
 
 def filtered(
     organisation_id: int,
     *,
-    wilaya: str | None = None,
-    source: str | None = None,
+    wilayas: Sequence[str] | None = None,
+    sources: Sequence[str] | None = None,
     language: str | None = None,
     since: datetime | None = None,
     q: str | None = None,
 ) -> Select:
     query = visible_articles(organisation_id)
-    if wilaya:
+    if wilayas:  # any of them; the two filters combine with AND
         query = query.where(
             exists().where(
                 ArticleWilaya.article_id == Article.id,
                 ArticleWilaya.wilaya_id == Wilaya.id,
-                Wilaya.code == wilaya,
+                Wilaya.code.in_(wilayas),
             )
         )
-    if source:
+    if sources:
         query = query.where(
-            Article.source_id == select(Source.id).where(Source.slug == source).scalar_subquery()
+            Article.source_id.in_(select(Source.id).where(Source.slug.in_(sources)))
         )
     if language:
         query = query.where(Article.language == language)
@@ -102,8 +116,19 @@ def decode_cursor(cursor: str) -> tuple[datetime, int]:
         raise ValueError("invalid cursor") from None
 
 
-async def to_out(db: AsyncSession, articles: list[Article], detail: bool = False) -> list:
-    """Shapes for a page of articles: sources and wilayas loaded in two queries."""
+def _sort_at(article: Article) -> datetime:
+    return article.published_at or article.first_seen_at
+
+
+async def to_out(
+    db: AsyncSession,
+    articles: list[Article],
+    detail: bool = False,
+    organisation_id: int | None = None,
+) -> list:
+    """Shapes for a page of articles: sources and wilayas loaded in two queries. With
+    `organisation_id`, each article also lists the other articles of its story that the
+    organisation may see."""
     if not articles:
         return []
     ids = [a.id for a in articles]
@@ -131,27 +156,64 @@ async def to_out(db: AsyncSession, articles: list[Article], detail: bool = False
             )
         ).all()
     )
+    peers: dict[int, list[Article]] = {}
+    if organisation_id is not None and clusters:
+        visible = filtered(organisation_id).with_only_columns(Article.id).scalar_subquery()
+        for cluster_id, peer in await db.execute(
+            select(StoryClusterMember.cluster_id, Article)
+            .join(Article, Article.id == StoryClusterMember.article_id)
+            .where(
+                StoryClusterMember.cluster_id.in_(set(clusters.values())),
+                Article.id.in_(visible),
+            )
+        ):
+            peers.setdefault(cluster_id, []).append(peer)
+        missing = {p.source_id for group in peers.values() for p in group} - set(sources)
+        for source in await db.scalars(select(Source).where(Source.id.in_(missing))):
+            sources[source.id] = source
+
+    def source_ref(article: Article) -> SourceRef:
+        source = sources[article.source_id]
+        return SourceRef(slug=source.slug, name=source.name, language=source.language)
+
+    def peer_out(peer: Article) -> StoryPeer:
+        return StoryPeer(
+            id=peer.id,
+            title=peer.title,
+            url=peer.url,
+            source=source_ref(peer),
+            language=peer.language,
+            published_at_confidence=peer.published_at_confidence,
+            sort_at=_sort_at(peer),
+        )
+
     shape = ArticleDetail if detail else ArticleOut
     out = []
     for a in articles:
-        source = sources[a.source_id]
         fields = {
             "id": a.id,
             "title": a.title,
             "lead": a.lead,
             "image_url": a.image_url,
             "url": a.url,
-            "source": SourceRef(slug=source.slug, name=source.name, language=source.language),
+            "source": source_ref(a),
             "wilayas": wilayas.get(a.id, []),
             "language": a.language,
             "section": a.section,
             "published_at": a.published_at,
             "published_at_confidence": a.published_at_confidence,
             "first_seen_at": a.first_seen_at,
-            "sort_at": a.published_at or a.first_seen_at,
+            "sort_at": _sort_at(a),
             "story_cluster_id": clusters.get(a.id),
+            "modified_at": a.modified_at,
+            "version": a.version,
+            "same_story": [
+                peer_out(p)
+                for p in sorted(peers.get(clusters.get(a.id), []), key=_sort_at)
+                if p.id != a.id
+            ],
         }
         if detail:
-            fields |= {"author": a.author, "modified_at": a.modified_at, "version": a.version}
+            fields |= {"author": a.author}
         out.append(shape(**fields))
     return out

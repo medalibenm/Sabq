@@ -148,6 +148,102 @@
             }
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Update Me",
+        "operationId": "update_me_auth_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/link": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Link",
+        "description": "What an invite or reset link is for, without using it up. 400 when it is no longer valid.",
+        "operationId": "link_auth_link_get",
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "enum": [
+                "invite",
+                "reset"
+              ],
+              "type": "string",
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 200,
+              "title": "Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/auth/invite": {
@@ -333,15 +429,21 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "pattern": "^\\d{2}$"
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^\\d{2}$"
+                  },
+                  "maxItems": 100
                 },
                 {
                   "type": "null"
                 }
               ],
+              "description": "Any of these wilayas (repeat the parameter)",
               "title": "Wilaya"
-            }
+            },
+            "description": "Any of these wilayas (repeat the parameter)"
           },
           {
             "name": "source",
@@ -350,15 +452,21 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "maxLength": 64
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "maxItems": 200
                 },
                 {
                   "type": "null"
                 }
               ],
+              "description": "Any of these sources (repeat the parameter)",
               "title": "Source"
-            }
+            },
+            "description": "Any of these sources (repeat the parameter)"
           },
           {
             "name": "lang",
@@ -509,6 +617,105 @@
         }
       }
     },
+    "/app/facets": {
+      "get": {
+        "tags": [
+          "web app"
+        ],
+        "summary": "Facets",
+        "description": "Today's counts for the filter rail. `total` follows the filters, the per-source and\nper-wilaya counts don't, so the rail shows what each choice would add.",
+        "operationId": "facets_app_facets_get",
+        "parameters": [
+          {
+            "name": "wilaya",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^\\d{2}$"
+                  },
+                  "maxItems": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Any of these wilayas (repeat the parameter)",
+              "title": "Wilaya"
+            },
+            "description": "Any of these wilayas (repeat the parameter)"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "maxItems": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Any of these sources (repeat the parameter)",
+              "title": "Source"
+            },
+            "description": "Any of these sources (repeat the parameter)"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Words in title or lead",
+              "title": "Q"
+            },
+            "description": "Words in title or lead"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FacetsOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/app/wilayas": {
       "get": {
         "tags": [
@@ -552,6 +759,68 @@
                   },
                   "type": "array",
                   "title": "Response Sources App Sources Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/team": {
+      "get": {
+        "tags": [
+          "web app"
+        ],
+        "summary": "Team",
+        "description": "The organisation's members and pending invitations (owner or admin).",
+        "operationId": "team_app_team_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/MemberOut"
+                  },
+                  "type": "array",
+                  "title": "Response Team App Team Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/team/{user_id}": {
+      "delete": {
+        "tags": [
+          "web app"
+        ],
+        "summary": "Cancel Invitation",
+        "description": "Cancel a pending invitation (owner or admin of the same organisation).",
+        "operationId": "cancel_invitation_app_team__user_id__delete",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -630,9 +899,89 @@
           "web app"
         ],
         "summary": "Stories",
-        "description": "Stories (same event, several sources), newest first. Only the articles this organisation\nmay see; a story with fewer than two visible articles is left out.",
+        "description": "Stories (same event, several sources), newest first. Only the articles this organisation\nmay see; a story with fewer than two visible articles is left out. A filter keeps the stories\nwith at least one matching article, and they stay whole.",
         "operationId": "stories_app_stories_get",
         "parameters": [
+          {
+            "name": "wilaya",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^\\d{2}$"
+                  },
+                  "maxItems": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Any of these wilayas (repeat the parameter)",
+              "title": "Wilaya"
+            },
+            "description": "Any of these wilayas (repeat the parameter)"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "maxItems": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Any of these sources (repeat the parameter)",
+              "title": "Source"
+            },
+            "description": "Any of these sources (repeat the parameter)"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Words in title or lead",
+              "title": "Q"
+            },
+            "description": "Words in title or lead"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "all",
+                "developing",
+                "closed"
+              ],
+              "type": "string",
+              "default": "all",
+              "title": "State"
+            }
+          },
           {
             "name": "limit",
             "in": "query",
@@ -1064,17 +1413,6 @@
             ],
             "title": "Story Cluster Id"
           },
-          "author": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Author"
-          },
           "modified_at": {
             "anyOf": [
               {
@@ -1089,7 +1427,28 @@
           },
           "version": {
             "type": "integer",
-            "title": "Version"
+            "title": "Version",
+            "description": "1 = as first seen; more = the source edited it"
+          },
+          "same_story": {
+            "items": {
+              "$ref": "#/components/schemas/StoryPeer"
+            },
+            "type": "array",
+            "title": "Same Story",
+            "description": "The story's other articles this organisation may see, oldest first",
+            "default": []
+          },
+          "author": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Author"
           }
         },
         "type": "object",
@@ -1107,9 +1466,9 @@
           "published_at_confidence",
           "first_seen_at",
           "sort_at",
-          "author",
           "modified_at",
-          "version"
+          "version",
+          "author"
         ],
         "title": "ArticleDetail"
       },
@@ -1210,6 +1569,32 @@
               }
             ],
             "title": "Story Cluster Id"
+          },
+          "modified_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modified At"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version",
+            "description": "1 = as first seen; more = the source edited it"
+          },
+          "same_story": {
+            "items": {
+              "$ref": "#/components/schemas/StoryPeer"
+            },
+            "type": "array",
+            "title": "Same Story",
+            "description": "The story's other articles this organisation may see, oldest first",
+            "default": []
           }
         },
         "type": "object",
@@ -1226,7 +1611,9 @@
           "published_at",
           "published_at_confidence",
           "first_seen_at",
-          "sort_at"
+          "sort_at",
+          "modified_at",
+          "version"
         ],
         "title": "ArticleOut"
       },
@@ -1258,6 +1645,38 @@
           "next_cursor"
         ],
         "title": "ArticlePage"
+      },
+      "FacetsOut": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Articles today (Algiers time) that match the filters"
+          },
+          "sources": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Sources",
+            "description": "Articles today per source slug"
+          },
+          "wilayas": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Wilayas",
+            "description": "Articles today per wilaya code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "sources",
+          "wilayas"
+        ],
+        "title": "FacetsOut"
       },
       "ForgotIn": {
         "properties": {
@@ -1384,17 +1803,6 @@
             ],
             "title": "Story Cluster Id"
           },
-          "author": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Author"
-          },
           "modified_at": {
             "anyOf": [
               {
@@ -1409,7 +1817,28 @@
           },
           "version": {
             "type": "integer",
-            "title": "Version"
+            "title": "Version",
+            "description": "1 = as first seen; more = the source edited it"
+          },
+          "same_story": {
+            "items": {
+              "$ref": "#/components/schemas/StoryPeer"
+            },
+            "type": "array",
+            "title": "Same Story",
+            "description": "The story's other articles this organisation may see, oldest first",
+            "default": []
+          },
+          "author": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Author"
           },
           "body_text": {
             "anyOf": [
@@ -1438,9 +1867,9 @@
           "published_at_confidence",
           "first_seen_at",
           "sort_at",
-          "author",
           "modified_at",
           "version",
+          "author",
           "body_text"
         ],
         "title": "InternalArticle"
@@ -1511,6 +1940,41 @@
         ],
         "title": "InviteOut"
       },
+      "LinkOut": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "organisation": {
+            "type": "string",
+            "title": "Organisation"
+          },
+          "invited_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "role",
+          "organisation",
+          "invited_by"
+        ],
+        "title": "LinkOut"
+      },
       "LoginIn": {
         "properties": {
           "email": {
@@ -1568,6 +2032,53 @@
         ],
         "title": "MeOut"
       },
+      "MemberOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "invited_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited At",
+            "description": "Latest invitation, for pending members"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "display_name",
+          "role",
+          "status",
+          "invited_at"
+        ],
+        "title": "MemberOut"
+      },
       "OrganisationOut": {
         "properties": {
           "slug": {
@@ -1590,6 +2101,21 @@
           "status"
         ],
         "title": "OrganisationOut"
+      },
+      "ProfileIn": {
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "display_name"
+        ],
+        "title": "ProfileIn"
       },
       "ResetIn": {
         "properties": {
@@ -1850,6 +2376,28 @@
               }
             ],
             "title": "Usual Items Seen"
+          },
+          "articles_per_day": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Articles Per Day"
+          },
+          "edition_hour": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edition Hour"
           }
         },
         "type": "object",
@@ -1872,7 +2420,9 @@
           "last_new_at",
           "usual_quiet_s",
           "last_items_seen",
-          "usual_items_seen"
+          "usual_items_seen",
+          "articles_per_day",
+          "edition_hour"
         ],
         "title": "SourceHealthOut"
       },
@@ -1908,6 +2458,59 @@
             },
             "type": "array",
             "title": "Wilayas"
+          },
+          "state": {
+            "type": "string",
+            "title": "State",
+            "description": "What journalists see: ok, delayed or stopped"
+          },
+          "state_since": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State Since"
+          },
+          "last_checked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Checked At"
+          },
+          "articles_per_day": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Articles Per Day",
+            "description": "Last 14 days; null while still learning"
+          },
+          "edition_hour": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edition Hour",
+            "description": "Algiers hour of a daily edition, if it has one"
           }
         },
         "type": "object",
@@ -1918,7 +2521,12 @@
           "language",
           "kind",
           "status",
-          "wilayas"
+          "wilayas",
+          "state",
+          "state_since",
+          "last_checked_at",
+          "articles_per_day",
+          "edition_hour"
         ],
         "title": "SourceOut"
       },
@@ -2014,6 +2622,22 @@
             "type": "string",
             "title": "Status"
           },
+          "closed": {
+            "type": "boolean",
+            "title": "Closed",
+            "description": "No longer developing: its time window has passed"
+          },
+          "representative_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Representative Id"
+          },
           "last_member_at": {
             "anyOf": [
               {
@@ -2039,10 +2663,55 @@
         "required": [
           "id",
           "status",
+          "closed",
+          "representative_id",
           "last_member_at",
           "articles"
         ],
         "title": "StoryOut"
+      },
+      "StoryPeer": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceRef"
+          },
+          "language": {
+            "type": "string",
+            "title": "Language"
+          },
+          "published_at_confidence": {
+            "type": "string",
+            "title": "Published At Confidence"
+          },
+          "sort_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Sort At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "url",
+          "source",
+          "language",
+          "published_at_confidence",
+          "sort_at"
+        ],
+        "title": "StoryPeer"
       },
       "ValidationError": {
         "properties": {

@@ -122,7 +122,8 @@ async def _visible_events(
         else:
             query = query.where(Article.id > after)
         rows = list(await db.scalars(query.order_by(Article.id).limit(REPLAY_LIMIT)))
-        return [sse("article", item.model_dump_json(), item.id) for item in await to_out(db, rows)]
+        items = await to_out(db, rows, organisation_id=organisation_id)
+        return [sse("article", item.model_dump_json(), item.id) for item in items]
 
 
 async def _session_valid(factory: async_sessionmaker, token: str) -> bool:

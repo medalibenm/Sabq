@@ -9,7 +9,15 @@ from test_auth import PASSWORD, login, make_user
 from test_data_model import make_article, make_source
 
 from sabq.cli import run
-from sabq.db.models import Article, Organisation
+from sabq.db.models import (
+    Article,
+    FetchRun,
+    Organisation,
+    Source,
+    StoryCluster,
+    StoryClusterMember,
+    User,
+)
 
 pytestmark = pytest.mark.db
 T0 = datetime(2026, 10, 25, 9, 0, tzinfo=UTC)
@@ -211,3 +219,132 @@ def test_stories_show_only_visible_members(client, world):
     }
     login(client, "b@org-b.dz")
     assert client.get("/app/stories").json() == []  # org-b sees only one of oran-local's story
+
+
+# --- what the frontend needs -----------------------------------------------------------------
+
+
+def test_filters_take_several_values(client, world):
+    db, ids = world
+    second = make_source(db, "second-src")
+    run(["org", "source", "org-a", "second-src"], db, "test")
+    make_article(db, second, "second-local", "05")
+    db.commit()
+    login(client, "a@org-a.dz")
+    assert visible(client, source=["batna-src"]) == {"batna-local", "batna-national"}
+    assert visible(client, source=["batna-src", "second-src"]) == {
+        "batna-local",
+        "batna-national",
+        "second-local",
+    }
+    assert visible(client, wilaya=["05", "00"], source=["second-src"]) == {"second-local"}
+    assert client.get("/app/articles", params={"wilaya": "x"}).status_code == 422
+
+
+def _story(db, ids, *keys, last_member_at=None, closed_at=None):
+    cluster = StoryCluster(status="automatic", last_member_at=last_member_at, closed_at=closed_at)
+    db.add(cluster)
+    db.flush()
+    for key in keys:
+        db.add(
+            StoryClusterMember(
+                cluster_id=cluster.id, article_id=ids[key], membership="duplicate", confidence=0.9
+            )
+        )
+    return cluster
+
+
+def test_articles_list_their_visible_story_peers_and_edits(client, world):
+    db, ids = world
+    _story(db, ids, "batna-local", "batna-national", "oran-about-batna")
+    db.execute(update(Article).where(Article.id == ids["batna-local"]).values(version=3))
+    db.commit()
+    login(client, "a@org-a.dz")
+    items = {i["id"]: i for i in client.get("/app/articles").json()["items"]}
+    local = items[ids["batna-local"]]
+    assert local["version"] == 3
+    # oran-about-batna is in the story, but org-a does not have its source
+    assert [p["id"] for p in local["same_story"]] == [ids["batna-national"]]
+    detail = client.get(f"/app/articles/{ids['batna-local']}").json()
+    assert [p["id"] for p in detail["same_story"]] == [ids["batna-national"]]
+
+
+def test_facets_count_today_in_algiers_time(client, world):
+    db, ids = world
+    now = datetime.now(UTC)
+    db.execute(update(Article).values(published_at=now - timedelta(days=3)))
+    db.execute(update(Article).where(Article.id == ids["batna-local"]).values(published_at=now))
+    db.commit()
+    login(client, "a@org-a.dz")
+    assert client.get("/app/facets").json() == {
+        "total": 1,
+        "sources": {"batna-src": 1},
+        "wilayas": {"05": 1},
+    }
+    filtered = client.get("/app/facets", params={"wilaya": "00"}).json()
+    assert filtered["total"] == 0 and filtered["wilayas"] == {"05": 1}
+
+
+def test_stories_filter_and_tell_developing_from_closed(client, world):
+    db, ids = world
+    now = datetime.now(UTC)
+    fresh = _story(db, ids, "batna-local", "batna-national", last_member_at=now)
+    run(["org", "wilaya", "org-a", "31"], db, "test")
+    extra = make_article(
+        db, db.get(Source, db.get(Article, ids["batna-local"]).source_id), "x", "05"
+    )
+    ids["extra"] = extra.id
+    old = _story(db, ids, "extra", "batna-about-oran", last_member_at=now - timedelta(days=4))
+    db.commit()
+    login(client, "a@org-a.dz")
+    stories = client.get("/app/stories").json()
+    assert [(s["id"], s["closed"]) for s in stories] == [(fresh.id, False), (old.id, True)]
+    params = {"state": "closed"}
+    assert [s["id"] for s in client.get("/app/stories", params=params).json()] == [old.id]
+    params = {"state": "developing"}
+    assert [s["id"] for s in client.get("/app/stories", params=params).json()] == [fresh.id]
+    found = client.get("/app/stories", params={"wilaya": "00"}).json()
+    assert [s["id"] for s in found] == [fresh.id] and len(found[0]["articles"]) == 2
+
+
+def test_sources_show_a_friendly_state_never_the_error(client, world):
+    db, ids = world
+    source = db.scalar(select(Source).where(Source.slug == "batna-src"))
+    source.status = "broken"
+    db.add(FetchRun(source_id=source.id, started_at=datetime.now(UTC), error="secret stack trace"))
+    db.commit()
+    login(client, "a@org-a.dz")
+    response = client.get("/app/sources")
+    row = response.json()[0]
+    assert row["state"] == "stopped" and row["last_checked_at"]
+    assert "secret stack trace" not in response.text
+
+
+def test_team_lists_members_and_cancels_only_pending_invitations(client, world):
+    db, ids = world
+    make_user(db, "org-a", "owner@org-a.dz", role="owner")
+    login(client, "viewer@org-a.dz")
+    assert client.get("/app/team").status_code == 403
+
+    login(client, "owner@org-a.dz")
+    invited = client.post("/auth/invite", json={"email": "new@org-a.dz", "role": "editor"})
+    assert invited.status_code == 201
+    members = {m["email"]: m for m in client.get("/app/team").json()}
+    assert members["new@org-a.dz"]["status"] == "invited"
+    assert members["new@org-a.dz"]["invited_at"]
+    assert members["a@org-a.dz"]["invited_at"] is None
+    assert "b@org-b.dz" not in members
+
+    json_header = {"content-type": "application/json"}
+    active = client.delete(f"/app/team/{members['a@org-a.dz']['id']}", headers=json_header)
+    assert active.status_code == 409
+    pending = members["new@org-a.dz"]["id"]
+    assert client.delete(f"/app/team/{pending}", headers=json_header).status_code == 204
+    assert "new@org-a.dz" not in {m["email"] for m in client.get("/app/team").json()}
+    # the same address can be invited again
+    again = client.post("/auth/invite", json={"email": "new@org-a.dz", "role": "viewer"})
+    assert again.status_code == 201
+
+    login(client, "b@org-b.dz")
+    other = db.scalar(select(User).where(User.email == "new@org-a.dz"))
+    assert client.delete(f"/app/team/{other.id}", headers=json_header).status_code == 403

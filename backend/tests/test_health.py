@@ -11,7 +11,7 @@ from sabq.catalog import load_catalog, read_catalog
 from sabq.cli import DEFAULT_CATALOG
 from sabq.db.models import Source
 from sabq.fetch import Fetcher
-from sabq.health import SourceHealth, usual_quiet_period, warnings_for
+from sabq.health import SourceHealth, rhythm, usual_quiet_period, warnings_for
 from sabq.ingest.poller import Database
 from sabq.ingest.scheduler import load_jobs
 from sabq.ingest.store import record_run
@@ -192,3 +192,49 @@ def test_health_pages(client, committed):
     page = client.get("/health").text
     assert "<script>alert" not in page and "&lt;script&gt;" in page  # errors are escaped
     assert page.index("aps-ar") < page.index("awras-ar")  # problems first
+
+
+# --- rhythm and the state journalists see ------------------------------------------------------
+
+
+def test_rhythm_needs_a_few_days_of_history():
+    now = datetime(2026, 10, 20, 12, tzinfo=UTC)
+    assert rhythm([], now) == (None, None)
+    assert rhythm([now - timedelta(days=1)], now) == (None, None)
+
+
+def test_rhythm_of_a_regular_source_has_no_edition():
+    now = datetime(2026, 10, 20, 12, tzinfo=UTC)
+    times = [now - timedelta(hours=5 * i) for i in range(1, 60)]
+    per_day, edition = rhythm(times, now)
+    assert per_day == pytest.approx(4.8, abs=0.1) and edition is None
+
+
+def test_rhythm_finds_a_daily_edition_in_algiers_time():
+    now = datetime(2026, 10, 20, 12, tzinfo=UTC)
+    # 23:10 UTC is 00:10 in Algiers (UTC+1)
+    times = [
+        datetime(2026, 10, day, 23, minute, tzinfo=UTC)
+        for day in range(10, 20)
+        for minute in range(10, 20)
+    ]
+    per_day, edition = rhythm(times, now)
+    assert edition == 0 and per_day == pytest.approx(10, abs=0.5)
+
+
+@pytest.mark.parametrize(
+    ("status", "warnings", "state"),
+    [
+        ("ok", [], "ok"),
+        ("empty", [], "ok"),
+        ("degraded", [], "delayed"),
+        ("ok", ["silent: no new article for 3 h (usually 1 h)"], "delayed"),
+        ("ok", ["stale: last successful poll 5 h ago"], "stopped"),
+        ("broken", [], "stopped"),
+        ("unreachable", [], "stopped"),
+        ("blocked_by_robots", [], "stopped"),
+    ],
+)
+def test_state_journalists_see(status, warnings, state):
+    health = SourceHealth("s", "s", True, status, None, "rss", 300, warnings=warnings)
+    assert health.state == state

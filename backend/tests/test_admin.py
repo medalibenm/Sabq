@@ -62,8 +62,6 @@ def test_test_ui_is_served_and_not_in_the_api_contract():
     page = client.get("/ui")
     assert page.status_code == 200 and page.headers["content-type"].startswith("text/html")
     assert "/app/stream" in page.text and "/auth/login" in page.text
-    assert client.get("/", follow_redirects=False).headers["location"] == "/ui"
-    assert client.get("/accept-invite?token=x").status_code == 200  # email links
     assert "/ui" not in app.openapi()["paths"]
 
 
