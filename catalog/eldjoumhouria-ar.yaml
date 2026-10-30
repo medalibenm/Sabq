@@ -1,0 +1,32 @@
+# El Djoumhouria (الجمهورية), Oran daily. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: eldjoumhouria-ar
+name: الجمهورية
+home_url: https://www.eldjoumhouria.dz/
+language: ar
+kind: local
+wilayas: ["31"]
+tier: normal
+# About 13 posts a day (October 2026); the feed holds the latest 40.
+poll_interval_s: 900
+access_method: rss
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # no robots.txt (404)
+listings:
+  - https://www.eldjoumhouria.dz/feed/
+fields:
+  id:                          # numeric ID at the end of the link
+    path: $.link
+    regex: '/article/(\d+)'
+  title: $.title
+  link: $.link
+  published: $.published       # RFC 822 with +0100
+  section:                     # the summary starts with the section: "رياضة: ..."
+    path: $.summary
+    regex: '^\s*([^:]{2,30}):'
+  lead: $.summary
+article_page:
+  image: og:image              # the feed has no images
+dates:
+  published_tz: UTC
+  confidence: source_meta

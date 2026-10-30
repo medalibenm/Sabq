@@ -1,0 +1,32 @@
+# La Réflexion, Mostaganem daily, in French. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: reflexion-fr
+name: La Réflexion
+home_url: https://www.reflexion.dz/
+language: fr
+kind: local
+wilayas: ["27"]
+tier: secondary
+# About 4 posts a day (October 2026). The page says lang=en; the content is French.
+poll_interval_s: 3600
+access_method: wp_json
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # disallows /wp-admin/ only
+listings:
+  - https://www.reflexion.dz/wp-json/wp/v2/posts?per_page=20&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+dates:
+  # WordPress timezone is unset (gmt_offset 0), read as Algiers time like El Hidhab; confirm with
+  # the first new posts (compare first_seen_at).
+  published_tz: Africa/Algiers
+  confidence: source_meta
+  tz_verified: false

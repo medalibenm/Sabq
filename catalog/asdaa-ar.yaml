@@ -1,0 +1,29 @@
+# Asdaa Algharb (أصداء الغرب), Oran. Investigated 2026-10-30 (docs/adding-sources.md).
+slug: asdaa-ar
+name: أصداء الغرب
+home_url: https://asdaalgharb.dz/
+language: ar
+kind: local
+wilayas: ["31"]
+tier: secondary
+# About 2 posts a day (October 2026). No pretty permalinks: API by rest_route, links are ?p=ID.
+poll_interval_s: 3600
+access_method: wp_json
+robots:
+  checked_at: 2026-10-30
+  result: allowed            # no robots.txt (404)
+listings:
+  - https://asdaalgharb.dz/?rest_route=/wp/v2/posts&per_page=20&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt        # true UTC (gmt_offset 1)
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+dates:
+  published_tz: UTC
+  confidence: source_meta

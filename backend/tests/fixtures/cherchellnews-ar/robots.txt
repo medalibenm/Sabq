@@ -1,0 +1,37 @@
+# Tous les robots
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Crawl-delay: 10
+
+# Bloquer certains scrapers connus qui respectent robots.txt
+User-agent: trendiction
+Disallow: /
+Crawl-delay: 10
+
+
+User-agent: PetalBot
+Disallow: /
+Crawl-delay: 10
+
+
+# Autoriser les bots légitimes SEO / previews
+User-agent: Googlebot
+Disallow:
+Crawl-delay: 10
+
+
+User-agent: Googlebot-Image
+Disallow:
+Crawl-delay: 10
+
+
+User-agent: bingbot
+Disallow:
+Crawl-delay: 10
+
+
+User-agent: facebookexternalhit
+Disallow:
+Crawl-delay: 10
+
