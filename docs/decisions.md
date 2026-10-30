@@ -21,6 +21,12 @@ test UI stays at `/ui` for the Sabq team, because the review tab has no other ho
 - **Article images load directly from the source's site**, with no referrer, and nothing is
   shown if one fails, so a card stays complete. We do not proxy or copy them.
 
+### 2026-10-30 · The web app follows the backend's rules, not the design's assumptions
+Where the handoff assumed a rule, what the backend does wins: invite links last 72 hours (not 7
+days), reset links 1 hour, the login lockout comes from `Retry-After`, and owners, admins and
+editors can request sources. Language and theme stay per device. If `INVITE_TTL_HOURS` or
+`RESET_TTL_HOURS` change, update the wording in `frontend/src/i18n.ts` too.
+
 ### 2026-10-30 · What the frontend added to the API
 - `wilaya` and `source` filters take several values (any of them; the two combine with AND).
 - `GET /app/facets`: today's counts in Algiers time for the filter rail.
