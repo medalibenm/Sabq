@@ -18,7 +18,7 @@ function InviteForm({ onSent }: { onSent: (result: InviteResult) => void }) {
   const client = useQueryClient();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [role, setRole] = useState<Role>("editor");
+  const [role, setRole] = useState<Role>("viewer");
   const [error, setError] = useState<string | null>(null);
   const invite = useMutation({
     mutationFn: () => api.invite(email.trim(), role, name.trim()),
@@ -81,25 +81,25 @@ function InviteForm({ onSent }: { onSent: (result: InviteResult) => void }) {
           onChange={(event) => setName(event.target.value)}
         />
       </div>
-      <fieldset className="roles" role="radiogroup">
-        <legend>{L.role}</legend>
-        {roles.map((option) => (
-          <button
-            key={option.key}
-            type="button"
-            role="radio"
-            aria-checked={role === option.key}
-            className="role"
-            onClick={() => setRole(option.key)}
-          >
-            <span className="role-dot" aria-hidden="true" />
-            <span>
-              <strong>{option.name}</strong>
-              <small>{option.description}</small>
-            </span>
-          </button>
-        ))}
-      </fieldset>
+      <div className="field">
+        <label htmlFor="invite-role">{L.role}</label>
+        <select
+          id="invite-role"
+          className="input"
+          value={role}
+          aria-describedby="invite-role-hint"
+          onChange={(event) => setRole(event.target.value as Role)}
+        >
+          {roles.map((option) => (
+            <option key={option.key} value={option.key}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+        <span id="invite-role-hint" className="field-hint">
+          {roles.find((option) => option.key === role)?.description}
+        </span>
+      </div>
       {error && (
         <p role="alert" className="form-error">
           {error}
