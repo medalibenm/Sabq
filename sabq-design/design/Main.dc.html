@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — Radar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="{{dir}}" lang="{{ui}}" style="min-height: 100vh; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums; position: relative">
+  <dc-import name="TopBar" theme="{{theme}}" ui="{{ui}}" tab="stream" live="{{live}}" query="{{query}}" on-query="{{onQuery}}" menu-open="{{menuOpen}}" hint-size="100%,56px"></dc-import>
+  <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch; position: relative">
+    <dc-import name="SideNav" theme="{{theme}}" ui="{{ui}}" active="radar" hint-size="72px,100%"></dc-import>
+    <dc-import name="FilterRail" theme="{{theme}}" ui="{{ui}}" sel-w="{{selW}}" sel-s="{{selS}}" on-toggle-w="{{toggleW}}" on-toggle-s="{{toggleS}}" on-clear="{{clearAll}}" hint-size="280px,100%"></dc-import>
+    <main style="flex: 999 1 560px; min-width: 0; padding: 16px 28px 48px; box-sizing: border-box">
+      <div style="max-width: 880px; margin-inline: auto; display: flex; flex-direction: column; gap: 10px; position: relative">
+
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 32px">
+          <sc-if value="{{hasChips}}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{chips}}" as="c" hint-placeholder-count="2">
+              <button type="button" onClick="{{c.remove}}" aria-label="{{c.aria}}" style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding-inline: 10px 8px; border-radius: 999px; border: 1px solid {{t.line2}}; background: {{t.accSoft}}; color: {{t.text}}; font: 500 13px/1 {{font}}; cursor: pointer">
+                <span>{{c.label}}</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+              </button>
+            </sc-for>
+            <button type="button" onClick="{{clearAll}}" style="height: 28px; padding-inline: 6px; border: 0; background: transparent; color: {{t.accText}}; font: 600 13px/1 {{font}}; cursor: pointer; text-decoration: underline; text-underline-offset: 3px">{{L.clearAll}}</button>
+          </sc-if>
+          <sc-if value="{{noChips}}" hint-placeholder-val="{{ true }}">
+            <span style="font-size: 13px; color: {{t.text3}}">{{L.allScope}}</span>
+          </sc-if>
+          <span style="margin-inline-start: auto; font-size: 13px; color: {{t.text3}}">{{countLabel}}</span>
+        </div>
+
+        <sc-if value="{{showPill}}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; top: 40px; inset-inline: 0; display: flex; justify-content: center; z-index: 6; pointer-events: none">
+            <button type="button" onClick="{{reveal}}" style="pointer-events: auto; display: flex; align-items: center; gap: 10px; padding: 9px 16px 9px 14px; border-radius: 999px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; box-shadow: {{t.shadow}}; cursor: pointer; font-family: {{font}}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+              <span style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: start">
+                <span style="font-size: 14px; font-weight: 700; line-height: 1.2">{{pillLabel}}</span>
+                <sc-if value="{{pillSub}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; font-weight: 500; line-height: 1.2; opacity: 0.85">{{pillSub}}</span></sc-if>
+              </span>
+            </button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{firstTime}}" hint-placeholder-val="{{ false }}">
+          <section style="display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: 10px; border: 1px dashed {{t.line2}}; background: {{t.panel}}">
+            <span style="flex: none; width: 36px; height: 36px; border-radius: 8px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2"></circle><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M12 7a5 5 0 1 0 5 5"></path></svg>
+            </span>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <h2 style="margin: 0; font-size: 16px; font-weight: 600">{{L.ftTitle}}</h2>
+              <p style="margin: 0; font-size: 14px; line-height: 1.6; color: {{t.text2}}; max-width: 620px">{{L.ftBody}}</p>
+              <a href="Sources.dc.html" style="font-size: 13px; font-weight: 600; color: {{t.accText}}">{{L.ftLink}}</a>
+            </div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+          <div aria-busy="true" aria-label="{{L.loading}}" style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{skeletons}}" as="sk" hint-placeholder-count="5">
+              <div style="display: flex; gap: 14px; padding: 16px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+                <sc-if value="{{sk.img}}" hint-placeholder-val="{{ true }}"><div style="flex: none; width: 128px; height: 84px; border-radius: 6px; background: {{t.skel}}"></div></sc-if>
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+                  <div style="width: 160px; height: 10px; border-radius: 4px; background: {{t.skel}}"></div>
+                  <div style="width: {{sk.w}}; height: 16px; border-radius: 4px; background: {{t.skel}}"></div>
+                  <div style="width: 92%; height: 10px; border-radius: 4px; background: {{t.skel}}"></div>
+                  <div style="width: 70%; height: 10px; border-radius: 4px; background: {{t.skel}}"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+          <section style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 72px 24px; text-align: center; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+            <span style="width: 48px; height: 48px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}; display: flex; align-items: center; justify-content: center">
+              <sc-if value="{{emptyIsSearch}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></sc-if>
+              <sc-if value="{{emptyIsFilter}}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 8v5l-4 2v-7z"></path></svg></sc-if>
+            </span>
+            <h2 style="margin: 0; font-size: 17px; font-weight: 600">{{emptyTitle}}</h2>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: {{t.text2}}; max-width: 440px">{{emptyBody}}</p>
+            <button type="button" onClick="{{emptyAction}}" style="margin-top: 6px; height: 40px; padding-inline: 18px; border-radius: 8px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 600 14px/1 {{font}}; cursor: pointer">{{emptyCta}}</button>
+          </section>
+        </sc-if>
+
+        <sc-for list="{{items}}" as="it" hint-placeholder-count="6">
+          <dc-import name="ArticleCard" item="{{it}}" theme="{{it.theme}}" ui="{{it.ui}}" hint-size="100%,140px"></dc-import>
+        </sc-for>
+
+        <sc-if value="{{showMore}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 18px; color: {{t.text3}}; font-size: 13px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"></animateTransform></path></svg>
+            <span>{{L.loadingMore}}</span>
+          </div>
+        </sc-if>
+      </div>
+    </main>
+
+    <sc-if value="{{drawerOpen}}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{closeDrawer}}" aria-label="{{L.close}}" style="position: absolute; inset: 0; border: 0; padding: 0; margin: 0; background: {{t.scrim}}; cursor: default; z-index: 20"></button>
+      <div style="position: absolute; top: 0; bottom: 0; inset-inline-start: 0; width: 560px; max-width: 100%; z-index: 21; box-shadow: {{t.shadow}}">
+        <dc-import name="Drawer" item="{{detail}}" theme="{{theme}}" ui="{{ui}}" on-close="{{closeDrawer}}" hint-size="560px,100%"></dc-import>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"view":{"editor":"enum","options":["live","filtered","expanded","drawer","menu","reconnecting","burst","loading","empty","noresults","firsttime"],"default":"live"},"drawerId":{"editor":null},"$preview":{"width":1440,"height":1100}}'>
+var TK = {
+  dark: {bg:'#0F1012',panel:'#141619',card:'#191B1F',raise:'#1F2227',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',accText:'#FFD23F',onAcc:'#1A1600',accSoft:'rgba(255,210,63,0.14)',chip:'#23262B',skel:'#24272C',scrim:'rgba(0,0,0,0.55)',shadow:'0 16px 48px rgba(0,0,0,0.55)'},
+  light: {bg:'#F3F3F0',panel:'#FAFAF8',card:'#FFFFFF',raise:'#FFFFFF',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',accText:'#835800',onAcc:'#1A1600',accSoft:'#FFF3C4',chip:'#EFEFEB',skel:'#ECECE8',scrim:'rgba(20,20,22,0.35)',shadow:'0 16px 48px rgba(20,20,30,0.18)'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var IMG = { dark: ['', '#2A3340', '#38332A', '#2B3830'], light: ['', '#CBD5DF', '#E0D6C4', '#CADACD'] };
+var SRC = {
+  aps: {ar:'وكالة الأنباء الجزائرية', fr:'APS', l:'AR'},
+  pres: {ar:'رئاسة الجمهورية', fr:'Présidence de la République', l:'AR'},
+  aa: {ar:'الأناضول', fr:'Anadolu', l:'AR'},
+  hayat: {ar:'الحياة', fr:'El Hayat', l:'AR'},
+  awras: {ar:'الأوراس نيوز', fr:'Awras News', l:'AR'},
+  hidhab: {ar:'الهضاب', fr:'El Hidhab', l:'AR'},
+  djelfa: {ar:'الجلفة إنفو', fr:'Djelfa Info', l:'AR'},
+  setif1: {ar:'سطيف وان', fr:'Setif One', l:'AR'},
+  moudj: {ar:'El Moudjahid', fr:'El Moudjahid', l:'FR'},
+  lexp: {ar:'L’Expression', fr:'L’Expression', l:'FR'}
+};
+var WIL = { '00': {ar:'وطني', fr:'National'}, '05': {ar:'باتنة', fr:'Batna'}, '17': {ar:'الجلفة', fr:'Djelfa'}, '19': {ar:'سطيف', fr:'Sétif'} };
+
+var RAW = {
+  g1: {s:'aps', m:4, img:1, w:['05','19','17'], ed:2, sec:{ar:'مجتمع', fr:'Société'}, group:['g1','o1','o2','o3'],
+    t:'نشرية خاصة: أمطار رعدية غزيرة على ولايات باتنة وسطيف والجلفة ابتداءً من مساء اليوم',
+    lead:'حذّرت مصالح الأرصاد الجوية من أمطار رعدية قد يبلغ منسوبها 40 ملم محليًا، مصحوبة بهبوب رياح قوية أحيانًا، وذلك من السادسة مساءً إلى غاية صباح الخميس. وتدعو المصالح المعنية مستعملي الطرق إلى توخي الحذر وتجنب التنقل غير الضروري.'},
+  o1: {s:'awras', m:3, img:0, w:['05'], child:true, group:['g1','o1','o2','o3'], au:'سليم ب.',
+    t:'باتنة: نشرية جوية خاصة تحذّر من أمطار رعدية والحماية المدنية تدعو إلى الحذر على الطرقات',
+    lead:'رفعت مصالح الحماية المدنية لولاية باتنة درجة التأهب تحسبًا للأمطار الرعدية المرتقبة، داعية السائقين إلى تخفيض السرعة على الطريقين الوطنيين 3 و31.'},
+  o2: {s:'moudj', m:2, img:2, w:['05','19','17'], child:true, group:['g1','o1','o2','o3'], sec:{ar:'Société', fr:'Société'},
+    t:'BMS : fortes pluies orageuses attendues sur Batna, Sétif et Djelfa',
+    lead:'Les services de la météorologie annoncent des cumuls pouvant atteindre localement 40 mm, accompagnés de rafales de vent, de ce mercredi soir à jeudi matin.'},
+  o3: {s:'lexp', m:1, img:0, w:['05','19'], child:true, group:['g1','o1','o2','o3'],
+    t:'Intempéries dans l’Est : les automobilistes appelés à la prudence jusqu’à jeudi',
+    lead:'La Protection civile recommande d’éviter les déplacements non nécessaires sur les routes nationales traversant les wilayas concernées par le bulletin.'},
+  a2: {s:'lexp', m:9, img:3, w:['19'], au:'R. Benali', sec:{ar:'Régions', fr:'Régions'},
+    t:'Sétif : lancement des travaux d’extension du tramway vers le pôle universitaire d’El Bez',
+    lead:'Le chantier, d’une durée prévisionnelle de 30 mois, porte sur un tronçon de 4,5 km et sept nouvelles stations, selon la direction des transports de la wilaya.'},
+  a3: {s:'pres', m:14, img:0, w:['00'], ed:1,
+    t:'رئيس الجمهورية يوقّع مرسومًا رئاسيًا يحدد كيفيات تنظيم المسابقات الوطنية للتوظيف في الوظيفة العمومية',
+    lead:'وقّع رئيس الجمهورية مرسومًا رئاسيًا يحدد شروط وكيفيات تنظيم المسابقات والامتحانات المهنية للالتحاق بالوظائف العمومية، على أن يُنشر في العدد المقبل من الجريدة الرسمية.'},
+  a4: {s:'setif1', m:22, img:2, w:['19'], sec:{ar:'رياضة', fr:'Sport'},
+    t:'وفاق سطيف يفوز على شباب قسنطينة بهدفين دون رد ويرتقي إلى المركز الثالث',
+    lead:'حقق وفاق سطيف فوزًا مهمًا على ملعب 8 ماي 1945 لحساب الجولة الثامنة من الرابطة المحترفة الأولى، بهدف في كل شوط.'},
+  a5: {s:'awras', m:31, img:1, w:['05'], ed:1, sec:{ar:'محليات', fr:'Local'},
+    t:'انطلاق أشغال ازدواجية الطريق الوطني رقم 3 بين باتنة وعين التوتة على مسافة 12 كلم',
+    lead:'يشمل المشروع إنجاز منشأتين فنيتين وتهيئة مداخل بلديتي فسديس وعين التوتة، بآجال إنجاز تقدّر بـ18 شهرًا حسب مديرية الأشغال العمومية.'},
+  a6: {s:'djelfa', m:46, img:0, w:['17'], est:true,
+    t:'توزيع 300 وحدة سكنية عمومية إيجارية ببلدية عين وسارة قبل نهاية السنة',
+    lead:'أعلنت مصالح ولاية الجلفة عن برمجة عملية التوزيع فور استكمال أشغال التهيئة الخارجية وربط الحي بشبكتي الغاز والكهرباء.'},
+  a7: {s:'aa', m:63, img:2, w:['00'],
+    t:'الجزائر وتونس توقعان مذكرة تفاهم للتعاون في مجال الطاقات المتجددة',
+    lead:'تشمل المذكرة تبادل الخبرات في إنجاز محطات الطاقة الشمسية وتكوين الإطارات، وفق بيان مشترك صدر عقب اجتماع اللجنة القطاعية.'},
+  a8: {s:'hayat', m:84, img:0, w:['05'],
+    t:'ارتفاع نسبة امتلاء سد كدية لمدور بباتنة بعد التساقطات الأخيرة',
+    lead:'سجّل السد ارتفاعًا في منسوب المياه خلال الأيام الأخيرة، ما يعزز تموين عدد من بلديات الولاية بمياه الشرب.'},
+  a9: {s:'hidhab', m:118, img:0, w:['05'], est:true,
+    t:'مديرية الصحة بباتنة تطلق حملة التلقيح ضد الأنفلونزا الموسمية',
+    lead:'تستهدف الحملة الأشخاص المسنين وأصحاب الأمراض المزمنة، وتشمل كل المؤسسات العمومية للصحة الجوارية عبر الولاية.'},
+  a10: {s:'moudj', m:131, img:3, w:['17'],
+    t:'Djelfa : réception de trois nouveaux groupes scolaires à la rentrée de janvier',
+    lead:'Les nouveaux établissements, implantés à Djelfa, Messaâd et Hassi Bahbah, devraient soulager les classes surchargées du cycle primaire.'},
+  n1: {s:'aps', m:0, img:0, w:['00'], isNew:true,
+    t:'وزارة الداخلية تدعو إلى تجنب التنقل غير الضروري في الولايات المعنية بالنشرية الجوية',
+    lead:'دعت وزارة الداخلية والجماعات المحلية المواطنين إلى متابعة النشريات الرسمية والتقيد بتعليمات مصالح الحماية المدنية.'},
+  n2: {s:'awras', m:0, img:1, w:['05'], isNew:true,
+    t:'تعليق الدراسة يوم الخميس في عدد من بلديات ولاية باتنة بسبب الاضطرابات الجوية',
+    lead:'قررت مديرية التربية تعليق الدراسة في المؤسسات التعليمية بالبلديات الجبلية تحسبًا لتساقط الأمطار والبرد.'},
+  n3: {s:'setif1', m:1, img:0, w:['19'], isNew:true,
+    t:'الحماية المدنية بسطيف ترفع درجة التأهب تحسبًا للتساقطات',
+    lead:'جُنّدت وحدات التدخل عبر الدوائر الكبرى للولاية مع تخصيص رقم أخضر للتبليغ عن الحالات الطارئة.'},
+  n4: {s:'moudj', m:1, img:0, w:['00'], isNew:true,
+    t:'Intempéries : la Protection civile en état d’alerte dans plusieurs wilayas de l’Est',
+    lead:'Des unités d’intervention ont été prépositionnées le long des axes routiers les plus exposés aux crues.'},
+  n5: {s:'djelfa', m:1, img:0, w:['17'], isNew:true, est:true,
+    t:'غلق مؤقت للطريق الوطني رقم 1 بمقطع حاسي بحبح بسبب السيول',
+    lead:'أعلنت مصالح الدرك الوطني عن تحويل حركة المرور نحو الطرق الولائية إلى غاية انحسار منسوب المياه.'}
+};
+var STREAM = ['g1','a2','a3','a4','a5','a6','a7','a8','a9','a10'];
+var NEW = ['n1','n2','n3','n4','n5'];
+
+var LBL = {
+  ar: {clearAll:'مسح الكل', allScope:'كل المصادر · كل الولايات', loadingMore:'جارٍ تحميل المزيد…', loading:'جارٍ التحميل', close:'إغلاق',
+       today:'مقالًا اليوم', newOne:'مقالات جديدة', burst:'60 مقالًا جديدًا', burstSub:'58 منها من الأوراس نيوز · عدد الخميس',
+       ftTitle:'مرحبًا في سبق', ftBody:'الرادار يراقب الآن 10 مصادر في 4 ولايات. تظهر المقالات هنا خلال دقيقة أو دقيقتين من نشرها، دون الحاجة إلى تحديث الصفحة. القائمة قصيرة لأن الرصد بدأ للتوّ.', ftLink:'عرض المصادر المراقبة',
+       emptyT:'لا توجد مقالات تطابق هذه الفلاتر', emptyB:'جرّب توسيع الاختيار: لم تنشر هذه المصادر شيئًا عن الولايات المحددة اليوم.', emptyC:'مسح الفلاتر',
+       noResT:'لا نتائج لـ «{q}»', noResB:'البحث يشمل العناوين والفقرات الأولى فقط. تحقق من الإملاء أو جرّب كلمة أقرب.', noResC:'مسح البحث',
+       removeW:'إزالة فلتر الولاية', removeS:'إزالة فلتر المصدر'},
+  fr: {clearAll:'Tout effacer', allScope:'Toutes les sources · toutes les wilayas', loadingMore:'Chargement…', loading:'Chargement', close:'Fermer',
+       today:'articles aujourd’hui', newOne:'nouveaux articles', burst:'60 nouveaux articles', burstSub:'dont 58 d’Awras News · édition de jeudi',
+       ftTitle:'Bienvenue sur Sabq', ftBody:'Le radar surveille désormais 10 sources dans 4 wilayas. Les articles apparaissent ici une à deux minutes après leur publication, sans recharger la page. La liste est courte car la veille vient de commencer.', ftLink:'Voir les sources surveillées',
+       emptyT:'Aucun article ne correspond à ces filtres', emptyB:'Élargissez la sélection : ces sources n’ont rien publié sur les wilayas choisies aujourd’hui.', emptyC:'Effacer les filtres',
+       noResT:'Aucun résultat pour « {q} »', noResB:'La recherche porte uniquement sur les titres et les chapôs. Vérifiez l’orthographe ou essayez un mot proche.', noResC:'Effacer la recherche',
+       removeW:'Retirer le filtre wilaya', removeS:'Retirer le filtre source'}
+};
+
+function hhmm(m) { var x = 19 * 60 + 8 - m; var h = Math.floor(x / 60), mm = x % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
+function rel(m, ui) {
+  if (m < 1) return ui === 'ar' ? 'الآن' : 'à l’instant';
+  if (m < 60) return ui === 'ar' ? 'منذ ' + m + ' د' : 'il y a ' + m + ' min';
+  var h = Math.floor(m / 60); return ui === 'ar' ? 'منذ ' + h + ' س' : 'il y a ' + h + ' h';
+}
+function exact(m, ui) { return (ui === 'ar' ? 'الأربعاء 28 أكتوبر 2026، ' : 'mer. 28 oct. 2026, ') + hhmm(m) + (ui === 'ar' ? ' بتوقيت الجزائر' : ' (heure d’Alger)'); }
+function clang(r) { return SRC[r.s].l === 'FR' ? 'fr' : 'ar'; }
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    var v = props.view || 'live', ui = props.ui || 'ar';
+    this.state = {
+      drawer: props.drawerId || ((v === 'drawer') ? 'g1' : null),
+      expanded: (v === 'expanded') ? 'g1' : null,
+      revealed: false,
+      selW: v === 'empty' ? ['17'] : (v === 'filtered' ? ['05', '19'] : []),
+      selS: v === 'empty' ? ['setif1'] : [],
+      query: v === 'noresults' ? (ui === 'ar' ? 'تلفريك' : 'téléphérique') : ''
+    };
+  }
+  toggle(key, val) {
+    var cur = this.state[key].slice(); var i = cur.indexOf(val);
+    if (i >= 0) cur.splice(i, 1); else cur.push(val);
+    var o = {}; o[key] = cur; this.setState(o);
+  }
+  card(id, theme, ui) {
+    var self = this, r = RAW[id], cl = clang(r);
+    var others = (r.group && !r.child) ? r.group.filter(function (g) { return g !== id; }).map(function (oid) {
+      var o = RAW[oid], ol = clang(o);
+      return { srcName: SRC[o.s][ui], langTag: SRC[o.s].l, relText: rel(o.m, ui), exactTitle: exact(o.m, ui), title: o.t, cdir: ol === 'fr' ? 'ltr' : 'rtl', clang: ol, cfont: FONT[ol], open: function () { self.setState({ drawer: oid }); } };
+    }) : [];
+    return {
+      id: id, theme: theme, ui: ui,
+      srcName: SRC[r.s][ui], langTag: SRC[r.s].l,
+      relText: (r.est ? '≈ ' : '') + rel(r.m, ui), exactTitle: exact(r.m, ui), est: !!r.est,
+      cdir: cl === 'fr' ? 'ltr' : 'rtl', clang: cl, cfont: FONT[cl],
+      title: r.t, lead: r.lead, hasImg: r.img > 0, imgBg: IMG[theme][r.img || 0],
+      wil: r.w.map(function (c) { return { label: c + ' ' + WIL[c][ui] }; }),
+      edited: !!r.ed, isNew: !!r.isNew && this.state.revealed,
+      others: others, hasOthers: others.length > 0, othersNames: others.map(function (o) { return o.srcName; }).join(' · '),
+      expanded: this.state.expanded === id,
+      toggle: function () { self.setState({ expanded: self.state.expanded === id ? null : id }); },
+      open: function () { self.setState({ drawer: id }); }
+    };
+  }
+  detail(id, theme, ui) {
+    var self = this, r = RAW[id], cl = clang(r), grp = r.group || [];
+    var pub = hhmm(r.m), seenM = Math.max(r.m - 1, 0);
+    return {
+      id: id, srcName: SRC[r.s][ui], langTag: SRC[r.s].l, cdir: cl === 'fr' ? 'ltr' : 'rtl', clang: cl, cfont: FONT[cl],
+      title: r.t, lead: r.lead, hasImg: r.img > 0, imgBg: IMG[theme][r.img || 0],
+      author: r.au || '', hasAuthor: !!r.au, section: r.sec ? r.sec[ui] : '', hasSection: !!r.sec,
+      wil: r.w.map(function (c) { return { label: c + ' ' + WIL[c][ui] }; }),
+      published: (r.est ? '≈ ' : '') + pub + (r.est ? '' : ':12'), est: !!r.est,
+      seen: hhmm(seenM) + ':01', gap: ui === 'ar' ? 'رُصد بعد 1 د' : 'détecté 1 min après',
+      edited: !!r.ed, editCount: r.ed || 0,
+      editLabel: r.ed ? (ui === 'ar' ? (r.ed === 1 ? 'عُدّل مرة واحدة · آخر تعديل ' + hhmm(Math.max(r.m - 2, 0)) : 'عُدّل مرتين · آخر تعديل ' + hhmm(Math.max(r.m - 3, 0))) : ('Modifié ' + r.ed + ' fois · dernière modif. ' + hhmm(Math.max(r.m - 3, 0)))) : '',
+      same: grp.filter(function (g) { return g !== id; }).map(function (oid) {
+        var o = RAW[oid], ol = clang(o);
+        return { srcName: SRC[o.s][ui], langTag: SRC[o.s].l, relText: rel(o.m, ui), exactTitle: exact(o.m, ui), title: o.t, cdir: ol === 'fr' ? 'ltr' : 'rtl', clang: ol, cfont: FONT[ol], open: function () { self.setState({ drawer: oid }); } };
+      }),
+      hasSame: grp.length > 1
+    };
+  }
+  renderVals() {
+    var self = this, theme = this.props.theme || 'dark', ui = this.props.ui || 'ar', v = this.props.view || 'live';
+    var t = TK[theme], L = LBL[ui], s = this.state;
+    var ids = v === 'firsttime' ? ['a3', 'a2'] : STREAM.slice();
+    if (s.revealed) ids = NEW.concat(ids);
+    var q = (s.query || '').trim();
+    var list = (v === 'loading') ? [] : ids.filter(function (id) {
+      var r = RAW[id];
+      if (s.selW.length && !r.w.some(function (c) { return s.selW.indexOf(c) >= 0; })) return false;
+      if (s.selS.length && s.selS.indexOf(r.s) < 0) return false;
+      if (q && (r.t + ' ' + r.lead).indexOf(q) < 0) return false;
+      return true;
+    });
+    var items = list.map(function (id) { return self.card(id, theme, ui); });
+    var chips = s.selW.map(function (c) { return { label: c + ' ' + WIL[c][ui], aria: L.removeW + ' ' + WIL[c][ui], remove: function () { self.toggle('selW', c); } }; })
+      .concat(s.selS.map(function (k) { return { label: SRC[k][ui], aria: L.removeS + ' ' + SRC[k][ui], remove: function () { self.toggle('selS', k); } }; }));
+    var isEmpty = v !== 'loading' && items.length === 0;
+    var emptyIsSearch = isEmpty && !!q;
+    var burst = v === 'burst';
+    var pillOn = !s.revealed && ['live', 'expanded', 'drawer', 'menu', 'burst', 'filtered'].indexOf(v) >= 0 && !isEmpty;
+    var total = v === 'firsttime' ? 2 : 142;
+    return {
+      t: t, L: L, theme: theme, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui],
+      live: v === 'reconnecting' ? 'down' : 'up', menuOpen: v === 'menu',
+      query: s.query, onQuery: function (val) { self.setState({ query: val }); },
+      selW: s.selW, selS: s.selS,
+      toggleW: function (c) { self.toggle('selW', c); }, toggleS: function (k) { self.toggle('selS', k); },
+      clearAll: function () { self.setState({ selW: [], selS: [] }); },
+      chips: chips, hasChips: chips.length > 0, noChips: chips.length === 0,
+      countLabel: ui === 'ar' ? total + ' ' + L.today : total + ' ' + L.today,
+      showPill: pillOn, pillLabel: burst ? L.burst : NEW.length + ' ' + L.newOne, pillSub: burst ? L.burstSub : '',
+      reveal: function () { self.setState({ revealed: true }); },
+      firstTime: v === 'firsttime', loading: v === 'loading',
+      skeletons: [{ img: true, w: '82%' }, { img: false, w: '64%' }, { img: true, w: '74%' }, { img: false, w: '88%' }, { img: true, w: '58%' }],
+      isEmpty: isEmpty, emptyIsSearch: emptyIsSearch, emptyIsFilter: isEmpty && !q,
+      emptyTitle: emptyIsSearch ? L.noResT.replace('{q}', q) : L.emptyT,
+      emptyBody: emptyIsSearch ? L.noResB : L.emptyB,
+      emptyCta: emptyIsSearch ? L.noResC : L.emptyC,
+      emptyAction: emptyIsSearch ? function () { self.setState({ query: '' }); } : function () { self.setState({ selW: [], selS: [] }); },
+      items: items, showMore: !isEmpty && v !== 'loading' && v !== 'firsttime',
+      drawerOpen: !!s.drawer, detail: s.drawer ? this.detail(s.drawer, theme, ui) : null,
+      closeDrawer: function () { self.setState({ drawer: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

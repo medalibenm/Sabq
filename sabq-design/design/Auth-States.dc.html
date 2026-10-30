@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sabq — auth screens and errors</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1440px; min-height: 1460px; box-sizing: border-box; padding: 48px; background: #F3F3F0; color: #16171A; font-family: 'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 32px; align-content: start">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">1 · Login</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="login" frame="card" hint-size="100%,440px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">1a · Wrong password</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="wrong" frame="card" hint-size="100%,520px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">1b · Too many attempts</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="limited" frame="card" hint-size="100%,520px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">2 · Accept invite</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="invite" frame="card" hint-size="100%,600px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">3 · Forgot password</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="forgot" frame="card" hint-size="100%,380px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">3a · Check your email</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="sent" frame="card" hint-size="100%,420px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">4 · Reset password</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="reset" frame="card" hint-size="100%,440px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">4a · Expired link (reset or invite)</span>
+    <dc-import name="Auth" theme="light" ui="ar" variant="expired" frame="card" hint-size="100%,400px"></dc-import>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">FR · Connexion, dark</span>
+    <div style="padding: 20px; border-radius: 16px; background: #0F1012">
+      <dc-import name="Auth" theme="dark" ui="fr" variant="wrong" frame="card" hint-size="100%,520px"></dc-import>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="font-size: 13px; font-weight: 600; color: #4B4D55">FR · Lien expiré, dark</span>
+    <div style="padding: 20px; border-radius: 16px; background: #0F1012">
+      <dc-import name="Auth" theme="dark" ui="fr" variant="expired" frame="card" hint-size="100%,400px"></dc-import>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1460}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

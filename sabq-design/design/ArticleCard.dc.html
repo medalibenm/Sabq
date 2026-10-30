@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — article card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<article dir="{{dir}}" lang="{{ui}}" style="background: {{bg}}; border: 1px solid {{border}}; border-radius: 10px; overflow: hidden; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums">
+  <div style="display: flex; gap: {{gap}}; padding: {{pad}}; align-items: flex-start">
+    <sc-if value="{{it.hasImg}}" hint-placeholder-val="{{ true }}">
+      <div aria-hidden="true" style="flex: none; width: {{thumbW}}; height: {{thumbH}}; border-radius: 6px; background: {{it.imgBg}}; display: flex; align-items: center; justify-content: center; color: {{t.text3}}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-9 9"></path></svg>
+      </div>
+    </sc-if>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12.5px; line-height: 18px; color: {{t.text2}}">
+        <span style="font-weight: 600; color: {{t.text}}"><bdi>{{it.srcName}}</bdi></span>
+        <span title="{{L.langTitle}}" style="font: 600 10.5px/16px 'IBM Plex Sans',system-ui,sans-serif; letter-spacing: 0.04em; padding-inline: 5px; border-radius: 4px; border: 1px solid {{t.line2}}; color: {{t.text2}}">{{it.langTag}}</span>
+        <span aria-hidden="true" style="color: {{t.text3}}">·</span>
+        <time title="{{timeTitle}}" style="color: {{t.text2}}; {{timeDeco}}">{{it.relText}}</time>
+        <sc-if value="{{it.est}}" hint-placeholder-val="{{ false }}">
+          <span title="{{L.estTitle}}" style="font-size: 11.5px; color: {{t.text3}}">{{L.est}}</span>
+        </sc-if>
+        <sc-if value="{{it.isNew}}" hint-placeholder-val="{{ false }}">
+          <span style="font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: {{t.acc}}; color: {{t.onAcc}}">{{L.isNew}}</span>
+        </sc-if>
+        <sc-if value="{{it.edited}}" hint-placeholder-val="{{ false }}">
+          <span title="{{L.editedTitle}}" style="margin-inline-start: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 500; padding: 1px 7px; border-radius: 4px; background: {{t.chip}}; color: {{t.text2}}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg>
+            {{L.edited}}
+          </span>
+        </sc-if>
+      </div>
+      <h3 style="margin: 0">
+        <button type="button" onClick="{{it.open}}" dir="{{it.cdir}}" lang="{{it.clang}}" style="display: block; width: 100%; padding: 0; margin: 0; border: 0; background: none; color: {{t.text}}; font: 600 {{titleSize}}/1.45 {{it.cfont}}; text-align: start; cursor: pointer; text-wrap: pretty">{{it.title}}</button>
+      </h3>
+      <p dir="{{it.cdir}}" lang="{{it.clang}}" style="margin: 0; font: 400 {{leadSize}}/1.6 {{it.cfont}}; color: {{t.text2}}; text-align: start; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">{{it.lead}}</p>
+      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 2px">
+        <sc-for list="{{it.wil}}" as="w" hint-placeholder-count="2">
+          <span style="font-size: 12px; line-height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}">{{w.label}}</span>
+        </sc-for>
+        <a href="#original" target="_blank" rel="noopener" style="margin-inline-start: auto; display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding-inline: 8px; border-radius: 6px; font-size: 13px; font-weight: 600; color: {{t.accText}}; text-decoration: none">
+          {{L.openOriginal}}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{it.hasOthers}}" hint-placeholder-val="{{ false }}">
+    <div style="border-top: 1px solid {{t.line}}">
+      <button type="button" onClick="{{it.toggle}}" aria-expanded="{{expandedAttr}}" style="width: 100%; min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 16px; border: 0; background: {{groupBg}}; color: {{t.text}}; font-family: {{font}}; cursor: pointer; text-align: start">
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; white-space: nowrap; color: {{t.text}}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 13l9 5 9-5"></path></svg>
+          {{moreLabel}}
+        </span>
+        <span style="flex: 1; min-width: 0; font-size: 12.5px; color: {{t.text2}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><bdi>{{it.othersNames}}</bdi></span>
+        <span style="font-size: 12.5px; color: {{t.text2}}">{{toggleLabel}}</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: {{chevron}}; color: {{t.text2}}"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <sc-if value="{{it.expanded}}" hint-placeholder-val="{{ false }}">
+        <ul style="list-style: none; margin: 0; padding: 4px 0 8px; background: {{groupBg}}">
+          <sc-for list="{{it.others}}" as="o" hint-placeholder-count="3">
+            <li style="display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; padding: 8px 16px; border-top: 1px solid {{t.line}}">
+              <span style="flex: 0 0 {{srcCol}}; display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 12.5px; line-height: 22px">
+                <span style="font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><bdi>{{o.srcName}}</bdi></span>
+                <span style="font: 600 10px/15px 'IBM Plex Sans',system-ui,sans-serif; padding-inline: 4px; border-radius: 3px; border: 1px solid {{t.line2}}; color: {{t.text2}}">{{o.langTag}}</span>
+              </span>
+              <time title="{{o.exactTitle}}" style="flex: 0 0 72px; font-size: 12.5px; line-height: 22px; color: {{t.text2}}">{{o.relText}}</time>
+              <button type="button" onClick="{{o.open}}" dir="{{o.cdir}}" lang="{{o.clang}}" style="flex: 1 1 260px; min-width: 0; padding: 0; border: 0; background: none; color: {{t.text}}; font: 500 14px/22px {{o.cfont}}; text-align: start; cursor: pointer">{{o.title}}</button>
+              <a href="#original" target="_blank" rel="noopener" aria-label="{{L.openOriginal}}" style="flex: none; width: 28px; height: 22px; display: flex; align-items: center; justify-content: center; color: {{t.accText}}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg>
+              </a>
+            </li>
+          </sc-for>
+        </ul>
+      </sc-if>
+    </div>
+  </sc-if>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"item":{"editor":null},"theme":{"editor":"enum","options":["dark","light"],"default":"dark"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"compact":{"editor":"boolean","default":false},"$preview":{"width":880,"height":220}}'>
+var TK = {
+  dark: {card:'#191B1F',panel:'#141619',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',accText:'#FFD23F',onAcc:'#1A1600',accSoft:'rgba(255,210,63,0.10)',accRing:'rgba(255,210,63,0.55)',chip:'#23262B'},
+  light: {card:'#FFFFFF',panel:'#FAFAF8',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',accText:'#835800',onAcc:'#1A1600',accSoft:'#FFF8DD',accRing:'#C99A00',chip:'#EFEFEB'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var LBL = {
+  ar: {openOriginal:'فتح الأصل', edited:'معدَّل', editedTitle:'عدّل المصدر هذا المقال بعد نشره', est:'تقديري', estTitle:'وقت تقديري: المصدر لا يذكر وقت النشر', isNew:'جديد', langTitle:'لغة المقال', more:'مصادر أخرى', show:'عرض', hide:'إخفاء'},
+  fr: {openOriginal:'Ouvrir l’original', edited:'Modifié', editedTitle:'La source a modifié cet article après publication', est:'estimée', estTitle:'Heure estimée : la source n’indique pas l’heure de publication', isNew:'Nouveau', langTitle:'Langue de l’article', more:'autres sources', show:'Afficher', hide:'Masquer'}
+};
+var SAMPLE = {
+  srcName:'وكالة الأنباء الجزائرية', langTag:'AR', relText:'منذ 4 د', exactTitle:'الأربعاء 28 أكتوبر 2026، 19:04 بتوقيت الجزائر', est:false,
+  cdir:'rtl', clang:'ar', cfont:FONT.ar, title:'نشرية خاصة: أمطار رعدية غزيرة على ولايات باتنة وسطيف والجلفة ابتداءً من مساء اليوم',
+  lead:'حذّرت مصالح الأرصاد الجوية من أمطار رعدية قد يبلغ منسوبها 40 ملم محليًا، مصحوبة بهبوب رياح قوية أحيانًا، وذلك من السادسة مساءً إلى غاية صباح الخميس.',
+  hasImg:true, imgBg:'#2A3340', wil:[{label:'05 باتنة'},{label:'19 سطيف'},{label:'17 الجلفة'}], edited:true, isNew:false,
+  others:[
+    {srcName:'الأوراس نيوز', langTag:'AR', relText:'منذ 3 د', exactTitle:'19:05', title:'باتنة: نشرية جوية خاصة تحذّر من أمطار رعدية والحماية المدنية تدعو إلى الحذر على الطرقات', cdir:'rtl', clang:'ar', cfont:FONT.ar},
+    {srcName:'El Moudjahid', langTag:'FR', relText:'منذ 2 د', exactTitle:'19:06', title:'BMS : fortes pluies orageuses attendues sur Batna, Sétif et Djelfa', cdir:'ltr', clang:'fr', cfont:FONT.fr},
+    {srcName:'L’Expression', langTag:'FR', relText:'منذ 1 د', exactTitle:'19:07', title:'Intempéries dans l’Est : les automobilistes appelés à la prudence jusqu’à jeudi', cdir:'ltr', clang:'fr', cfont:FONT.fr}
+  ],
+  hasOthers:true, othersNames:'الأوراس نيوز · El Moudjahid · L’Expression', expanded:false
+};
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { localExpanded: false }; }
+  renderVals() {
+    var self = this, theme = this.props.theme || 'dark', ui = this.props.ui || 'ar';
+    var t = TK[theme], L = LBL[ui], compact = !!this.props.compact;
+    var it = this.props.item;
+    if (!it) {
+      it = Object.assign({}, SAMPLE, { expanded: this.state.localExpanded, toggle: function () { self.setState({ localExpanded: !self.state.localExpanded }); }, open: function () {} });
+      if (theme === 'light') it.imgBg = '#CBD5DF';
+    }
+    var n = (it.others || []).length;
+    return {
+      it: it, t: t, L: L, dir: ui === 'ar' ? 'rtl' : 'ltr', ui: ui, font: FONT[ui],
+      bg: it.isNew ? t.accSoft : t.card,
+      border: it.isNew ? t.accRing : t.line,
+      groupBg: theme === 'dark' ? '#16181C' : '#FAFAF8',
+      gap: compact ? '12px' : '14px', pad: compact ? '12px 14px' : '14px 16px',
+      thumbW: compact ? '84px' : '128px', thumbH: compact ? '64px' : '84px',
+      titleSize: compact ? '15.5px' : '17px', leadSize: compact ? '13.5px' : '14px',
+      srcCol: compact ? '100%' : '180px',
+      timeTitle: it.est ? it.exactTitle + ' — ' + L.estTitle : it.exactTitle,
+      timeDeco: it.est ? 'border-bottom: 1px dotted currentColor' : '',
+      moreLabel: '+' + n + ' ' + L.more,
+      toggleLabel: it.expanded ? L.hide : L.show,
+      expandedAttr: it.expanded ? 'true' : 'false',
+      chevron: it.expanded ? 'rotate(180deg)' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — Team</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="{{dir}}" lang="{{ui}}" style="min-height: 100vh; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums">
+  <dc-import name="TopBar" theme="{{theme}}" ui="{{ui}}" tab="none" title="{{L.title}}" live="up" hint-size="100%,56px"></dc-import>
+  <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch">
+    <dc-import name="SideNav" theme="{{theme}}" ui="{{ui}}" active="team" hint-size="72px,100%"></dc-import>
+    <main style="flex: 999 1 560px; min-width: 0; padding: 24px 28px 48px; box-sizing: border-box">
+      <div style="max-width: 1160px; margin-inline: auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 700">{{L.heading}}</h1>
+          <p style="margin: 0; font-size: 13.5px; color: {{t.text2}}">{{L.sub}}</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+          <section aria-labelledby="inv-h" style="flex: 1 1 380px; min-width: 0; padding: 20px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+            <sc-if value="{{showForm}}" hint-placeholder-val="{{ true }}">
+              <form style="display: flex; flex-direction: column; gap: 14px">
+                <h2 id="inv-h" style="margin: 0; font-size: 16px; font-weight: 600">{{L.invite}}</h2>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="inv-email" style="font-size: 13px; font-weight: 600">{{L.email}}</label>
+                  <input id="inv-email" type="email" dir="ltr" value="karim.mansouri@elofok.dz" style="height: 42px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 14px 'IBM Plex Sans',system-ui,sans-serif; text-align: left">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="inv-name" style="font-size: 13px; font-weight: 600">{{L.displayName}}</label>
+                  <input id="inv-name" type="text" value="{{L.inviteeName}}" style="height: 42px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 14px {{font}}">
+                </div>
+                <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px">
+                  <legend style="padding: 0; margin-bottom: 8px; font-size: 13px; font-weight: 600">{{L.role}}</legend>
+                  <sc-for list="{{roles}}" as="r" hint-placeholder-count="3">
+                    <button type="button" role="radio" aria-checked="{{r.checked}}" onClick="{{r.pick}}" style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 8px; border: {{r.border}}; background: {{r.bg}}; color: {{t.text}}; font-family: {{font}}; text-align: start; cursor: pointer">
+                      <span aria-hidden="true" style="flex: none; margin-top: 2px; width: 18px; height: 18px; box-sizing: border-box; border-radius: 999px; border: {{r.dotBorder}}; background: {{t.field}}; display: flex; align-items: center; justify-content: center">
+                        <sc-if value="{{r.on}}" hint-placeholder-val="{{ false }}"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{t.text}}"></span></sc-if>
+                      </span>
+                      <span style="display: flex; flex-direction: column; gap: 3px">
+                        <span style="font-size: 14px; font-weight: 600">{{r.name}}</span>
+                        <span style="font-size: 12.5px; line-height: 1.55; color: {{t.text2}}">{{r.desc}}</span>
+                      </span>
+                    </button>
+                  </sc-for>
+                </fieldset>
+                <button type="button" onClick="{{send}}" style="height: 44px; border-radius: 8px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 700 14px {{font}}; cursor: pointer">{{L.send}}</button>
+                <p style="margin: 0; font-size: 12.5px; color: {{t.text3}}">{{L.expiry}}</p>
+              </form>
+            </sc-if>
+            <sc-if value="{{isSent}}" hint-placeholder-val="{{ false }}">
+              <div role="status" style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+                <span style="width: 40px; height: 40px; border-radius: 999px; background: {{t.okSoft}}; color: {{t.ok}}; display: flex; align-items: center; justify-content: center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l8 6 8-6"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg>
+                </span>
+                <h2 id="inv-h" style="margin: 0; font-size: 17px; font-weight: 600">{{L.sentTitle}}</h2>
+                <p style="margin: 0; font-size: 14px; line-height: 1.7; color: {{t.text2}}">{{L.sentTo}} <bdi dir="ltr" style="font-family: 'IBM Plex Sans',system-ui,sans-serif; color: {{t.text}}; font-weight: 600">karim.mansouri@elofok.dz</bdi> {{L.sentAs}}</p>
+                <p style="margin: 0; font-size: 13px; line-height: 1.7; color: {{t.text2}}">{{L.sentNext}}</p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px">
+                  <button type="button" onClick="{{again}}" style="height: 40px; padding-inline: 16px; border-radius: 8px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 700 14px {{font}}; cursor: pointer">{{L.another}}</button>
+                </div>
+              </div>
+            </sc-if>
+          </section>
+
+          <section aria-labelledby="mem-h" style="flex: 999 1 520px; min-width: 0; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; overflow: hidden">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid {{t.line}}">
+              <h2 id="mem-h" style="margin: 0; font-size: 16px; font-weight: 600">{{L.members}}</h2>
+              <span style="font-size: 12.5px; color: {{t.text2}}">{{memberCount}}</span>
+            </div>
+            <ul style="list-style: none; margin: 0; padding: 0">
+              <sc-for list="{{members}}" as="m" hint-placeholder-count="6">
+                <li style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 18px; border-bottom: 1px solid {{t.line}}; background: {{m.rowBg}}">
+                  <span aria-hidden="true" style="flex: none; width: 34px; height: 34px; border-radius: 999px; background: {{m.avBg}}; color: {{t.text2}}; border: {{m.avBorder}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600">{{m.ini}}</span>
+                  <span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                    <span style="font-size: 14px; font-weight: 600">{{m.name}}</span>
+                    <span dir="ltr" style="font: 400 12.5px 'IBM Plex Sans',system-ui,sans-serif; color: {{t.text2}}; text-align: {{alignStart}}">{{m.email}}</span>
+                  </span>
+                  <span style="flex: none; width: 76px; font-size: 13px; color: {{t.text2}}">{{m.role}}</span>
+                  <span style="flex: none; width: 170px; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: {{m.stColor}}">
+                    <sc-if value="{{m.pending}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7l8 6 8-6"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg></sc-if>
+                    {{m.status}}
+                  </span>
+                  <span style="flex: none; width: 130px; display: flex; justify-content: flex-end; gap: 4px">
+                    <sc-if value="{{m.pending}}" hint-placeholder-val="{{ false }}">
+                      <button type="button" style="height: 32px; padding-inline: 10px; border-radius: 6px; border: 1px solid {{t.line2}}; background: transparent; color: {{t.text}}; font: 500 12.5px {{font}}; cursor: pointer">{{L.resend}}</button>
+                      <button type="button" style="height: 32px; padding-inline: 8px; border-radius: 6px; border: 0; background: transparent; color: {{t.text2}}; font: 500 12.5px {{font}}; cursor: pointer">{{L.cancel}}</button>
+                    </sc-if>
+                  </span>
+                </li>
+              </sc-for>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"sent":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+var TK = {
+  dark: {bg:'#0F1012',card:'#191B1F',field:'#15171A',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',onAcc:'#1A1600',chip:'#23262B',sel:'rgba(255,210,63,0.10)',selBorder:'#FFD23F',ok:'#4ADE80',okSoft:'rgba(74,222,128,0.12)',newRow:'rgba(255,210,63,0.07)'},
+  light: {bg:'#F3F3F0',card:'#FFFFFF',field:'#FFFFFF',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',onAcc:'#1A1600',chip:'#EFEFEB',sel:'#FFF8DD',selBorder:'#16171A',ok:'#1C7A3B',okSoft:'#E3F4E8',newRow:'#FFFBEA'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var LBL = {
+  ar: {title:'الفريق', heading:'فريق يومية الأفق', sub:'المالكون والمسؤولون فقط يرون هذه الصفحة.', invite:'دعوة عضو', email:'البريد الإلكتروني', displayName:'الاسم المعروض', inviteeName:'كريم منصوري', role:'الدور', send:'إرسال الدعوة', expiry:'يصل المدعو بريد فيه رابط لإنشاء كلمة مروره. ينتهي الرابط بعد 7 أيام.',
+       sentTitle:'أُرسلت الدعوة', sentTo:'أرسلنا دعوة إلى', sentAs:'بدور محرّر.', sentNext:'تظهر الدعوة في القائمة كـ«معلّقة» إلى أن يقبلها. يمكنك إعادة إرسالها أو إلغاؤها من هناك.', another:'دعوة شخص آخر',
+       members:'الأعضاء', resend:'إعادة الإرسال', cancel:'إلغاء', active:'نشِط', you:'(أنتِ)',
+       roles:{owner:'مالك', admin:'مسؤول', editor:'محرّر', viewer:'مطّلع'},
+       descs:{admin:'يدير الفريق والمصادر: يدعو الأعضاء ويغيّر أدوارهم ويطلب مصادر جديدة.', editor:'يتابع الرادار والقصص ويطلب إضافة مصادر. لا يرى صفحة الفريق.', viewer:'قراءة فقط: يتابع الرادار والقصص دون أي إعدادات.'}},
+  fr: {title:'Équipe', heading:'Équipe du Quotidien El Ofok', sub:'Seuls les propriétaires et les admins voient cette page.', invite:'Inviter un membre', email:'Adresse e-mail', displayName:'Nom affiché', inviteeName:'Karim Mansouri', role:'Rôle', send:'Envoyer l’invitation', expiry:'La personne reçoit un e-mail avec un lien pour créer son mot de passe. Le lien expire après 7 jours.',
+       sentTitle:'Invitation envoyée', sentTo:'Nous avons envoyé une invitation à', sentAs:'avec le rôle Éditeur.', sentNext:'Elle apparaît « en attente » dans la liste jusqu’à son acceptation. Vous pouvez la renvoyer ou l’annuler depuis la liste.', another:'Inviter quelqu’un d’autre',
+       members:'Membres', resend:'Renvoyer', cancel:'Annuler', active:'Actif', you:'(vous)',
+       roles:{owner:'Propriétaire', admin:'Admin', editor:'Éditeur', viewer:'Lecteur'},
+       descs:{admin:'Gère l’équipe et les sources : invite des membres, change les rôles, demande des sources.', editor:'Suit le radar et les sujets, peut demander des sources. Ne voit pas la page Équipe.', viewer:'Lecture seule : suit le radar et les sujets, sans aucun réglage.'}}
+};
+var MEMBERS = [
+  {ar:'يوسف بلقاسم', fr:'Youcef Belkacem', ini:{ar:'ي ب', fr:'YB'}, email:'y.belkacem@elofok.dz', role:'owner'},
+  {ar:'أمينة حداد', fr:'Amina Haddad', ini:{ar:'أ ح', fr:'AH'}, email:'amina.haddad@elofok.dz', role:'admin', me:true},
+  {ar:'سارة عمراني', fr:'Sara Amrani', ini:{ar:'س ع', fr:'SA'}, email:'s.amrani@elofok.dz', role:'editor'},
+  {ar:'مراد زيتوني', fr:'Mourad Zitouni', ini:{ar:'م ز', fr:'MZ'}, email:'m.zitouni@elofok.dz', role:'editor'},
+  {ar:'ليلى بوزيد', fr:'Leila Bouzid', ini:{ar:'ل ب', fr:'LB'}, email:'l.bouzid@elofok.dz', role:'viewer'},
+  {ar:'نسيم قادري', fr:'Nassim Kadri', ini:{ar:'ن ق', fr:'NK'}, email:'n.kadri@elofok.dz', role:'editor', pending:{ar:'دعوة معلّقة · منذ يومين', fr:'En attente · il y a 2 jours'}}
+];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sent: !!props.sent, role: 'editor' }; }
+  renderVals() {
+    var self = this, theme = this.props.theme || 'light', ui = this.props.ui || 'ar';
+    var t = TK[theme], L = LBL[ui];
+    var roles = ['admin', 'editor', 'viewer'].map(function (k) {
+      var on = self.state.role === k;
+      return { name: L.roles[k], desc: L.descs[k], on: on, checked: on ? 'true' : 'false', bg: on ? t.sel : 'transparent', border: on ? '1.5px solid ' + t.selBorder : '1px solid ' + t.line2, dotBorder: on ? '2px solid ' + t.text : '1.5px solid ' + t.line2, pick: function () { self.setState({ role: k }); } };
+    });
+    var list = MEMBERS.slice();
+    if (this.state.sent) list.push({ ar:'كريم منصوري', fr:'Karim Mansouri', ini:{ar:'ك م', fr:'KM'}, email:'karim.mansouri@elofok.dz', role:'editor', fresh:true, pending:{ar:'دعوة معلّقة · أُرسلت الآن', fr:'En attente · envoyée à l’instant'} });
+    var members = list.map(function (m) {
+      return { name: m[ui] + (m.me ? ' ' + L.you : ''), ini: m.ini[ui], email: m.email, role: L.roles[m.role], pending: !!m.pending,
+        status: m.pending ? m.pending[ui] : L.active, stColor: m.pending ? t.text2 : t.ok,
+        avBg: m.pending ? 'transparent' : t.chip, avBorder: m.pending ? '1.5px dashed ' + t.line2 : '0',
+        rowBg: m.fresh ? t.newRow : 'transparent' };
+    });
+    return {
+      t: t, L: L, theme: theme, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui], alignStart: ui === 'ar' ? 'right' : 'left',
+      roles: roles, members: members,
+      memberCount: ui === 'ar' ? (list.length - (this.state.sent ? 2 : 1)) + ' أعضاء · ' + (this.state.sent ? 2 : 1) + ' دعوات معلّقة' : (list.length - (this.state.sent ? 2 : 1)) + ' membres · ' + (this.state.sent ? 2 : 1) + ' en attente',
+      showForm: !this.state.sent, isSent: this.state.sent,
+      send: function () { self.setState({ sent: true }); }, again: function () { self.setState({ sent: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
