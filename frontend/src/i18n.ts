@@ -139,7 +139,7 @@ const ar = {
   displayName: "الاسم المعروض",
   role: "الدور",
   sendInvite: "إرسال الدعوة",
-  inviteExpiry: "يصل المدعو بريد فيه رابط لإنشاء كلمة مروره. ينتهي الرابط بعد 7 أيام.",
+  inviteExpiry: "يصل المدعو بريد فيه رابط لإنشاء كلمة مروره. ينتهي الرابط بعد 72 ساعة.",
   inviteExists: "هذا البريد مرتبط بحساب موجود.",
   inviteForbidden: "دورك لا يسمح بدعوة هذا الدور.",
   inviteBadEmail: "أدخل بريدًا إلكترونيًا صحيحًا.",
@@ -211,7 +211,7 @@ const ar = {
   saveAndLogin: "حفظ والدخول",
   expiredTitle: "انتهت صلاحية الرابط",
   expiredReset: "روابط الاستعادة صالحة لمدة ساعة واحدة ولمرة واحدة. اطلب رابطًا جديدًا للمتابعة.",
-  expiredInvite: "روابط الدعوة صالحة لمدة 7 أيام ولمرة واحدة. اطلب من مسؤول مؤسستك دعوة جديدة.",
+  expiredInvite: "روابط الدعوة صالحة لمدة 72 ساعة ولمرة واحدة. اطلب من مسؤول مؤسستك دعوة جديدة.",
   newLink: "طلب رابط جديد",
   otherLang: "Français",
 };
@@ -358,7 +358,7 @@ const fr: Strings = {
   role: "Rôle",
   sendInvite: "Envoyer l’invitation",
   inviteExpiry:
-    "La personne reçoit un e-mail avec un lien pour créer son mot de passe. Le lien expire après 7 jours.",
+    "La personne reçoit un e-mail avec un lien pour créer son mot de passe. Le lien expire après 72 heures.",
   inviteExists: "Cet e-mail correspond déjà à un compte.",
   inviteForbidden: "Votre rôle ne permet pas d’inviter ce rôle.",
   inviteBadEmail: "Saisissez une adresse e-mail valide.",
@@ -434,7 +434,7 @@ const fr: Strings = {
   expiredReset:
     "Les liens de réinitialisation sont valables une heure et une seule fois. Demandez un nouveau lien pour continuer.",
   expiredInvite:
-    "Les liens d’invitation sont valables 7 jours et une seule fois. Demandez une nouvelle invitation à l’admin de votre rédaction.",
+    "Les liens d’invitation sont valables 72 heures et une seule fois. Demandez une nouvelle invitation à l’admin de votre rédaction.",
   newLink: "Demander un nouveau lien",
   otherLang: "العربية",
 };
