@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — Stories</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="{{dir}}" lang="{{ui}}" style="min-height: 100vh; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums">
+  <dc-import name="TopBar" theme="{{theme}}" ui="{{ui}}" tab="stories" live="up" hint-size="100%,56px"></dc-import>
+  <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch">
+    <dc-import name="SideNav" theme="{{theme}}" ui="{{ui}}" active="radar" hint-size="72px,100%"></dc-import>
+    <dc-import name="FilterRail" theme="{{theme}}" ui="{{ui}}" hint-size="280px,100%"></dc-import>
+    <main style="flex: 999 1 560px; min-width: 0; padding: 16px 28px 48px; box-sizing: border-box">
+      <div style="max-width: 960px; margin-inline: auto; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 32px">
+          <span style="font-size: 13px; color: {{t.text2}}">{{L.summary}}</span>
+          <span style="margin-inline-start: auto; display: inline-flex; gap: 4px; padding: 3px; border-radius: 8px; background: {{t.chip}}" role="radiogroup" aria-label="{{L.statusFilter}}">
+            <button type="button" role="radio" aria-checked="true" style="height: 28px; padding-inline: 10px; border-radius: 6px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 600 12.5px {{font}}; cursor: pointer">{{L.all}}</button>
+            <button type="button" role="radio" aria-checked="false" style="height: 28px; padding-inline: 10px; border-radius: 6px; border: 0; background: transparent; color: {{t.text2}}; font: 500 12.5px {{font}}; cursor: pointer">{{L.developing}}</button>
+            <button type="button" role="radio" aria-checked="false" style="height: 28px; padding-inline: 10px; border-radius: 6px; border: 0; background: transparent; color: {{t.text2}}; font: 500 12.5px {{font}}; cursor: pointer">{{L.closed}}</button>
+          </span>
+        </div>
+
+        <sc-for list="{{stories}}" as="s" hint-placeholder-count="6">
+          <article style="border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; overflow: hidden">
+            <button type="button" onClick="{{s.toggle}}" aria-expanded="{{s.exp}}" style="width: 100%; display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: flex-start; padding: 14px 16px; border: 0; background: transparent; color: {{t.text}}; font-family: {{font}}; text-align: start; cursor: pointer">
+              <div style="flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+                  <sc-if value="{{s.developing}}" hint-placeholder-val="{{ true }}">
+                    <span style="display: inline-flex; align-items: center; gap: 6px; height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.accSoft}}; color: {{t.text}}; font-size: 12px; font-weight: 600">
+                      <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="3.2" fill="{{t.acc}}" stroke="{{t.dotRing}}" stroke-width="1"><animate attributeName="opacity" values="1;0.35;1" dur="1.6s" repeatCount="indefinite"></animate></circle></svg>
+                      {{L.developing}}
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{s.isClosed}}" hint-placeholder-val="{{ false }}">
+                    <span style="display: inline-flex; align-items: center; gap: 5px; height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}; font-size: 12px; font-weight: 500">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+                      {{L.closed}}
+                    </span>
+                  </sc-if>
+                  <span style="font-size: 12.5px; color: {{t.text2}}">{{s.sourcesCount}}</span>
+                  <span aria-hidden="true" style="color: {{t.text3}}">·</span>
+                  <span style="font: 600 11.5px 'IBM Plex Sans',system-ui,sans-serif; color: {{t.text2}}">{{s.mix}}</span>
+                </div>
+                <h2 dir="{{s.cdir}}" lang="{{s.clang}}" style="margin: 0; font: 600 17px/1.45 {{s.cfont}}; text-align: start; text-wrap: pretty">{{s.title}}</h2>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+                  <span aria-hidden="true" style="display: flex">
+                    <sc-for list="{{s.marks}}" as="m" hint-placeholder-count="3">
+                      <span style="width: 24px; height: 24px; margin-inline-end: -6px; border-radius: 999px; border: 2px solid {{t.card}}; background: {{m.bg}}; color: {{m.fg}}; display: flex; align-items: center; justify-content: center; font: 700 10px 'IBM Plex Sans','IBM Plex Sans Arabic',sans-serif">{{m.ini}}</span>
+                    </sc-for>
+                  </span>
+                  <span style="font-size: 13px; color: {{t.text2}}; padding-inline-start: 6px"><bdi>{{s.names}}</bdi></span>
+                </div>
+              </div>
+              <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: {{t.text2}}">
+                <span style="display: flex; gap: 6px"><span style="color: {{t.text3}}; min-width: 74px">{{L.first}}</span><time style="color: {{t.text}}; font-weight: 600">{{s.first}}</time></span>
+                <span style="display: flex; gap: 6px"><span style="color: {{t.text3}}; min-width: 74px">{{L.last}}</span><time title="{{s.lastExact}}" style="color: {{t.text}}; font-weight: 600">{{s.last}}</time></span>
+                <span style="display: flex; gap: 6px; flex-wrap: wrap">
+                  <sc-for list="{{s.wil}}" as="w" hint-placeholder-count="2">
+                    <span style="font-size: 12px; line-height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}">{{w.label}}</span>
+                  </sc-for>
+                </span>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px; color: {{t.text2}}; transform: {{s.chev}}"><path d="M6 9l6 6 6-6"></path></svg>
+            </button>
+            <sc-if value="{{s.expanded}}" hint-placeholder-val="{{ false }}">
+              <ol style="list-style: none; margin: 0; padding: 6px 16px 14px; border-top: 1px solid {{t.line}}; background: {{t.sub}}">
+                <sc-for list="{{s.items}}" as="a" hint-placeholder-count="4">
+                  <li style="display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid {{t.line}}">
+                    <div style="flex: none; width: 64px; display: flex; flex-direction: column; align-items: flex-start; gap: 2px">
+                      <time style="font: 600 13px 'IBM Plex Sans',system-ui,sans-serif; color: {{t.text}}">{{a.time}}</time>
+                      <sc-if value="{{a.firstFlag}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; font-weight: 600; color: {{t.accText}}">{{L.firstTag}}</span></sc-if>
+                    </div>
+                    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+                      <span style="display: flex; align-items: center; gap: 6px; font-size: 12.5px">
+                        <span style="font-weight: 600"><bdi>{{a.src}}</bdi></span>
+                        <span style="font: 600 10px/15px 'IBM Plex Sans',system-ui,sans-serif; padding-inline: 4px; border-radius: 3px; border: 1px solid {{t.line2}}; color: {{t.text2}}">{{a.tag}}</span>
+                      </span>
+                      <h3 dir="{{a.cdir}}" lang="{{a.clang}}" style="margin: 0; font: 600 15px/1.5 {{a.cfont}}; text-align: start">{{a.title}}</h3>
+                      <p dir="{{a.cdir}}" lang="{{a.clang}}" style="margin: 0; font: 400 13.5px/1.6 {{a.cfont}}; color: {{t.text2}}; text-align: start">{{a.lead}}</p>
+                    </div>
+                    <a href="#original" target="_blank" rel="noopener" aria-label="{{L.openOriginal}}" style="flex: none; width: 36px; height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: {{t.accText}}">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg>
+                    </a>
+                  </li>
+                </sc-for>
+              </ol>
+            </sc-if>
+          </article>
+        </sc-for>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"$preview":{"width":1440,"height":1100}}'>
+var TK = {
+  dark: {bg:'#0F1012',card:'#191B1F',sub:'#16181C',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',accText:'#FFD23F',onAcc:'#1A1600',accSoft:'rgba(255,210,63,0.14)',dotRing:'#FFD23F',chip:'#23262B'},
+  light: {bg:'#F3F3F0',card:'#FFFFFF',sub:'#FAFAF8',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',accText:'#835800',onAcc:'#1A1600',accSoft:'#FFF3C4',dotRing:'#835800',chip:'#EFEFEB'}
+};
+var MARK = { dark: [['#2B3A4A','#CFE0F2'],['#3A2F2A','#F2D9C9'],['#2B3A31','#CDEBD7'],['#3A2E3E','#EAD3F0']], light: [['#DCE6F0','#1D3550'],['#F1E2D6','#5A3418'],['#DCEBDF','#1E4A2B'],['#EDE0F0','#4A2556']] };
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var SRC = {
+  aps: {ar:'وكالة الأنباء الجزائرية', fr:'APS', l:'AR', ini:'وأ', iniFr:'APS'}, pres: {ar:'رئاسة الجمهورية', fr:'Présidence', l:'AR', ini:'ر', iniFr:'PR'},
+  aa: {ar:'الأناضول', fr:'Anadolu', l:'AR', ini:'أ', iniFr:'AA'}, hayat: {ar:'الحياة', fr:'El Hayat', l:'AR', ini:'ح', iniFr:'EH'},
+  awras: {ar:'الأوراس نيوز', fr:'Awras News', l:'AR', ini:'أن', iniFr:'AN'}, hidhab: {ar:'الهضاب', fr:'El Hidhab', l:'AR', ini:'هـ', iniFr:'HD'},
+  setif1: {ar:'سطيف وان', fr:'Setif One', l:'AR', ini:'س', iniFr:'S1'}, moudj: {ar:'El Moudjahid', fr:'El Moudjahid', l:'FR', ini:'EM', iniFr:'EM'},
+  lexp: {ar:'L’Expression', fr:'L’Expression', l:'FR', ini:'LE', iniFr:'LE'}
+};
+var WIL = { '00': {ar:'وطني', fr:'National'}, '05': {ar:'باتنة', fr:'Batna'}, '17': {ar:'الجلفة', fr:'Djelfa'}, '19': {ar:'سطيف', fr:'Sétif'} };
+var STORIES = [
+  {id:'s1', dev:true, last:1, w:['05','19','17'], items:[
+    {s:'aps', t:'19:04', title:'نشرية خاصة: أمطار رعدية غزيرة على ولايات باتنة وسطيف والجلفة ابتداءً من مساء اليوم', lead:'حذّرت مصالح الأرصاد الجوية من أمطار رعدية قد يبلغ منسوبها 40 ملم محليًا، مصحوبة بهبوب رياح قوية أحيانًا، إلى غاية صباح الخميس.'},
+    {s:'awras', t:'19:05', title:'باتنة: نشرية جوية خاصة تحذّر من أمطار رعدية والحماية المدنية تدعو إلى الحذر على الطرقات', lead:'رفعت مصالح الحماية المدنية لولاية باتنة درجة التأهب تحسبًا للأمطار الرعدية المرتقبة.'},
+    {s:'moudj', t:'19:06', title:'BMS : fortes pluies orageuses attendues sur Batna, Sétif et Djelfa', lead:'Les services de la météorologie annoncent des cumuls pouvant atteindre localement 40 mm, de ce mercredi soir à jeudi matin.'},
+    {s:'lexp', t:'19:07', title:'Intempéries dans l’Est : les automobilistes appelés à la prudence jusqu’à jeudi', lead:'La Protection civile recommande d’éviter les déplacements non nécessaires sur les routes nationales concernées.'}
+  ]},
+  {id:'s2', dev:true, last:6, w:['00'], items:[
+    {s:'pres', t:'18:54', title:'رئيس الجمهورية يوقّع مرسومًا رئاسيًا يحدد كيفيات تنظيم المسابقات الوطنية للتوظيف في الوظيفة العمومية', lead:'يحدد المرسوم شروط وكيفيات تنظيم المسابقات والامتحانات المهنية للالتحاق بالوظائف العمومية.'},
+    {s:'aps', t:'18:58', title:'التوظيف في الوظيفة العمومية: مرسوم رئاسي جديد ينظم المسابقات الوطنية', lead:'يُنتظر نشر المرسوم في العدد المقبل من الجريدة الرسمية.'},
+    {s:'aa', t:'19:02', title:'الجزائر: مرسوم رئاسي ينظم مسابقات التوظيف في القطاع العمومي', lead:'يأتي المرسوم ضمن إجراءات تنظيم التوظيف في القطاعات العمومية.'}
+  ]},
+  {id:'s3', dev:false, last:41, w:['19'], items:[
+    {s:'lexp', t:'18:59', title:'Sétif : lancement des travaux d’extension du tramway vers le pôle universitaire d’El Bez', lead:'Le chantier porte sur un tronçon de 4,5 km et sept nouvelles stations.'},
+    {s:'setif1', t:'18:10', title:'سطيف: انطلاق أشغال توسعة خط الترامواي نحو القطب الجامعي الباز', lead:'تمتد التوسعة على مسافة 4.5 كلم وتضم سبع محطات جديدة.'},
+    {s:'aps', t:'18:27', title:'سطيف: انطلاق مشروع توسعة الترامواي بآجال إنجاز تقدر بـ30 شهرًا', lead:'أشرف والي الولاية على إعطاء إشارة انطلاق الأشغال.'}
+  ]},
+  {id:'s4', dev:false, last:88, w:['19'], items:[
+    {s:'setif1', t:'16:45', title:'وفاق سطيف يفوز على شباب قسنطينة بهدفين دون رد ويرتقي إلى المركز الثالث', lead:'فوز مهم على ملعب 8 ماي 1945 لحساب الجولة الثامنة.'},
+    {s:'hayat', t:'16:52', title:'الرابطة المحترفة الأولى: الوفاق يتجاوز الشباب ويقترب من الصدارة', lead:'سجّل الوفاق هدفًا في كل شوط.'},
+    {s:'aps', t:'17:40', title:'الرابطة الأولى (الجولة 8): نتائج مباريات اليوم', lead:'ملخص نتائج مباريات الجولة الثامنة من البطولة.'}
+  ]},
+  {id:'s5', dev:false, last:96, w:['05'], items:[
+    {s:'awras', t:'15:12', title:'انطلاق أشغال ازدواجية الطريق الوطني رقم 3 بين باتنة وعين التوتة على مسافة 12 كلم', lead:'يشمل المشروع إنجاز منشأتين فنيتين بآجال إنجاز تقدّر بـ18 شهرًا.'},
+    {s:'hidhab', t:'15:40', title:'باتنة: مشروع ازدواجية الطريق الوطني 3 يدخل حيز الإنجاز', lead:'المشروع ينتظره مستعملو المحور منذ سنوات.'},
+    {s:'moudj', t:'17:32', title:'Batna : lancement du dédoublement de la RN3 vers Aïn Touta', lead:'Les travaux portent sur 12 km et deux ouvrages d’art.'}
+  ]}
+];
+var LBL = {
+  ar: {summary:'5 قصص اليوم · قصتان قيد التطور', statusFilter:'حالة القصة', all:'الكل', developing:'قيد التطور', closed:'مكتملة', first:'أول خبر', last:'آخر تحديث', firstTag:'الأسبق', openOriginal:'فتح الأصل', sources:'مصادر'},
+  fr: {summary:'5 sujets aujourd’hui · 2 en cours', statusFilter:'Statut du sujet', all:'Tous', developing:'En cours', closed:'Terminé', first:'1re info', last:'Mise à jour', firstTag:'Premier', openOriginal:'Ouvrir l’original', sources:'sources'}
+};
+function rel(m, ui) { if (m < 60) return ui === 'ar' ? 'منذ ' + m + ' د' : 'il y a ' + m + ' min'; var h = Math.floor(m / 60); return ui === 'ar' ? 'منذ ' + h + ' س' : 'il y a ' + h + ' h'; }
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { open: 's1' }; }
+  renderVals() {
+    var self = this, theme = this.props.theme || 'dark', ui = this.props.ui || 'ar';
+    var t = TK[theme], L = LBL[ui];
+    var stories = STORIES.map(function (st) {
+      var items = st.items.slice().sort(function (a, b) { return a.t < b.t ? -1 : 1; });
+      var ar = 0, fr = 0;
+      items.forEach(function (a) { if (SRC[a.s].l === 'FR') fr++; else ar++; });
+      var rep = st.items[0], repFr = SRC[rep.s].l === 'FR';
+      var exp = self.state.open === st.id;
+      return {
+        title: rep.title, cdir: repFr ? 'ltr' : 'rtl', clang: repFr ? 'fr' : 'ar', cfont: FONT[repFr ? 'fr' : 'ar'],
+        developing: st.dev, isClosed: !st.dev,
+        sourcesCount: items.length + ' ' + L.sources,
+        mix: [ar ? ar + ' AR' : '', fr ? fr + ' FR' : ''].filter(Boolean).join(' · '),
+        marks: items.map(function (a, i) { var c = MARK[theme][i % 4]; return { ini: ui === 'ar' ? SRC[a.s].ini : SRC[a.s].iniFr, bg: c[0], fg: c[1] }; }),
+        names: items.map(function (a) { return SRC[a.s][ui]; }).join(' · '),
+        first: items[0].t, last: rel(st.last, ui), lastExact: items[items.length - 1].t,
+        wil: st.w.map(function (c) { return { label: c + ' ' + WIL[c][ui] }; }),
+        expanded: exp, exp: exp ? 'true' : 'false', chev: exp ? 'rotate(180deg)' : 'none',
+        toggle: function () { self.setState({ open: self.state.open === st.id ? null : st.id }); },
+        items: items.map(function (a, i) { var f = SRC[a.s].l === 'FR'; return { time: a.t, firstFlag: i === 0, src: SRC[a.s][ui], tag: SRC[a.s].l, title: a.title, lead: a.lead, cdir: f ? 'ltr' : 'rtl', clang: f ? 'fr' : 'ar', cfont: FONT[f ? 'fr' : 'ar'] }; })
+      };
+    });
+    return { t: t, L: L, theme: theme, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui], stories: stories };
+  }
+}
+</script>
+</body>
+</html>

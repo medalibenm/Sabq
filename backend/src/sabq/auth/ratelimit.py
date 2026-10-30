@@ -24,6 +24,15 @@ class FailureLimiter:
     def blocked(self, *keys: str) -> bool:
         return any(self._count(key) >= self.max_failures for key in keys)
 
+    def retry_after(self, *keys: str) -> float:
+        """Seconds until none of these keys is blocked."""
+        waits = [
+            self._failures[key][-self.max_failures] + self.window_s - self.clock()
+            for key in keys
+            if self._count(key) >= self.max_failures
+        ]
+        return max(waits, default=0.0)
+
     def fail(self, *keys: str) -> None:
         moment = self.clock()
         if len(self._failures) > MAX_KEYS:  # many one-off emails: drop the expired ones

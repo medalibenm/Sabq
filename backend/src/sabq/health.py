@@ -18,9 +18,10 @@ Sources with problems are listed first, with how long they have been in their st
 """
 
 import statistics
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -35,6 +36,11 @@ FAILING_AFTER = 3  # failed polls in a row
 FEWER_ITEMS_RATIO = 0.3
 RUNS_FOR_USUAL_ITEMS = 20
 DELAY_WINDOW = timedelta(days=7)
+RHYTHM_MIN_DAYS = 3
+EDITION_MIN_ARTICLES = 10
+EDITION_SHARE = 0.8  # of a source's articles inside two neighbouring hours: a daily edition
+ALGIERS = ZoneInfo("Africa/Algiers")
+HEALTH_CACHE = timedelta(seconds=30)
 
 # problems first; then warnings; empty and ok last
 STATUS_RANK = {
@@ -66,6 +72,8 @@ class SourceHealth:
     usual_quiet_s: float | None = None
     last_items_seen: int | None = None
     usual_items_seen: float | None = None
+    articles_per_day: float | None = None  # last 14 days; None while still learning
+    edition_hour: int | None = None  # Algiers hour, for sources that publish one daily edition
     warnings: list[str] = field(default_factory=list)
 
     @property
@@ -83,6 +91,37 @@ class SourceHealth:
     def needs_attention(self) -> bool:
         return self.enabled and (self.rank[0] < 6)
 
+    @property
+    def state(self) -> str:
+        """What a journalist sees: `ok`, `delayed` or `stopped` (never the technical reason)."""
+        if self.status in ("broken", "unreachable", "blocked_by_robots"):
+            return "stopped"
+        if any(w.startswith("stale") for w in self.warnings):
+            return "stopped"
+        return "delayed" if self.status == "degraded" or self.warnings else "ok"
+
+    @property
+    def last_checked_at(self) -> datetime | None:
+        checks = [t for t in (self.last_success_at, self.last_failure_at) if t]
+        return max(checks) if checks else None
+
+
+_cached: tuple[datetime, list[SourceHealth]] | None = None
+
+
+async def recent_source_health(db: AsyncSession, now: datetime) -> list[SourceHealth]:
+    """`source_health` at most every `HEALTH_CACHE`: every open web app polls the source list,
+    and these queries read the whole `fetch_runs` table."""
+    global _cached
+    if _cached is None or now - _cached[0] >= HEALTH_CACHE:
+        _cached = (now, await source_health(db, now))
+    return _cached[1]
+
+
+def forget_recent_source_health() -> None:
+    global _cached
+    _cached = None
+
 
 def usual_quiet_period(times: list[datetime]) -> float | None:
     """Median of the longest gaps between consecutive new articles, one per day covered (s)."""
@@ -93,6 +132,24 @@ def usual_quiet_period(times: list[datetime]) -> float | None:
     days = (ordered[-1] - ordered[0]).total_seconds() / 86400
     used = max(1, min(GAPS_USED, round(days)))
     return statistics.median(sorted(gaps, reverse=True)[:used])
+
+
+def rhythm(times: list[datetime], now: datetime) -> tuple[float | None, int | None]:
+    """A source's usual output, so a quiet source doesn't look broken: articles per day, and
+    the Algiers hour of its daily edition if nearly all of them land together (Awras)."""
+    if not times:
+        return None, None
+    days = (now - min(times)).total_seconds() / 86400
+    if days < RHYTHM_MIN_DAYS:
+        return None, None
+    per_day = len(times) / days
+    hours = Counter(t.astimezone(ALGIERS).hour for t in times)
+    hour, share = max(
+        ((h, (hours[h] + hours[(h + 1) % 24]) / len(times)) for h in hours), key=lambda x: x[1]
+    )
+    if len(times) < EDITION_MIN_ARTICLES or share < EDITION_SHARE:
+        return per_day, None
+    return per_day, max((hour, (hour + 1) % 24), key=lambda h: hours[h])
 
 
 def silence_threshold(usual_quiet_s: float, poll_interval_s: int) -> float:
@@ -233,7 +290,9 @@ async def source_health(db: AsyncSession, now: datetime) -> list[SourceHealth]:
         times[source_id].append(first_seen)
     for source_id, seen in times.items():
         if source_id in by_id:
-            by_id[source_id].usual_quiet_s = usual_quiet_period(seen)
+            health = by_id[source_id]
+            health.usual_quiet_s = usual_quiet_period(seen)
+            health.articles_per_day, health.edition_hour = rhythm(seen, now)
 
     for health in by_id.values():
         health.warnings = warnings_for(health, now)

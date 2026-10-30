@@ -76,7 +76,15 @@ async def internal_articles(
     if org is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "no such organisation")
     query = page(
-        filtered(org.id, wilaya=wilaya, source=source, language=lang, since=since), None, limit
+        filtered(
+            org.id,
+            wilayas=[wilaya] if wilaya else None,
+            sources=[source] if source else None,
+            language=lang,
+            since=since,
+        ),
+        None,
+        limit,
     )
     rows = list(await db.scalars(query))
     bodies = {a.id: a.body_text for a in rows}

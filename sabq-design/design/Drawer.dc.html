@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — article detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<aside dir="{{dir}}" lang="{{ui}}" aria-label="{{L.detail}}" style="height: 100%; min-height: 100%; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.card}}; border-inline-end: 1px solid {{t.line}}; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums">
+  <div style="flex: none; display: flex; align-items: center; gap: 8px; height: 56px; padding-inline: 8px 16px; border-bottom: 1px solid {{t.line}}">
+    <button type="button" onClick="{{close}}" aria-label="{{L.close}}" style="width: 44px; height: 44px; border-radius: 8px; border: 0; background: transparent; color: {{t.text}}; display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <span style="font-size: 14px; font-weight: 600; color: {{t.text2}}">{{L.detail}}</span>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: auto; padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 16px">
+    <sc-if value="{{it.hasImg}}" hint-placeholder-val="{{ true }}">
+      <div role="img" aria-label="{{L.imageAlt}}" style="width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; background: {{it.imgBg}}; display: flex; align-items: center; justify-content: center; color: {{t.text3}}">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" opacity="0.7"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-9 9"></path></svg>
+      </div>
+    </sc-if>
+
+    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px">
+      <span style="font-weight: 600"><bdi>{{it.srcName}}</bdi></span>
+      <span style="font: 600 10.5px/16px 'IBM Plex Sans',system-ui,sans-serif; padding-inline: 5px; border-radius: 4px; border: 1px solid {{t.line2}}; color: {{t.text2}}">{{it.langTag}}</span>
+      <sc-if value="{{it.edited}}" hint-placeholder-val="{{ false }}">
+        <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 4px; background: {{t.chip}}; color: {{t.text2}}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg>
+          {{it.editLabel}}
+        </span>
+      </sc-if>
+    </div>
+
+    <h2 dir="{{it.cdir}}" lang="{{it.clang}}" style="margin: 0; font: 600 22px/1.45 {{it.cfont}}; text-align: start; text-wrap: pretty">{{it.title}}</h2>
+    <p dir="{{it.cdir}}" lang="{{it.clang}}" style="margin: 0; font: 400 15.5px/1.75 {{it.cfont}}; color: {{t.text2}}; text-align: start">{{it.lead}}</p>
+
+    <div style="display: flex; gap: 6px; flex-wrap: wrap">
+      <sc-for list="{{it.wil}}" as="w" hint-placeholder-count="2">
+        <span style="font-size: 12px; line-height: 24px; padding-inline: 9px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}">{{w.label}}</span>
+      </sc-for>
+    </div>
+
+    <dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border-radius: 8px; overflow: hidden; border: 1px solid {{t.line}}; background: {{t.line}}">
+      <div style="padding: 10px 12px; background: {{t.panel}}; display: flex; flex-direction: column; gap: 3px">
+        <dt style="font-size: 12px; color: {{t.text2}}">{{L.published}}</dt>
+        <dd style="margin: 0; font-size: 15px; font-weight: 600; font-family: 'IBM Plex Sans',system-ui,sans-serif; text-align: start">{{it.published}}<sc-if value="{{it.est}}" hint-placeholder-val="{{ false }}"><span style="font: 400 12px {{font}}; color: {{t.text3}}"> · {{L.estimated}}</span></sc-if></dd>
+      </div>
+      <div style="padding: 10px 12px; background: {{t.panel}}; display: flex; flex-direction: column; gap: 3px">
+        <dt style="font-size: 12px; color: {{t.text2}}">{{L.seen}}</dt>
+        <dd style="margin: 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap">
+          <span style="font-size: 15px; font-weight: 600; font-family: 'IBM Plex Sans',system-ui,sans-serif">{{it.seen}}</span>
+          <span style="font-size: 12px; color: {{t.text3}}">{{it.gap}}</span>
+        </dd>
+      </div>
+      <sc-if value="{{it.hasAuthor}}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 10px 12px; background: {{t.panel}}; display: flex; flex-direction: column; gap: 3px">
+          <dt style="font-size: 12px; color: {{t.text2}}">{{L.author}}</dt>
+          <dd style="margin: 0; font-size: 14px; font-weight: 500"><bdi>{{it.author}}</bdi></dd>
+        </div>
+      </sc-if>
+      <sc-if value="{{it.hasSection}}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 10px 12px; background: {{t.panel}}; display: flex; flex-direction: column; gap: 3px">
+          <dt style="font-size: 12px; color: {{t.text2}}">{{L.section}}</dt>
+          <dd style="margin: 0; font-size: 14px; font-weight: 500"><bdi>{{it.section}}</bdi></dd>
+        </div>
+      </sc-if>
+    </dl>
+    <p style="margin: -6px 0 0; font-size: 12px; color: {{t.text3}}">{{L.tz}}</p>
+
+    <sc-if value="{{it.hasSame}}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="same-h" style="display: flex; flex-direction: column; gap: 0; margin-top: 4px">
+        <h3 id="same-h" style="margin: 0 0 8px; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 13l9 5 9-5"></path></svg>
+          {{sameTitle}}
+        </h3>
+        <sc-for list="{{it.same}}" as="o" hint-placeholder-count="3">
+          <button type="button" onClick="{{o.open}}" style="display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border: 0; border-top: 1px solid {{t.line}}; background: transparent; color: {{t.text}}; font-family: {{font}}; text-align: start; cursor: pointer">
+            <span style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: {{t.text2}}">
+              <span style="font-weight: 600; color: {{t.text}}"><bdi>{{o.srcName}}</bdi></span>
+              <span style="font: 600 10px/15px 'IBM Plex Sans',system-ui,sans-serif; padding-inline: 4px; border-radius: 3px; border: 1px solid {{t.line2}}">{{o.langTag}}</span>
+              <time title="{{o.exactTitle}}">{{o.relText}}</time>
+            </span>
+            <span dir="{{o.cdir}}" lang="{{o.clang}}" style="display: block; width: 100%; font: 500 14.5px/1.55 {{o.cfont}}; text-align: start">{{o.title}}</span>
+          </button>
+        </sc-for>
+      </section>
+    </sc-if>
+  </div>
+
+  <div style="flex: none; padding: 14px 24px 18px; border-top: 1px solid {{t.line}}; background: {{t.card}}; display: flex; flex-direction: column; gap: 8px">
+    <a href="#original" target="_blank" rel="noopener" style="height: 52px; border-radius: 10px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; text-decoration: none">
+      {{L.openOriginal}}
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg>
+    </a>
+    <span style="text-align: center; font-size: 12px; color: {{t.text3}}">{{L.opensOn}} <bdi>{{it.srcName}}</bdi></span>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"item":{"editor":null},"theme":{"editor":"enum","options":["dark","light"],"default":"dark"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"onClose":{"editor":null},"$preview":{"width":560,"height":1100}}'>
+var TK = {
+  dark: {card:'#191B1F',panel:'#15171A',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',onAcc:'#1A1600',chip:'#23262B'},
+  light: {card:'#FFFFFF',panel:'#FAFAF8',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',onAcc:'#1A1600',chip:'#EFEFEB'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var LBL = {
+  ar: {detail:'تفاصيل المقال', close:'إغلاق', imageAlt:'صورة المقال من المصدر', published:'نُشر في', seen:'رصده سبق في', estimated:'تقديري', author:'الكاتب', section:'القسم', tz:'كل الأوقات بتوقيت الجزائر', same:'القصة نفسها لدى مصادر أخرى', openOriginal:'فتح المقال الأصلي', opensOn:'يُفتح في تبويب جديد على موقع'},
+  fr: {detail:'Détail de l’article', close:'Fermer', imageAlt:'Image de l’article fournie par la source', published:'Publié à', seen:'Détecté par Sabq à', estimated:'estimée', author:'Auteur', section:'Rubrique', tz:'Toutes les heures en heure d’Alger', same:'Même sujet dans d’autres sources', openOriginal:'Ouvrir l’article original', opensOn:'S’ouvre dans un nouvel onglet sur le site de'}
+};
+var SAMPLE = {
+  srcName:'وكالة الأنباء الجزائرية', langTag:'AR', cdir:'rtl', clang:'ar', cfont:FONT.ar,
+  title:'نشرية خاصة: أمطار رعدية غزيرة على ولايات باتنة وسطيف والجلفة ابتداءً من مساء اليوم',
+  lead:'حذّرت مصالح الأرصاد الجوية من أمطار رعدية قد يبلغ منسوبها 40 ملم محليًا، مصحوبة بهبوب رياح قوية أحيانًا، وذلك من السادسة مساءً إلى غاية صباح الخميس. وتدعو المصالح المعنية مستعملي الطرق إلى توخي الحذر وتجنب التنقل غير الضروري.',
+  hasImg:true, imgBg:'#2A3340', author:'', hasAuthor:false, section:'مجتمع', hasSection:true,
+  wil:[{label:'05 باتنة'},{label:'19 سطيف'},{label:'17 الجلفة'}], published:'19:04:12', est:false, seen:'19:05:01', gap:'رُصد بعد 1 د',
+  edited:true, editLabel:'عُدّل مرتين · آخر تعديل 19:07', hasSame:true,
+  same:[
+    {srcName:'الأوراس نيوز', langTag:'AR', relText:'منذ 3 د', exactTitle:'19:05', title:'باتنة: نشرية جوية خاصة تحذّر من أمطار رعدية والحماية المدنية تدعو إلى الحذر على الطرقات', cdir:'rtl', clang:'ar', cfont:FONT.ar},
+    {srcName:'El Moudjahid', langTag:'FR', relText:'منذ 2 د', exactTitle:'19:06', title:'BMS : fortes pluies orageuses attendues sur Batna, Sétif et Djelfa', cdir:'ltr', clang:'fr', cfont:FONT.fr},
+    {srcName:'L’Expression', langTag:'FR', relText:'منذ 1 د', exactTitle:'19:07', title:'Intempéries dans l’Est : les automobilistes appelés à la prudence jusqu’à jeudi', cdir:'ltr', clang:'fr', cfont:FONT.fr}
+  ]
+};
+class Component extends DCLogic {
+  renderVals() {
+    var self = this, theme = this.props.theme || 'dark', ui = this.props.ui || 'ar';
+    var t = TK[theme], L = LBL[ui];
+    var it = this.props.item || Object.assign({}, SAMPLE, { imgBg: theme === 'light' ? '#CBD5DF' : '#2A3340' });
+    return {
+      it: it, t: t, L: L, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui],
+      sameTitle: L.same + ' (' + (it.same || []).length + ')',
+      close: function () { if (self.props.onClose) self.props.onClose(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

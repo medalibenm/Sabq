@@ -45,6 +45,8 @@ class SourceHealthOut(BaseModel):
     usual_quiet_s: float | None
     last_items_seen: int | None
     usual_items_seen: float | None
+    articles_per_day: float | None
+    edition_hour: int | None
 
 
 def out(health: SourceHealth) -> SourceHealthOut:

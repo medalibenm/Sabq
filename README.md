@@ -20,6 +20,7 @@ wilaya-based access separation.
 | [docs/ai-investigation.md](docs/ai-investigation.md) | The automated AI investigation and repair design (deferred) |
 | [docs/decisions.md](docs/decisions.md) | Decision log and open questions |
 | [docs/poc-lessons.md](docs/poc-lessons.md) | What the proof of concept proved, site by site |
+| [docs/ui-design-prompt.md](docs/ui-design-prompt.md) | The design brief; the resulting design and handoff are in `sabq-design/` |
 
 ## Run it locally
 Requires Docker. From the repository root:
@@ -30,8 +31,11 @@ docker compose up -d --build  # db, migrate, app, worker, proxy, mailpit
 curl http://localhost/health.json   # per-source page: http://localhost/health (Sabq team login)
 ```
 
-- Test UI (not the final frontend): http://localhost/ui · API (with code reload): http://localhost:8010 (interactive docs at `/docs`; the frontend
+- Web app: http://localhost · Team test UI: http://localhost/ui · API (with code reload): http://localhost:8010 (interactive docs at `/docs`; the frontend
   contract is `docs/openapi.json`) · Mailpit (dev emails, e.g. invite links): http://localhost:8025
+- Frontend with hot reload (API in Docker): `cd frontend && npm install && npm run dev`, then
+  http://localhost:5173. Tests: `npm test`. After an API change, run `npm run api` for the types.
+  The app at http://localhost is a built image: `docker compose up -d --build proxy` to refresh it.
 - Tests: `cd backend && uv run pytest`. Database tests need a **separate** database, because
   they empty tables: `DATABASE_URL=postgresql+psycopg://sabq:<password>@localhost:5440/sabq_test`
   (create it once: `docker compose exec db psql -U sabq -c "CREATE DATABASE sabq_test"`).

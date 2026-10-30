@@ -14,7 +14,7 @@ from sqlalchemy import delete, func, select, update
 from sqlalchemy.orm import Session
 
 from sabq.audit import record
-from sabq.db.models import AuthToken, Organisation, User, UserSession
+from sabq.db.models import AuditEvent, AuthToken, Organisation, User, UserSession
 from sabq.settings import Settings
 
 ROLES = ("owner", "admin", "editor", "viewer")
@@ -108,18 +108,56 @@ def invite(
     return user, token
 
 
-def redeem(session: Session, kind: str, token: str) -> User:
-    """The user a valid, unused, unexpired token belongs to; the token is used up."""
+def _valid_token(session: Session, kind: str, token: str) -> tuple[AuthToken, User]:
     row = session.scalar(
         select(AuthToken).where(AuthToken.token_hash == digest(token), AuthToken.kind == kind)
     )
     if row is None or row.used_at is not None or row.expires_at <= now():
         raise AuthError("this link is invalid or has expired", status=400)
-    row.used_at = now()
     user = session.get(User, row.user_id)
     if user.status == "disabled":
         raise AuthError("this link is invalid or has expired", status=400)
+    return row, user
+
+
+def peek(session: Session, kind: str, token: str) -> User:
+    """The user of a valid token, which stays unused (the page behind an email link)."""
+    return _valid_token(session, kind, token)[1]
+
+
+def redeem(session: Session, kind: str, token: str) -> User:
+    """The user a valid, unused, unexpired token belongs to; the token is used up."""
+    row, user = _valid_token(session, kind, token)
+    row.used_at = now()
     return user
+
+
+def inviter_name(session: Session, user: User) -> str | None:
+    """Who sent the latest invitation (None when it came from the CLI)."""
+    inviter_id = session.scalar(
+        select(AuditEvent.user_id)
+        .where(AuditEvent.action == "user.invited", AuditEvent.entity_id == str(user.id))
+        .order_by(AuditEvent.id.desc())
+        .limit(1)
+    )
+    inviter = session.get(User, inviter_id) if inviter_id else None
+    return (inviter.display_name or None) if inviter else None
+
+
+def cancel_invite(session: Session, user: User, actor: User) -> None:
+    """An unaccepted invitation disappears, so the same email can be invited again."""
+    session.execute(delete(AuthToken).where(AuthToken.user_id == user.id))
+    record(
+        session,
+        f"user:{actor.id}",
+        "user.invite_cancelled",
+        "user",
+        user.id,
+        {"email": user.email},
+        organisation_id=user.organisation_id,
+        user_id=actor.id,
+    )
+    session.delete(user)
 
 
 def activate(session: Session, user: User, password_hash: str, display_name: str | None) -> None:

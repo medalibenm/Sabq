@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — navigation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<nav dir="{{dir}}" lang="{{ui}}" aria-label="{{label}}" style="width: 72px; min-height: 100%; height: 100%; box-sizing: border-box; padding: 10px 8px; display: flex; flex-direction: column; gap: 4px; background: {{t.panel}}; border-inline-end: 1px solid {{t.line}}; font-family: {{font}}">
+  <a href="Main.dc.html" aria-current="{{radar.cur}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; border-radius: 8px; background: {{radar.bg}}; color: {{radar.fg}}; text-decoration: none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{radar.ic}}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="1.6" fill="{{radar.ic}}"></circle><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M12 7.5a4.5 4.5 0 1 0 4.5 4.5"></path><path d="M12 12l6-6"></path></svg>
+    <span style="font-size: 11.5px; font-weight: {{radar.w}}">{{L.radar}}</span>
+  </a>
+  <a href="Sources.dc.html" aria-current="{{sources.cur}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; border-radius: 8px; background: {{sources.bg}}; color: {{sources.fg}}; text-decoration: none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{sources.ic}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a14 14 0 0 1 14 14M5 11a8 8 0 0 1 8 8"></path><circle cx="6" cy="18" r="1.5"></circle></svg>
+    <span style="font-size: 11.5px; font-weight: {{sources.w}}">{{L.sources}}</span>
+  </a>
+  <sc-if value="{{showTeam}}" hint-placeholder-val="{{ true }}">
+    <a href="Team.dc.html" aria-current="{{team.cur}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; border-radius: 8px; background: {{team.bg}}; color: {{team.fg}}; text-decoration: none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{team.ic}}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c1-3.5 3.6-5.5 6.5-5.5s5.5 2 6.5 5.5"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.7.7 3 2.5 3.5 5.2"></path></svg>
+      <span style="font-size: 11.5px; font-weight: {{team.w}}">{{L.team}}</span>
+    </a>
+  </sc-if>
+  <a href="Account.dc.html" aria-current="{{account.cur}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; border-radius: 8px; background: {{account.bg}}; color: {{account.fg}}; text-decoration: none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{account.ic}}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+    <span style="font-size: 11.5px; font-weight: {{account.w}}">{{L.account}}</span>
+  </a>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"active":{"editor":"enum","options":["radar","sources","team","account"],"default":"radar"},"role":{"editor":"enum","options":["owner","admin","editor","viewer"],"default":"admin"},"$preview":{"width":72,"height":900}}'>
+var TK = {
+  dark: {panel:'#141619',line:'#272A30',text:'#EDEDEF',text2:'#A9ACB4',acc:'#FFD23F',chip:'#23262B'},
+  light: {panel:'#FAFAF8',line:'#E2E2DD',text:'#16171A',text2:'#4B4D55',acc:'#835800',chip:'#EBEBE6'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var LBL = { ar: {label:'التنقل الرئيسي', radar:'الرادار', sources:'المصادر', team:'الفريق', account:'الحساب'}, fr: {label:'Navigation principale', radar:'Radar', sources:'Sources', team:'Équipe', account:'Compte'} };
+class Component extends DCLogic {
+  renderVals() {
+    var theme = this.props.theme || 'dark', ui = this.props.ui || 'ar', active = this.props.active || 'radar', role = this.props.role || 'admin';
+    var t = TK[theme];
+    var st = function (k) { var on = k === active; return { cur: on ? 'page' : 'false', bg: on ? t.chip : 'transparent', fg: on ? t.text : t.text2, ic: on ? t.acc : t.text2, w: on ? '600' : '500' }; };
+    return { t: t, L: LBL[ui], ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui], label: LBL[ui].label,
+      radar: st('radar'), sources: st('sources'), team: st('team'), account: st('account'),
+      showTeam: role === 'owner' || role === 'admin' };
+  }
+}
+</script>
+</body>
+</html>

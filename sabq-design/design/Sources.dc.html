@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — Sources</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="{{dir}}" lang="{{ui}}" style="min-height: 100vh; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums">
+  <dc-import name="TopBar" theme="{{theme}}" ui="{{ui}}" tab="none" title="{{L.title}}" live="up" hint-size="100%,56px"></dc-import>
+  <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch">
+    <dc-import name="SideNav" theme="{{theme}}" ui="{{ui}}" active="sources" hint-size="72px,100%"></dc-import>
+    <main style="flex: 999 1 560px; min-width: 0; padding: 24px 28px 48px; box-sizing: border-box">
+      <div style="max-width: 1240px; margin-inline: auto; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+        <section aria-labelledby="src-h" style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <h1 id="src-h" style="margin: 0; font-size: 22px; font-weight: 700">{{L.heading}}</h1>
+              <p style="margin: 0; font-size: 13.5px; color: {{t.text2}}">{{L.sub}}</p>
+            </div>
+            <div style="margin-inline-start: auto; display: flex; gap: 8px; flex-wrap: wrap">
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding-inline: 10px; border-radius: 999px; background: {{t.okSoft}}; color: {{t.ok}}; font-size: 12.5px; font-weight: 600">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l3 3 5-6"></path></svg>
+                8 {{L.okPl}}
+              </span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding-inline: 10px; border-radius: 999px; background: {{t.warnSoft}}; color: {{t.warn}}; font-size: 12.5px; font-weight: 600">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+                1 {{L.delayed}}
+              </span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding-inline: 10px; border-radius: 999px; background: {{t.badSoft}}; color: {{t.bad}}; font-size: 12.5px; font-weight: 600">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"></path></svg>
+                1 {{L.stopped}}
+              </span>
+            </div>
+          </div>
+
+          <div style="overflow-x: auto; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+            <table style="width: 100%; min-width: 820px; border-collapse: collapse; font-size: 13.5px">
+              <thead>
+                <tr style="background: {{t.head}}">
+                  <th scope="col" style="padding: 10px 14px; text-align: start; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{L.cName}}</th>
+                  <th scope="col" style="padding: 10px 14px; text-align: start; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{L.cType}}</th>
+                  <th scope="col" style="padding: 10px 14px; text-align: start; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{L.cWil}}</th>
+                  <th scope="col" style="padding: 10px 14px; text-align: start; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{L.cStatus}}</th>
+                  <th scope="col" style="padding: 10px 14px; text-align: start; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{L.cChecked}}</th>
+                  <th scope="col" style="padding: 10px 14px; text-align: start; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{L.cRhythm}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+                  <tr style="border-top: 1px solid {{t.line}}; background: {{r.rowBg}}">
+                    <th scope="row" style="padding: 12px 14px; text-align: start; font-weight: 400; vertical-align: top">
+                      <span style="display: flex; align-items: center; gap: 8px">
+                        <span style="font-weight: 600; font-size: 14px"><bdi>{{r.name}}</bdi></span>
+                        <span style="font: 600 10px/15px 'IBM Plex Sans',system-ui,sans-serif; padding-inline: 4px; border-radius: 3px; border: 1px solid {{t.line2}}; color: {{t.text2}}">{{r.lang}}</span>
+                      </span>
+                      <sc-if value="{{r.hasNote}}" hint-placeholder-val="{{ false }}"><span style="display: block; margin-top: 4px; font-size: 12.5px; line-height: 1.5; color: {{t.text2}}; max-width: 300px">{{r.note}}</span></sc-if>
+                    </th>
+                    <td style="padding: 12px 14px; vertical-align: top; color: {{t.text2}}">{{r.type}}</td>
+                    <td style="padding: 12px 14px; vertical-align: top"><span style="font-size: 12px; line-height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}; white-space: nowrap">{{r.wil}}</span></td>
+                    <td style="padding: 12px 14px; vertical-align: top">
+                      <sc-if value="{{r.ok}}" hint-placeholder-val="{{ true }}">
+                        <span style="display: inline-flex; align-items: center; gap: 5px; font-weight: 600; color: {{t.ok}}; white-space: nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l3 3 5-6"></path></svg>{{L.ok}}</span>
+                      </sc-if>
+                      <sc-if value="{{r.late}}" hint-placeholder-val="{{ false }}">
+                        <span style="display: inline-flex; align-items: center; gap: 5px; font-weight: 600; color: {{t.warn}}; white-space: nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{L.delayed}}</span>
+                      </sc-if>
+                      <sc-if value="{{r.stop}}" hint-placeholder-val="{{ false }}">
+                        <span style="display: inline-flex; align-items: center; gap: 5px; font-weight: 600; color: {{t.bad}}; white-space: nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"></path></svg>{{L.stopped}}</span>
+                      </sc-if>
+                    </td>
+                    <td style="padding: 12px 14px; vertical-align: top; color: {{t.text2}}; white-space: nowrap">{{r.checked}}</td>
+                    <td style="padding: 12px 14px; vertical-align: top; color: {{t.text2}}">{{r.rhythm}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin: 0; font-size: 12.5px; color: {{t.text3}}">{{L.rhythmHint}}</p>
+        </section>
+
+        <aside style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <form style="display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+            <h2 style="margin: 0; font-size: 16px; font-weight: 600">{{L.reqTitle}}</h2>
+            <p style="margin: 0; font-size: 13px; line-height: 1.6; color: {{t.text2}}">{{L.reqSub}}</p>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="req-url" style="font-size: 13px; font-weight: 600">{{L.url}}</label>
+              <input id="req-url" type="url" dir="ltr" placeholder="https://" style="height: 42px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 14px 'IBM Plex Sans',system-ui,sans-serif; text-align: left">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="req-note" style="font-size: 13px; font-weight: 600">{{L.note}} <span style="font-weight: 400; color: {{t.text3}}">{{L.optional}}</span></label>
+              <textarea id="req-note" rows="3" placeholder="{{L.notePh}}" style="box-sizing: border-box; padding: 10px 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 14px/1.5 {{font}}; resize: vertical"></textarea>
+            </div>
+            <button type="button" style="height: 44px; border-radius: 8px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 700 14px {{font}}; cursor: pointer">{{L.send}}</button>
+          </form>
+
+          <section aria-labelledby="myreq-h" style="display: flex; flex-direction: column; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; overflow: hidden">
+            <h2 id="myreq-h" style="margin: 0; padding: 14px 18px; font-size: 16px; font-weight: 600; border-bottom: 1px solid {{t.line}}">{{L.myReq}}</h2>
+            <sc-for list="{{requests}}" as="q" hint-placeholder-count="3">
+              <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px 18px; border-bottom: 1px solid {{t.line}}">
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <span dir="ltr" style="flex: 1; min-width: 0; font: 500 13px 'IBM Plex Sans',system-ui,sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: {{alignStart}}">{{q.url}}</span>
+                  <span style="flex: none; display: inline-flex; align-items: center; gap: 5px; height: 22px; padding-inline: 8px; border-radius: 999px; background: {{q.bg}}; color: {{q.fg}}; font-size: 12px; font-weight: 600">
+                    <sc-if value="{{q.pending}}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></sc-if>
+                    <sc-if value="{{q.added}}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+                    <sc-if value="{{q.declined}}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+                    {{q.label}}
+                  </span>
+                </div>
+                <span style="font-size: 12.5px; color: {{t.text3}}">{{q.date}}</span>
+                <sc-if value="{{q.hasReason}}" hint-placeholder-val="{{ false }}">
+                  <p style="margin: 0; padding: 8px 10px; border-radius: 6px; background: {{t.chip}}; font-size: 12.5px; line-height: 1.6; color: {{t.text2}}">{{q.reason}}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"$preview":{"width":1440,"height":1100}}'>
+var TK = {
+  dark: {bg:'#0F1012',card:'#191B1F',head:'#16181C',field:'#15171A',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',onAcc:'#1A1600',chip:'#23262B',ok:'#4ADE80',okSoft:'rgba(74,222,128,0.12)',warn:'#FB923C',warnSoft:'rgba(251,146,60,0.13)',bad:'#F87171',badSoft:'rgba(248,113,113,0.13)',badRow:'rgba(248,113,113,0.06)',warnRow:'rgba(251,146,60,0.05)',neutralSoft:'#2A2D33'},
+  light: {bg:'#F3F3F0',card:'#FFFFFF',head:'#FAFAF8',field:'#FFFFFF',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',onAcc:'#1A1600',chip:'#EFEFEB',ok:'#1C7A3B',okSoft:'#E3F4E8',warn:'#B54E0B',warnSoft:'#FDEBDD',bad:'#C1272D',badSoft:'#FBE5E5',badRow:'#FFF7F7',warnRow:'#FFFAF5',neutralSoft:'#EFEFEB'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var TYPE = { agency: {ar:'وكالة أنباء', fr:'Agence'}, official: {ar:'رسمي', fr:'Officiel'}, national: {ar:'صحافة وطنية', fr:'Presse nationale'}, regional: {ar:'صحافة جهوية', fr:'Presse régionale'} };
+var WIL = { '00': {ar:'00 وطني', fr:'00 National'}, '05': {ar:'05 باتنة', fr:'05 Batna'}, '17': {ar:'17 الجلفة', fr:'17 Djelfa'}, '19': {ar:'19 سطيف', fr:'19 Sétif'} };
+var ROWS = [
+  {ar:'وكالة الأنباء الجزائرية', fr:'APS', l:'AR', type:'agency', w:'00', st:'ok', chk:{ar:'منذ 40 ث', fr:'il y a 40 s'}, rh:{ar:'~120 مقالًا يوميًا', fr:'~120 articles / jour'}},
+  {ar:'رئاسة الجمهورية', fr:'Présidence de la République', l:'AR', type:'official', w:'00', st:'ok', chk:{ar:'منذ 1 د', fr:'il y a 1 min'}, rh:{ar:'بضعة بيانات أسبوعيًا', fr:'Quelques communiqués / semaine'}},
+  {ar:'الأناضول', fr:'Anadolu', l:'AR', type:'agency', w:'00', st:'ok', chk:{ar:'منذ 25 ث', fr:'il y a 25 s'}, rh:{ar:'~40 مقالًا يوميًا', fr:'~40 articles / jour'}},
+  {ar:'الحياة', fr:'El Hayat', l:'AR', type:'national', w:'00', st:'late', chk:{ar:'منذ 14 د', fr:'il y a 14 min'}, rh:{ar:'~30 مقالًا يوميًا', fr:'~30 articles / jour'}, note:{ar:'الموقع يستجيب ببطء؛ قد تصل المقالات بتأخير بضع دقائق.', fr:'Le site répond lentement ; les articles peuvent arriver avec quelques minutes de retard.'}},
+  {ar:'الأوراس نيوز', fr:'Awras News', l:'AR', type:'regional', w:'05', st:'ok', chk:{ar:'منذ 50 ث', fr:'il y a 50 s'}, rh:{ar:'نشرة يومية حوالي منتصف الليل', fr:'Édition quotidienne vers minuit'}},
+  {ar:'الهضاب', fr:'El Hidhab', l:'AR', type:'regional', w:'05', st:'stop', chk:{ar:'منذ 2 د', fr:'il y a 2 min'}, rh:{ar:'~8 مقالات يوميًا', fr:'~8 articles / jour'}, note:{ar:'لم نتمكن من قراءة الموقع منذ 3 س. فريق سبق يعمل على الإصلاح.', fr:'Site illisible depuis 3 h. L’équipe Sabq travaille à la correction.'}},
+  {ar:'الجلفة إنفو', fr:'Djelfa Info', l:'AR', type:'regional', w:'17', st:'ok', chk:{ar:'منذ 1 د', fr:'il y a 1 min'}, rh:{ar:'~10 مقالات يوميًا', fr:'~10 articles / jour'}},
+  {ar:'سطيف وان', fr:'Setif One', l:'AR', type:'regional', w:'19', st:'ok', chk:{ar:'منذ 35 ث', fr:'il y a 35 s'}, rh:{ar:'~20 مقالًا يوميًا', fr:'~20 articles / jour'}},
+  {ar:'El Moudjahid', fr:'El Moudjahid', l:'FR', type:'national', w:'00', st:'ok', chk:{ar:'منذ 45 ث', fr:'il y a 45 s'}, rh:{ar:'~35 مقالًا يوميًا', fr:'~35 articles / jour'}},
+  {ar:'L’Expression', fr:'L’Expression', l:'FR', type:'national', w:'00', st:'ok', chk:{ar:'منذ 1 د', fr:'il y a 1 min'}, rh:{ar:'~25 مقالًا يوميًا', fr:'~25 articles / jour'}}
+];
+var LBL = {
+  ar: {title:'المصادر', heading:'مصادر مؤسستك', sub:'10 مصادر مشترَك فيها · تُفحص كل دقيقة تقريبًا', ok:'يعمل', okPl:'تعمل', delayed:'متأخر', stopped:'متوقف',
+       cName:'المصدر', cType:'النوع', cWil:'الولاية', cStatus:'الحالة', cChecked:'آخر فحص', cRhythm:'الإيقاع المعتاد',
+       rhythmHint:'الإيقاع المعتاد يساعدك على التمييز: مصدر هادئ ليس بالضرورة متوقفًا.',
+       reqTitle:'اطلب مصدرًا', reqSub:'موقع إخباري غير موجود في القائمة؟ أرسل رابطه وسيراجعه فريق سبق ويُعلمك بالنتيجة هنا.', url:'رابط الموقع', note:'ملاحظة', optional:'(اختياري)', notePh:'مثلًا: القسم الذي يهمكم أو سبب الطلب', send:'إرسال الطلب',
+       myReq:'طلباتي', pending:'قيد المراجعة', added:'أُضيف', declined:'مرفوض'},
+  fr: {title:'Sources', heading:'Sources de votre rédaction', sub:'10 sources suivies · vérifiées environ chaque minute', ok:'Active', okPl:'actives', delayed:'En retard', stopped:'Arrêtée',
+       cName:'Source', cType:'Type', cWil:'Wilaya', cStatus:'Statut', cChecked:'Dernière vérif.', cRhythm:'Rythme habituel',
+       rhythmHint:'Le rythme habituel aide à distinguer : une source calme n’est pas forcément en panne.',
+       reqTitle:'Demander une source', reqSub:'Un site d’info absent de la liste ? Envoyez son lien : l’équipe Sabq l’examinera et vous répondra ici.', url:'Adresse du site', note:'Note', optional:'(facultatif)', notePh:'Par ex. la rubrique qui vous intéresse', send:'Envoyer la demande',
+       myReq:'Mes demandes', pending:'En attente', added:'Ajoutée', declined:'Refusée'}
+};
+class Component extends DCLogic {
+  renderVals() {
+    var theme = this.props.theme || 'light', ui = this.props.ui || 'ar';
+    var t = TK[theme], L = LBL[ui];
+    var rows = ROWS.map(function (r) {
+      return { name: r[ui], lang: r.l, type: TYPE[r.type][ui], wil: WIL[r.w][ui], ok: r.st === 'ok', late: r.st === 'late', stop: r.st === 'stop',
+        rowBg: r.st === 'stop' ? t.badRow : (r.st === 'late' ? t.warnRow : 'transparent'),
+        checked: r.chk[ui], rhythm: r.rh[ui], hasNote: !!r.note, note: r.note ? r.note[ui] : '' };
+    });
+    var rq = function (url, kind, date, reason) {
+      var c = kind === 'added' ? [t.okSoft, t.ok] : kind === 'declined' ? [t.badSoft, t.bad] : [t.neutralSoft, t.text2];
+      return { url: url, label: L[kind], pending: kind === 'pending', added: kind === 'added', declined: kind === 'declined', bg: c[0], fg: c[1], date: date, hasReason: !!reason, reason: reason || '' };
+    };
+    var requests = ui === 'ar' ? [
+      rq('https://www.batna-info.dz', 'pending', 'أُرسل في 26 أكتوبر 2026'),
+      rq('https://www.wilaya-setif.dz/actualites', 'added', 'أُرسل في 12 أكتوبر 2026 · أُضيف في 14 أكتوبر'),
+      rq('https://www.facebook.com/djelfa.news.page', 'declined', 'أُرسل في 3 أكتوبر 2026', 'سبب الرفض: صفحات الشبكات الاجتماعية غير مدعومة حاليًا، نراقب المواقع الإخبارية فقط.')
+    ] : [
+      rq('https://www.batna-info.dz', 'pending', 'Envoyée le 26 oct. 2026'),
+      rq('https://www.wilaya-setif.dz/actualites', 'added', 'Envoyée le 12 oct. 2026 · ajoutée le 14 oct.'),
+      rq('https://www.facebook.com/djelfa.news.page', 'declined', 'Envoyée le 3 oct. 2026', 'Motif : les pages de réseaux sociaux ne sont pas prises en charge pour l’instant, seuls les sites d’information le sont.')
+    ];
+    return { t: t, L: L, theme: theme, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui], rows: rows, requests: requests, alignStart: ui === 'ar' ? 'right' : 'left' };
+  }
+}
+</script>
+</body>
+</html>

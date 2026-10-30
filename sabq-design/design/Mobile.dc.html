@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="{{dir}}" lang="{{ui}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.text}}; font-family: {{font}}; font-variant-numeric: tabular-nums">
+
+  <header style="flex: none; height: 56px; display: flex; align-items: center; gap: 10px; padding-inline: 16px 8px; background: {{t.panel}}">
+    <span style="width: 28px; height: 28px; border-radius: 7px; background: {{t.acc}}; display: flex; align-items: center; justify-content: center">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1600" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="1.8" fill="#1A1600" stroke="none"></circle><path d="M12 4a8 8 0 1 0 8 8"></path><path d="M12 8a4 4 0 1 0 4 4"></path><path d="M12 12l6.5-6.5"></path></svg>
+    </span>
+    <sc-if value="{{hasTabs}}" hint-placeholder-val="{{ true }}"><span style="font-size: 18px; font-weight: 700">{{L.brand}}</span></sc-if>
+    <sc-if value="{{hasPageTitle}}" hint-placeholder-val="{{ false }}"><h1 style="margin: 0; font-size: 17px; font-weight: 700">{{pageTitle}}</h1></sc-if>
+    <span style="flex: 1"></span>
+    <span role="status" style="display: flex; align-items: center; gap: 6px; height: 28px; padding-inline: 10px; border-radius: 999px; background: {{t.chip}}; font-size: 12.5px; font-weight: 600">
+      <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="3" fill="{{t.acc}}" opacity="0.5"><animate attributeName="r" values="3;6;3" dur="1.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0;0.55" dur="1.8s" repeatCount="indefinite"></animate></circle><circle cx="6" cy="6" r="3.2" fill="{{t.acc}}" stroke="{{t.dotRing}}" stroke-width="1.2"></circle></svg>
+      {{L.live}}
+    </span>
+    <button type="button" aria-label="{{L.search}}" style="width: 44px; height: 44px; border-radius: 8px; border: 0; background: transparent; color: {{t.text}}; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+    </button>
+  </header>
+
+  <sc-if value="{{hasTabs}}" hint-placeholder-val="{{ true }}">
+    <div style="flex: none; display: flex; align-items: stretch; gap: 4px; padding-inline: 8px; height: 46px; background: {{t.panel}}; border-bottom: 1px solid {{t.line}}">
+      <nav aria-label="{{L.views}}" style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr))">
+        <a href="M-Stream.dc.html" aria-current="{{tabStreamCur}}" style="display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: {{tabStreamW}}; color: {{tabStreamC}}; text-decoration: none; border-bottom: 2px solid {{tabStreamBar}}">{{L.stream}}</a>
+        <a href="M-Stories.dc.html" aria-current="{{tabStoriesCur}}" style="display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: {{tabStoriesW}}; color: {{tabStoriesC}}; text-decoration: none; border-bottom: 2px solid {{tabStoriesBar}}">{{L.stories}}</a>
+      </nav>
+      <button type="button" onClick="{{openFilters}}" aria-label="{{L.filters}}" style="position: relative; align-self: center; height: 36px; display: flex; align-items: center; gap: 6px; padding-inline: 10px; border-radius: 8px; border: 1px solid {{t.line2}}; background: transparent; color: {{t.text}}; font: 600 13px {{font}}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 8v5l-4 2v-7z"></path></svg>
+        {{L.filters}}
+        <span style="min-width: 18px; height: 18px; padding-inline: 4px; box-sizing: border-box; border-radius: 999px; background: {{t.acc}}; color: {{t.onAcc}}; font: 700 11px/18px 'IBM Plex Sans',system-ui,sans-serif; text-align: center">1</span>
+      </button>
+    </div>
+  </sc-if>
+
+  <div style="flex: 1; min-height: 0; overflow: auto; position: relative">
+    <sc-if value="{{isStream}}" hint-placeholder-val="{{ true }}">
+      <div style="padding: 10px 12px 20px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 30px; padding-inline: 10px 8px; border-radius: 999px; border: 1px solid {{t.line2}}; background: {{t.accSoft}}; font-size: 13px; font-weight: 500">05 {{L.batna}}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </span>
+          <span style="margin-inline-start: auto; font-size: 12.5px; color: {{t.text2}}">{{L.count}}</span>
+        </div>
+        <sc-if value="{{showPill}}" hint-placeholder-val="{{ true }}">
+          <div style="position: sticky; top: 4px; z-index: 5; display: flex; justify-content: center; height: 0; overflow: visible">
+            <button type="button" onClick="{{reveal}}" style="height: 38px; display: flex; align-items: center; gap: 8px; padding-inline: 14px; border-radius: 999px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; box-shadow: {{t.shadow}}; font: 700 13.5px {{font}}">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+              {{L.newPill}}
+            </button>
+          </div>
+        </sc-if>
+        <sc-for list="{{cards}}" as="it" hint-placeholder-count="4">
+          <dc-import name="ArticleCard" item="{{it}}" theme="{{it.theme}}" ui="{{it.ui}}" compact="{{ true }}" hint-size="100%,150px"></dc-import>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isStories}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 10px 12px 20px; display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{stories}}" as="s" hint-placeholder-count="4">
+          <article style="padding: 12px 14px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px">
+              <sc-if value="{{s.dev}}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex; align-items: center; gap: 5px; height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.accSoft}}; font-weight: 600"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="3.2" fill="{{t.acc}}" stroke="{{t.dotRing}}" stroke-width="1"></circle></svg>{{L.developing}}</span></sc-if>
+              <sc-if value="{{s.closed}}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 4px; height: 22px; padding-inline: 8px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}; font-weight: 500"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{L.closed}}</span></sc-if>
+              <span style="color: {{t.text2}}">{{s.count}}</span>
+              <span style="font: 600 11px 'IBM Plex Sans',system-ui,sans-serif; color: {{t.text2}}">{{s.mix}}</span>
+            </div>
+            <h2 dir="{{s.cdir}}" lang="{{s.clang}}" style="margin: 0; font: 600 15.5px/1.45 {{s.cfont}}; text-align: start">{{s.title}}</h2>
+            <span style="font-size: 12.5px; color: {{t.text2}}"><bdi>{{s.names}}</bdi></span>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
+              <span style="font-size: 12px; color: {{t.text2}}">{{s.span}}</span>
+              <span style="flex: 1"></span>
+              <sc-for list="{{s.wil}}" as="w" hint-placeholder-count="2"><span style="font-size: 11.5px; line-height: 20px; padding-inline: 7px; border-radius: 999px; background: {{t.chip}}; color: {{t.text2}}">{{w}}</span></sc-for>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isSources}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 12px 12px 20px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px; font-weight: 600">
+          <span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding-inline: 9px; border-radius: 999px; background: {{t.okSoft}}; color: {{t.ok}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l3 3 5-6"></path></svg>8 {{L.okPl}}</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding-inline: 9px; border-radius: 999px; background: {{t.warnSoft}}; color: {{t.warn}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>1 {{L.late}}</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding-inline: 9px; border-radius: 999px; background: {{t.badSoft}}; color: {{t.bad}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"></path></svg>1 {{L.stop}}</span>
+        </div>
+        <sc-for list="{{sources}}" as="s" hint-placeholder-count="5">
+          <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid {{s.border}}; background: {{t.card}}; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span style="font-size: 14.5px; font-weight: 600"><bdi>{{s.name}}</bdi></span>
+              <span style="font: 600 10px/15px 'IBM Plex Sans',system-ui,sans-serif; padding-inline: 4px; border-radius: 3px; border: 1px solid {{t.line2}}; color: {{t.text2}}">{{s.lang}}</span>
+              <span style="flex: 1"></span>
+              <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 600; color: {{s.stColor}}">
+                <sc-if value="{{s.ok}}" hint-placeholder-val="{{ true }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l3 3 5-6"></path></svg></sc-if>
+                <sc-if value="{{s.late}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></sc-if>
+                <sc-if value="{{s.stop}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"></path></svg></sc-if>
+                {{s.status}}
+              </span>
+            </div>
+            <span style="font-size: 12.5px; color: {{t.text2}}">{{s.meta}}</span>
+            <span style="font-size: 12.5px; color: {{t.text2}}">{{s.rhythm}}</span>
+            <sc-if value="{{s.hasNote}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12.5px; line-height: 1.55; color: {{t.text}}">{{s.note}}</span></sc-if>
+          </div>
+        </sc-for>
+        <a href="#request" style="height: 48px; margin-top: 4px; border-radius: 10px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; text-decoration: none">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          {{L.request}}
+        </a>
+        <a href="#mine" style="height: 44px; border-radius: 10px; border: 1px solid {{t.line2}}; color: {{t.text}}; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; text-decoration: none">{{L.myReq}}</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isTeam}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 14px 16px 20px; display: flex; flex-direction: column; gap: 14px">
+        <form style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+          <h2 style="margin: 0; font-size: 16px; font-weight: 600">{{L.invite}}</h2>
+          <label for="m-email" style="font-size: 13px; font-weight: 600">{{L.email}}</label>
+          <input id="m-email" type="email" dir="ltr" placeholder="name@newsroom.dz" style="height: 46px; margin-top: -6px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 15px 'IBM Plex Sans',system-ui,sans-serif">
+          <label for="m-name" style="font-size: 13px; font-weight: 600">{{L.displayName}}</label>
+          <input id="m-name" type="text" style="height: 46px; margin-top: -6px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 15px {{font}}">
+          <span style="font-size: 13px; font-weight: 600">{{L.role}}</span>
+          <div role="radiogroup" aria-label="{{L.role}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 3px; margin-top: -6px; border-radius: 8px; background: {{t.chip}}">
+            <button type="button" role="radio" aria-checked="false" style="height: 40px; border: 0; border-radius: 6px; background: transparent; color: {{t.text2}}; font: 600 13.5px {{font}}">{{L.rAdmin}}</button>
+            <button type="button" role="radio" aria-checked="true" style="height: 40px; border: 0; border-radius: 6px; background: {{t.acc}}; color: {{t.onAcc}}; font: 600 13.5px {{font}}">{{L.rEditor}}</button>
+            <button type="button" role="radio" aria-checked="false" style="height: 40px; border: 0; border-radius: 6px; background: transparent; color: {{t.text2}}; font: 600 13.5px {{font}}">{{L.rViewer}}</button>
+          </div>
+          <p style="margin: 0; padding: 10px 12px; border-radius: 8px; background: {{t.chip}}; font-size: 12.5px; line-height: 1.6; color: {{t.text2}}">{{L.editorDesc}}</p>
+          <button type="button" style="height: 48px; border-radius: 10px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 700 15px {{font}}">{{L.send}}</button>
+        </form>
+        <section style="border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; overflow: hidden">
+          <h2 style="margin: 0; padding: 12px 16px; font-size: 15px; font-weight: 600; border-bottom: 1px solid {{t.line}}">{{L.members}}</h2>
+          <sc-for list="{{members}}" as="m" hint-placeholder-count="4">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid {{t.line}}">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: {{t.chip}}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: {{t.text2}}">{{m.ini}}</span>
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+                <span style="font-size: 14px; font-weight: 600">{{m.name}}</span>
+                <span style="font-size: 12px; color: {{m.stColor}}">{{m.status}}</span>
+              </span>
+              <span style="font-size: 12.5px; color: {{t.text2}}">{{m.role}}</span>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isAccount}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 14px 16px 20px; display: flex; flex-direction: column; gap: 14px">
+        <section style="padding: 16px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; display: flex; flex-direction: column; gap: 12px">
+          <label for="m-acc-name" style="font-size: 13px; font-weight: 600">{{L.displayName}}</label>
+          <input id="m-acc-name" type="text" value="{{L.me}}" style="height: 46px; margin-top: -6px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 15px {{font}}">
+          <dl style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; gap: 10px"><dt style="font-size: 13px; color: {{t.text2}}">{{L.email}}</dt><dd dir="ltr" style="margin: 0; font: 500 13.5px 'IBM Plex Sans',system-ui,sans-serif">amina.haddad@elofok.dz</dd></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px"><dt style="font-size: 13px; color: {{t.text2}}">{{L.role}}</dt><dd style="margin: 0; font-size: 13.5px; font-weight: 500">{{L.roleVal}}</dd></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px"><dt style="font-size: 13px; color: {{t.text2}}">{{L.org}}</dt><dd style="margin: 0; font-size: 13.5px; font-weight: 500">{{L.orgVal}}</dd></div>
+          </dl>
+        </section>
+        <section style="padding: 16px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 13px; font-weight: 600">{{L.language}}</span>
+          <div role="radiogroup" aria-label="{{L.language}}" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 3px; border-radius: 8px; background: {{t.chip}}">
+            <button type="button" role="radio" aria-checked="{{arOn}}" style="height: 40px; border: 0; border-radius: 6px; background: {{arBg}}; color: {{arFg}}; font: 600 14px 'IBM Plex Sans Arabic',sans-serif">العربية</button>
+            <button type="button" role="radio" aria-checked="{{frOn}}" style="height: 40px; border: 0; border-radius: 6px; background: {{frBg}}; color: {{frFg}}; font: 600 14px 'IBM Plex Sans',sans-serif">Français</button>
+          </div>
+          <span style="font-size: 13px; font-weight: 600; margin-top: 4px">{{L.theme}}</span>
+          <div role="radiogroup" aria-label="{{L.theme}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 3px; border-radius: 8px; background: {{t.chip}}">
+            <button type="button" role="radio" aria-checked="{{lightOn}}" style="height: 40px; border: 0; border-radius: 6px; background: {{lightBg}}; color: {{lightFg}}; font: 600 13.5px {{font}}">{{L.light}}</button>
+            <button type="button" role="radio" aria-checked="{{darkOn}}" style="height: 40px; border: 0; border-radius: 6px; background: {{darkBg}}; color: {{darkFg}}; font: 600 13.5px {{font}}">{{L.dark}}</button>
+            <button type="button" role="radio" aria-checked="false" style="height: 40px; border: 0; border-radius: 6px; background: transparent; color: {{t.text2}}; font: 600 13.5px {{font}}">{{L.system}}</button>
+          </div>
+        </section>
+        <button type="button" style="height: 48px; border-radius: 10px; border: 1px solid {{t.line2}}; background: transparent; color: {{t.text}}; font: 600 15px {{font}}">{{L.logout}}</button>
+      </div>
+    </sc-if>
+  </div>
+
+  <nav aria-label="{{L.mainNav}}" style="flex: none; height: 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: {{t.panel}}; border-top: 1px solid {{t.line}}">
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="4">
+      <a href="{{n.href}}" aria-current="{{n.cur}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: {{n.fg}}; text-decoration: none; font-size: 11.5px; font-weight: {{n.w}}">
+        <span style="width: 44px; height: 26px; border-radius: 999px; background: {{n.bg}}; display: flex; align-items: center; justify-content: center; color: {{n.ic}}">
+          <sc-if value="{{n.isRadar}}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="1.6" fill="currentColor"></circle><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M12 7.5a4.5 4.5 0 1 0 4.5 4.5"></path><path d="M12 12l6-6"></path></svg></sc-if>
+          <sc-if value="{{n.isSources}}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5a14 14 0 0 1 14 14M5 11a8 8 0 0 1 8 8"></path><circle cx="6" cy="18" r="1.5"></circle></svg></sc-if>
+          <sc-if value="{{n.isTeam}}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c1-3.5 3.6-5.5 6.5-5.5s5.5 2 6.5 5.5"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.7.7 3 2.5 3.5 5.2"></path></svg></sc-if>
+          <sc-if value="{{n.isAccount}}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></sc-if>
+        </span>
+        {{n.label}}
+      </a>
+    </sc-for>
+  </nav>
+
+  <sc-if value="{{filtersOpen}}" hint-placeholder-val="{{ false }}">
+    <button type="button" onClick="{{closeOverlay}}" aria-label="{{L.close}}" style="position: absolute; inset: 0; border: 0; padding: 0; background: {{t.scrim}}; z-index: 30"></button>
+    <div style="position: absolute; inset-inline: 0; bottom: 0; max-height: 80%; display: flex; z-index: 31">
+      <dc-import name="FilterRail" theme="{{theme}}" ui="{{ui}}" variant="sheet" hint-size="390px,640px"></dc-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{drawerOpen}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 40">
+      <dc-import name="Drawer" theme="{{theme}}" ui="{{ui}}" on-close="{{closeOverlay}}" hint-size="390px,844px"></dc-import>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"screen":{"editor":"enum","options":["stream","expanded","filters","drawer","stories","sources","team","account"],"default":"stream"},"$preview":{"width":390,"height":844}}'>
+var TK = {
+  dark: {bg:'#0F1012',panel:'#141619',card:'#191B1F',field:'#15171A',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',onAcc:'#1A1600',accSoft:'rgba(255,210,63,0.14)',dotRing:'#FFD23F',chip:'#23262B',ok:'#4ADE80',okSoft:'rgba(74,222,128,0.12)',warn:'#FB923C',warnSoft:'rgba(251,146,60,0.13)',bad:'#F87171',badSoft:'rgba(248,113,113,0.13)',scrim:'rgba(0,0,0,0.6)',shadow:'0 10px 30px rgba(0,0,0,0.5)'},
+  light: {bg:'#F3F3F0',panel:'#FAFAF8',card:'#FFFFFF',field:'#FFFFFF',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',onAcc:'#1A1600',accSoft:'#FFF3C4',dotRing:'#835800',chip:'#EFEFEB',ok:'#1C7A3B',okSoft:'#E3F4E8',warn:'#B54E0B',warnSoft:'#FDEBDD',bad:'#C1272D',badSoft:'#FBE5E5',scrim:'rgba(20,20,22,0.4)',shadow:'0 10px 30px rgba(20,20,30,0.2)'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var IMG = { dark: ['', '#2A3340', '#38332A', '#2B3830'], light: ['', '#CBD5DF', '#E0D6C4', '#CADACD'] };
+var LBL = {
+  ar: {brand:'سبق', live:'مباشر', search:'بحث', views:'طريقة العرض', stream:'المستجدات', stories:'القصص', filters:'فلاتر', batna:'باتنة', count:'44 مقالًا اليوم', newPill:'5 مقالات جديدة', close:'إغلاق', mainNav:'التنقل الرئيسي',
+       radar:'الرادار', sourcesT:'المصادر', team:'الفريق', account:'الحساب', developing:'قيد التطور', closed:'مكتملة',
+       okPl:'تعمل', late:'متأخر', stop:'متوقف', ok:'يعمل', request:'اطلب مصدرًا', myReq:'طلباتي (3)',
+       invite:'دعوة عضو', email:'البريد الإلكتروني', displayName:'الاسم المعروض', role:'الدور', rAdmin:'مسؤول', rEditor:'محرّر', rViewer:'مطّلع', editorDesc:'المحرّر يتابع الرادار والقصص ويطلب إضافة مصادر. لا يرى صفحة الفريق.', send:'إرسال الدعوة', members:'الأعضاء',
+       me:'أمينة حداد', roleVal:'مسؤولة', org:'المؤسسة', orgVal:'يومية الأفق', language:'لغة الواجهة', theme:'المظهر', light:'فاتح', dark:'داكن', system:'حسب الجهاز', logout:'تسجيل الخروج'},
+  fr: {brand:'Sabq', live:'En direct', search:'Rechercher', views:'Affichage', stream:'Fil', stories:'Sujets', filters:'Filtres', batna:'Batna', count:'44 articles aujourd’hui', newPill:'5 nouveaux articles', close:'Fermer', mainNav:'Navigation principale',
+       radar:'Radar', sourcesT:'Sources', team:'Équipe', account:'Compte', developing:'En cours', closed:'Terminé',
+       okPl:'actives', late:'en retard', stop:'arrêtée', ok:'Active', request:'Demander une source', myReq:'Mes demandes (3)',
+       invite:'Inviter un membre', email:'E-mail', displayName:'Nom affiché', role:'Rôle', rAdmin:'Admin', rEditor:'Éditeur', rViewer:'Lecteur', editorDesc:'L’éditeur suit le radar et les sujets, peut demander des sources. Il ne voit pas la page Équipe.', send:'Envoyer l’invitation', members:'Membres',
+       me:'Amina Haddad', roleVal:'Admin', org:'Organisation', orgVal:'Quotidien El Ofok', language:'Langue', theme:'Thème', light:'Clair', dark:'Sombre', system:'Système', logout:'Se déconnecter'}
+};
+var SRCN = { aps:{ar:'وكالة الأنباء الجزائرية',fr:'APS',l:'AR'}, awras:{ar:'الأوراس نيوز',fr:'Awras News',l:'AR'}, moudj:{ar:'El Moudjahid',fr:'El Moudjahid',l:'FR'}, lexp:{ar:'L’Expression',fr:'L’Expression',l:'FR'}, hayat:{ar:'الحياة',fr:'El Hayat',l:'AR'}, hidhab:{ar:'الهضاب',fr:'El Hidhab',l:'AR'}, pres:{ar:'رئاسة الجمهورية',fr:'Présidence',l:'AR'} };
+var WILN = { '05': {ar:'05 باتنة', fr:'05 Batna'}, '19': {ar:'19 سطيف', fr:'19 Sétif'}, '17': {ar:'17 الجلفة', fr:'17 Djelfa'}, '00': {ar:'00 وطني', fr:'00 National'} };
+var CARDS = [
+  {id:'g1', s:'aps', m:4, img:1, w:['05','19','17'], ed:true, t:'نشرية خاصة: أمطار رعدية غزيرة على ولايات باتنة وسطيف والجلفة ابتداءً من مساء اليوم', lead:'حذّرت مصالح الأرصاد الجوية من أمطار رعدية قد يبلغ منسوبها 40 ملم محليًا، مصحوبة بهبوب رياح قوية أحيانًا، إلى غاية صباح الخميس.',
+    others:[{s:'awras', m:3, t:'باتنة: نشرية جوية خاصة تحذّر من أمطار رعدية والحماية المدنية تدعو إلى الحذر على الطرقات'},{s:'moudj', m:2, t:'BMS : fortes pluies orageuses attendues sur Batna, Sétif et Djelfa'},{s:'lexp', m:1, t:'Intempéries dans l’Est : les automobilistes appelés à la prudence jusqu’à jeudi'}]},
+  {id:'a5', s:'awras', m:31, img:2, w:['05'], ed:true, t:'انطلاق أشغال ازدواجية الطريق الوطني رقم 3 بين باتنة وعين التوتة على مسافة 12 كلم', lead:'يشمل المشروع إنجاز منشأتين فنيتين وتهيئة مداخل بلديتي فسديس وعين التوتة، بآجال إنجاز تقدّر بـ18 شهرًا.'},
+  {id:'b1', s:'moudj', m:52, img:0, w:['05'], t:'Batna : le barrage de Koudiet Lamdaouar retrouve un niveau de remplissage rassurant', lead:'Les dernières précipitations ont permis une hausse sensible du volume stocké, selon la direction des ressources en eau.'},
+  {id:'a8', s:'hayat', m:84, img:0, w:['05'], est:true, t:'ارتفاع نسبة امتلاء سد كدية لمدور بباتنة بعد التساقطات الأخيرة', lead:'سجّل السد ارتفاعًا في منسوب المياه خلال الأيام الأخيرة، ما يعزز تموين عدد من بلديات الولاية بمياه الشرب.'}
+];
+function hhmm(m) { var x = 19 * 60 + 8 - m; var h = Math.floor(x / 60), mm = x % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
+function rel(m, ui) { if (m < 60) return ui === 'ar' ? 'منذ ' + m + ' د' : 'il y a ' + m + ' min'; var h = Math.floor(m / 60); return ui === 'ar' ? 'منذ ' + h + ' س' : 'il y a ' + h + ' h'; }
+class Component extends DCLogic {
+  constructor(props) { super(props); var sc = props.screen || 'stream'; this.state = { expanded: sc === 'expanded' ? 'g1' : null, overlay: sc === 'filters' ? 'filters' : (sc === 'drawer' ? 'drawer' : null), revealed: false }; }
+  renderVals() {
+    var self = this, theme = this.props.theme || 'light', ui = this.props.ui || 'ar', sc = this.props.screen || 'stream';
+    var t = TK[theme], L = LBL[ui];
+    var isRadar = ['stream', 'expanded', 'filters', 'drawer', 'stories'].indexOf(sc) >= 0;
+    var isStories = sc === 'stories';
+    var cl = function (s) { return SRCN[s].l === 'FR' ? 'fr' : 'ar'; };
+    var cards = CARDS.map(function (r) {
+      var c = cl(r.s);
+      var others = (r.others || []).map(function (o) { var oc = cl(o.s); return { srcName: SRCN[o.s][ui], langTag: SRCN[o.s].l, relText: rel(o.m, ui), exactTitle: hhmm(o.m), title: o.t, cdir: oc === 'fr' ? 'ltr' : 'rtl', clang: oc, cfont: FONT[oc], open: function () { self.setState({ overlay: 'drawer' }); } }; });
+      return { theme: theme, ui: ui, srcName: SRCN[r.s][ui], langTag: SRCN[r.s].l, relText: (r.est ? '≈ ' : '') + rel(r.m, ui), exactTitle: hhmm(r.m), est: !!r.est,
+        cdir: c === 'fr' ? 'ltr' : 'rtl', clang: c, cfont: FONT[c], title: r.t, lead: r.lead, hasImg: r.img > 0, imgBg: IMG[theme][r.img],
+        wil: r.w.map(function (w) { return { label: WILN[w][ui] }; }), edited: !!r.ed, isNew: false,
+        others: others, hasOthers: others.length > 0, othersNames: others.map(function (o) { return o.srcName; }).join(' · '),
+        expanded: self.state.expanded === r.id,
+        toggle: function () { self.setState({ expanded: self.state.expanded === r.id ? null : r.id }); },
+        open: function () { self.setState({ overlay: 'drawer' }); } };
+    });
+    var st = function (dev, n, mix, title, fr, names, span, wil) { return { dev: dev, closed: !dev, count: n + (ui === 'ar' ? ' مصادر' : ' sources'), mix: mix, title: title, cdir: fr ? 'ltr' : 'rtl', clang: fr ? 'fr' : 'ar', cfont: FONT[fr ? 'fr' : 'ar'], names: names, span: span, wil: wil }; };
+    var stories = ui === 'ar' ? [
+      st(true, 4, '2 AR · 2 FR', 'نشرية خاصة: أمطار رعدية غزيرة على ولايات باتنة وسطيف والجلفة ابتداءً من مساء اليوم', false, 'وكالة الأنباء الجزائرية · الأوراس نيوز · El Moudjahid · L’Expression', '19:04 · آخر تحديث منذ 1 د', ['05 باتنة','19 سطيف','17 الجلفة']),
+      st(true, 3, '3 AR', 'رئيس الجمهورية يوقّع مرسومًا رئاسيًا يحدد كيفيات تنظيم المسابقات الوطنية للتوظيف', false, 'رئاسة الجمهورية · وكالة الأنباء الجزائرية · الأناضول', '18:54 · آخر تحديث منذ 6 د', ['00 وطني']),
+      st(false, 3, '2 AR · 1 FR', 'Sétif : lancement des travaux d’extension du tramway vers le pôle universitaire d’El Bez', true, 'L’Expression · سطيف وان · وكالة الأنباء الجزائرية', '18:10 · آخر تحديث منذ 41 د', ['19 سطيف']),
+      st(false, 3, '3 AR', 'وفاق سطيف يفوز على شباب قسنطينة بهدفين دون رد ويرتقي إلى المركز الثالث', false, 'سطيف وان · الحياة · وكالة الأنباء الجزائرية', '16:45 · آخر تحديث منذ 1 س', ['19 سطيف'])
+    ] : [
+      st(true, 4, '2 AR · 2 FR', 'BMS : fortes pluies orageuses attendues sur Batna, Sétif et Djelfa', true, 'APS · Awras News · El Moudjahid · L’Expression', '19:04 · mise à jour il y a 1 min', ['05 Batna','19 Sétif','17 Djelfa']),
+      st(true, 3, '3 AR', 'رئيس الجمهورية يوقّع مرسومًا رئاسيًا يحدد كيفيات تنظيم المسابقات الوطنية للتوظيف', false, 'Présidence · APS · Anadolu', '18:54 · mise à jour il y a 6 min', ['00 National']),
+      st(false, 3, '2 AR · 1 FR', 'Sétif : lancement des travaux d’extension du tramway vers le pôle universitaire d’El Bez', true, 'L’Expression · Setif One · APS', '18:10 · mise à jour il y a 41 min', ['19 Sétif'])
+    ];
+    var src = function (k, ty, w, s, chk, rh, note) { return { name: SRCN[k] ? SRCN[k][ui] : k, lang: SRCN[k] ? SRCN[k].l : 'AR', ok: s === 'ok', late: s === 'late', stop: s === 'stop', status: s === 'ok' ? L.ok : s === 'late' ? (ui === 'ar' ? 'متأخر' : 'En retard') : (ui === 'ar' ? 'متوقف' : 'Arrêtée'), stColor: s === 'ok' ? t.ok : s === 'late' ? t.warn : t.bad, border: s === 'stop' ? t.bad : t.line, meta: ty + ' · ' + w + ' · ' + chk, rhythm: rh, hasNote: !!note, note: note || '' }; };
+    var sources = ui === 'ar' ? [
+      src('hidhab', 'صحافة جهوية', '05 باتنة', 'stop', 'آخر فحص منذ 2 د', '~8 مقالات يوميًا', 'لم نتمكن من قراءة الموقع منذ 3 س. فريق سبق يعمل على الإصلاح.'),
+      src('hayat', 'صحافة وطنية', '00 وطني', 'late', 'آخر فحص منذ 14 د', '~30 مقالًا يوميًا'),
+      src('aps', 'وكالة أنباء', '00 وطني', 'ok', 'آخر فحص منذ 40 ث', '~120 مقالًا يوميًا'),
+      src('awras', 'صحافة جهوية', '05 باتنة', 'ok', 'آخر فحص منذ 50 ث', 'نشرة يومية حوالي منتصف الليل'),
+      src('pres', 'رسمي', '00 وطني', 'ok', 'آخر فحص منذ 1 د', 'بضعة بيانات أسبوعيًا')
+    ] : [
+      src('hidhab', 'Presse régionale', '05 Batna', 'stop', 'vérifiée il y a 2 min', '~8 articles / jour', 'Site illisible depuis 3 h. L’équipe Sabq travaille à la correction.'),
+      src('hayat', 'Presse nationale', '00 National', 'late', 'vérifiée il y a 14 min', '~30 articles / jour'),
+      src('aps', 'Agence', '00 National', 'ok', 'vérifiée il y a 40 s', '~120 articles / jour'),
+      src('awras', 'Presse régionale', '05 Batna', 'ok', 'vérifiée il y a 50 s', 'Édition quotidienne vers minuit'),
+      src('pres', 'Officiel', '00 National', 'ok', 'vérifiée il y a 1 min', 'Quelques communiqués / semaine')
+    ];
+    var mem = function (n, ini, role, pending) { return { name: n, ini: ini, role: role, status: pending || (ui === 'ar' ? 'نشِط' : 'Actif'), stColor: pending ? t.text2 : t.ok }; };
+    var members = ui === 'ar' ? [mem('يوسف بلقاسم', 'ي ب', 'مالك'), mem('أمينة حداد (أنتِ)', 'أ ح', 'مسؤول'), mem('سارة عمراني', 'س ع', 'محرّر'), mem('نسيم قادري', 'ن ق', 'محرّر', 'دعوة معلّقة · منذ يومين')]
+      : [mem('Youcef Belkacem', 'YB', 'Propriétaire'), mem('Amina Haddad (vous)', 'AH', 'Admin'), mem('Sara Amrani', 'SA', 'Éditeur'), mem('Nassim Kadri', 'NK', 'Éditeur', 'En attente · il y a 2 jours')];
+    var active = isRadar ? 'radar' : sc;
+    var navItem = function (k, href, label) { var on = k === active; return { href: href, label: label, cur: on ? 'page' : 'false', fg: on ? t.text : t.text2, ic: on ? (theme === 'dark' ? t.acc : t.text) : t.text2, bg: on ? t.chip : 'transparent', w: on ? '600' : '500', isRadar: k === 'radar', isSources: k === 'sources', isTeam: k === 'team', isAccount: k === 'account' }; };
+    var seg = function (on) { return on ? [t.acc, t.onAcc, 'true'] : ['transparent', t.text2, 'false']; };
+    var a1 = seg(ui === 'ar'), f1 = seg(ui === 'fr'), l1 = seg(theme === 'light'), d1 = seg(theme === 'dark');
+    var titles = { sources: L.sourcesT, team: L.team, account: L.account };
+    return {
+      t: t, L: L, theme: theme, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui],
+      hasTabs: isRadar, hasPageTitle: !isRadar, pageTitle: titles[sc] || '',
+      tabStreamCur: isStories ? 'false' : 'page', tabStreamW: isStories ? '500' : '600', tabStreamC: isStories ? t.text2 : t.text, tabStreamBar: isStories ? 'transparent' : (theme === 'dark' ? t.acc : t.text),
+      tabStoriesCur: isStories ? 'page' : 'false', tabStoriesW: isStories ? '600' : '500', tabStoriesC: isStories ? t.text : t.text2, tabStoriesBar: isStories ? (theme === 'dark' ? t.acc : t.text) : 'transparent',
+      isStream: isRadar && !isStories, isStories: isStories, isSources: sc === 'sources', isTeam: sc === 'team', isAccount: sc === 'account',
+      cards: cards, showPill: !this.state.revealed && sc === 'stream', reveal: function () { self.setState({ revealed: true }); },
+      stories: stories, sources: sources, members: members,
+      nav: [navItem('radar', 'M-Stream.dc.html', L.radar), navItem('sources', 'M-Sources.dc.html', L.sourcesT), navItem('team', 'M-Team.dc.html', L.team), navItem('account', 'M-Account.dc.html', L.account)],
+      openFilters: function () { self.setState({ overlay: 'filters' }); }, closeOverlay: function () { self.setState({ overlay: null }); },
+      filtersOpen: this.state.overlay === 'filters', drawerOpen: this.state.overlay === 'drawer',
+      arOn: a1[2], arBg: a1[0], arFg: a1[1], frOn: f1[2], frBg: f1[0], frFg: f1[1], lightOn: l1[2], lightBg: l1[0], lightFg: l1[1], darkOn: d1[2], darkBg: d1[0], darkFg: d1[1]
+    };
+  }
+}
+</script>
+</body>
+</html>

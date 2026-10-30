@@ -10,7 +10,27 @@ handle @stream {
 	}
 }
 
-handle {
+# The API and the Sabq team pages.
+@backend path /auth/* /app/* /admin/* /api/* /health /health.json /health/* /docs /docs/* /redoc /openapi.json /ui
+handle @backend {
 	encode gzip
 	reverse_proxy app:8000
+}
+
+# Everything else is the web app: its files, or index.html for its own routes.
+handle {
+	root * /srv/www
+	encode gzip
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer
+		Content-Security-Policy "default-src 'self'; img-src https: http: data:; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+	}
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+	@pages not path /assets/*
+	header @pages Cache-Control "no-cache"
+	try_files {path} /index.html
+	file_server
 }

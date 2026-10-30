@@ -278,3 +278,45 @@ def test_can_invite_rules():
     assert service.can_invite(admin, 1, "admin") and not service.can_invite(admin, 1, "owner")
     assert not service.can_invite(editor, 1, "viewer")
     assert service.can_invite(team, 2, "owner")
+
+
+# --- what the frontend needs -----------------------------------------------------------------
+
+
+def test_invite_link_can_be_read_without_using_it_up(client, committed):
+    make_user(committed, "tariq", "owner@tariq.dz", role="owner")
+    login(client, "owner@tariq.dz")
+    client.patch("/auth/me", json={"display_name": "Salima"})
+    client.post("/auth/invite", json={"email": "new@tariq.dz", "role": "editor"})
+    token = token_from(client.outbox[-1])
+    info = client.get("/auth/link", params={"kind": "invite", "token": token})
+    assert info.status_code == 200
+    assert info.json() == {
+        "email": "new@tariq.dz",
+        "role": "editor",
+        "organisation": "Tariq",
+        "invited_by": "Salima",
+    }
+    accepted = client.post("/auth/accept-invite", json={"token": token, "password": PASSWORD})
+    assert accepted.status_code == 200  # reading it did not use it
+    assert client.get("/auth/link", params={"kind": "invite", "token": token}).status_code == 400
+    assert client.get("/auth/link", params={"kind": "reset", "token": "nope"}).status_code == 400
+
+
+def test_display_name_can_be_changed(client, committed):
+    make_user(committed, "tariq", "editor@tariq.dz")
+    assert client.patch("/auth/me", json={"display_name": "x"}).status_code == 401
+    login(client, "editor@tariq.dz")
+    changed = client.patch("/auth/me", json={"display_name": "  سليمة  "})
+    assert changed.json()["display_name"] == "سليمة"
+    assert client.get("/auth/me").json()["display_name"] == "سليمة"
+    assert client.patch("/auth/me", json={"display_name": "   "}).status_code == 400
+
+
+def test_a_blocked_login_says_when_to_retry(client, committed):
+    make_user(committed, "tariq", "editor@tariq.dz")
+    for _ in range(5):
+        login(client, "editor@tariq.dz", "wrong password")
+    blocked = login(client, "editor@tariq.dz", "wrong password")
+    assert blocked.status_code == 429
+    assert 0 < int(blocked.headers["retry-after"]) <= 900

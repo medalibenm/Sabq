@@ -2,9 +2,11 @@
 
 import asyncio
 import logging
+import math
 from functools import lru_cache
+from typing import Annotated, Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response, status
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 
@@ -80,6 +82,17 @@ class ResetIn(BaseModel):
     password: str = Field(max_length=1024)
 
 
+class ProfileIn(BaseModel):
+    display_name: str = Field(min_length=1, max_length=200)
+
+
+class LinkOut(BaseModel):
+    email: str
+    role: str
+    organisation: str
+    invited_by: str | None
+
+
 def me_out(user: User, organisation: Organisation) -> MeOut:
     return MeOut(
         id=user.id,
@@ -137,7 +150,11 @@ async def login(
         f"ip:{request.client.host if request.client else '-'}",
     )
     if limiter().blocked(*keys):
-        raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, "too many failed attempts, wait")
+        raise HTTPException(
+            status.HTTP_429_TOO_MANY_REQUESTS,
+            "too many failed attempts, wait",
+            headers={"Retry-After": str(math.ceil(limiter().retry_after(*keys)))},
+        )
     user = await db.run_sync(lambda s: service.find_user(s, body.email))
     stored = user.password_hash if user else None
     valid = await asyncio.to_thread(verify_password, stored, body.password)
@@ -169,6 +186,33 @@ async def logout(
 @router.get("/me")
 async def me(viewer: LoggedIn) -> MeOut:
     return me_out(viewer.user, viewer.organisation)
+
+
+@router.patch("/me", dependencies=writes)
+async def update_me(body: ProfileIn, viewer: LoggedIn, db: DB) -> MeOut:
+    name = body.display_name.strip()
+    if not name:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "display name is empty")
+    user = await db.get(User, viewer.user.id)
+    user.display_name = name
+    await db.commit()
+    return me_out(user, viewer.organisation)
+
+
+@router.get("/link")
+async def link(
+    kind: Literal["invite", "reset"], token: Annotated[str, Query(max_length=200)], db: DB
+) -> LinkOut:
+    """What an invite or reset link is for, without using it up. 400 when it is no longer valid."""
+
+    def read(s):
+        user = service.peek(s, kind, token)
+        return user, s.get(Organisation, user.organisation_id), service.inviter_name(s, user)
+
+    user, organisation, inviter = await db.run_sync(read)
+    return LinkOut(
+        email=user.email, role=user.role, organisation=organisation.name, invited_by=inviter
+    )
 
 
 @router.post("/invite", status_code=status.HTTP_201_CREATED, dependencies=writes)

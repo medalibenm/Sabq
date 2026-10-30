@@ -102,7 +102,7 @@ delivers and when it is done.
         tests/fixtures/<slug>/
       catalog/         # one YAML per source (M4)
       deploy/          # Caddyfile, backup script, server notes
-      frontend/        # later
+      frontend/        # web app (React + Vite), built into the proxy image
       docs/
       ```
       Domain folders are created by the milestone that needs them.
@@ -264,6 +264,24 @@ together, and links to `/health`, `/docs` and the source check feeds.
 - [x] Built 2026-10-25: `http://localhost/ui` (`backend/src/sabq/api/static/ui.html`); invite
       and reset links open it too (`/accept-invite`, `/reset-password`).
 
+### Web app
+Built from the design handoff in `sabq-design/` (`docs/ui-design-prompt.md` is the brief;
+decisions 2026-10-30).
+- [x] API additions: multi-value filters, facets, story peers, team, source rhythm and state,
+      display name, email-link info, `Retry-After`.
+- [x] `frontend/`: Radar (live pill, burst, story groups, drawer, filters, every state), Stories,
+      Sources, Team, Account, the auth screens; Arabic RTL and French LTR with article text in its
+      own direction; dark and light; 390 px mobile layout.
+- [x] Proxy image with the built app, Caddy routes, CI job.
+- [ ] Check real thumbnails from a network the source sites answer: from the development machine
+      they refuse or time out, so only the layout and the failure case are verified.
+
+Verified: 214 backend tests, frontend unit tests, and a browser run through the real stack: invite
+from the Mailpit link, login errors, lockout countdown, reset by email, infinite scroll, filters,
+search, story groups, drawer on the leading side in both languages, stories, source requests,
+invite/resend/cancel, display name, a real `NOTIFY` reaching the pill without moving the list, a
+burst naming its source, the connection dropping and coming back, and no horizontal scroll at 390 px.
+
 ### M9 · Deployment
 - [ ] Fill `SABQBOT_CONTACT_URL` (page explaining the bot, contact address).
 - [ ] Test server first: an Azure VM (Azure for Students credit, plain VM only) to rehearse
@@ -271,7 +289,8 @@ together, and links to `/health`, `/docs` and the source check feeds.
 - [ ] Provision a DigitalOcean droplet (Frankfurt or Amsterdam, 2 GB, paid by Student Pack
       credits; decision 2026-10-28), SSH keys, cloud firewall, Docker, 2 GB swap, Postgres and
       pool settings for 2 GB.
-- [ ] Domain + Caddy HTTPS; images built by GitHub Actions to GHCR; deploy and rollback by tag.
+- [ ] Domain + Caddy HTTPS; both images (backend, proxy) built by GitHub Actions to GHCR
+      (`SABQ_IMAGE`, `SABQ_PROXY_IMAGE`); deploy and rollback by tag.
 - [ ] Nightly `pg_dump` off-server, restore tested; uptime monitor on `/health.json`.
 - [ ] Reachability test of every source from the server; set `dz_proxy` where needed.
 
@@ -310,4 +329,5 @@ backup has been tested.
 | M6 · Login + web app API | done, CI green, merged | 2026-10-25 |
 | M7 · Health | done, CI green, merged | 2026-10-25 |
 | M8 · Story matching | done, CI green, merged | 2026-10-25 |
+| Web app | built, real thumbnails still to check | 2026-10-30 |
 | M9 · Deployment | todo | |

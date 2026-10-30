@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Sabq — Account</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="{{dir}}" lang="{{ui}}" style="min-height: 100vh; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.text}}; font-family: {{font}}">
+  <dc-import name="TopBar" theme="{{theme}}" ui="{{ui}}" tab="none" title="{{L.title}}" live="up" hint-size="100%,56px"></dc-import>
+  <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch">
+    <dc-import name="SideNav" theme="{{theme}}" ui="{{ui}}" active="account" hint-size="72px,100%"></dc-import>
+    <main style="flex: 999 1 560px; min-width: 0; padding: 24px 28px 48px; box-sizing: border-box">
+      <div style="max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; gap: 18px">
+        <h1 style="margin: 0; font-size: 22px; font-weight: 700">{{L.heading}}</h1>
+
+        <section aria-labelledby="acc-p" style="border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; overflow: hidden">
+          <h2 id="acc-p" style="margin: 0; padding: 14px 20px; font-size: 15px; font-weight: 600; border-bottom: 1px solid {{t.line}}">{{L.profile}}</h2>
+          <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="acc-name" style="font-size: 13px; font-weight: 600">{{L.displayName}}</label>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <input id="acc-name" type="text" value="{{L.name}}" style="flex: 1 1 240px; height: 42px; box-sizing: border-box; padding-inline: 12px; border-radius: 8px; border: 1px solid {{t.line2}}; background: {{t.field}}; color: {{t.text}}; font: 400 14px {{font}}">
+                <button type="button" style="height: 42px; padding-inline: 18px; border-radius: 8px; border: 0; background: {{t.acc}}; color: {{t.onAcc}}; font: 700 14px {{font}}; cursor: pointer">{{L.save}}</button>
+              </div>
+            </div>
+            <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 14px">
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <dt style="font-size: 12.5px; color: {{t.text2}}">{{L.email}}</dt>
+                <dd dir="ltr" style="margin: 0; font: 500 14px 'IBM Plex Sans',system-ui,sans-serif; text-align: {{alignStart}}">amina.haddad@elofok.dz</dd>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <dt style="font-size: 12.5px; color: {{t.text2}}">{{L.role}}</dt>
+                <dd style="margin: 0; font-size: 14px; font-weight: 500">{{L.roleVal}}</dd>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <dt style="font-size: 12.5px; color: {{t.text2}}">{{L.org}}</dt>
+                <dd style="margin: 0; font-size: 14px; font-weight: 500">{{L.orgVal}}</dd>
+              </div>
+            </dl>
+            <p style="margin: 0; font-size: 12.5px; color: {{t.text3}}">{{L.emailNote}}</p>
+          </div>
+        </section>
+
+        <section aria-labelledby="acc-pref" style="border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}; overflow: hidden">
+          <h2 id="acc-pref" style="margin: 0; padding: 14px 20px; font-size: 15px; font-weight: 600; border-bottom: 1px solid {{t.line}}">{{L.prefs}}</h2>
+          <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 18px">
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+              <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 3px">
+                <span id="acc-lang" style="font-size: 14px; font-weight: 600">{{L.language}}</span>
+                <span style="font-size: 12.5px; color: {{t.text2}}">{{L.languageHint}}</span>
+              </div>
+              <div role="radiogroup" aria-labelledby="acc-lang" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 3px; border-radius: 8px; background: {{t.chip}}; min-width: 240px">
+                <sc-for list="{{langs}}" as="o" hint-placeholder-count="2">
+                  <button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="height: 36px; border: 0; border-radius: 6px; background: {{o.bg}}; color: {{o.fg}}; font: 600 13.5px {{o.font}}; cursor: pointer">{{o.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+              <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 3px">
+                <span id="acc-theme" style="font-size: 14px; font-weight: 600">{{L.theme}}</span>
+                <span style="font-size: 12.5px; color: {{t.text2}}">{{L.themeHint}}</span>
+              </div>
+              <div role="radiogroup" aria-labelledby="acc-theme" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 3px; border-radius: 8px; background: {{t.chip}}; min-width: 300px">
+                <sc-for list="{{themes}}" as="o" hint-placeholder-count="3">
+                  <button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="height: 36px; border: 0; border-radius: 6px; background: {{o.bg}}; color: {{o.fg}}; font: 600 13.5px {{font}}; cursor: pointer">{{o.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="acc-s" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px 20px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.card}}">
+          <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 3px">
+            <h2 id="acc-s" style="margin: 0; font-size: 15px; font-weight: 600">{{L.session}}</h2>
+            <span style="font-size: 12.5px; color: {{t.text2}}">{{L.sessionHint}}</span>
+          </div>
+          <button type="button" style="display: inline-flex; align-items: center; gap: 8px; height: 42px; padding-inline: 16px; border-radius: 8px; border: 1px solid {{t.line2}}; background: transparent; color: {{t.text}}; font: 600 14px {{font}}; cursor: pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: {{flip}}"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 8l-4 4 4 4M6 12h10"></path></svg>
+            {{L.logout}}
+          </button>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"ui":{"editor":"enum","options":["ar","fr"],"default":"ar"},"$preview":{"width":1440,"height":1000}}'>
+var TK = {
+  dark: {bg:'#0F1012',card:'#191B1F',field:'#15171A',line:'#272A30',line2:'#363A41',text:'#EDEDEF',text2:'#A9ACB4',text3:'#8A8E97',acc:'#FFD23F',onAcc:'#1A1600',chip:'#23262B'},
+  light: {bg:'#F3F3F0',card:'#FFFFFF',field:'#FFFFFF',line:'#E2E2DD',line2:'#CFCFC8',text:'#16171A',text2:'#4B4D55',text3:'#686B73',acc:'#FFD23F',onAcc:'#1A1600',chip:'#EFEFEB'}
+};
+var FONT = { ar: "'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif", fr: "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" };
+var LBL = {
+  ar: {title:'الحساب', heading:'حسابي', profile:'الملف الشخصي', displayName:'الاسم المعروض', name:'أمينة حداد', save:'حفظ', email:'البريد الإلكتروني', role:'الدور', roleVal:'مسؤولة', org:'المؤسسة', orgVal:'يومية الأفق',
+       emailNote:'لتغيير البريد الإلكتروني أو الدور، تواصل مع مالك حساب المؤسسة.', prefs:'التفضيلات', language:'لغة الواجهة', languageHint:'تتغير الواجهة واتجاهها. المقالات تبقى بلغتها الأصلية.', theme:'المظهر', themeHint:'الداكن مريح عند ترك الرادار مفتوحًا طوال اليوم.',
+       light:'فاتح', dark:'داكن', system:'حسب الجهاز', session:'الجلسة', sessionHint:'سجّل الخروج من هذا الجهاز.', logout:'تسجيل الخروج'},
+  fr: {title:'Compte', heading:'Mon compte', profile:'Profil', displayName:'Nom affiché', name:'Amina Haddad', save:'Enregistrer', email:'E-mail', role:'Rôle', roleVal:'Admin', org:'Organisation', orgVal:'Quotidien El Ofok',
+       emailNote:'Pour changer d’e-mail ou de rôle, contactez le propriétaire du compte de la rédaction.', prefs:'Préférences', language:'Langue de l’interface', languageHint:'L’interface et son sens de lecture changent. Les articles restent dans leur langue d’origine.', theme:'Thème', themeHint:'Le thème sombre est plus reposant quand le radar reste ouvert toute la journée.',
+       light:'Clair', dark:'Sombre', system:'Système', session:'Session', sessionHint:'Se déconnecter de cet appareil.', logout:'Se déconnecter'}
+};
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { lang: props.ui || 'ar', th: props.theme || 'light' }; }
+  renderVals() {
+    var self = this, theme = this.props.theme || 'light', ui = this.props.ui || 'ar';
+    var t = TK[theme], L = LBL[ui];
+    var seg = function (on) { return on ? { bg: t.acc, fg: t.onAcc, checked: 'true' } : { bg: 'transparent', fg: t.text2, checked: 'false' }; };
+    var langs = [{ k: 'ar', label: 'العربية', font: FONT.ar }, { k: 'fr', label: 'Français', font: FONT.fr }].map(function (o) { return Object.assign(seg(self.state.lang === o.k), o, { pick: function () { self.setState({ lang: o.k }); } }); });
+    var themes = ['light', 'dark', 'system'].map(function (k) { return Object.assign(seg(self.state.th === k), { label: L[k], pick: function () { self.setState({ th: k }); } }); });
+    return { t: t, L: L, theme: theme, ui: ui, dir: ui === 'ar' ? 'rtl' : 'ltr', font: FONT[ui], alignStart: ui === 'ar' ? 'right' : 'left', flip: ui === 'ar' ? 'scaleX(-1)' : 'none', langs: langs, themes: themes };
+  }
+}
+</script>
+</body>
+</html>
