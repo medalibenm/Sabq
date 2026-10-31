@@ -1629,6 +1629,11 @@ textarea.input {
   padding: 20px 24px 24px;
 }
 
+/* a flex child with `overflow: hidden` (.facts) would shrink away instead of the column scrolling */
+.drawer-scroll > * {
+  flex-shrink: 0;
+}
+
 .drawer-image {
   flex: none;
   width: 100%;
