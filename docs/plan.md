@@ -59,7 +59,7 @@ extractor.
 | 4 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ | allowed | RSS | verified 2026-10-21 |
 | 5 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ | allowed (none) | HTML selectors | investigating: needs the HTML extractor |
 | 6 | 19 سطيف | Setif One | https://setifone.dz/ | allowed | WP API | verified 2026-10-21 |
-| 7 | 23 عنابة | Le Provincial | https://leprovincial.dz/ | not readable | | unreachable 2026-10-30: 508 on every URL, retry |
+| 7 | 23 عنابة | Le Provincial | https://leprovincial.dz/ | allowed | WP API | investigating: back on 2026-10-31, ready for a config |
 | 8 | 23 عنابة | Seybouse Times | https://seybousetimes.dz/ | allowed | WP API | verified 2026-10-30 |
 | 9 | 25 قسنطينة | An-Nasr | https://www.annasronline.com/ | allowed | HTML selectors | investigating: feeds answer 520, needs the HTML extractor |
 | 10 | 25 قسنطينة | Le Quotidien de Constantine | https://lequotidien-deconstantine.dz/ | allowed (none) | WP API | verified 2026-10-30 |
@@ -321,7 +321,7 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | in progress (15 / 17 final, 2 need the HTML extractor; Le Provincial to retry) | 2026-10-30 |
+| Track A · Investigation | in progress (14 / 17 final; Le Provincial ready, 2 need the HTML extractor; broad candidates probed) | 2026-10-31 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |

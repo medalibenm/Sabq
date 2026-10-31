@@ -42,7 +42,7 @@ One row per source **per language**. "Verified" = probed and working in the PoC 
 |---|---|---|---|
 | Sawt Setif (sawtsetif.dz, canonical sawtsetif.com) | 19 سطيف | 2026-10-21 | No robots.txt on either host (404 = allowed). Custom CMS ("DWM V4", Djidel Solutions): no feed, no sitemap, no JSON-LD, no API for articles. Articles at `/v/<id>/` (ids increase, ~4/day); the homepage and each article's "latest" block list `<a href="/v/<id>/"><span>DD-MM-YYYY</span><span>title</span></a>`; article pages carry schema.org microdata (`itemprop="headline"`, `datePublished` **date only**, `og:image` = `/api/file/<n>`). Needs the HTML (CSS selector) extractor, not built yet, and date-only handling (first-seen time, day checked). |
 | An-Nasr (annasronline.com) | 25 قسنطينة | 2026-10-30 | robots.txt allows articles (disallows Joomla system paths). Joomla behind Cloudflare: the feeds (`?format=feed&type=rss`, also per category) answer 520 to our bot, no sitemap, no JSON-LD. Pages are public: `/section/sub/<id>-<slug>` with `og:title`, `og:description`, `og:image`. Needs the HTML extractor. |
-| Le Provincial (leprovincial.dz) | 23 عنابة | 2026-10-30 | Every URL answers 508 Resource Limit Is Reached, robots.txt included, so nothing could be investigated. The site's hosting is over its limit; retry. |
+| Le Provincial (leprovincial.dz) | 23 عنابة | 2026-10-31 | 508 on 2026-10-30, back on 2026-10-31. robots.txt allows all. WordPress in French; `/feed/` and the WP API work, 11,348 posts, true UTC. Ready for a config. Watch the hosting limit. |
 
 ## Inactive
 Reachable and allowed, but no longer publishing. Not in the catalog; recheck now and then.
@@ -52,19 +52,64 @@ Reachable and allowed, but no longer publishing. Not in the catalog; recheck now
 | La Dépêche de Kabylie (depechedekabylie.com) | 15 تيزي وزو | 2026-10-21 | robots.txt allows all with `Crawl-delay: 10`. WordPress; `/feed/` returns the homepage (feed disabled), but `/wp-json/wp/v2/posts` works (201,977 posts). Newest post is **2021-06-28**; the homepage still shows 2020 articles. The only recent activity is old posts edited on 2026-03-07 (maintenance). If it restarts: WP API, ≥ 10 s between requests. |
 | L'Echo d'Oran (echodoran.com) | 31 وهران | 2026-10-30 | robots.txt allows all with `Crawl-delay: 60`. Static HTML pages, no feed or API. The homepage still shows the edition of 22 June 2025. If it restarts: needs the HTML extractor. |
 
-## Candidates to probe (unverified)
-From general knowledge; URLs and availability to confirm.
+## Probed candidates
+Probed 2026-10-31 from an Algerian connection (Telecom Algeria), with our own User-Agent, robots.txt
+read first. None has a config yet. Most may refuse a server abroad, so re-test from the server.
 
-| Category | Candidates |
-|---|---|
-| Presidency & government | Prime Minister's office · Official Journal (joradp.dz) |
-| Parliament | National People's Assembly (apn.dz) · Council of the Nation (majliselouma.dz) |
-| Ministries | Foreign Affairs · Interior · Defence (mdn.dz) · Finance · Energy & Mines · Commerce · Health · Education · Communication |
-| Institutions | Constitutional Court · ANIE (elections) · Bank of Algeria · Sonatrach |
-| Public media | APS (en?) · Radio Algérienne · EPTV · El Moudjahid · Echaab |
-| National press | El Khabar · Echorouk · Ennahar · El Watan · TSA · (others) |
-| International | Anadolu (fr?) · other agencies with official RSS |
-| Social (official) | YouTube channels (public RSS) of the Presidency and ministries · public Telegram channels |
+**Ready for a config:** structured data, allowed by robots.txt, publishing now.
+
+| Name | URL | Language | Method | Notes |
+|---|---|---|---|---|
+| APN | apn.dz | ar, fr (es too) | RSS `/API/rss?lang=ar` | 15 items; French titles contain `<p>`; no images |
+| El Watan | elwatan.dz (not elwatan-dz.com) | fr | WP API | 87,606 posts; `/feed/` drops the connection; daily "PDF" posts to exclude |
+| Echorouk | echoroukonline.com | ar | RSS `/feed/`, also a news sitemap | 10 items, ~88 in the sitemap; Cloudflare; WP API off |
+| Ennahar | ennaharonline.com | ar | RSS `/feed/` | 10 items in about 3 hours, so poll often; Cloudflare; WP API off |
+| El Khabar | elkhabar.com | ar, fr | RSS `/feed/`, `/fr/feed/` or Google News sitemap | Custom date format `20:48 \| 30-10-2026`, naive Algiers time; order not strictly newest first; `/api` disallowed |
+| El Moudjahid | elmoudjahid.dz | fr | RSS `/fr/feed` | Same CMS and date format as El Khabar; Cloudflare; the home page mentions captcha but was served normally. Check the Arabic edition |
+| Education ministry | education.gov.dz | ar | WP API | 430 posts; a few a week |
+| ANIE | ina-elections.dz | ar | WP API | 494 posts; excerpts are page-builder code, the lead must come from the feed or page |
+| Constitutional Court | cour-constitutionnelle.dz | ar (fr to check) | WP API | 1,342 posts; excerpts are page-builder code; home page drops the connection |
+| Bank of Algeria | bank-of-algeria.dz | fr | WP API | 1,159 posts, many are procurement notices: filter by category |
+| Sonatrach | sonatrach.com | to check | WP, `/en/category/news/` | robots.txt answered 503 once, then the site worked; recheck robots, WP API not tested |
+
+**Needs embedded data or an API found in the pages:**
+
+| Name | URL | Finding |
+|---|---|---|
+| Foreign Affairs | mfa.gov.dz | Next.js, `__NEXT_DATA__`; `/announcements/...`; newest seen 8 Sept 2026 |
+| Communication ministry | mcomm.gov.dz (old name redirects) | Next.js `__next_f`; `/ar/posts/<id>`; dated this week |
+
+**Needs the HTML extractor:**
+
+| Name | URL | Finding |
+|---|---|---|
+| Prime Minister | premier-ministre.gov.dz | No feed; `/ar/document/...` with dates, current. Government communiqués: high value |
+| Council of the Nation | majliselouma.dz | No feed; `/ara/articles?categories=...` |
+| EPTV | entv.dz | Drupal, no feed found; `/ar/news/...`, current |
+| Defence | mdn.dz | Old PHP site, `/site_principal/sommaire/actualites/ar/actualites_ar.php` |
+| Energy | energy.gov.dz | No feed found; numbered pages |
+| Commerce | commerce.gov.dz | `/actualites/...`, mostly tender notices |
+
+**Refused or blocked:**
+
+| Name | URL | Finding |
+|---|---|---|
+| Interior | interieur.gov.dz | robots.txt allows, but `/ar/feed/` answered 403 to our bot. Stopped, not worked around |
+| Anadolu (fr) | aa.com.tr/fr | Guessed feed categories 404, `/fr/rss/` timed out. Retry: `aa-ar` already works from the same site |
+
+**Unavailable or unclear:**
+
+| Name | URL | Finding |
+|---|---|---|
+| Finance | mf.gov.dz | robots.txt timed out twice, nothing fetched |
+| Health | sante.gov.dz | WordPress, only 4 posts, newest October 2024. Effectively inactive there |
+| TSA | tsa-algerie.dz (.com refuses connections) | `/feed/` drops the connection, API 404. Sitemap to try |
+| Echaab | ech-chaab.com/new | WP API worked once (217,984 posts), then dropped the connection; `/feed/` timed out. Retry |
+| Radio Algérienne | radioalgerie.dz | Home is a redirect stub; follow it |
+| Journal officiel | joradp.dz | Old frameset; publishes PDFs, needs its own approach |
+
+**Not probed:** APS in English (APS is followed in Arabic only, 2026-10-19). YouTube and Telegram
+channels: need a decision and the channel list. Other agencies: none named yet.
 
 ## Local candidates by wilaya (unverified)
 Provided 2026-10-19. Each source is assigned the wilaya listed here (see
@@ -77,7 +122,7 @@ Each must still go through [adding-sources.md](adding-sources.md) (live robots.t
 | 17 الجلفة | Djelfa Info | https://djelfainfo.dz/ar/ (verified, `djelfainfo-ar`) |
 | 19 سطيف | Sawt Setif | https://sawtsetif.dz/ (investigating: needs HTML extractor) |
 | 19 سطيف | Setif One | https://setifone.dz/ (verified, `setifone-ar`) |
-| 23 عنابة | Le Provincial | https://leprovincial.dz/ (down: 508, see Investigating) |
+| 23 عنابة | Le Provincial | https://leprovincial.dz/ (ready for a config, see Investigating) |
 | 23 عنابة | Seybouse Times | https://seybousetimes.dz/ (verified, `seybouse-fr`) |
 | 25 قسنطينة | An-Nasr | https://www.annasronline.com/ (investigating: needs HTML extractor) |
 | 25 قسنطينة | Le Quotidien de Constantine | https://lequotidien-deconstantine.dz/ (verified, `quotidienconstantine-fr`) |
