@@ -1,0 +1,34 @@
+# El Khabar, French edition. Investigated 2026-10-31 (docs/adding-sources.md).
+slug: elkhabar-fr
+name: El Khabar
+home_url: https://www.elkhabar.com/fr/
+language: fr
+kind: national
+tier: normal
+# The feed holds the 5 newest articles plus 5 columns, so it must be read often.
+poll_interval_s: 300
+access_method: rss
+robots:
+  checked_at: 2026-10-31
+  result: allowed            # disallows /fr/api, /fr/captcha, /fr/login, */view, */comments
+listings:
+  - https://www.elkhabar.com/fr/feed/
+fields:
+  id:
+    path: $.link
+    regex: '-(\d+)$'
+  title: $.title
+  link: $.link
+  published: $.published       # "13:24 | 31-10-2026", Algiers, like the Arabic feed; not in date order
+  lead: $.summary              # an <img> followed by the lead
+  image:
+    path: $.summary
+    regex: '<img[^>]+src="([^"]+)"'
+  rubric:                      # for the exclusion only
+    path: $.link
+    regex: 'elkhabar\.com/fr/([^/]+)/'
+exclude:
+  rubric: '^(videos|photos)$'
+dates:
+  published_tz: Africa/Algiers
+  confidence: source_meta

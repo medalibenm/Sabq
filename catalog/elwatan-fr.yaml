@@ -1,0 +1,31 @@
+# El Watan, national daily, in French. Investigated 2026-10-31 (docs/adding-sources.md).
+slug: elwatan-fr
+name: El Watan
+home_url: https://elwatan.dz/
+language: fr
+kind: national
+tier: normal
+# The edition lands at once, about 40 posts around 09:00 UTC, plus a few posts during the day.
+poll_interval_s: 900
+access_method: wp_json
+robots:
+  checked_at: 2026-10-31
+  result: allowed            # Disallow: (nothing)
+listings:
+  # /feed/ drops the connection, the WP API works. Category 250 is the day's edition as a PDF.
+  - https://elwatan.dz/wp-json/wp/v2/posts?per_page=60&categories_exclude=250&_embed=wp:featuredmedia,wp:term&_fields=id,date_gmt,modified_gmt,link,title,excerpt,categories,_links,_embedded
+items: $[*]
+fields:
+  id: $.id
+  title: $.title.rendered
+  published: $.date_gmt        # true UTC
+  modified: $.modified_gmt
+  lead: $.excerpt.rendered
+  image: $._embedded['wp:featuredmedia'][0].source_url
+  section: $._embedded['wp:term'][0][0].name
+  link: $.link
+exclude:
+  section: '^PDF$'
+dates:
+  published_tz: UTC
+  confidence: source_meta

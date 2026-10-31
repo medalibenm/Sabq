@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /captcha
+Disallow: /fr/captcha
+Disallow: */view
+Disallow: */comments
+Disallow: /login
+Disallow: /api
+Disallow: /fr/login
+Disallow: /fr/api
+Disallow: /*redirect_url=
+
+Sitemap: https://www.elkhabar.com/sitemap.xml
+Sitemap: https://www.elkhabar.com/sitemap/ar/news/google_news.xml
+Sitemap: https://www.elkhabar.com/sitemap/fr/news/google_news.xml

@@ -128,7 +128,7 @@ assignments.
 - `users(id, organisation_id, email, display_name, password_hash, role[owner|admin|editor|viewer], status[invited|active|disabled], created_at, last_login_at)`
 - `user_sessions(id, user_id, created_at, expires_at, last_seen_at)`; `auth_tokens(id, user_id, kind[invite|reset], token_hash, expires_at, used_at)`.
 - `wilayas(id, code, name_ar, name_fr, enabled, active_from, created_at)`: the 69 official wilayas
-  (59–69 active from 2027-01-01), plus one special row **`00` National** (`وطني` / `National`) for sources without a local wilaya.
+  (59–69 active from 2027-01-01), plus one special row **`00` National/International** (`وطني/دولي` / `National/International`) for sources without a local wilaya.
 - `organisation_wilayas(organisation_id, wilaya_id, enabled)`; an organisation must have at least
   one enabled wilaya before it can receive articles.
 - `sources(id, slug, name, home_url, language, kind[official|agency|national|local|international], tier[priority|normal|secondary], poll_interval_s, access_method[rss|wp_json|sitemap|embedded|json_api|html|headless], config jsonb, config_version, egress[default|dz_proxy], enabled, status, robots_checked_at, created_at)`. One row per source per language.
@@ -188,10 +188,10 @@ observations or article versions; a merge is reversible.
 ### Wilaya assignment
 v1 (2026-10-19): **by source only.**
 - Each source is linked to its wilaya(s) in `source_wilayas` when it is added (wilaya listed in
-  [sources.md](sources.md)). A source with no wilaya is linked to `00` National.
+  [sources.md](sources.md)). A source with no wilaya is linked to `00` National/International.
 - Every article inherits its source's wilayas in `article_wilayas`
   (`assignment_method = source`, `confidence = 1.0`). No text analysis in v1.
-- `00` National is granted like any other wilaya; it is granted to every new organisation by
+- `00` National/International is granted like any other wilaya; it is granted to every new organisation by
   default and can be removed.
 - Later, in this order of strength: regional **sections** (`section`), place names and datelines
   in the title/lead (`entity`, reusing the story-matching place list, with care for ambiguous

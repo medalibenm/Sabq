@@ -1,0 +1,31 @@
+# Echorouk (الشروق), national daily, in Arabic. Investigated 2026-10-31 (docs/adding-sources.md).
+slug: echorouk-ar
+name: الشروق
+home_url: https://www.echoroukonline.com/
+language: ar
+kind: national
+tier: normal
+# Only 10 items, about two hours of news, so it must be read often.
+poll_interval_s: 300
+access_method: rss
+robots:
+  checked_at: 2026-10-31
+  result: allowed            # disallows /wp-admin/ only
+listings:
+  - https://www.echoroukonline.com/feed/
+fields:
+  id:
+    path: $.id                 # guid: https://www.echoroukonline.com/?p=1338714
+    regex: 'p=(\d+)'
+  title: $.title
+  link: $.link
+  published: $.published       # RFC 822, true UTC: the article page gives the same time
+  lead: $.summary
+  image:
+    path: $.content[0].value
+    regex: '<img[^>]+src="([^"]+)"'
+  section: $.tags[0].term
+  author: $.author
+dates:
+  published_tz: UTC
+  confidence: source_meta

@@ -269,7 +269,7 @@ def test_org_show_lists_grants(session):
     run(["org", "create", "tariq", "Tariq News"], session, ACTOR)
     run(["org", "wilaya", "tariq", "05"], session, ACTOR)
     out = run(["org", "show", "tariq"], session, ACTOR)
-    assert "00 National, 05 Batna" in out
+    assert "00 National/International, 05 Batna" in out
 
 
 def test_grant_is_idempotent(session):

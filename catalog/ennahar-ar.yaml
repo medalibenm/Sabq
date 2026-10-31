@@ -1,0 +1,31 @@
+# Ennahar (النهار), national daily, in Arabic. Investigated 2026-10-31 (docs/adding-sources.md).
+slug: ennahar-ar
+name: النهار
+home_url: https://www.ennaharonline.com/
+language: ar
+kind: national
+tier: normal
+# Only 10 items, about three hours of news, so it must be read often.
+poll_interval_s: 300
+access_method: rss
+robots:
+  checked_at: 2026-10-31
+  result: allowed            # Disallow: (nothing)
+listings:
+  - https://www.ennaharonline.com/feed/
+fields:
+  id:
+    path: $.id                 # guid: https://www.ennaharonline.com/?p=1662943
+    regex: 'p=(\d+)'
+  title: $.title
+  link: $.link
+  published: $.published       # RFC 822, true UTC: the article page gives the same time
+  lead: $.summary              # the feed also has the full text in content: never stored
+  image:
+    path: $.content[0].value
+    regex: '<img[^>]+src="([^"]+)"'
+  section: $.tags[0].term
+  author: $.author
+dates:
+  published_tz: UTC
+  confidence: source_meta

@@ -321,7 +321,7 @@ backup has been tested.
 | Track / milestone | Status | Updated |
 |---|---|---|
 | Step 0 · Repository | done | 2026-10-19 |
-| Track A · Investigation | in progress (14 / 17 final; Le Provincial ready, 2 need the HTML extractor; broad candidates probed) | 2026-10-31 |
+| Track A · Investigation | in progress (14 / 17 final; Le Provincial ready, 2 need the HTML extractor; broad candidates probed; 5 national titles added, 22 sources live) | 2026-10-31 |
 | M1 · Foundation | done, CI green (branch `m1-foundation`) | 2026-10-19 |
 | M2 · Data model | done, CI green, merged | 2026-10-21 |
 | M3 · Fetching | done, CI green, merged | 2026-10-21 |

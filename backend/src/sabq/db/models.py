@@ -118,7 +118,7 @@ class AuthToken(Base):
 class Wilaya(Base):
     __tablename__ = "wilayas"
     id: Mapped[int] = mapped_column(Integer, Identity(), primary_key=True)
-    code: Mapped[str] = mapped_column(String(2), unique=True)  # "01".."69"; "00" = National
+    code: Mapped[str] = mapped_column(String(2), unique=True)  # "01".."69"; "00" = no wilaya
     name_ar: Mapped[str] = mapped_column(String(100))
     name_fr: Mapped[str] = mapped_column(String(100))
     enabled: Mapped[bool] = mapped_column(Boolean, server_default="true")
