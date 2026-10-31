@@ -236,6 +236,7 @@ def test_paths():
             "Africa/Algiers",
             datetime(2026, 10, 17, 16, 51, 47, tzinfo=UTC),
         ),
+        ("20:48 | 30-10-2026", "Africa/Algiers", datetime(2026, 10, 30, 19, 48, tzinfo=UTC)),
     ],
 )
 def test_dates(value, tz, expected):

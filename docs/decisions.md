@@ -3,6 +3,11 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-31 · `00` is labelled National/International
+The `00` entry holds Algerian national sources and foreign news such as Anadolu, so "National" was
+misleading. It now reads `National/International` and `وطني/دولي` (migration `0007`). The code stays
+`00`, and the press kinds ("Presse nationale", "Presse internationale") do not change.
+
 ### 2026-10-30 · Web app: React + Vite, served as static files by Caddy
 The frontend in `frontend/` follows the Claude Design handoff (`sabq-design/`, the visual
 reference). React 19, TypeScript, Vite, React Router and TanStack Query; plain CSS with the

@@ -1,0 +1,5898 @@
+[
+{
+"id": 395669,
+"date_gmt": "2026-10-31T12:43:24",
+"modified_gmt": "2026-10-31T12:43:28",
+"link": "https://elwatan.dz/celebration-du-72e-anniversaire-du-1er-novembre-1954-entre-memoire-historique-et-imperatifs-strategiques/",
+"title": {
+"rendered": "Célébration du 72e anniversaire du 1er Novembre 1954, entre mémoire historique et impératifs stratégiques"
+},
+"excerpt": {
+"rendered": "<p>À l&rsquo;occasion de la commémoration du 72e anniversaire du déclenchement de la glorieuse révolution de libération nationale, le président de la République a adressé un message fort à la nation, soulignant la profondeur historique de cette date clé, l&rsquo;impératif de la préservation de la souveraineté et la vision prospective de l&rsquo;État face aux défis géopolitiques [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/O7ZHN6UNRZFGNHE56Y3LYDDIWU-1-scaled.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22878,
+"link": "https://elwatan.dz/author/redaction-web-1/",
+"name": "Rédaction Web",
+"slug": "redaction-web-1",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22878",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22878"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395664,
+"date_gmt": "2026-10-31T09:06:00",
+"modified_gmt": "2026-10-30T22:12:34",
+"link": "https://elwatan.dz/crise-au-moyen-orient-quatrieme-hausse-mensuelle-pour-le-petrole/",
+"title": {
+"rendered": "Crise au Moyen-Orient : Quatrième hausse mensuelle pour le pétrole"
+},
+"excerpt": {
+"rendered": "<p>La prime de risque géopolitique persistante a propulsé de nouveau le baril de Brent à plus de 117 dollars le baril. Les cours du pétrole s’acheminaient, hier, vers une quatrième hausse mensuelle consécutive, soutenus par les risques de perturbation de l’offre au Moyen-Orient, dans le sillage d’attaques contre les installations énergétiques saoudiennes et la multiplication [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/P2-1.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22920,
+"link": "https://elwatan.dz/author/zhor-hadjam/",
+"name": "Zhor Hadjam",
+"slug": "zhor-hadjam",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22920",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22920"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395555,
+"date_gmt": "2026-10-31T09:06:00",
+"modified_gmt": "2026-10-30T20:20:48",
+"link": "https://elwatan.dz/29e-salon-international-du-livre-dalger-quand-les-pavillons-de-la-safex-vibrent-au-rythme-des-mots/",
+"title": {
+"rendered": "29e Salon international du livre d’Alger : Quand les pavillons de la Safex vibrent au rythme des mots"
+},
+"excerpt": {
+"rendered": "<p>Placé sous le slogan «Entre les pages d’un livre, l’avenir», le coup d’envoi de la 29e édition du Salon international du livre d’Alger a été donné, jeudi matin, accueillant ses nombreux premiers visiteurs au Palais des expositions des Pins Maritimes à Alger. Dès l&rsquo;ouverture de jeudi dernier, le salon a été pris d&rsquo;assaut par une [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+489
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/SALON-1-scaled.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 489,
+"link": "https://elwatan.dz/thematique/dossier/",
+"name": "Dossier",
+"slug": "dossier",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Dossier - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Dossier - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"name\":\"Archives des Dossier - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dossier\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Dossier - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/dossier/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Dossier - El Watan",
+"og_url": "https://elwatan.dz/thematique/dossier/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/dossier/",
+"url": "https://elwatan.dz/thematique/dossier/",
+"name": "Archives des Dossier - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Dossier"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/489",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=489"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22871,
+"link": "https://elwatan.dz/author/nacima-chabani/",
+"name": "Nacima Chabani",
+"slug": "nacima-chabani",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22871",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22871"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395657,
+"date_gmt": "2026-10-31T09:05:00",
+"modified_gmt": "2026-10-30T22:02:38",
+"link": "https://elwatan.dz/sommet-russie-afrique-intensifier-la-cooperation-economique/",
+"title": {
+"rendered": "Sommet Russie-Afrique : Intensifier la coopération économique"
+},
+"excerpt": {
+"rendered": "<p>«Notre pays mobilise ses moyens au service de l’intégration continentale», souligne le président Tebboune dans l’allocution lue en son nom par le Premier ministre Sifi Ghrieb. Les chefs d’Etat participant à la troisième édition du sommet Russie-Afrique ont souligné, jeudi à Moscou, la nécessité de renforcer la coopération entre les deux parties. Notamment à travers [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/P3-1.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22894,
+"link": "https://elwatan.dz/author/ali-benyahia/",
+"name": "Ali Benyahia",
+"slug": "ali-benyahia",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22894",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22894"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395550,
+"date_gmt": "2026-10-31T09:05:00",
+"modified_gmt": "2026-10-30T20:16:48",
+"link": "https://elwatan.dz/presentation-de-plusieurs-nouvelles-publications-le-livre-amazigh-en-forceau-sila/",
+"title": {
+"rendered": "Présentation de plusieurs nouvelles publications : Le livre amazigh en forceau SILA"
+},
+"excerpt": {
+"rendered": "<p>Ces ouvrages sont consacrés à des thématiques variées, touchant, entre autres, à la littérature, la linguistique, droit, au patrimoine manuscrit et à la mémoire historique. Des dizaines d’auteurs et d’éditeurs d’ouvrages amazighs annoncent leur participation à la 29e édition du Salon international du livre d’Alger (SILA) qui se tient au palais des expositions des pins [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+489
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/SILA.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 489,
+"link": "https://elwatan.dz/thematique/dossier/",
+"name": "Dossier",
+"slug": "dossier",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Dossier - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Dossier - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"name\":\"Archives des Dossier - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dossier\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Dossier - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/dossier/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Dossier - El Watan",
+"og_url": "https://elwatan.dz/thematique/dossier/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/dossier/",
+"url": "https://elwatan.dz/thematique/dossier/",
+"name": "Archives des Dossier - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Dossier"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/489",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=489"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22917,
+"link": "https://elwatan.dz/author/hafid-azzouzi/",
+"name": "Hafid Azzouzi",
+"slug": "hafid-azzouzi",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22917",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22917"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395654,
+"date_gmt": "2026-10-31T09:04:00",
+"modified_gmt": "2026-10-31T09:48:07",
+"link": "https://elwatan.dz/tebboune-defend-une-afrique-souveraine-et-recuse-la-logique-des-rapports-de-force/",
+"title": {
+"rendered": "Tebboune défend une Afrique souveraine et récuse la logique des rapports de force"
+},
+"excerpt": {
+"rendered": "<p>Souveraineté des Etats, réforme du Conseil de sécurité, refus des ingérences et partenariats équilibrés. Dans son allocution au troisième Sommet Russie-Afrique, le président Abdelmadjid Tebboune défend l’autonomie du continent dans la gouvernance mondiale. En effet, l’Afrique ne peut demeurer un terrain de confrontation entre puissances ni un réservoir de matières premières soumis aux intérêts extérieurs. [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/GettyImages-1242717099-scaled.jpeg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22940,
+"link": "https://elwatan.dz/author/m-f-gaidi/",
+"name": "M. F. Gaïdi",
+"slug": "m-f-gaidi",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22940",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22940"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395546,
+"date_gmt": "2026-10-31T09:04:00",
+"modified_gmt": "2026-10-30T20:12:19",
+"link": "https://elwatan.dz/ce-que-veulent-les-fous-de-jugurtha-abbou-quand-la-folie-devient-une-forme-de-lucidite/",
+"title": {
+"rendered": "Ce que veulent les fous de Jugurtha Abbou : Quand la folie devient une forme de lucidité"
+},
+"excerpt": {
+"rendered": "<p>\bPar Rezki Hatem La nouvelle œuvre romanesque de l’auteur de Ce que disent les morts tire sa justesse de sa capacité à nouer la douleur avec le rire, dans un registre emphatique qui dévoile toute la sensibilité humaine. Il y a bien un dicton de chez nous qui dit en substance que «le rire de [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+489
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/LIVRE-HAT.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 489,
+"link": "https://elwatan.dz/thematique/dossier/",
+"name": "Dossier",
+"slug": "dossier",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Dossier - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Dossier - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"name\":\"Archives des Dossier - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dossier\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Dossier - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/dossier/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Dossier - El Watan",
+"og_url": "https://elwatan.dz/thematique/dossier/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/dossier/",
+"url": "https://elwatan.dz/thematique/dossier/",
+"name": "Archives des Dossier - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Dossier"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/489",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=489"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22901,
+"link": "https://elwatan.dz/author/r-c/",
+"name": "R. C.",
+"slug": "r-c",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22901",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22901"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395650,
+"date_gmt": "2026-10-31T09:03:00",
+"modified_gmt": "2026-10-30T21:54:58",
+"link": "https://elwatan.dz/viandes-et-bovins-dedies-a-labattage-les-importations-maintenues/",
+"title": {
+"rendered": "Viandes et bovins dédiés à l’abattage : Les importations maintenues"
+},
+"excerpt": {
+"rendered": "<p>Les bovins sur pied dédiés à l’abattage continueront à être importés, comme le souligne la nouvelle note de la DGSV datant du 28 octobre. Après la décision portant suspension de l’importation des bovins sur pied notifiée aux importateurs, le 22 octobre, par le ministère de l’Agriculture, du Développement rural et de la Pêche, de nouvelles [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/VACHES.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22903,
+"link": "https://elwatan.dz/author/samira-imadalou/",
+"name": "Samira Imadalou",
+"slug": "samira-imadalou",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22903",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22903"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395622,
+"date_gmt": "2026-10-31T09:03:00",
+"modified_gmt": "2026-10-30T21:30:16",
+"link": "https://elwatan.dz/port-de-bejaia-plus-de-15-000-tonnes-de-mais-dechargees-en-24-heures/",
+"title": {
+"rendered": "Port de Béjaïa : Plus de 15 000 tonnes de maïs déchargées en 24 heures"
+},
+"excerpt": {
+"rendered": "<p>Pour la direction du port, cette réalisation confirme les capacités opérationnelles du port de Béjaïa dans la réception et le traitement de grandes cargaisons. L’Entreprise portuaire de Béjaïa (EPB) a établi un nouveau record de traitement de vrac solide, en déchargeant une cargaison de maïs de 15 153,60 tonnes selon la méthode «sous palan – [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+494
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/PORT-2.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 494,
+"link": "https://elwatan.dz/regions/kabylie/",
+"name": "Kabylie",
+"slug": "kabylie",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Kabylie - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/kabylie/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Kabylie - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/kabylie/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/\",\"name\":\"Archives des Kabylie - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Kabylie\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Kabylie - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/kabylie/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Kabylie - El Watan",
+"og_url": "https://elwatan.dz/regions/kabylie/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/kabylie/",
+"url": "https://elwatan.dz/regions/kabylie/",
+"name": "Archives des Kabylie - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/kabylie/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/kabylie/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Kabylie"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/494",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=494"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22909,
+"link": "https://elwatan.dz/author/nordine-douici/",
+"name": "Nordine Douici",
+"slug": "nordine-douici",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22909",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22909"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395530,
+"date_gmt": "2026-10-31T09:03:00",
+"modified_gmt": "2026-10-30T19:22:17",
+"link": "https://elwatan.dz/amara-lakhous-lecrivain-entre-les-langues-jamais-dans-une-seule/",
+"title": {
+"rendered": "Amara Lakhous : L’écrivain entre les langues, jamais dans une seule"
+},
+"excerpt": {
+"rendered": "<p>Né à Alger, devenu romancier à Rome, aujourd’hui professeur à Yale, l’Algéro-Italien fait de l’humour un art d’écrire. A l’occasion de la Semaine de la langue italienne, le plus drôle des écrivains algériens est en tournée en Algérie, avec un passage annoncé au Salon international du livre d’Alger. Par Sid Ahmed Hammouche Ma rencontre avec [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+489
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/AMARA-LAKHOUS.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 489,
+"link": "https://elwatan.dz/thematique/dossier/",
+"name": "Dossier",
+"slug": "dossier",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Dossier - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Dossier - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"name\":\"Archives des Dossier - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dossier\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Dossier - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/dossier/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Dossier - El Watan",
+"og_url": "https://elwatan.dz/thematique/dossier/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/dossier/",
+"url": "https://elwatan.dz/thematique/dossier/",
+"name": "Archives des Dossier - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Dossier"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/489",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=489"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22970,
+"link": "https://elwatan.dz/author/r-n/",
+"name": "R. N.",
+"slug": "r-n",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22970",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22970"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395503,
+"date_gmt": "2026-10-31T09:03:00",
+"modified_gmt": "2026-10-30T18:51:58",
+"link": "https://elwatan.dz/finale-de-la-54e-coupe-militaire-de-football-lequipe-du-commandement-des-forces-navales-triomphe/",
+"title": {
+"rendered": "Finale de la 54e Coupe militaire de football : L&rsquo;équipe du commandement des Forces navales triomphe"
+},
+"excerpt": {
+"rendered": "<p>La sélection du commandement des Forces navales s’est imposée, jeudi, face à celle du commandement des Forces aériennes aux tirs au but (4-3), après un match nul (1-1) au terme du temps réglementaire lors de la 54e finale de la Coupe d’Algérie militaire qui s’est déroulée au Centre de regroupement et de préparation des équipes [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+274
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/COUPE.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 274,
+"link": "https://elwatan.dz/sport/",
+"name": "Sport",
+"slug": "sport",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Sport - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/sport/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Sport - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/sport/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/sport\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/sport\\/\",\"name\":\"Archives des Sport - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/sport\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/sport\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sport\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Sport - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/sport/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Sport - El Watan",
+"og_url": "https://elwatan.dz/sport/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/sport/",
+"url": "https://elwatan.dz/sport/",
+"name": "Archives des Sport - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/sport/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/sport/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Sport"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/274",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=274"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22971,
+"link": "https://elwatan.dz/author/r-s/",
+"name": "R. S.",
+"slug": "r-s",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22971",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22971"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395646,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-30T21:52:20",
+"link": "https://elwatan.dz/la-campagne-electorale-des-locales-debutera-ce-jeudi-5-novembre-lanie-met-en-garde-contre-les-discours-offensants/",
+"title": {
+"rendered": "La campagne électorale des locales débutera ce jeudi 5 novembre : L’ANIE met en garde contre les «discours offensants»"
+},
+"excerpt": {
+"rendered": "<p>Lors du tirage au sort, le président de l’ANIE a appelé les candidats à privilégier le débat autour des programmes et à éviter les dérapages, notamment les attaques personnelles,les discours offensants et la désinformation. La campagne électorale pour les locales du 28 novembre débutera le 5 novembre, soit jeudi. En attendant cette échéance, les formations [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1,
+23133
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/UNEEEEE-4.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+},
+{
+"id": 23133,
+"link": "https://elwatan.dz/la-une/",
+"name": "La Une",
+"slug": "la-une",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des La Une - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/la-une/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des La Une - El Watan\" />\n<meta property=\"og:description\" content=\"La Une El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/la-une/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/la-une\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/la-une\\/\",\"name\":\"Archives des La Une - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/la-une\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/la-une\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"La Une\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des La Une - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/la-une/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des La Une - El Watan",
+"og_description": "La Une El Watan",
+"og_url": "https://elwatan.dz/la-une/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/la-une/",
+"url": "https://elwatan.dz/la-une/",
+"name": "Archives des La Une - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/la-une/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/la-une/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "La Une"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/23133",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=23133"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22876,
+"link": "https://elwatan.dz/author/nabila-amir/",
+"name": "Nabila Amir",
+"slug": "nabila-amir",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22876",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22876"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395644,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-31T09:49:57",
+"link": "https://elwatan.dz/concretisation-dune-nouvelle-approche-de-gestion-hattab-appelle-a-lamelioration-de-la-qualite-du-service-public/",
+"title": {
+"rendered": "Concrétisation d&rsquo;une «nouvelle approche de gestion» : Hattab appelle à «l’amélioration» de la qualité du service public"
+},
+"excerpt": {
+"rendered": "<p>Le ministre du Travail a érigé l’amélioration des conditions d’accueil des citoyens et le traitement de leurs doléances en priorité ne souffrant aucun report. Le ministre du Travail, de l&rsquo;Emploi et de la Sécurité sociale, Mohamed Hattab, a souligné, jeudi, l&rsquo;importance d&rsquo;améliorer la qualité du service public et d&rsquo;assurer une prise en charge des préoccupations [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/jad20260422-mmo-algerie-nouveau-mediateur-republique-mohamedhattabjpg.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22963,
+"link": "https://elwatan.dz/author/omar-arbane/",
+"name": "Omar Arbane",
+"slug": "omar-arbane",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22963",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22963"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395603,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-30T21:15:31",
+"link": "https://elwatan.dz/reunion-du-conseil-executif-consacree-au-secteur-de-la-sante-a-alger-projets-dhopitaux-a-ain-benian-baraki-et-reghaia/",
+"title": {
+"rendered": "Réunion du Conseil exécutif consacrée au secteur de la santé à Alger : Projets d’hôpitaux à Aïn Benian, Baraki et Reghaïa"
+},
+"excerpt": {
+"rendered": "<p>Les projets achevés et ceux en cours de réalisation ont été passés en revue, à l’instar des hôpitaux d’Aïn Benian, de Baraki et de Reghaïa, d’une capacité de 120 lits chacun, ainsi que de la maternité de Reghaia, d’une capacité de 60 lits, et des projets de réalisation de polycliniques. Au terme de l’exposé, M. [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+372
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/CONSEIL-1.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 372,
+"link": "https://elwatan.dz/regions/centre/",
+"name": "Centre",
+"slug": "centre",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Centre - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/centre/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Centre - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/centre/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/\",\"name\":\"Archives des Centre - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Centre\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Centre - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/centre/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Centre - El Watan",
+"og_url": "https://elwatan.dz/regions/centre/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/centre/",
+"url": "https://elwatan.dz/regions/centre/",
+"name": "Archives des Centre - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/centre/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/centre/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Centre"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/372",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=372"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 23051,
+"link": "https://elwatan.dz/author/nabil-h/",
+"name": "Nabil H.",
+"slug": "nabil-h",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/23051",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=23051"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395577,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-30T20:42:14",
+"link": "https://elwatan.dz/reunion-du-conseil-de-securite-de-lonu-sur-le-sahara-occidental-veto-russe-contre-le-projet-americain/",
+"title": {
+"rendered": "Réunion du Conseil de sécurité de l’ONU sur le Sahara occidental : Veto russe contre le projet américain"
+},
+"excerpt": {
+"rendered": "<p>Le Conseil de sécurité de l’ONU a tenu, hier à New York, sa 59e séance concernant l’avenir et le format du mandat de la Mission des Nations unies pour l’organisation d’un référendum au Sahara occidental (Minurso). Un projet de loi américain envisage de renommer la mission en «Mission des Nations unies pour le Sahara occidental», [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+287
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/CONSEIL.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 287,
+"link": "https://elwatan.dz/international/",
+"name": "International",
+"slug": "international",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des International - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/international/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des International - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/international/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/international\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/international\\/\",\"name\":\"Archives des International - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/international\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/international\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"International\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des International - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/international/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des International - El Watan",
+"og_url": "https://elwatan.dz/international/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/international/",
+"url": "https://elwatan.dz/international/",
+"name": "Archives des International - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/international/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/international/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "International"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/287",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=287"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22864,
+"link": "https://elwatan.dz/author/chahreddine-berriah/",
+"name": "Chahreddine Berriah",
+"slug": "chahreddine-berriah",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22864",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22864"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395572,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-30T20:37:29",
+"link": "https://elwatan.dz/developpement-local-a-tiaret-le-grand-defi-sanitaire/",
+"title": {
+"rendered": "développement local à Tiaret : Le grand défi sanitaire"
+},
+"excerpt": {
+"rendered": "<p>Malgré l’injection de moyens financiers conséquents, la concrétisation de chantiers structurants, à l’instar du centre d’oncologie, du futur pôle universitaire et des nouveaux hôpitaux de daïra et l’amélioration des indicateurs de couverture, les attentes des usagers sont immenses. Au-delà des bilans chiffrés et des arbitrages budgétaires, le secteur de la santé à Tiaret cristallise à [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+415
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/MOSTA-2.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 415,
+"link": "https://elwatan.dz/regions/ouest/",
+"name": "Ouest",
+"slug": "ouest",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Ouest - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/ouest/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Ouest - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/ouest/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/\",\"name\":\"Archives des Ouest - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ouest\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Ouest - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/ouest/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Ouest - El Watan",
+"og_url": "https://elwatan.dz/regions/ouest/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/ouest/",
+"url": "https://elwatan.dz/regions/ouest/",
+"name": "Archives des Ouest - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/ouest/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/ouest/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Ouest"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/415",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=415"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22984,
+"link": "https://elwatan.dz/author/amellal-fawzi/",
+"name": "Amellal Fawzi",
+"slug": "amellal-fawzi",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22984",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22984"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395540,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-30T19:20:58",
+"link": "https://elwatan.dz/patrimoine-musical-creation-de-lorchestre-philharmonique-international-dalger/",
+"title": {
+"rendered": "Patrimoine musical : Création de l’orchestre philharmonique international d’Alger"
+},
+"excerpt": {
+"rendered": "<p>Le pari est donc double : faire de l’Orchestre philharmonique international d’Algerune vitrine internationale et un service public culturel accessible. Sur décision du président de la République, Abdelmadjid Tebboune, l’Orchestre philharmonique international d’Alger voit officiellement le jour. La décision de création de cet orchestre, qui a été prise par le président de la République lors d’une [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+489
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/AMINE.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 489,
+"link": "https://elwatan.dz/thematique/dossier/",
+"name": "Dossier",
+"slug": "dossier",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Dossier - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Dossier - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/dossier/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/\",\"name\":\"Archives des Dossier - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/dossier\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dossier\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Dossier - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/dossier/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Dossier - El Watan",
+"og_url": "https://elwatan.dz/thematique/dossier/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/dossier/",
+"url": "https://elwatan.dz/thematique/dossier/",
+"name": "Archives des Dossier - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/dossier/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Dossier"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/489",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=489"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22863,
+"link": "https://elwatan.dz/author/kamel-benelkadi/",
+"name": "Kamel Benelkadi",
+"slug": "kamel-benelkadi",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22863",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22863"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395492,
+"date_gmt": "2026-10-31T09:02:00",
+"modified_gmt": "2026-10-30T18:37:16",
+"link": "https://elwatan.dz/tourisme-saharien-timimoun-accueille-le-festival-de-cerfs-volants-et-de-montgolfieres/",
+"title": {
+"rendered": "Tourisme saharien : Timimoun accueille le festival de cerfs-volants et de montgolfières"
+},
+"excerpt": {
+"rendered": "<p>Les activités du Festival international de cerfs-volants et de montgolfières ont débuté, jeudi soir, dans la wilaya de Timimoun, avec la participation de plus de 70 sportifs, nationaux et étrangers. Dans son allocution d’ouverture, le wali de Timimoun, Souna Benamar, a indiqué que cet événement sportif international, dont l’organisation coïncide avec la commémoration du 72e [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+317
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/MONG.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 317,
+"link": "https://elwatan.dz/lepoque/",
+"name": "L'Epoque",
+"slug": "lepoque",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des L&#039;Epoque - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/lepoque/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des L&#039;Epoque - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/lepoque/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/lepoque\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/lepoque\\/\",\"name\":\"Archives des L'Epoque - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/lepoque\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/lepoque\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"L'Epoque\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des L'Epoque - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/lepoque/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des L'Epoque - El Watan",
+"og_url": "https://elwatan.dz/lepoque/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/lepoque/",
+"url": "https://elwatan.dz/lepoque/",
+"name": "Archives des L'Epoque - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/lepoque/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/lepoque/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "L'Epoque"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/317",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=317"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 23051,
+"link": "https://elwatan.dz/author/nabil-h/",
+"name": "Nabil H.",
+"slug": "nabil-h",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/23051",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=23051"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395640,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T21:47:02",
+"link": "https://elwatan.dz/lutte-contre-le-trafic-de-drogue-24-millions-de-comprimes-de-pregabaline-saisis-dix-suspects-ecroues/",
+"title": {
+"rendered": "Lutte contre le trafic de drogue : 2,4 millions de comprimés de prégabaline saisis, dix suspects écroués"
+},
+"excerpt": {
+"rendered": "<p>2,4 millions de comprimés ont été retrouvés en possession des individus interpellés,pris en flagrant délit lors de l’opération. Dix personnes ont été placées en détention provisoire, jeudi, par le juge d’instruction du pôle pénal national de lutte contre le terrorisme et la criminalité organisée transnationale du tribunal de Sidi M’hamed, à Alger, dans une affaire [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/SURETE-1.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22940,
+"link": "https://elwatan.dz/author/m-f-gaidi/",
+"name": "M. F. Gaïdi",
+"slug": "m-f-gaidi",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22940",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22940"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395630,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T21:37:35",
+"link": "https://elwatan.dz/lutte-contre-le-cancer-le-renforcement-du-depistage-et-de-la-numerisation-en-ligne-de-mire/",
+"title": {
+"rendered": "Lutte contre le cancer : Le renforcement du dépistage et de la numérisation en ligne de mire"
+},
+"excerpt": {
+"rendered": "<p>Le ministre a réaffirmé l’engagement de la tutelle à accompagner les équipes du Réseau national des registres du cancer, notamment par la mise à disposition des moyens humains, logistiques et technologiques. Slon les données du Réseau national des registres du cancer, l’Algérie a enregistré 60 743 nouveaux cas de cancer en 2024, contre 56 319 en [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+904
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/SACANNER.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 904,
+"link": "https://elwatan.dz/thematique/sante/",
+"name": "Santé",
+"slug": "sante",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Santé - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/sante/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Santé - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/sante/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/sante\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/sante\\/\",\"name\":\"Archives des Santé - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/sante\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/sante\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Santé\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Santé - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/sante/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Santé - El Watan",
+"og_url": "https://elwatan.dz/thematique/sante/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/sante/",
+"url": "https://elwatan.dz/thematique/sante/",
+"name": "Archives des Santé - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/sante/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/sante/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Santé"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/904",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=904"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22937,
+"link": "https://elwatan.dz/author/sofia-ouahib/",
+"name": "Sofia Ouahib",
+"slug": "sofia-ouahib",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22937",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22937"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395619,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T21:27:04",
+"link": "https://elwatan.dz/darguina-inauguration-dun-ouvrage-dart/",
+"title": {
+"rendered": "Darguina : Inauguration d’un ouvrage d’art"
+},
+"excerpt": {
+"rendered": "<p>Le wali de Béjaïa a procédé jeudi à la mise en service d’un ouvrage d’art (un pont) dans la commune de Darguina, sur le chemin de wilaya numéro 17, précisément au point kilométrique pk 21+800, au lieu-dit Combata. L’infrastructure est destinée à améliorer les conditions de circulation et à renforcer la sécurité des usagers dans cette [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+494
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/KAB-1-scaled.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 494,
+"link": "https://elwatan.dz/regions/kabylie/",
+"name": "Kabylie",
+"slug": "kabylie",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Kabylie - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/kabylie/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Kabylie - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/kabylie/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/\",\"name\":\"Archives des Kabylie - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Kabylie\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Kabylie - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/kabylie/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Kabylie - El Watan",
+"og_url": "https://elwatan.dz/regions/kabylie/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/kabylie/",
+"url": "https://elwatan.dz/regions/kabylie/",
+"name": "Archives des Kabylie - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/kabylie/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/kabylie/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Kabylie"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/494",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=494"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22909,
+"link": "https://elwatan.dz/author/nordine-douici/",
+"name": "Nordine Douici",
+"slug": "nordine-douici",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22909",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22909"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395613,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T21:23:44",
+"link": "https://elwatan.dz/des-eleves-arrivent-en-retard-au-cem-et-au-lycee-ramassage-scolaire-insuffisant-a-tigzirt/",
+"title": {
+"rendered": "Des élèves arrivent en retard au CEM et au lycée : Ramassage scolaire insuffisant à Tigzirt"
+},
+"excerpt": {
+"rendered": "<p>Le manque de moyens de transport scolaire rend la situation difficile, notamment pour l’acheminement des enfants des villages vers leurs établissements. Cette année, un ancien bus de l’APC est à l’arrêt conformément à la réglementation en vigueur qui exige le remplacement de tous les moyens de transport dépassant 30 ans d’âge. Seulement à Tigzirt, un [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+494
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/CEM.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 494,
+"link": "https://elwatan.dz/regions/kabylie/",
+"name": "Kabylie",
+"slug": "kabylie",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Kabylie - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/kabylie/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Kabylie - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/kabylie/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/\",\"name\":\"Archives des Kabylie - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/kabylie\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Kabylie\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Kabylie - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/kabylie/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Kabylie - El Watan",
+"og_url": "https://elwatan.dz/regions/kabylie/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/kabylie/",
+"url": "https://elwatan.dz/regions/kabylie/",
+"name": "Archives des Kabylie - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/kabylie/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/kabylie/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Kabylie"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/494",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=494"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 23116,
+"link": "https://elwatan.dz/author/r-kabylie/",
+"name": "R. Kabylie",
+"slug": "r-kabylie",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/23116",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=23116"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395599,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T21:10:00",
+"link": "https://elwatan.dz/institut-pasteur-formation-sur-lenvenimation-scorpionique-et-ophidienne/",
+"title": {
+"rendered": "Institut Pasteur : Formation sur l’envenimation scorpionique et ophidienne"
+},
+"excerpt": {
+"rendered": "<p>L’Institut Pasteur d’Algérie organise, du 15 au 19 novembre 2026, la deuxième édition de son cours consacré à la prise en charge des envenimations par les scorpions et les serpents. Prévue à l’annexe de Sidi Fredj, à Alger, cette formation vise à renforcer les connaissances théoriques et les compétences pratiques des professionnels de santé concernés [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+372
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/PAST.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 372,
+"link": "https://elwatan.dz/regions/centre/",
+"name": "Centre",
+"slug": "centre",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Centre - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/centre/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Centre - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/centre/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/\",\"name\":\"Archives des Centre - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/centre\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Centre\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Centre - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/centre/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Centre - El Watan",
+"og_url": "https://elwatan.dz/regions/centre/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/centre/",
+"url": "https://elwatan.dz/regions/centre/",
+"name": "Archives des Centre - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/centre/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/centre/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Centre"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/372",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=372"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 23009,
+"link": "https://elwatan.dz/author/mohamed-benzerga/",
+"name": "Mohamed Benzerga",
+"slug": "mohamed-benzerga",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/23009",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=23009"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395568,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-31T11:05:36",
+"link": "https://elwatan.dz/relizane-la-cnas-simplique-dans-la-campagne-de-lutte-contre-le-cancer/",
+"title": {
+"rendered": "Relizane : La CNAS s’implique dans la campagne de lutte contre le cancer"
+},
+"excerpt": {
+"rendered": "<p>L’agence CNAS de Relizane a saisi l’opportunité de la clôture du mois rose, dédié à la sensibilisation sur le cancer du sein et de l’utérus, pour manifester son implication dans cette campagne de prévention contre cette maladie sournoise et ravageuse. Nous avons ouvert tous les espaces de notre succursale et de nos antennes établies sur [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+415
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/retraite-cnas-algeriens-france-affiliation-volontaire.jpg.webp"
+}
+],
+"wp:term": [
+[
+{
+"id": 415,
+"link": "https://elwatan.dz/regions/ouest/",
+"name": "Ouest",
+"slug": "ouest",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Ouest - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/regions/ouest/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Ouest - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/regions/ouest/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/\",\"name\":\"Archives des Ouest - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/regions\\/ouest\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Régions\",\"item\":\"https:\\/\\/elwatan.dz\\/regions\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ouest\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Ouest - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/regions/ouest/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Ouest - El Watan",
+"og_url": "https://elwatan.dz/regions/ouest/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/regions/ouest/",
+"url": "https://elwatan.dz/regions/ouest/",
+"name": "Archives des Ouest - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/regions/ouest/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/regions/ouest/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Régions",
+"item": "https://elwatan.dz/regions/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Ouest"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/415",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1620"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=415"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22946,
+"link": "https://elwatan.dz/author/issac-b/",
+"name": "Issac B.",
+"slug": "issac-b",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22946",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22946"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395563,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-31T11:14:19",
+"link": "https://elwatan.dz/les-deux-camps-refusent-toute-alliance-avec-le-bloc-arabe-limpasse-politique-qui-profite-a-netanyahu/",
+"title": {
+"rendered": "Les deux camps refusent toute alliance avec le bloc arabe : L&rsquo;impasse politique qui profite à Netanyahu"
+},
+"excerpt": {
+"rendered": "<p>Au lendemain du dépouillement du vote, Israël se retrouve dans une situation d’impasse. Aucun des deux camps n’a pu obtenir la majorité absolue de 61 sièges sur les 120 à pourvoir, pour espérer diriger le gouvernement. Ni le bloc de Netanyahu, avec ses 53 sièges, ni celui du changement, dirigé par Gadi Eizenkot, avec ses [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+46273
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/W3PODOHIWZOZZB7VDBBNK63HAI-scaled.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 46273,
+"link": "https://elwatan.dz/international/",
+"name": "International",
+"slug": "international",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des International - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/international/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des International - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/international/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/international\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/international\\/\",\"name\":\"Archives des International - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/international\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/international\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"International\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des International - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/international/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des International - El Watan",
+"og_url": "https://elwatan.dz/international/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/international/",
+"url": "https://elwatan.dz/international/",
+"name": "Archives des International - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/international/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/international/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "International"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/46273",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=46273"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22874,
+"link": "https://elwatan.dz/author/salima-tlemcani/",
+"name": "Salima Tlemçani",
+"slug": "salima-tlemcani",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22874",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22874"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395522,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T18:58:50",
+"link": "https://elwatan.dz/prix-nobel-de-physique-geoffrey-hinton-appelle-a-se-lier-damitie-avec-lia/",
+"title": {
+"rendered": "Prix Nobel de physique : Geoffrey Hinton appelle à se «lier d’amitié» avec l’IA"
+},
+"excerpt": {
+"rendered": "<p>Dans une interview accordée au Telegraph, le célèbre informaticien britannique Geoffrey Hinton a plaidé en faveur d’une «amitié» entre l’humanité et l’IA. Une parole rare en provenance d’un lauréat du prix Turing et du Nobel de physique. Pour que l’avenir soit le meilleur possible, il va falloir se «lier d’amitié» avec l’intelligence artificielle. C’est le [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+554
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/NOBEL.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 554,
+"link": "https://elwatan.dz/thematique/magazine/",
+"name": "Magazine",
+"slug": "magazine",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Magazine - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/thematique/magazine/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Magazine - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/thematique/magazine/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/magazine\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/thematique\\/magazine\\/\",\"name\":\"Archives des Magazine - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/magazine\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/thematique\\/magazine\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thématique\",\"item\":\"https:\\/\\/elwatan.dz\\/thematique\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Magazine\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Magazine - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/thematique/magazine/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Magazine - El Watan",
+"og_url": "https://elwatan.dz/thematique/magazine/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/thematique/magazine/",
+"url": "https://elwatan.dz/thematique/magazine/",
+"name": "Archives des Magazine - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/thematique/magazine/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/thematique/magazine/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Thématique",
+"item": "https://elwatan.dz/thematique/"
+},
+{
+"@type": "ListItem",
+"position": 3,
+"name": "Magazine"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/554",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"up": [
+{
+"embeddable": true,
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/21639"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=554"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 23138,
+"link": "https://elwatan.dz/author/r-mag/",
+"name": "R. Mag",
+"slug": "r-mag",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/23138",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=23138"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395500,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-30T18:45:51",
+"link": "https://elwatan.dz/le-football-setifien-en-deuil-abderrahmane-ziad-nest-plus/",
+"title": {
+"rendered": "Le football sétifien en deuil : Abderrahmane Ziad n&rsquo;est plus"
+},
+"excerpt": {
+"rendered": "<p>A la veille de la commémoration du déclenchement de la glorieuse guerre de Libération nationale, le football sétifien vient de perdre l&rsquo;une de ses figures historiques. Le moudjahid El Hadj Abderrahmane Ziad, plus connu dans le milieu sportif sous le surnom d&rsquo;«El Herra», s&rsquo;est éteint dans la nuit de jeudi à hier à l&rsquo;âge de [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+274
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/ZIAD.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 274,
+"link": "https://elwatan.dz/sport/",
+"name": "Sport",
+"slug": "sport",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Sport - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/sport/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Sport - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/sport/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/sport\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/sport\\/\",\"name\":\"Archives des Sport - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/sport\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/sport\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sport\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Sport - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/sport/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Sport - El Watan",
+"og_url": "https://elwatan.dz/sport/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/sport/",
+"url": "https://elwatan.dz/sport/",
+"name": "Archives des Sport - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/sport/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/sport/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Sport"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/274",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=274"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22939,
+"link": "https://elwatan.dz/author/salim-oussaci/",
+"name": "Salim Oussaci",
+"slug": "salim-oussaci",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22939",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22939"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395490,
+"date_gmt": "2026-10-31T09:01:00",
+"modified_gmt": "2026-10-31T10:53:28",
+"link": "https://elwatan.dz/ain-el-kerma-oran-inauguration-dune-piscine-semi-olympique-et-dune-salle-omnisports/",
+"title": {
+"rendered": "Aïn El Kerma (Oran) : Inauguration d’une piscine semi-olympique et d’une salle omnisports"
+},
+"excerpt": {
+"rendered": "<p>Le secteur des sports de la wilaya d’Oran vient d’être renforcé par deux nouvelles infrastructures sportives, à savoir une piscine semi-olympique de 25 mètres et une salle omnisports dans la commune de Aïn El Kerma, ont annoncé hier les services de la wilaya. Dans le cadre des festivités commémorant le 72e anniversaire du déclenchement de [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+317
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/Complexe_AquatiquecLa-Roche-sur-Yon-Agglomeration-4-1246x703-1.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 317,
+"link": "https://elwatan.dz/lepoque/",
+"name": "L'Epoque",
+"slug": "lepoque",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des L&#039;Epoque - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/lepoque/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des L&#039;Epoque - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/lepoque/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/lepoque\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/lepoque\\/\",\"name\":\"Archives des L'Epoque - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/lepoque\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/lepoque\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"L'Epoque\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des L'Epoque - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/lepoque/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des L'Epoque - El Watan",
+"og_url": "https://elwatan.dz/lepoque/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/lepoque/",
+"url": "https://elwatan.dz/lepoque/",
+"name": "Archives des L'Epoque - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/lepoque/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/lepoque/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "L'Epoque"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/317",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=317"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 23093,
+"link": "https://elwatan.dz/author/r-ep/",
+"name": "R. Ep.",
+"slug": "r-ep",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/23093",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=23093"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395662,
+"date_gmt": "2026-10-31T09:00:00",
+"modified_gmt": "2026-10-31T10:26:12",
+"link": "https://elwatan.dz/reprise-des-negociations-sur-la-convention-cadre-des-nations-unies-concernant-la-fiscalite-internationale-loligarchie-mondiale-et-la-state-capture/",
+"title": {
+"rendered": "Reprise des négociations sur la convention-cadre des Nations unies concernant la fiscalité internationale : L’oligarchie mondiale et la «state capture»"
+},
+"excerpt": {
+"rendered": "<p>De plus en plus préoccupée par la hausse des pressions inflationnistes due au conflit prolongé au Moyen-Orient, qui maintient les prix du pétrole brut à un niveau élevé, la Commission internationale pour la réforme de la fiscalité des entreprises (ICRICT) a pointé du doigt les recettes que les gouvernements laissent sur la table. Elle appelle [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/pexelskarolinagrabowska4386372jpg_6776c6fe934b04.82448844-scaled.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22988,
+"link": "https://elwatan.dz/author/naima-benouaret/",
+"name": "Naïma Benouaret",
+"slug": "naima-benouaret",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22988",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22988"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+},
+{
+"id": 395638,
+"date_gmt": "2026-10-31T09:00:00",
+"modified_gmt": "2026-10-31T10:24:21",
+"link": "https://elwatan.dz/69-kg-de-cocaine-saisis-deux-suspects-arretes-a-tamanrasset/",
+"title": {
+"rendered": "69 kg de cocaïne saisis, deux suspects arrêtés à Tamanrasset"
+},
+"excerpt": {
+"rendered": "<p>Une nouvelle opération contre les réseaux de trafic de drogue a permis aux services de la Sûreté nationale de déjouer un projet d’acheminement de 69 kg de cocaïne depuis le sud du pays vers les wilayas du Nord. L’intervention, menée par la brigade de recherche et d’intervention de la sûreté de wilaya de Tamanrasset, a [&hellip;]</p>\n",
+"protected": false
+},
+"categories": [
+1
+],
+"_embedded": {
+"wp:featuredmedia": [
+{
+"source_url": "https://elwatan.dz/wp-content/uploads/2026/10/KOW33WBHJNA4HCRAGWCNOTP2IU-scaled.jpg"
+}
+],
+"wp:term": [
+[
+{
+"id": 1,
+"link": "https://elwatan.dz/actualite/",
+"name": "Actualité",
+"slug": "actualite",
+"taxonomy": "category",
+"yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Archives des Actualité - El Watan</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:locale\" content=\"fr_FR\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Archives des Actualité - El Watan\" />\n<meta property=\"og:url\" content=\"https://elwatan.dz/actualite/\" />\n<meta property=\"og:site_name\" content=\"El Watan\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"url\":\"https:\\/\\/elwatan.dz\\/actualite\\/\",\"name\":\"Archives des Actualité - El Watan\",\"isPartOf\":{\"@id\":\"https:\\/\\/elwatan.dz\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\"},\"inLanguage\":\"fr-FR\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/elwatan.dz\\/actualite\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Accueil\",\"item\":\"https:\\/\\/elwatan.dz\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Actualité\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/elwatan.dz\\/#website\",\"url\":\"https:\\/\\/elwatan.dz\\/\",\"name\":\"El Watan\",\"description\":\"Le quotidien indépendant\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/elwatan.dz\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"fr-FR\"}]}</script>\n<!-- / Yoast SEO plugin. -->",
+"yoast_head_json": {
+"title": "Archives des Actualité - El Watan",
+"robots": {
+"index": "index",
+"follow": "follow",
+"max-snippet": "max-snippet:-1",
+"max-image-preview": "max-image-preview:large",
+"max-video-preview": "max-video-preview:-1"
+},
+"canonical": "https://elwatan.dz/actualite/",
+"og_locale": "fr_FR",
+"og_type": "article",
+"og_title": "Archives des Actualité - El Watan",
+"og_url": "https://elwatan.dz/actualite/",
+"og_site_name": "El Watan",
+"twitter_card": "summary_large_image",
+"schema": {
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://elwatan.dz/actualite/",
+"url": "https://elwatan.dz/actualite/",
+"name": "Archives des Actualité - El Watan",
+"isPartOf": {
+"@id": "https://elwatan.dz/#website"
+},
+"breadcrumb": {
+"@id": "https://elwatan.dz/actualite/#breadcrumb"
+},
+"inLanguage": "fr-FR"
+},
+{
+"@type": "BreadcrumbList",
+"@id": "https://elwatan.dz/actualite/#breadcrumb",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Accueil",
+"item": "https://elwatan.dz/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Actualité"
+}
+]
+},
+{
+"@type": "WebSite",
+"@id": "https://elwatan.dz/#website",
+"url": "https://elwatan.dz/",
+"name": "El Watan",
+"description": "Le quotidien indépendant",
+"potentialAction": [
+{
+"@type": "SearchAction",
+"target": {
+"@type": "EntryPoint",
+"urlTemplate": "https://elwatan.dz/?s={search_term_string}"
+},
+"query-input": {
+"@type": "PropertyValueSpecification",
+"valueRequired": true,
+"valueName": "search_term_string"
+}
+}
+],
+"inLanguage": "fr-FR"
+}
+]
+}
+},
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories/1",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/categories"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/category"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?categories=1"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+],
+[],
+[
+{
+"id": 22940,
+"link": "https://elwatan.dz/author/m-f-gaidi/",
+"name": "M. F. Gaïdi",
+"slug": "m-f-gaidi",
+"taxonomy": "author",
+"_links": {
+"self": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author/22940",
+"targetHints": {
+"allow": [
+"GET"
+]
+}
+}
+],
+"collection": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/ppma_author"
+}
+],
+"about": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/taxonomies/author"
+}
+],
+"wp:post_type": [
+{
+"href": "https://elwatan.dz/wp-json/wp/v2/posts?ppma_author=22940"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+]
+]
+}
+}
+]
