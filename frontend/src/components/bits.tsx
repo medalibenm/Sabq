@@ -1,7 +1,7 @@
 // Small pieces shared by the screens.
 
 import { useState } from "react";
-import type { ReactNode } from "react";
+import type { KeyboardEvent, ReactNode } from "react";
 
 import { clock, exact, relative, useNow } from "../lib/time";
 import { contentAttrs } from "../lib/text";
@@ -115,20 +115,43 @@ export function Segmented<T extends string>({
   className = "",
 }: {
   label: string;
-  options: { value: T; label: string; lang?: string }[];
+  options: { value: T; label: string; lang?: string; hint?: string }[];
   value: T;
   onChange: (value: T) => void;
   className?: string;
 }) {
+  // the radio pattern: Tab reaches the chosen option, the arrow keys move between options
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const step = { ArrowDown: 1, ArrowUp: -1, ArrowLeft: -1, ArrowRight: 1 }[event.key];
+    if (!step) return;
+    event.preventDefault();
+    const rtl = getComputedStyle(event.currentTarget).direction === "rtl";
+    const horizontal = event.key === "ArrowLeft" || event.key === "ArrowRight";
+    const forward = rtl && horizontal ? -step : step;
+    const at = options.findIndex((option) => option.value === value);
+    const index = (at + forward + options.length) % options.length;
+    onChange(options[index].value);
+    const buttons = event.currentTarget.querySelectorAll("button");
+    buttons[index]?.focus();
+  };
+
   return (
-    <div role="radiogroup" aria-label={label} className={`segmented ${className}`}>
+    <div
+      role="radiogroup"
+      aria-label={label}
+      className={`segmented ${className}`}
+      onKeyDown={onKeyDown}
+    >
       {options.map((option) => (
         <button
           key={option.value}
           type="button"
           role="radio"
           lang={option.lang}
+          title={option.hint}
+          aria-description={option.hint}
           aria-checked={option.value === value}
+          tabIndex={option.value === value ? 0 : -1}
           onClick={() => onChange(option.value)}
         >
           {option.label}

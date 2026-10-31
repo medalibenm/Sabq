@@ -1,6 +1,6 @@
 // The stream's rules, free of React so they are easy to test.
 
-import type { Article } from "../api/client";
+import type { Article, Story } from "../api/client";
 
 export interface Filters {
   wilayas: string[];
@@ -61,4 +61,23 @@ export function dominantSource(pending: Article[]): Burst | null {
   }
   const [source, count] = [...counts].sort((a, b) => b[1] - a[1])[0];
   return count / pending.length >= 0.6 ? { source, count } : null;
+}
+
+const members = (story: Story) => story.articles.map((article) => article.id).join();
+
+/** New stories and stories with new articles, compared with the list on screen. */
+export function updatedStories(shown: Story[], fresh: Story[]): Story[] {
+  const before = new Map(shown.map((story) => [story.id, members(story)]));
+  return fresh.filter((story) => before.get(story.id) !== members(story));
+}
+
+/** The list after the reader asks for the updates: those first, the rest in the server's order. */
+export function storiesAfterReveal(fresh: Story[], updated: Story[]): Story[] {
+  const moved = new Set(updated.map((story) => story.id));
+  return [...updated, ...fresh.filter((story) => !moved.has(story.id))];
+}
+
+/** Same stories in the same order: taking the fresh copy cannot move anything on screen. */
+export function sameRows(shown: Story[], fresh: Story[]): boolean {
+  return shown.length === fresh.length && shown.every((story, i) => story.id === fresh[i].id);
 }

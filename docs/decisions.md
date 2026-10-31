@@ -3,6 +3,21 @@
 ## Decision log
 Newest first. Each entry: date, decision, why.
 
+### 2026-10-31 · One Radar page: Articles and Events are views, not tabs
+Stream and Stories showed the same filtered articles, so they became one page, `/radar?view=articles|events`,
+with a segmented control (`/` and `/stories` redirect). "Stories" is now "Events" in the interface; the API
+keeps its names. Both views stay mounted, which keeps their lists, expanded rows, waiting pills and scroll
+position. The chosen view is kept per user in the browser, and `V` toggles it (also `ر`, the same key on an
+Arabic keyboard).
+
+The Events list is frozen too: fresh data is compared with the rows on screen, and changed events wait in
+the pill. A pushed article cannot say which event changed, because matching happens after it is pushed.
+`/app/stories` returns at most 50 events, so the count reads "50+" at that limit and no total is shown.
+The row with the control is sticky on wide screens: otherwise reaching it scrolls to the top and there is
+no position left to keep. Small screens use the app's existing breakpoint (820 px), not 640 px, because the
+filter rail and bottom navigation already change there. The "developing" strip is off by default
+(`VITE_DEVELOPING_STRIP=true` at build, or localStorage `sabq.flag.developingStrip` = `1`).
+
 ### 2026-10-31 · `00` is labelled National/International
 The `00` entry holds Algerian national sources and foreign news such as Anadolu, so "National" was
 misleading. It now reads `National/International` and `وطني/دولي` (migration `0007`). The code stays

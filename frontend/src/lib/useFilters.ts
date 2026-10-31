@@ -1,4 +1,4 @@
-// Filters and search live in the URL: they survive a reload and follow Stream ↔ Stories.
+// Filters and search live in the URL: they survive a reload and both Radar views use them.
 
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
