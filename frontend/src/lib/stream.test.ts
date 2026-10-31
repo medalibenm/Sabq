@@ -1,7 +1,15 @@
 import { describe, expect, it } from "vitest";
 
-import type { Article } from "../api/client";
-import { dominantSource, matches, merge, oneCardPerStory } from "./stream";
+import type { Article, Story } from "../api/client";
+import {
+  dominantSource,
+  matches,
+  merge,
+  oneCardPerStory,
+  sameRows,
+  storiesAfterReveal,
+  updatedStories,
+} from "./stream";
 import { plural } from "./text";
 import { clock, detectionGap, exact, relative } from "./time";
 
@@ -110,5 +118,31 @@ describe("Arabic plurals", () => {
     expect(plural("ar", 5, forms)).toBe("5 مقالات جديدة");
     expect(plural("ar", 60, forms)).toBe("60 مقالًا جديدًا");
     expect(plural("ar", 100, forms)).toBe("100 مقال جديد");
+  });
+});
+
+describe("events waiting for the reader", () => {
+  const story = (id: number, ...articles: number[]) =>
+    ({ id, articles: articles.map((a) => article(a)) }) as Story;
+
+  it("finds new stories and stories with new articles, nothing else", () => {
+    const shown = [story(1, 1, 2), story(2, 3, 4)];
+    const fresh = [story(3, 7, 8), story(2, 3, 4, 9), story(1, 1, 2)];
+    expect(updatedStories(shown, fresh).map((s) => s.id)).toEqual([3, 2]);
+    expect(updatedStories(shown, shown)).toEqual([]);
+  });
+
+  it("puts the updated stories first when revealed", () => {
+    const fresh = [story(1, 1, 2), story(2, 3, 4), story(3, 5, 6)];
+    const after = storiesAfterReveal(fresh, [story(3, 5, 6)]);
+    expect(after.map((s) => s.id)).toEqual([3, 1, 2]);
+  });
+
+  it("only treats the same order as safe to swap silently", () => {
+    const a = story(1, 1, 2);
+    const b = story(2, 3, 4);
+    expect(sameRows([a, b], [a, b])).toBe(true);
+    expect(sameRows([a, b], [b, a])).toBe(false);
+    expect(sameRows([a, b], [a])).toBe(false);
   });
 });

@@ -1,24 +1,34 @@
-// The stream: newest first, infinite scroll. New articles never move the list: they wait in the
-// pill until the reader asks for them (docs/ui-design-prompt.md, "New articles while reading").
+// The Radar: one page, two views of the same filtered articles. Articles is the stream, newest
+// first, infinite scroll. New articles never move the list: they wait in the pill until the reader
+// asks for them (docs/ui-design-prompt.md, "New articles while reading"). Events groups them.
+// Both views stay mounted, so switching keeps their lists, expansions and waiting pills.
 
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { api } from "../api/client";
-import type { Article } from "../api/client";
+import type { Article, Me, StoryState } from "../api/client";
 import { ArticleCard, CardSkeleton } from "../components/ArticleCard";
-import { LoadError, Loading, useWilayaLabel } from "../components/bits";
+import { LoadError, Loading, Moment, useWilayaLabel } from "../components/bits";
 import { useFacets } from "../components/FilterRail";
 import { ArrowUp, Close, Funnel, Radar as RadarIcon, Search } from "../components/icons";
+import { useStories, ViewSwitch } from "../components/ViewSwitch";
+import { developingStrip } from "../lib/flags";
 import { useLive } from "../live";
 import { dominantSource, matches, merge, oneCardPerStory } from "../lib/stream";
-import { fill } from "../lib/text";
+import { contentAttrs, fill } from "../lib/text";
 import { useFilters } from "../lib/useFilters";
+import { useRadarView } from "../lib/useRadarView";
+import type { RadarView } from "../lib/useRadarView";
 import { usePrefs } from "../prefs";
+import { EventsView } from "./Events";
+import type { OpenEvent } from "./Events";
 
 const HIGHLIGHT_MS = 8000;
 const FEW_ARTICLES = 3;
+const STRIP_EVENTS = 3;
+const STORIES_DEBOUNCE_MS = 5000;
 
 export function ActiveFilters() {
   const { L } = usePrefs();
@@ -107,12 +117,41 @@ const SKELETONS = [
   { image: true, width: "58%" },
 ];
 
-export function Radar() {
+/** Up to three developing events above the stream (behind a flag, see lib/flags.ts). */
+function DevelopingStrip({ onOpen }: { onOpen: (id: number) => void }) {
+  const { L, count } = usePrefs();
+  const stories = useStories("all");
+  const developing = (stories.data ?? []).filter((story) => !story.closed).slice(0, STRIP_EVENTS);
+  if (developing.length === 0) return null;
+  return (
+    <section className="dev-strip" aria-label={L.developing}>
+      <span className="dev-strip-title">
+        <span className="tag-dot" aria-hidden="true" />
+        {L.developing}
+      </span>
+      {developing.map((story) => {
+        const lead =
+          story.articles.find((a) => a.id === story.representative_id) ?? story.articles[0];
+        const sources = new Set(story.articles.map((a) => a.source.slug)).size;
+        const latest = story.articles[story.articles.length - 1];
+        return (
+          <button type="button" key={story.id} onClick={() => onOpen(story.id)}>
+            <span {...contentAttrs(lead.language)}>{lead.title}</span>
+            <small>
+              {count("sources", sources)} · <Moment iso={story.last_member_at ?? latest.sort_at} />
+            </small>
+          </button>
+        );
+      })}
+    </section>
+  );
+}
+
+function ArticlesView({ onOpenEvent }: { onOpenEvent: (id: number) => void }) {
   const { L, count } = usePrefs();
   const { filters, clearFilters, setQuery, activeCount } = useFilters();
   const { subscribe, resets } = useLive();
   const client = useQueryClient();
-  const facets = useFacets();
 
   const list = useInfiniteQuery({
     queryKey: ["articles", filters],
@@ -203,47 +242,151 @@ export function Radar() {
   const isEmpty = list.isSuccess && visible.length === 0;
 
   return (
+    <>
+      {developingStrip && <DevelopingStrip onOpen={onOpenEvent} />}
+
+      {waiting.length > 0 && (
+        <div className="pill-anchor">
+          <button type="button" className="pill" onClick={reveal}>
+            <ArrowUp width={2.4} />
+            <span>
+              <strong>{count("newArticles", waiting.length)}</strong>
+              {burst && <small>{fill(L.burstSub, { count: burst.count, source: burst.source })}</small>}
+            </span>
+          </button>
+        </div>
+      )}
+
+      {isFirstTime && <FirstTime />}
+
+      {list.isPending && (
+        <div aria-busy="true" aria-label={L.loading} className="skeletons">
+          {SKELETONS.map((skeleton) => (
+            <CardSkeleton key={skeleton.width} {...skeleton} />
+          ))}
+        </div>
+      )}
+
+      {list.isError && <LoadError onRetry={() => list.refetch()} />}
+
+      {isEmpty && !isFirstTime && (
+        <Empty onClearFilters={clearFilters} onClearSearch={() => setQuery("")} />
+      )}
+
+      {visible.map((article) => (
+        <ArticleCard key={article.id} article={article} isNew={highlighted.has(article.id)} />
+      ))}
+
+      <div ref={sentinel} />
+      {isFetchingNextPage && <Loading />}
+    </>
+  );
+}
+
+const typing = (target: HTMLElement) =>
+  /INPUT|TEXTAREA|SELECT/.test(target.tagName) || target.isContentEditable;
+
+export function Radar({ me }: { me: Me }) {
+  const { L, count } = usePrefs();
+  const { filters } = useFilters();
+  const { subscribe } = useLive();
+  const client = useQueryClient();
+  const facets = useFacets();
+  const { view, setView, putInUrl, inUrl } = useRadarView(me.id);
+  const [eventState, setEventState] = useState<StoryState>("all");
+  const [openEvent, setOpenEvent] = useState<OpenEvent>("first");
+  const [focusEvent, setFocusEvent] = useState<number | null>(null);
+
+  // the address always names the view, so what is on screen can be linked
+  useEffect(() => {
+    if (!inUrl) putInUrl(view);
+  }, [inUrl, view, putInUrl]);
+
+  // each view keeps its own place on the page; different filters mean a different list
+  const scroll = useRef<Partial<Record<RadarView, number>>>({});
+  const current = useRef(view);
+  useLayoutEffect(() => {
+    if (current.current === view) return;
+    current.current = view;
+    window.scrollTo(0, scroll.current[view] ?? 0);
+  }, [view]);
+  useEffect(() => {
+    const onScroll = () => {
+      scroll.current[current.current] = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    scroll.current = {};
+  }, [filters]);
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      // "ر" is the same key on an Arabic keyboard
+      if (!["v", "V", "ر"].includes(event.key)) return;
+      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (typing(event.target as HTMLElement) || document.querySelector('[role="dialog"]')) return;
+      setView(current.current === "articles" ? "events" : "articles");
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [setView]);
+
+  // a new article may have joined an event: look again, once a burst has passed
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const stop = subscribe(() => {
+      clearTimeout(timer);
+      timer = setTimeout(
+        () => client.invalidateQueries({ queryKey: ["stories"] }),
+        STORIES_DEBOUNCE_MS,
+      );
+    });
+    return () => {
+      clearTimeout(timer);
+      stop();
+    };
+  }, [subscribe, client]);
+
+  const onOpenEvent = useCallback(
+    (id: number) => {
+      setEventState("all");
+      setOpenEvent(id);
+      setFocusEvent(id);
+      setView("events");
+    },
+    [setView],
+  );
+  const onFocused = useCallback(() => setFocusEvent(null), []);
+
+  return (
     <main className="main">
-      <div className="stream">
+      <div className={view === "events" ? "stream wide" : "stream"}>
         <div className="stream-head">
+          <div className="view-control">
+            <ViewSwitch userId={me.id} className="desktop-only" />
+            <span className="sort-note">{view === "events" ? L.sortUpdated : L.sortNewest}</span>
+          </div>
           <ActiveFilters />
-          {facets.data && <span className="stream-count">{count("articlesToday", facets.data.total)}</span>}
+          {view === "articles" && facets.data && (
+            <span className="stream-count">{count("articlesToday", facets.data.total)}</span>
+          )}
         </div>
 
-        {waiting.length > 0 && (
-          <div className="pill-anchor">
-            <button type="button" className="pill" onClick={reveal}>
-              <ArrowUp width={2.4} />
-              <span>
-                <strong>{count("newArticles", waiting.length)}</strong>
-                {burst && <small>{fill(L.burstSub, { count: burst.count, source: burst.source })}</small>}
-              </span>
-            </button>
-          </div>
-        )}
-
-        {isFirstTime && <FirstTime />}
-
-        {list.isPending && (
-          <div aria-busy="true" aria-label={L.loading} className="skeletons">
-            {SKELETONS.map((skeleton) => (
-              <CardSkeleton key={skeleton.width} {...skeleton} />
-            ))}
-          </div>
-        )}
-
-        {list.isError && <LoadError onRetry={() => list.refetch()} />}
-
-        {isEmpty && !isFirstTime && (
-          <Empty onClearFilters={clearFilters} onClearSearch={() => setQuery("")} />
-        )}
-
-        {visible.map((article) => (
-          <ArticleCard key={article.id} article={article} isNew={highlighted.has(article.id)} />
-        ))}
-
-        <div ref={sentinel} />
-        {isFetchingNextPage && <Loading />}
+        <div className="radar-view" hidden={view !== "articles"}>
+          <ArticlesView onOpenEvent={onOpenEvent} />
+        </div>
+        <div className="radar-view" hidden={view !== "events"}>
+          <EventsView
+            state={eventState}
+            setState={setEventState}
+            openId={openEvent}
+            setOpenId={setOpenEvent}
+            focusId={focusEvent}
+            onFocused={onFocused}
+          />
+        </div>
       </div>
     </main>
   );

@@ -20,7 +20,9 @@ fields:
   title: $.title
   link: $.link
   published: $.published       # RFC 822, true UTC: the article page gives the same time
-  lead: $.summary
+  lead:
+    path: $.summary
+    regex: '(?s)^(.*?)(?:The post |$)'   # WordPress adds "The post ... appeared first on ..."
   image:
     path: $.content[0].value
     regex: '<img[^>]+src="([^"]+)"'

@@ -22,7 +22,6 @@ import { Account } from "./pages/Account";
 import { AcceptInvite, ForgotPassword, Login, ResetPassword } from "./pages/Auth";
 import { Radar } from "./pages/Radar";
 import { Sources } from "./pages/Sources";
-import { Stories } from "./pages/Stories";
 import { Team } from "./pages/Team";
 import { PrefsProvider } from "./prefs";
 
@@ -62,6 +61,13 @@ function Waiting() {
   );
 }
 
+/** The old addresses, and "/": filters in the query string come along. */
+function ToRadar({ view }: { view?: "events" }) {
+  const params = new URLSearchParams(useLocation().search);
+  if (view) params.set("view", view);
+  return <Navigate to={{ pathname: "/radar", search: params.toString() }} replace />;
+}
+
 function SignedIn() {
   const me = useMe();
   const location = useLocation();
@@ -74,8 +80,9 @@ function SignedIn() {
   return (
     <Routes>
       <Route element={<Shell me={user} />}>
-        <Route index element={<Radar />} />
-        <Route path="stories" element={<Stories />} />
+        <Route index element={<ToRadar />} />
+        <Route path="radar" element={<Radar me={user} />} />
+        <Route path="stories" element={<ToRadar view="events" />} />
         <Route path="sources" element={<Sources me={user} />} />
         <Route
           path="team"

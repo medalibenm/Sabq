@@ -15,6 +15,7 @@ import { rememberWilayas, Segmented } from "./bits";
 import { Drawer } from "./Drawer";
 import { FilterRail, FilterSheet } from "./FilterRail";
 import { Funnel, Logo, Logout, Radar, Feed, Search, Spinner, Team, User } from "./icons";
+import { ViewSwitch } from "./ViewSwitch";
 
 const SEARCH_DELAY_MS = 250;
 
@@ -194,7 +195,6 @@ function UserMenu({ me }: { me: Me }) {
 function TopBar({ me, radar, title }: { me: Me; radar: boolean; title: string }) {
   const { L } = usePrefs();
   const { activeCount } = useFilters();
-  const { search } = useLocation();
   const [searching, setSearching] = useState(false);
   const [sheet, setSheet] = useState(false);
   const closeSheet = useRef(() => setSheet(false)).current;
@@ -202,22 +202,14 @@ function TopBar({ me, radar, title }: { me: Me; radar: boolean; title: string })
   return (
     <div className="top">
       <header className="topbar">
-        <Link to="/" aria-label={L.home} className="brand">
+        <Link to="/radar" aria-label={L.home} className="brand">
           <Logo />
           <span>{L.brand}</span>
         </Link>
         {radar ? (
-          <>
-            <nav aria-label={L.views} className="tabs desktop-only">
-              <NavLink end to={{ pathname: "/", search }}>
-                {L.stream}
-              </NavLink>
-              <NavLink to={{ pathname: "/stories", search }}>{L.stories}</NavLink>
-            </nav>
-            <div className="desktop-only search-slot">
-              <SearchBox inputId="search" />
-            </div>
-          </>
+          <div className="desktop-only search-slot">
+            <SearchBox inputId="search" />
+          </div>
         ) : (
           <h1 className="page-title">{title}</h1>
         )}
@@ -240,12 +232,7 @@ function TopBar({ me, radar, title }: { me: Me; radar: boolean; title: string })
       </header>
       {radar && (
         <div className="mobile-tabs mobile-only">
-          <nav aria-label={L.views}>
-            <NavLink end to={{ pathname: "/", search }}>
-              {L.stream}
-            </NavLink>
-            <NavLink to={{ pathname: "/stories", search }}>{L.stories}</NavLink>
-          </nav>
+          <ViewSwitch userId={me.id} />
           <button type="button" className="filter-button" onClick={() => setSheet(true)}>
             <Funnel />
             {L.filtersShort}
@@ -266,10 +253,10 @@ function TopBar({ me, radar, title }: { me: Me; radar: boolean; title: string })
 function Navigation({ me, className }: { me: Me; className: string }) {
   const { L } = usePrefs();
   const { pathname } = useLocation();
-  const inRadar = pathname === "/" || pathname === "/stories";
+  const inRadar = pathname === "/radar";
   return (
     <nav aria-label={L.mainNav} className={className}>
-      <Link to="/" className={inRadar ? "active" : undefined} aria-current={inRadar ? "page" : undefined}>
+      <Link to="/radar" className={inRadar ? "active" : undefined} aria-current={inRadar ? "page" : undefined}>
         <span className="nav-icon">
           <Radar size={20} />
         </span>
@@ -303,7 +290,7 @@ function Frame({ me }: { me: Me }) {
   const { L } = usePrefs();
   const { pathname } = useLocation();
   const [params] = useSearchParams();
-  const radar = pathname === "/" || pathname === "/stories";
+  const radar = pathname === "/radar";
   const titles: Record<string, string> = {
     "/sources": L.sources,
     "/team": L.team,

@@ -498,32 +498,6 @@ textarea.input {
   text-decoration: none;
 }
 
-.tabs {
-  flex: none;
-  display: flex;
-  align-items: stretch;
-  gap: 4px;
-  height: var(--top);
-}
-
-.tabs a {
-  display: flex;
-  align-items: center;
-  padding-inline: 12px;
-  border-top: 2px solid transparent;
-  border-bottom: 2px solid transparent;
-  color: var(--text2);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.tabs a.active {
-  border-bottom-color: var(--bar);
-  color: var(--text);
-  font-weight: 600;
-}
-
 .page-title {
   padding-inline-start: 12px;
   border-inline-start: 1px solid var(--line);
@@ -1060,11 +1034,93 @@ textarea.input {
 }
 
 .stream-head {
+  position: sticky;
+  top: var(--top);
+  z-index: 5;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
   min-height: 32px;
+  padding-block: 8px;
+  background: var(--bg);
+}
+
+.view-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.view-switch button {
+  height: auto;
+  min-height: 32px;
+  padding-inline: 14px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.sort-note {
+  color: var(--text3);
+  font-size: 12px;
+}
+
+.radar-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radar-view[hidden] {
+  display: none;
+}
+
+.dev-strip {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 6px 12px;
+}
+
+.dev-strip-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dev-strip button {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+  padding-block: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: start;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.dev-strip button > span:first-child {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dev-strip small {
+  flex: none;
+  color: var(--text3);
+  font-size: 12px;
 }
 
 .scope {
@@ -1094,9 +1150,10 @@ textarea.input {
 
 .pill-anchor {
   position: sticky;
-  top: calc(var(--top) + 8px);
+  top: calc(var(--top) + 76px); /* under the sticky row with the view switch */
   z-index: 6;
   height: 0;
+  margin-block-end: -10px; /* cancels the list's gap: showing the pill must not move a row */
   display: flex;
   justify-content: center;
   overflow: visible;
@@ -1260,7 +1317,8 @@ textarea.input {
   background: var(--card);
 }
 
-.card.is-new {
+.card.is-new,
+.story.is-new {
   border-color: var(--acc-ring);
   background: var(--acc-softer);
 }
@@ -1735,6 +1793,7 @@ textarea.input {
 }
 
 .story {
+  scroll-margin-top: calc(var(--top) + 76px);
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--line);
@@ -2715,7 +2774,7 @@ tbody td {
     font-weight: 700;
   }
 
-  .topbar:not(:has(.tabs, .search-slot)) .brand span:last-child {
+  .topbar:not(:has(.search-slot)) .brand span:last-child {
     display: none;
   }
 
@@ -2725,35 +2784,22 @@ tbody td {
   }
 
   .mobile-tabs {
-    height: 46px;
-    align-items: stretch;
-    gap: 4px;
-    padding-inline: 8px;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
     background: var(--panel);
     border-bottom: 1px solid var(--line);
   }
 
-  .mobile-tabs nav {
+  .mobile-tabs .view-switch {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
+    padding: 2px;
   }
 
-  .mobile-tabs nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid transparent;
-    color: var(--text2);
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-  }
-
-  .mobile-tabs nav a.active {
-    border-bottom-color: var(--bar);
-    color: var(--text);
-    font-weight: 600;
+  .view-switch button {
+    min-height: 44px;
+    padding-inline: 4px;
   }
 
   .filter-button {
@@ -2835,8 +2881,13 @@ tbody td {
     padding: 10px 12px calc(var(--bottom) + 20px);
   }
 
+  .stream-head {
+    position: static;
+    padding-block: 0;
+  }
+
   .pill-anchor {
-    top: 108px;
+    top: 118px;
   }
 
   .pill {

@@ -1,7 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { api } from "../api/client";
 import type { Article, Story, StoryState } from "../api/client";
 import { isEstimated } from "../components/ArticleCard";
 import {
@@ -13,14 +11,15 @@ import {
   Segmented,
   WilayaChips,
 } from "../components/bits";
-import { Check, Chevron, External, Layers } from "../components/icons";
+import { ArrowUp, Check, Chevron, External, Layers } from "../components/icons";
 import { CardSkeleton } from "../components/ArticleCard";
+import { STORIES_LIMIT, useStories } from "../components/ViewSwitch";
+import { sameRows, storiesAfterReveal, updatedStories } from "../lib/stream";
 import { initials } from "../lib/text";
 import { useFilters, useOpenArticle } from "../lib/useFilters";
 import { usePrefs } from "../prefs";
-import { ActiveFilters } from "./Radar";
 
-const REFRESH_MS = 60_000;
+const HIGHLIGHT_MS = 8000;
 
 function uniqueSources(articles: Article[]) {
   return [...new Map(articles.map((a) => [a.source.slug, a.source])).values()];
@@ -85,14 +84,24 @@ function Timeline({ articles }: { articles: Article[] }) {
   );
 }
 
-function StoryRow({ story, expanded, onToggle }: { story: Story; expanded: boolean; onToggle: () => void }) {
+function StoryRow({
+  story,
+  expanded,
+  isNew,
+  onToggle,
+}: {
+  story: Story;
+  expanded: boolean;
+  isNew: boolean;
+  onToggle: () => void;
+}) {
   const { L, count } = usePrefs();
   const lead = story.articles.find((a) => a.id === story.representative_id) ?? story.articles[0];
   const sources = uniqueSources(story.articles);
   const wilayas = [...new Set(story.articles.flatMap((a) => a.wilayas))].sort();
   const latest = story.articles[story.articles.length - 1];
   return (
-    <article className="story">
+    <article id={`event-${story.id}`} className={isNew ? "story is-new" : "story"}>
       <button type="button" className="story-head" aria-expanded={expanded} onClick={onToggle}>
         <div className="story-main">
           <div className="story-tags">
@@ -155,70 +164,122 @@ function StoryRow({ story, expanded, onToggle }: { story: Story; expanded: boole
   );
 }
 
-export function Stories() {
+export type OpenEvent = number | "first" | null;
+
+/** The Events view. Like the stream, it never moves by itself: fresh data is compared with what
+ * is on screen, and changes wait in the pill until the reader asks for them. */
+export function EventsView({
+  state,
+  setState,
+  openId,
+  setOpenId,
+  focusId,
+  onFocused,
+}: {
+  state: StoryState;
+  setState: (state: StoryState) => void;
+  openId: OpenEvent;
+  setOpenId: (id: OpenEvent) => void;
+  focusId: number | null;
+  onFocused: () => void;
+}) {
   const { L, count } = usePrefs();
   const { filters } = useFilters();
-  const [state, setState] = useState<StoryState>("all");
-  const [openId, setOpenId] = useState<number | "first" | null>("first");
-  const stories = useQuery({
-    queryKey: ["stories", filters, state],
-    queryFn: () => api.stories(filters, state),
-    refetchInterval: REFRESH_MS,
-    placeholderData: (previous) => previous,
-  });
+  const stories = useStories(state);
+  const [held, setHeld] = useState<{ key: string; rows: Story[] } | null>(null);
+  const [highlighted, setHighlighted] = useState<Set<number>>(new Set());
 
-  const rows = stories.data ?? [];
+  const key = JSON.stringify([filters, state]);
+  const fresh = stories.isPlaceholderData ? undefined : stories.data;
+  const rows = held?.key === key ? held.rows : (stories.data ?? []);
+  const updates = useMemo(
+    () => (fresh && held?.key === key ? updatedStories(held.rows, fresh) : []),
+    [fresh, held, key],
+  );
+
+  useEffect(() => {
+    if (!fresh) return;
+    const untouched = held?.key === key && sameRows(held.rows, fresh) && updates.length === 0;
+    if (held?.key !== key || (untouched && held.rows !== fresh)) setHeld({ key, rows: fresh });
+  }, [fresh, held, key, updates]);
+
+  const reveal = () => {
+    if (!fresh) return;
+    setHeld({ key, rows: storiesAfterReveal(fresh, updates) });
+    setHighlighted(new Set(updates.map((story) => story.id)));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => setHighlighted(new Set()), HIGHLIGHT_MS);
+  };
+
+  // arriving from the strip above the stream: the event may be newer than this list
+  useEffect(() => {
+    if (focusId === null) return;
+    if (!rows.some((story) => story.id === focusId)) {
+      if (fresh?.some((story) => story.id === focusId)) setHeld({ key, rows: fresh });
+      return;
+    }
+    document.getElementById(`event-${focusId}`)?.scrollIntoView({ block: "start" });
+    onFocused();
+  }, [focusId, rows, fresh, key, onFocused]);
+
   const developing = rows.filter((story) => !story.closed).length;
   const expandedId = openId === "first" ? rows[0]?.id : openId;
   const summary = `${count("stories", rows.length)} · ${count("storiesDeveloping", developing)}`;
 
   return (
-    <main className="main">
-      <div className="stream wide">
-        <div className="stream-head">
-          <ActiveFilters />
-        </div>
-        <div className="stories-head">
-          <span className="soft">{stories.isSuccess && summary}</span>
-          <Segmented<StoryState>
-            label={L.storyState}
-            value={state}
-            onChange={setState}
-            className="compact"
-            options={[
-              { value: "all", label: L.all },
-              { value: "developing", label: L.developing },
-              { value: "closed", label: L.closed },
-            ]}
-          />
-        </div>
-
-        {stories.isPending && (
-          <div aria-busy="true" aria-label={L.loading} className="skeletons">
-            <CardSkeleton image={false} width="80%" />
-            <CardSkeleton image={false} width="66%" />
-            <CardSkeleton image={false} width="72%" />
-          </div>
-        )}
-        {stories.isError && <LoadError onRetry={() => stories.refetch()} />}
-        {stories.isSuccess && rows.length === 0 && (
-          <section className="empty">
-            <span className="empty-icon">
-              <Layers size={22} />
-            </span>
-            <h2>{L.noStoriesTitle}</h2>
-            <p>{L.noStoriesBody}</p>
-          </section>
-        )}
-        {rows.map((story) => (
-          <StoryRow
-            key={story.id}
-            story={story}
-            expanded={story.id === expandedId}
-            onToggle={() => setOpenId(story.id === expandedId ? null : story.id)}
-          />
-        ))}
+    <>
+      <div className="stories-head">
+        <span className="soft">{stories.isSuccess && rows.length < STORIES_LIMIT && summary}</span>
+        <Segmented<StoryState>
+          label={L.storyState}
+          value={state}
+          onChange={setState}
+          className="compact"
+          options={[
+            { value: "all", label: L.all },
+            { value: "developing", label: L.developing },
+            { value: "closed", label: L.closed },
+          ]}
+        />
       </div>
-    </main>
+
+      {updates.length > 0 && (
+        <div className="pill-anchor">
+          <button type="button" className="pill" onClick={reveal}>
+            <ArrowUp width={2.4} />
+            <span>
+              <strong>{count("eventsUpdated", updates.length)}</strong>
+            </span>
+          </button>
+        </div>
+      )}
+
+      {stories.isPending && (
+        <div aria-busy="true" aria-label={L.loading} className="skeletons">
+          <CardSkeleton image={false} width="80%" />
+          <CardSkeleton image={false} width="66%" />
+          <CardSkeleton image={false} width="72%" />
+        </div>
+      )}
+      {stories.isError && <LoadError onRetry={() => stories.refetch()} />}
+      {stories.isSuccess && rows.length === 0 && (
+        <section className="empty">
+          <span className="empty-icon">
+            <Layers size={22} />
+          </span>
+          <h2>{L.noStoriesTitle}</h2>
+          <p>{L.noStoriesBody}</p>
+        </section>
+      )}
+      {rows.map((story) => (
+        <StoryRow
+          key={story.id}
+          story={story}
+          expanded={story.id === expandedId}
+          isNew={highlighted.has(story.id)}
+          onToggle={() => setOpenId(story.id === expandedId ? null : story.id)}
+        />
+      ))}
+    </>
   );
 }
