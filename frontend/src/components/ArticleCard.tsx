@@ -56,7 +56,7 @@ export function ArticleCard({ article, isNew }: { article: Article; isNew?: bool
         <SourceImage src={article.image_url} className="thumb" />
         <div className="card-main">
           <div className="card-meta">
-            <bdi className="strong">{article.source.name}</bdi>
+            <bdi className="card-source">{article.source.name}</bdi>
             <LangTag language={article.language} />
             <span aria-hidden="true" className="dot">
               ·
@@ -106,9 +106,6 @@ export function ArticleCard({ article, isNew }: { article: Article; isNew?: bool
             <span className="group-count">
               <Layers size={15} />
               {count("otherSources", peers.length)}
-            </span>
-            <span className="group-names">
-              <bdi>{peers.map((peer) => peer.source.name).join(" · ")}</bdi>
             </span>
             <span className="group-action">{expanded ? L.hide : L.show}</span>
             <Chevron className={expanded ? "chevron open" : "chevron"} />

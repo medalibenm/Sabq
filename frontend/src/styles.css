@@ -1357,8 +1357,10 @@ textarea.input {
   line-height: 18px;
 }
 
-.card-meta .strong {
+.card-source {
   color: var(--text);
+  font-size: 15.5px;
+  font-weight: 700;
 }
 
 .dot {
@@ -1506,17 +1508,8 @@ textarea.input {
   white-space: nowrap;
 }
 
-.group-names {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  color: var(--text2);
-  font-size: 12.5px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .group-action {
+  margin-inline-start: auto;
   color: var(--text2);
   font-size: 12.5px;
 }
@@ -1748,8 +1741,11 @@ textarea.input {
   font-size: 12.5px;
 }
 
-.same-meta .strong {
+.same-meta .strong,
+.peer-source .strong {
   color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .same-title {
